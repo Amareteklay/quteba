@@ -20,7 +20,15 @@ The Agile approach was key to the successful completion of this project. I start
 
 
 ### Bugs
-I created user stories in Github and django project in Gitpod. When I tried to push my local changes, I got an error which i fixed using [this solution](https://docs.github.com/en/get-started/using-git/dealing-with-non-fast-forward-errors).
+- I created user stories in Github and django project in Gitpod. When I tried to push my local changes, I got an error which i fixed using [this solution](https://docs.github.com/en/get-started/using-git/dealing-with-non-fast-forward-errors).
+
+- I was not able to deploy the application to heroku because of an error in backports.zoneinfo which ended up in the requirements file. I removed it manually and it worked. 
+- I was not able to login to the admin page and got CSRF error. I added CSRF_TRUSTED_ORIGINS
+
+#
+#
+
+
 
 Welcome Amare Teklay Hailu,
 
