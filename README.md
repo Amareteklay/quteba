@@ -19,7 +19,8 @@ The Agile approach was key to the successful completion of this project. I start
 - As a **reader** I can **view paginated excerpts of articles** so that **I choose which articles to read**
 
 
-
+### Bugs
+I created user stories in Github and django project in Gitpod. When I tried to push my local changes, I got an error which i fixed using [this solution](https://docs.github.com/en/get-started/using-git/dealing-with-non-fast-forward-errors).
 
 Welcome Amare Teklay Hailu,
 
