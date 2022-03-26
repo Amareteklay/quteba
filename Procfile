@@ -1,1 +1,1 @@
-web: gunicorn quteba.wsgi
+web: gunicorn quteba.wsgi:application
