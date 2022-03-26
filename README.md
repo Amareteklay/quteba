@@ -1,6 +1,27 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# QUTEBA
+Quteba is a Tigrigna word for Economy. I have created Quteba as a dynamic website that serves readers with news and analyses pertinent to economic issues. 
 
-Welcome USER_NAME,
+
+## Agile process
+The Agile approach was key to the successful completion of this project. I started by creating user story template on Github. I used this template to generate user stories and plan their implementation. 
+### User stories
+
+- As a **contributor** I can **create a profile and have my articles listed under my name** so that **readers can follow, read and engage in my work**
+- As a **website user** I can **ask questions and send comments to the site owner** so that **I can get clarifications and express my opinions**
+- As a **site admin** I can **verify authors and approve comments** so that **only relevant and engaging content is shared among readers**
+- As a **reader** I can **follow and share latest activities on social media** so that **I see updates from a social media app I am using**
+- As a **reader** I can **filter and set alert for content in different categories** so that **I do not have to read every article before I find the ones I am interested in**
+- As a **reader** I can **like or unlike posts and comments** so that **I express my reaction without writing comments**
+- As a **subscriber** I can **receive email notifications of new articles** so that **stay updated on relevant economic issues**
+- As a **reader** I can **leave comments and view thread** so that **I become engaged in a conversation on a topic of my interest**
+- As a **contributor** I can **create drafts and publish articles** so that **I can share my views and analyses with readers and receive feedback**
+- As a **site user** I can **create an account** so that **I have access to both public and members only content**
+- As a **reader** I can **view paginated excerpts of articles** so that **I choose which articles to read**
+
+
+
+
+Welcome Amare Teklay Hailu,
 
 This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
 
