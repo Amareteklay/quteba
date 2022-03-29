@@ -20,6 +20,12 @@ body {
 position: relative;
 }
 
+.profile-img {
+width: 80px;
+height: 80px;
+border-radius: 40px;
+}
+
 .btn-secondary {
 background-color: aqua;
 border-color: aquamarine;

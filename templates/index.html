@@ -6,20 +6,18 @@
 <div class="container shadow-lg bg-body rounded" id="container-resume">
   <div class="row">
     {% for post in post_list %}
-    {% if forloop.counter|divisibleby:2 %}
     <div class="col-md-4">
         <div class="card mb-4">
             <div class="card-body">
-                <p class="card-text">Author: {{post.author}}</p>
-                <a href="#" class="post-link">
+              <img class="profile-img" src="{% static 'images/jung.jpg' %}" alt="profile picture">
+                <p class="card-text">Author: <a href="#"> {{post.author}} </a></p>
+                <a href="{% url 'post_detail' post.slug %}" class="post-link">
                   <h2 class="card-title">  {{post.title}} </h2>
-                 
                 </a> 
-                {{post.content}}
+                <p>{{object.content|safe}}</p>
             </div>
         </div>
     </div>
-    {% endif%}
     {% endfor %}
   </div>
                                 
