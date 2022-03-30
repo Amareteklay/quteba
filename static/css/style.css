@@ -20,6 +20,15 @@ body {
 position: relative;
 }
 
+.card-img-top {
+border: #056674 2px solid;
+border-radius: 10px;
+}
+
+a {
+text-decoration: none;
+}
+
 .profile-img {
 width: 80px;
 height: 80px;

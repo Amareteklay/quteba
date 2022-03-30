@@ -25,6 +25,11 @@ The Agile approach was key to the successful completion of this project. I start
 - I was not able to deploy the application to heroku because of an error in backports.zoneinfo which ended up in the requirements file. I removed it manually and it worked. 
 - I was not able to login to the admin page and got CSRF error. I added CSRF_TRUSTED_ORIGINS
 
+
+## Credit
+- I followed [this tutorial](https://replit.com/talk/learn/DjangoPython-and-HTML-Coding-Campus-Tutorial-1-Create-a-Blog-with-Django/142238?order=new) to create blog posts.
+
+- Image for UX and behavioral economics was taken from [this webpage](https://startupsmagazine.co.uk/article-behavioural-economics-tips-ux-design).
 #
 #
 
