@@ -16,14 +16,20 @@ body {
   position: relative;
 }
 
+.row {
+  margin-top: 30px;
+}
+
+/* Single post top margin*/
+.masthead, .masthead-text {
+  margin-top: 75px;
+}
+
 #hero-image {
 position: relative;
 }
 
-.card-img-top {
-border: #056674 2px solid;
-border-radius: 10px;
-}
+
 
 a {
 text-decoration: none;

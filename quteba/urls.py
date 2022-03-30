@@ -19,5 +19,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
-    path('', include('qblog.urls'), name='qblog_urls'),
+    path('', include('qpages.urls'), name='qpages_urls'),
+    path('blog/', include('qblog.urls'), name='qblog_urls'),
+    path('forum/', include('qforum.urls'), name='qforum_urls'),
 ]
