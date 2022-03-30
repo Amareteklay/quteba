@@ -30,6 +30,8 @@ The Agile approach was key to the successful completion of this project. I start
 - I followed [this tutorial](https://replit.com/talk/learn/DjangoPython-and-HTML-Coding-Campus-Tutorial-1-Create-a-Blog-with-Django/142238?order=new) to create blog posts.
 
 - Image for UX and behavioral economics was taken from [this webpage](https://startupsmagazine.co.uk/article-behavioural-economics-tips-ux-design).
+
+- Code for carousel was taken from [this page](https://getbootstrap.com/docs/5.0/components/carousel/).
 #
 #
 
