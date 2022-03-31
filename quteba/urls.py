@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('qpages.urls'), name='qpages_urls'),
     path('blog/', include('qblog.urls'), name='qblog_urls'),
     path('forum/', include('qforum.urls'), name='qforum_urls'),
+    path('accounts/', include('allauth.urls')),
 ]

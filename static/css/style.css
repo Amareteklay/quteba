@@ -4,7 +4,6 @@ body {
 
 .navbar {
     padding-left: 5rem;
-    padding-right: 5rem;
 }
 
 .nav-item a.nav-link:hover {
@@ -73,10 +72,6 @@ border-color: aquamarine;
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .nav-link {
   color: #fff;
-}
-
-.navbar-collapse {
-  padding-left: 60%;
 }
 
 .navbar-collapse .nav-link {
