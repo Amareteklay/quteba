@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}  
 {% block content %}
+{% load crispy_forms_tags %}
 
 <div class="masthead">
     <div class="container">
@@ -45,7 +46,7 @@
                             <span class="text-secondary"><i class="far fa-heart"></i></span>
                             {% endif %}
                         </span class="text-secondary">{{ post.number_of_likes }} </span>
-                    </strong>
+                       </strong>
                     </div>
                     <div class="col-1">
                         {% with comments.count as total_comments %}
@@ -81,6 +82,22 @@
         </div>
         <div class="col-md-4 card mb-4  mt-3 ">
             <div class="card-body">
+                        {% if commented %}
+                        <div class="alert alert-success" role="alert">
+                            Your comment is awaiting approval
+                        </div>
+                        {% else %}
+                        {% if user.is_authenticated %}
+        
+                        <h3>Leave a comment:</h3>
+                        <p>Posting as: {{ user.username|title }}</p>
+                        <form class="comment-form" method="post" style="margin-top: 1.3em;">
+                            {{ comment_form | crispy }}
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-signup btn-success btn-lg">Submit</button>
+                        </form>
+                        {% endif %}
+                        {% endif %}
             </div>
         </div>
     </div>

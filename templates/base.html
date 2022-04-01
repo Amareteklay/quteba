@@ -29,29 +29,29 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">HOME</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'about' %}">About</a>
+            <a class="nav-link" href="{% url 'about' %}">ABOUT</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'blog' %}">Qblog</a>
+            <a class="nav-link" href="{% url 'blog' %}">QBLOG</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'forum' %}">Qforum</a>
+            <a class="nav-link" href="{% url 'forum' %}">QFORUM</a>
           </li>
         </ul>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                        <a class="nav-link btn btn-signup btn-success" href="{% url 'account_logout' %}">LOGOUT</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                        <a class="nav-link btn btn-signup btn-success" href="{% url 'account_signup' %}">SIGN UP</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                        <a class="nav-link btn btn-signup btn-success" href="{% url 'account_login' %}"><i class="fa fa-user"></i> LOGIN</a>
                     </li>
                     {% endif %}
         </ul>

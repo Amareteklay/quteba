@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate, logout 
-from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
+from django.shortcuts import render
+from django.views import generic
+from .models import Forum
 
 
-def forum(request):
-    return render(request, 'qforum/forum.html')
+class ForumList(generic.ListView):
+    model = Forum()
+    queryset = Forum.objects.all()
+    template_name = 'qforum/forum.html'

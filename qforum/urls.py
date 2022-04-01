@@ -2,5 +2,5 @@ from . import views
 from django.urls import path
 
 urlpatterns = [
-    path('', views.forum, name='forum'),
+    path('', views.ForumList.as_view(), name='forum'),
 ]
