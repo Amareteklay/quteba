@@ -5,5 +5,5 @@ from .models import Forum
 
 class ForumList(generic.ListView):
     model = Forum
-    queryset = Forum.objects.all()
+    queryset = Forum.objects.filter(status=1).order_by('-date_created')
     template_name = 'qforum/forum.html'

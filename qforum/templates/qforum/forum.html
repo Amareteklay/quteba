@@ -5,16 +5,18 @@
 
 <!--Code from https://replit.com/talk/learn/DjangoPython-and-HTML-Coding-Campus-Tutorial-1-Create-a-Blog-with-Django/142238?order=new-->
 <!--And https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/templates/index.html-->
-<div class="container-fluid">
+<div class="container-fluid container">
   <div class="row blog-cards">
       <div class="col-12 mt-3 left">
           <div class="row">
-             
-            <h1>FORUMS</h1>
-            {% for forum in forum %}
-            {{ forum.topic}}
+             <div class="forum">
+            <h1>Discussion Forum</h1>
+            {% for forum in forum_list %}
+            <a href="#"><i class="fa fa-user"></i> {{forum.name}}</a>
+            <h3>{{ forum.topic}}</h3>
+            <p> {{forum.description|safe}} </p>
             {% endfor %}
-
+          </div>
           </div>
       </div>
   </div>

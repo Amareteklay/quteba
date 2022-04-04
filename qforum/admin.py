@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Forum, Discussion
 from django_summernote.admin import SummernoteModelAdmin
 
+
 @admin.register(Forum)
 class ForumAdmin(SummernoteModelAdmin):
     list_display = ('topic', 'description', 'status', 'date_created')
