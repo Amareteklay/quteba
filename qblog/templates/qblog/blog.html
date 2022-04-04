@@ -16,11 +16,11 @@
                           <div class="image-container">
                               {% if "placeholder" in post.featured_image.url %}
                               <img class="card-img-top"
-                                  src="{% static 'images/jung.jpg' %}">
+                                  src="{% static 'images/quteba.png' %}">
                               {% else %}
                               <img class="card-img-top" src=" {{ post.featured_image.url }}">
                               {% endif %}
-                                  By: <a href="#" class="author">{{ post.author|title }}</a>
+                                  <a href="#" class="author"><i class="fa fa-user"></i> {{ post.author|title }}</a>
                           </div>
                           <a href="{% url 'post_detail' post.slug  %}" class="post-link">
                               <h2 class="card-title">{{ post.title }}</h2> 

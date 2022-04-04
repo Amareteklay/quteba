@@ -4,6 +4,6 @@ from .models import Forum
 
 
 class ForumList(generic.ListView):
-    model = Forum()
+    model = Forum
     queryset = Forum.objects.all()
     template_name = 'qforum/forum.html'
