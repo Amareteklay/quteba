@@ -55,7 +55,7 @@ INSTALLED_APPS = [
 ]
 
 # Tells django to use the same database
-SITE_ID = 1
+SITE_ID = 2
 
 # Redirect user to home page after login or logout
 LOGIN_REDIRECT_URL = '/'

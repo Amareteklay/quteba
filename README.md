@@ -32,6 +32,8 @@ The Agile approach was key to the successful completion of this project. I start
 - Image for UX and behavioral economics was taken from [this webpage](https://startupsmagazine.co.uk/article-behavioural-economics-tips-ux-design).
 
 - Code for carousel was taken from [this page](https://getbootstrap.com/docs/5.0/components/carousel/).
+
+- Template for forum was taken from [this page](https://www.bootdey.com/snippets/view/bs5-forum-list)
 #
 #
 

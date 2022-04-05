@@ -12,7 +12,7 @@
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
                 {% if "placeholder" in post.featured_image.url %}
-                <img src="{% static 'images/jung.jpg' %}" width="100%">
+                <img src="{% static 'images/quteba.png' %}" width="100%">
                 {% else %}
                 <img src=" {{ post.featured_image.url }}" width="100%">
                 {% endif %}
@@ -91,10 +91,10 @@
         
                         <h3>Leave a comment:</h3>
                         <p>Posting as: {{ user.username|title }}</p>
-                        <form class="comment-form" method="post" style="margin-top: 1.3em;">
-                            {{ comment_form | crispy }}
+                        <form action="" class="comment-form" method="POST" style="margin-top: 1.3em;">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-signup btn-success btn-lg">Submit</button>
+                            {{ form | crispy }}
+                            <button type="submit" class="btn btn-signup btn-primary mt-3 btn-lg">Submit</button>
                         </form>
                         {% endif %}
                         {% endif %}
