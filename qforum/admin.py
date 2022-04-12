@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Thread, Post
+from .models import Thread, Post, Category
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -13,4 +13,9 @@ class ThreadAdmin(SummernoteModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
     pass
