@@ -1,12 +1,14 @@
 from django.forms import ModelForm
-from .models import *
+from .models import Thread, Post
  
-class AddForum(ModelForm):
+
+class ThreadForm(ModelForm):
     class Meta:
-        model= Qforum
+        model = Thread
         fields = "__all__"
  
-class AddDiscussion(ModelForm):
+
+class PostForm(ModelForm):
     class Meta:
-        model= Discussion
+        model = Post
         fields = "__all__"

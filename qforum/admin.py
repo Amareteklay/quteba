@@ -1,16 +1,16 @@
 from django.contrib import admin
-from .models import Forum, Discussion
+from .models import Thread, Post
 from django_summernote.admin import SummernoteModelAdmin
 
 
-@admin.register(Forum)
-class ForumAdmin(SummernoteModelAdmin):
-    list_display = ('topic', 'description', 'status', 'date_created')
+@admin.register(Thread)
+class ThreadAdmin(SummernoteModelAdmin):
+    list_display = ('name', 'email', 'topic', 'description', 'category', 'created_on')
     search_fields = ['topic', 'description']
-    list_filter = ('status', 'date_created')
+    list_filter = ('status', 'created_on')
     summernote_fields = ('description',)
 
 
-@admin.register(Discussion)
-class DiscussionAdmin(admin.ModelAdmin):
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
     pass
