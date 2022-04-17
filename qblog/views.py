@@ -1,8 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views.generic import ListView, View
 from django.http import HttpResponseRedirect
-from django.urls import reverse
-from .models import Post, Comment
+from .models import Post
 from .forms import CommentForm
 
 
@@ -68,12 +67,10 @@ class PostDetail(View):
             },
         )
 
+
 class PostLike(View):
-    """
-    A view to toggle like and unlike
-    """
-    def post(self, request, slug, *args, **kwargs):
-        post = get_object_or_404(Post, slug=request.POST.get('slug'))
+    def post(self, request, slug):
+        post = get_object_or_404(Post, slug=slug)
         if post.likes.filter(id=request.user.id).exists():
             post.likes.remove(request.user)
         else:
