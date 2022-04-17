@@ -1,5 +1,5 @@
 {% extends "qforum/forum_base.html" %}
-{% load static %} 
+{% load static %}
 
 {% block content %}
 
@@ -7,53 +7,56 @@
 <!--And https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/templates/index.html-->
 <div class="container-fluid container">
   <div class="row blog-cards">
-      <div class="col-12 mt-3 left">
-          <div class="row">
-             <div class="forum">
-            <h1>Discussion Forum</h1>
-            <!-- Code from https://www.bootdey.com/snippets/view/bs5-forum-list -->
-<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
-<div class="container">
+    <div class="col-12 mt-3 left">
       <div class="row">
-        <!-- Main content -->
-        <div class="col-lg-9 mb-3">
-          {% block category %}
-          <h1>Is this working?</h1>
-          {% endblock category %}
+        <div class="forum">
+          <h1>Discussion Forum</h1>
+          <!-- Code from https://www.bootdey.com/snippets/view/bs5-forum-list -->
+          <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+          <div class="container">
+            <div class="row">
+              <!-- Main content -->
+              <div class="col-lg-9 mb-3">
+                {% block category %}
+                <h1>Is this working?</h1>
+                {% endblock category %}
 
-          {% for thread in thread_list %}
-          <div class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
-            <div class="row align-items-center">
-              <div class="col-md-8 mb-3 mb-sm-0">
-                <h5>
-                  <a href="#" class="text-primary">{{ thread.topic|title}}</a>
-                </h5>
-                <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">20 minutes</a> <span class="op-6">ago by</span> <a class="text-black" href="#"><i class="fa fa-user"></i> {{thread.name}}</a></p>
-                <p> {{thread.description|safe}} </p>
-                <div class="text-sm op-5"> <a class="text-black mr-2" href="#">#C++</a> <a class="text-black mr-2" href="#">#AppStrap Theme</a> <a class="text-black mr-2" href="#">#Wordpress</a> </div>
-              </div>
-              <div class="col-md-4 op-7">
-                <div class="row text-center op-7">
-                  <div class="col px-1"> <i class="ion-connection-bars icon-1x"></i> <span class="d-block text-sm">14 Votes</span> </div>
-                  <div class="col px-1"> <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-block text-sm">12 Replies</span> </div>
-                  <div class="col px-1"> <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-block text-sm">90 Views</span> </div>
+                {% for thread in thread_list %}
+                <div
+                  class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
+                  <div class="row align-items-center">
+                    <div class="col-md-8 mb-3 mb-sm-0">
+                      <h5>
+                        <a href="#" class="text-primary">{{ thread.topic|title}}</a>
+                      </h5>
+                      <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">20 minutes</a>
+                        <span class="op-6">ago by</span> <a class="text-black" href="#"><i class="fa fa-user"></i>
+                          {{thread.name}}</a></p>
+                      <p> {{thread.description|safe}} </p>
+                      <div class="text-sm op-5"> <a class="text-black mr-2 btn btn-primary" href="#">AI</a> <a class="text-black mr-2 btn btn-primary"
+                          href="#">Technology</a> <a class="text-black mr-2 btn btn-primary" href="#">Economy</a> </div>
+                    </div>
+                    <div class="col-md-4 op-7">
+                      <div class="row text-center op-7">
+                        <div class="col px-1"> <i class="ion-connection-bars icon-1x"></i> <span
+                            class="d-block text-sm">14 Votes</span> </div>
+                        <div class="col px-1"> <i class="ion-ios-chatboxes-outline icon-1x"></i> <span
+                            class="d-block text-sm">12 Replies</span> </div>
+                        <div class="col px-1"> <i class="ion-ios-eye-outline icon-1x"></i> <span
+                            class="d-block text-sm">90 Views</span> </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                {% endfor %}
               </div>
+              <!-- Sidebar content -->
             </div>
           </div>
-          {% endfor %}
         </div>
-        <!-- Sidebar content -->
-        {% block sidebar%}
-        {% endblock sidebar%}
       </div>
     </div>
   </div>
 </div>
-</div>
-</div>
-</div>
 
 {% endblock content %}
-
-       
