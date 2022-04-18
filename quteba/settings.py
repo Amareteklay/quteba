@@ -62,6 +62,7 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 
+
 # From walk through project
 MESSAGE_TAGS = {
         messages.DEBUG: 'alert-info',

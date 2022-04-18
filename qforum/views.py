@@ -1,7 +1,11 @@
-from django.shortcuts import render, get_list_or_404
+from django.shortcuts import render, get_list_or_404, reverse
 from django.views import generic
+from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 from django.views.generic.detail import DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
+from django.contrib.auth.models import User
 from .models import Thread, Post, Category
 from .forms import ThreadForm
 
@@ -23,26 +27,26 @@ class CategoryList(generic.ListView):
 
 class ThreadDetailView(DetailView):
     model = Thread
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['var'] = 'Some value'
-        return context
 
 
-class CreateForum(CreateView):
+class CreateForum(LoginRequiredMixin, CreateView):
     model = Thread
-    fields = ['topic', 'description']
+    form_class = ThreadForm
     template_name = 'qforum/create_forum.html'
+    success_url = reverse_lazy('threads')
 
-    def post(request):
-        pass
+    def form_valid(self, form):
+        form.instance.name = self.request.user
+        return super().form_valid(form)
 
 
 class VoteUpView(generic.View):
-    def post(request):
+
+    def post(self, request):
         pass
 
 
 class VoteDownView(generic.View):
-    def post(request):
+
+    def post(self, request):
         pass

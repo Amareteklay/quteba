@@ -30,8 +30,7 @@ class Thread(models.Model):
     """
     name = models.ForeignKey(User, on_delete=models.CASCADE, 
                              related_name="forums")
-    email = models.EmailField()
-    topic = models.CharField(max_length=300)
+    topic = models.CharField(max_length=300, unique=True)
     slug = models.SlugField(max_length=300, unique=True)
     description = models.TextField(max_length=500)
     category = models.ForeignKey(Category, on_delete=models.CASCADE,

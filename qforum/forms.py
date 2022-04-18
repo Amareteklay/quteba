@@ -5,7 +5,7 @@ from .models import Thread, Post
 class ThreadForm(ModelForm):
     class Meta:
         model = Thread
-        fields = "__all__"
+        fields = ('category', 'topic', 'description')
  
 
 class PostForm(ModelForm):

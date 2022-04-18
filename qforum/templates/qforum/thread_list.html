@@ -1,26 +1,7 @@
 {% extends "qforum/forum_base.html" %}
 {% load static %}
 
-{% block content %}
-
-<!--Code from https://replit.com/talk/learn/DjangoPython-and-HTML-Coding-Campus-Tutorial-1-Create-a-Blog-with-Django/142238?order=new-->
-<!--And https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/templates/index.html-->
-<div class="container-fluid container">
-  <div class="row blog-cards">
-    <div class="col-12 mt-3 left">
-      <div class="row">
-        <div class="forum">
-          <h1>Discussion Forum</h1>
-          <!-- Code from https://www.bootdey.com/snippets/view/bs5-forum-list -->
-          <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
-          <div class="container">
-            <div class="row">
-              <!-- Main content -->
-              <div class="col-lg-9 mb-3">
-                {% block category %}
-                <h1>Is this working?</h1>
-                {% endblock category %}
-
+{% block details %}
                 {% for thread in thread_list %}
                 <div
                   class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
@@ -49,14 +30,4 @@
                   </div>
                 </div>
                 {% endfor %}
-              </div>
-              <!-- Sidebar content -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-{% endblock content %}
+{% endblock details %}
