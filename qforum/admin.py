@@ -5,9 +5,10 @@ from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(Thread)
 class ThreadAdmin(SummernoteModelAdmin):
-    list_display = ('name', 'email', 'topic', 'description', 'category', 'created_on')
+    list_display = ('name', 'email', 'topic', 'slug', 'description', 'category', 'created_on')
     search_fields = ['topic', 'description']
     list_filter = ('status', 'created_on')
+    prepopulated_fields = {'slug': ('topic',)}
     summernote_fields = ('description',)
 
 

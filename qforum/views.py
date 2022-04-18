@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_list_or_404
 from django.views import generic
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from .models import Thread, Post, Category
 from .forms import ThreadForm
@@ -19,6 +20,13 @@ class CategoryList(generic.ListView):
     model = Category
     template_name = 'qforum/forum_base.html'
 
+
+class ThreadDetailView(DetailView):
+    model = Thread
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['var'] = 'Some value'
+        return context
 
 
 class CreateForum(CreateView):

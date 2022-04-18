@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 STATUS = ((0, 'Waiting'), (1, 'Approved'))
 
@@ -31,6 +32,7 @@ class Thread(models.Model):
                              related_name="forums")
     email = models.EmailField()
     topic = models.CharField(max_length=300)
+    slug = models.SlugField(max_length=300, unique=True)
     description = models.TextField(max_length=500)
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
                                  related_name="threads")
@@ -43,6 +45,10 @@ class Thread(models.Model):
     def __str__(self):
         return str(self.topic)
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.topic)
+        super(Thread, self).save(*args, **kwargs)
 
 class Post(models.Model):
     """
