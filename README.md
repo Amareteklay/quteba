@@ -34,6 +34,7 @@ The Agile approach was key to the successful completion of this project. I start
 - Code for carousel was taken from [this page](https://getbootstrap.com/docs/5.0/components/carousel/).
 
 - Template for forum was taken from [this page](https://www.bootdey.com/snippets/view/bs5-forum-list)
+- I used the articles and code in [this page](https://www.devhandbook.com/django/user-registration/) to create user registration and profile.
 
 - I took the data model for the forum from [this article](https://vertabelo.com/blog/database-model-for-an-online-discussion-forum-part-1/).
 #

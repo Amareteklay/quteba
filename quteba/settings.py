@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'django_summernote',
+    'users',
     'qblog',
     'qforum',
     'qpages',
@@ -60,7 +61,7 @@ SITE_ID = 2
 # Redirect user to home page after login or logout
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
+LOGIN_URL = 'login'
 
 
 # From walk through project

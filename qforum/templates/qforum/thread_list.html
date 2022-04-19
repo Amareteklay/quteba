@@ -10,7 +10,7 @@
                       <h5>
                         <a href="{% url 'thread_detail' thread.slug %}" class="text-primary">{{ thread.topic|title}}</a>
                       </h5>
-                      <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">20 minutes</a>
+                      <p class="text-sm"><span class="op-6">Posted {{ thread.created_on|timesince }}</span>
                         <span class="op-6">ago by</span> <a class="text-black" href="#"><i class="fa fa-user"></i>
                           {{thread.name}}</a></p>
                       <p> {{thread.description|safe}} </p>

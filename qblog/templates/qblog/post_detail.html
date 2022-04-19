@@ -36,16 +36,16 @@
                                 {% csrf_token %}
                                 {% if liked %}
                                 <button type="submit" name="post_id" value="{{post.slug}}" class="btn-like">
-                                    Liked: <i class="fas fa-heart"></i></button>
+                                    <i class="fas fa-heart"></i></button>
                                     {% else %}
                                     <button type="submit" name="post_id" value="{{post.slug}}" class="btn-like">
-                                        Not liked: <i class="far fa-heart"></i></button>
+                                        <i class="far fa-heart"></i></button>
                                     {% endif %}
                             </form>
                             {% else %}
                             <span class="text-secondary"><i class="far fa-heart"></i></span>
                             {% endif %}
-                        </span class="text-secondary">Number of likes: {{ post.number_of_likes }} </span>
+                        </span class="text-secondary">{{ post.number_of_likes }} </span>
                        </strong>
                     </div>
                     <div class="col-1">
