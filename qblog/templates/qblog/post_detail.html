@@ -8,7 +8,7 @@
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
                 <h1 class="post-title">{{ post.title }}</h1>
-                <a href="#" class="post-subtitle"><i class="fa fa-user"></i> {{ post.author|title }} </a> <p class="d-inline">| {{ post.created_on }}</p>
+                <a href="#" class="post-subtitle"><img class="rounded-circle article-img profile-img" src="{{ post.author.profile.image.url }}"> {{ post.author|title }} </a> <p class="d-inline">| {{ post.created_on }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
                 {% if "placeholder" in post.featured_image.url %}

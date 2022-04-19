@@ -200,3 +200,10 @@ a{
   color: #fff;
   border-bottom-color: #056674;
 }
+
+
+.profile-img {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
