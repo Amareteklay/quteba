@@ -207,3 +207,7 @@ a{
   width: 30px;
   border-radius: 50%;
 }
+
+.border-reply {
+  border-left: blue 1px solid;
+}

@@ -70,6 +70,7 @@
                 {% for comment in comments %}
                 <div class="comments" style="padding: 10px;">
                     <p class="font-weight-bold">
+                        <img class="rounded-circle article-img profile-img" src="{{ comment.post.author.profile.image.url }}">
                         {{ comment.name }}
                         <span class=" text-muted font-weight-normal">
                             {{ comment.created_on }}

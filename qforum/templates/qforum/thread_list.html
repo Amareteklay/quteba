@@ -17,7 +17,7 @@
                       <p> {{thread.description|safe}} </p>
                     </div>
                     {% if thread.replies %}
-                    <div class="col-md-8 mb-3 mb-sm-0 mt-3">
+                    <div class="col-md-8 mb-3 px-3 mb-sm-0 mt-3 border-reply">
                         <img class="rounded-circle article-img profile-img" src="{{ thread.replies.posted_by.profile.image.url }}">
                         <a class="text-black" href="#"> {{thread.replies.posted_by}}</a> <span class="op-6 text-muted">| {{ thread.created_on|timesince }} ago</span>
                         <p>{{thread.replies}} </p>
