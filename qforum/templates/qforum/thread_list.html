@@ -15,14 +15,14 @@
                         <a href="{% url 'thread_detail' thread.slug %}" class="text-primary">{{ thread.topic|title}}</a>
                       </h5>
                       <p> {{thread.description|safe}} </p>
-                      <div class="text-sm op-5"> <a class="text-black mr-2 btn btn-primary" href="#">AI</a> <a class="text-black mr-2 btn btn-primary"
-                          href="#">Technology</a> <a class="text-black mr-2 btn btn-primary" href="#">Economy</a> </div>
                     </div>
-                    <div class="col-md-8 mb-3 mb-sm-0">
-                        <img class="rounded-circle article-img profile-img" src="{{ thread.name.profile.image.url }}">
-                        <a class="text-black" href="#"> {{thread.name}}</a> <span class="op-6 text-muted">| {{ thread.created_on|timesince }} ago</span>
-                        {{thread.replies}}
+                    {% if thread.replies %}
+                    <div class="col-md-8 mb-3 mb-sm-0 mt-3">
+                        <img class="rounded-circle article-img profile-img" src="{{ thread.replies.posted_by.profile.image.url }}">
+                        <a class="text-black" href="#"> {{thread.replies.posted_by}}</a> <span class="op-6 text-muted">| {{ thread.created_on|timesince }} ago</span>
+                        <p>{{thread.replies}} </p>
                     </div>
+                    {% endif %}
                   </div>
                 </div>
                 {% endfor %}
