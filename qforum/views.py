@@ -31,15 +31,13 @@ class ThreadDetailView(DetailView):
         form = ThreadForm()
         queryset = Thread.objects.filter(status=1)
         thread = get_object_or_404(queryset, slug=slug)
-        comments = Comment.objects.filter(thread=thread)
-        replies = Reply.objects.filter(comment__in=comments)
+        comments = thread.thread_comments.all()
         return render(
             request,
             "qforum/thread_detail.html",
             {
                 "thread": thread,
                 "comments": comments,
-                "replies": replies,
                 "form": form
             },
         )
