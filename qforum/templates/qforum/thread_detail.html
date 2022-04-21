@@ -1,29 +1,61 @@
 {% extends "qforum/forum_base.html" %}
-{% load static %} 
+{% load static %}
 
 {% block details %}
-          <div class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
-            <div class="row align-items-center">
-              <div class="col-md-8 mb-3 mb-sm-0">
-                <img class="rounded-circle article-img profile-img" src="{{ thread.name.profile.image.url }}">
-                <a class="text-black" href="#"> {{thread.name}}</a> 
-                <span class="op-6 text-muted">| {{ thread.created_on|timesince }} ago</span>
-                <i class="ion-connection-bars icon-1x"></i> <span class="d-inline-block text-sm text-muted">14 Votes</span>
-                <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">12 Replies</span>
-                <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">90 Views</span>
-                <h5>
-                  <a href="#" class="text-primary">{{ object.topic}}</a>
-                </h5>
-                <p> {{object.description|safe}} </p>
-              </div>
-              {% if thread.replies %}
-              <div class="col-md-8 mb-3 mb-sm-0">
-                  <a class="text-black" href="#"> <img class="rounded-circle article-img profile-img" src="{{ thread.name.profile.image.url }}"> {{thread.name}}</a> <span class="op-6 text-muted">| {{ thread.created_on|timesince }} ago</span>
-                  <p class="px-3 border-reply">{{thread.replies|safe}} </p>
-              </div>
-              {% endif %}
-            </div>
+<div
+  class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
+  <div class="row align-items-center">
+    <div class="col-md-8 mb-3 mb-sm-0">
+      <img class="rounded-circle article-img profile-img" src="{{ thread.name.profile.image.url }}">
+      <a class="text-black" href="#"> {{thread.name}}</a>
+      <span class="op-6 text-muted">| {{ thread.created_on|timesince }} ago</span>
+      <i class="ion-connection-bars icon-1x"></i> <span class="d-inline-block text-sm text-muted">14 Votes</span>
+      <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">12
+        Replies</span>
+      <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">90 Views</span>
+      <h5>
+        <a href="#" class="text-primary">{{ thread.topic}}</a>
+      </h5>
+      <p> {{thread.description|safe}} </p>
+      <p> {{thread.comments|safe}} </p>
+    </div>
+    <div>
+      <a class="btn btn-outline-secondary rounded-4 py-2 mb-3 bg-op-6 roboto-bold" href="{% url 'create_forum' %}">
+        Like</a>
+      <a class="btn btn-outline-secondary rounded-4 py-2 mb-3 bg-op-6 roboto-bold"
+        href="{% url 'comment' %}">Comment</a>
+    </div>
+    <hr>
+    {% for comment in comments %}
+    <div class="col-md-8 mb-3 mb-sm-0">
+      <a class="text-black" href="#"> <img class="rounded-circle article-img profile-img"
+          src="{{ thread.name.profile.image.url }}"> {{thread.name}}</a> <span class="op-6 text-muted">|
+        {{ thread.created_on|timesince }} ago</span>
+      <div class=" px-3 border-reply">
+        <p class="px-3">{{comment.content|safe}} </p>
+        <a class="btn btn-outline-secondary rounded-4 py-2 mb-3 bg-op-6 roboto-bold" href="{% url 'create_forum' %}"> <i
+            class="fa-solid fa-circle-up"></i> Vote</a>
+        <a class="btn btn-outline-secondary rounded-4 py-2 mb-3 bg-op-6 roboto-bold" href="{% url 'reply' %}">Reply</a>
+        <i class="fa-solid fa-square-arrow-up"></i>
+        {% for reply in replies %}
+        <div class="col-md-8 mb-3 mb-sm-0">
+          <a class="text-black" href="#"> <img class="rounded-circle article-img profile-img"
+              src="{{ thread.name.profile.image.url }}"> {{thread.name}}</a> <span class="op-6 text-muted">|
+            {{ thread.created_on|timesince }} ago</span>
+          <div class=" px-3 border-reply">
+            <p class="px-3"> {{reply.message|safe}} </p>
+            <a class="btn btn-outline-secondary rounded-4 py-2 mb-3 bg-op-6 roboto-bold"
+              href="{% url 'create_forum' %}"> <i class="fa-solid fa-circle-up"></i> Vote</a>
+            <a class="btn btn-outline-secondary rounded-4 py-2 mb-3 bg-op-6 roboto-bold"
+              href="{% url 'reply' %}">Reply</a>
+            <i class="fa-solid fa-square-arrow-up"></i>
           </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <hr>
+    {% endfor %}
+  </div>
+</div>
 {% endblock details %}
-
-       

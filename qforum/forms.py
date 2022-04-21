@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Thread, Post
+from .models import Thread, Comment, Reply
  
 
 class ThreadForm(ModelForm):
@@ -8,7 +8,13 @@ class ThreadForm(ModelForm):
         fields = ('category', 'topic', 'description')
  
 
-class PostForm(ModelForm):
+class CommentForm(ModelForm):
     class Meta:
-        model = Post
-        fields = "__all__"
+        model = Comment
+        fields = ('thread', 'content')
+
+
+class ReplyForm(ModelForm):
+    class Meta:
+        model = Reply
+        fields = ('comment', 'message')

@@ -11,8 +11,7 @@ class Category(models.Model):
     """
     subject = models.CharField(max_length=50)
     description = models.TextField(max_length=255)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE,
-                                   related_name="categories")
+    name = models.ForeignKey(User, on_delete=models.CASCADE, related_name="categories")
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     thread_count = models.IntegerField(default=0)
@@ -22,21 +21,6 @@ class Category(models.Model):
 
     def __str__(self):
         return str(self.subject)
-
-class Post(models.Model):
-    """
-    A particular comment posted to a thread
-    """
-    content = models.TextField(max_length=1000)
-    posted_by = models.ForeignKey(User, on_delete=models.CASCADE,
-                                  related_name="comments")
-    posted_on = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ['-posted_on']
-    
-    def __str__(self):
-        return str(self.content)
 
 
 class Thread(models.Model):
@@ -49,8 +33,7 @@ class Thread(models.Model):
     slug = models.SlugField(max_length=300, unique=True)
     description = models.TextField(max_length=500)
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
-                                 related_name="threads")
-    replies = models.OneToOneField(Post, on_delete=models.CASCADE, related_name='post_reply', null=True)
+                                 related_name="category_threads")
     status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
    
@@ -64,14 +47,44 @@ class Thread(models.Model):
         if not self.slug:
             self.slug = slugify(self.topic)
         super(Thread, self).save(*args, **kwargs)
+
+
+class Comment(models.Model):
+    """
+    A particular comment posted to a thread
+    """
+    content = models.TextField(max_length=1000)
+    name = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
+    commented_on = models.DateTimeField(auto_now_add=True)
+    thread = models.ForeignKey(Thread, on_delete=models.CASCADE, related_name='thread_comments', null=True)
+
+    class Meta:
+        ordering = ['-commented_on']
     
+    def __str__(self):
+        return self.content
+
+
+class Reply(models.Model):
+    name = models.ForeignKey(User, on_delete=models.CASCADE, related_name="replies", null=True)
+    message = models.TextField(max_length=200)
+    posted_on = models.DateTimeField(auto_now_add=True)
+    status = models.IntegerField(choices=STATUS, default=0)
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='comment_replies', null=True)
+
+    class Meta:
+        ordering = ['posted_on']
+
+    def __str__(self):
+        return self.message
+
 
 class Vote(models.Model):
     up_count = models.IntegerField(default=0)
     down_count = models.IntegerField(default=0)
     thread = models.ForeignKey(Thread, on_delete=models.CASCADE,
                                related_name="votes")
-    post = models.ForeignKey(Post, on_delete=models.CASCADE,
+    post = models.ForeignKey(Comment, on_delete=models.CASCADE,
                              related_name="votes")
     
     class Meta:

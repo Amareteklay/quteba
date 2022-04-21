@@ -209,5 +209,7 @@ a{
 }
 
 .border-reply {
-  border-left: blue 1px solid;
+  border-left: rgba(137, 241, 245, 0.8) 1px solid;
+  margin: 5px 15px;
+
 }
