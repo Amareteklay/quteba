@@ -18,10 +18,13 @@
     <div>
       <hr>
       <h2>Leave a Comment</h2>
-      <form method="POST" action="" class="form-contrl">
+      <form method="POST" action="{% url 'qforum:thread_detail' thread.slug %}">
         {% csrf_token %}
+        <input type="hidden" name="thread_id" value="{{thread.id}}">
+        <input type="hidden" name="parent" value="{{comment.id}}">
+        <input type="hidden" name="thread_url" value="{{thread.get_absolute_url}}">
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Comment</button>
+        <button type="submit" class="btn btn-primary" onclick="handleReply({{thread.id}})">Comment</button>
       </form>
       <hr>
     {% if not thread.comments.all %}
