@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 
@@ -43,6 +44,12 @@ class Thread(models.Model):
     def __str__(self):
         return str(self.topic)
 
+    def get_absolute_url(self):
+        return reverse('qforum:thread_detail', args=[self.slug])
+    
+    def get_comments(self):
+        return self.comments.filter(parent=None).filter(active=True)
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.topic)
@@ -53,30 +60,23 @@ class Comment(models.Model):
     """
     A particular comment posted to a thread
     """
-    content = models.TextField(max_length=1000)
-    name = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
-    commented_on = models.DateTimeField(auto_now_add=True)
-    thread = models.ForeignKey(Thread, on_delete=models.CASCADE, related_name='thread_comments', null=True)
+    thread = models.ForeignKey(Thread, on_delete=models.CASCADE, related_name='comments', null=True)
+    name = models.CharField(max_length=50)
+    email = models.EmailField(null=True)
+    parent = models.ForeignKey("self", null=True, blank=True, on_delete=models.CASCADE)
+    body = models.TextField(null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(default=True)
 
     class Meta:
-        ordering = ['-commented_on']
+        ordering = ('created',)
     
     def __str__(self):
-        return self.content
+        return f"{self.body}"
 
-
-class Reply(models.Model):
-    name = models.ForeignKey(User, on_delete=models.CASCADE, related_name="replies", null=True)
-    message = models.TextField(max_length=200)
-    posted_on = models.DateTimeField(auto_now_add=True)
-    status = models.IntegerField(choices=STATUS, default=0)
-    comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='comment_replies', null=True)
-
-    class Meta:
-        ordering = ['posted_on']
-
-    def __str__(self):
-        return self.message
+    def get_comments(self):
+        return Comment.objects.filter(parent=self).filter(active=True)
 
 
 class Vote(models.Model):

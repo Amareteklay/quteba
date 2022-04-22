@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Thread, Comment, Category, Reply
+from .models import Thread, Comment, Category
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -14,15 +14,10 @@ class ThreadAdmin(SummernoteModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'content', 'thread', 'commented_on')
-    search_fields = ['name', 'content']
-    list_filter = ('commented_on',)
-    summernote_fields = ('content',)
-
-
-@admin.register(Reply)
-class ReplyAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'email', 'thread', 'created', 'active')
+    search_fields = ['name', 'email', 'body']
+    list_filter = ('active', 'created', 'updated')
+    summernote_fields = ('body',)
 
 
 @admin.register(Category)

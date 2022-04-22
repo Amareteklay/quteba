@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
@@ -6,8 +6,8 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from django.contrib.auth.models import User
-from .models import Thread, Comment, Category, Reply
-from .forms import ThreadForm, CommentForm, ReplyForm
+from .models import Thread, Comment, Category
+from .forms import ThreadForm, CommentForm
 
 
 class ThreadList(generic.ListView):
@@ -26,46 +26,41 @@ class CategoryList(generic.ListView):
 
 
 class ThreadDetailView(DetailView):
+    model = Thread
+    context_object_name = 'thread'
+    template_name = 'qforum/thread_detail.html'
 
-    def get(self, request, slug, *args, **kwargs):
-        form = ThreadForm()
-        queryset = Thread.objects.filter(status=1)
-        thread = get_object_or_404(queryset, slug=slug)
-        comments = thread.thread_comments.all()
-        return render(
-            request,
-            "qforum/thread_detail.html",
-            {
-                "thread": thread,
-                "comments": comments,
-                "form": form
-            },
-        )
 
-    def post(self, request, slug, *args, **kwargs):
-        queryset = Thread.objects.filter(status=1)
-        thread = get_object_or_404(queryset, slug=slug)
-        comments = thread.thread_comments.filter()
-        form = ThreadForm(data=request.POST)
+def thread_detail(request, thread):
+    thread = get_object_or_404(Thread, slug=thread, status=1)
+    comments = thread.comments.filter(active=True)
+    new_comment = None
+    
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.thread = thread
+            new_comment.save()
+            return redirect(thread.get_absolute_url()+'#'+str(new_comment.id))
+    else:
+        comment_form = CommentForm()
+    return render(request, 'qforum/thread_detail.html', {"thread": thread, "comments": comments, "comment_form": comment_form})
+
+
+def reply_view(request):
+    if request.method == "POST":
+        form = CommentForm(request.POST)
         if form.is_valid():
-            form.instance.email = request.user.email
-            form.instance.name = request.user.username
-            comment = form.save(commit=False)
-            comment.thread = thread
-            comment.save()
-        else:
-            form = CommentForm()
-
-        return render(
-            request,
-            "qforum/thread_detail.html",
-            {
-                "thread": thread,
-                "comments": comments,
-                "form": form
-            },
-        )
-
+            thread_id = request.POST.get('thread_id')
+            parent_id = request.POST.get('parent')
+            thread_url = request.POST.get('thread_url')
+            reply = form.save(commit=False)
+            reply.thread = Thread(id=thread_id)
+            reply.parent = Comment(id=parent_id)
+            reply.save()
+            return redirect(thread_url+'#'+str(reply.id))
+    return redirect("/") 
 
 
 class CreateForum(LoginRequiredMixin, CreateView):
@@ -83,17 +78,6 @@ class CreateComment(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
     template_name = 'qforum/comment.html'
-    success_url = reverse_lazy('threads')
-
-    def form_valid(self, form):
-        form.instance.name = self.request.user
-        return super().form_valid(form)
-
-
-class CreateReply(LoginRequiredMixin, CreateView):
-    model = Reply
-    form_class = ReplyForm
-    template_name = 'qforum/reply.html'
     success_url = reverse_lazy('threads')
 
     def form_valid(self, form):
