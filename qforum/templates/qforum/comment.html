@@ -14,9 +14,7 @@
                         <input type="hidden" name="thread_id" value="{{thread.id}}">
                         <input type="hidden" name="parent" value="{{comment.id}}">
                         <input type="hidden" name="thread_url" value="{{thread.get_absolute_url}}">
-    
-    
-                        {{comment_form.as_p}}
+                        {{form.as_p}}
     
                         <div>
                             <button type="button" onclick="handleCancel({{comment.id}})" class="btn btn-light border btn-sm">Cancel</button>

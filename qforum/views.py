@@ -25,7 +25,7 @@ class CategoryList(generic.ListView):
     template_name = 'qforum/forum_base.html'
 
 
-class ThreadDetailView(DetailView):
+class AThreadDetailView(DetailView):
     model = Thread
     context_object_name = 'thread'
     template_name = 'qforum/thread_detail.html'
@@ -35,16 +35,17 @@ def thread_detail(request, thread):
     thread = get_object_or_404(Thread, slug=thread, status=1)
     comments = thread.comments.filter(active=True)
     new_comment = None
-    
+    comment_form = CommentForm()
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             new_comment = comment_form.save(commit=False)
             new_comment.thread = thread
             new_comment.save()
+            print('Here')
             return redirect(thread.get_absolute_url()+'#'+str(new_comment.id))
-    else:
-        comment_form = CommentForm()
+        else:
+            comment_form = CommentForm()
     return render(request, 'qforum/thread_detail.html', {"thread": thread, "comments": comments, "comment_form": comment_form})
 
 
@@ -61,6 +62,36 @@ def reply_view(request):
             reply.save()
             return redirect(thread_url+'#'+str(reply.id))
     return redirect("/") 
+
+
+class ThreadDetailView(DetailView):
+    model = Thread
+    context_object_name = 'thread'
+    template_name = 'qforum/thread_detail.html'
+
+    def get(self, request, slug, *args, **kwargs):
+        form = CommentForm()
+        queryset = Thread.objects.filter(status=1)
+        thread = get_object_or_404(queryset, slug=slug)
+        comments = thread.comments.filter(active=True)
+        return render(request, "qforum/thread_detail.html", {"thread": thread, "comments": comments,"form": form})
+
+    def post(self, request, slug, *args, **kwargs):
+        form = CommentForm(data=request.POST)
+        queryset = Thread.objects.filter(status=1)
+        thread = get_object_or_404(queryset, slug=slug)
+        comments = thread.comments.filter(active=True)
+        if form.is_valid():
+            thread_id = request.POST.get('thread_id')
+            parent_id = request.POST.get('parent')
+            thread_url = request.POST.get('thread_url')
+            reply = form.save(commit=False)
+            reply.thread = Thread(id=thread_id)
+            reply.parent = Comment(id=parent_id)
+            reply.save()
+        else:
+            form = CommentForm()
+        return render(request, "qforum/thread_detail.html", {"thread": thread, "comments": comments,"form": form}) 
 
 
 class CreateForum(LoginRequiredMixin, CreateView):

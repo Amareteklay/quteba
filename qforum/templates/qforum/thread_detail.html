@@ -12,22 +12,20 @@
       <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">12
         Replies</span>
       <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">90 Views</span>
-      <h5>
-        <a href="#" class="text-primary">{{ thread.topic}}</a>
-      </h5>
+      <h5 class="text-primary">{{ thread.topic}}</h5>
       <p> {{thread.description|safe}} </p>
     </div>
     <div>
       <hr>
-      <form method="post" action="">
+      <h2>Leave a Comment</h2>
+      <form method="POST" action="" class="form-contrl">
         {% csrf_token %}
-        {{ comment_form.as_p }}
-        <button type="submit" class="btn btn-outline-secondary rounded-4 py-2 mb-3 bg-op-6 roboto-bold">Like</button>
-        <button type="submit" class="btn btn-outline-secondary rounded-4 py-2 mb-3 bg-op-6 roboto-bold">Comment</button>
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Comment</button>
       </form>
       <hr>
     {% if not thread.comments.all %}
-    <p>No comments yet.</p>
+    <p>Be the first to leave a comment.</p>
     {% else %}
     {% for comment in thread.get_comments %}
     {% include 'qforum/comment.html' with comment=comment %}
