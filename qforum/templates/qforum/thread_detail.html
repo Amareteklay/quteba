@@ -18,7 +18,7 @@
   </div>
     <div>
       <hr>
-      <h2>Leave a Comment</h2>
+      <h4 id="comment-form" class="btn" onclick="displayForm()">Comment <i class="fa-regular fa-comment"></i></h4>
       <div class="comment-form">
       <form method="POST" action="{% url 'qforum:thread_detail' thread.slug %}">
         {% csrf_token %}
@@ -26,7 +26,8 @@
         <input type="hidden" name="parent" value="{{comment.id}}">
         <input type="hidden" name="thread_url" value="{{thread.get_absolute_url}}">
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary" onclick="handleReply({{thread.id}})">Comment</button>
+        <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
       <hr>
