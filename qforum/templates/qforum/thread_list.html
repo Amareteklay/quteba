@@ -8,22 +8,16 @@
                     <div class="col-md-8 mb-3 mb-sm-0">
                       <img class="rounded-circle article-img profile-img" src="{{ thread.name.profile.image.url }}">
                       <a class="text-black" href="#"> {{thread.name}}</a> <span class="op-6 text-muted">| {{ thread.created_on|timesince }} ago</span>
-                      <i class="ion-connection-bars icon-1x"></i> <span class="d-inline-block text-sm text-muted">14 Votes</span>
-                      <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">12 Replies</span>
-                      <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">90 Views</span>
                       <h5>
                         <a href="{% url 'qforum:thread_detail' thread.slug %}" class="text-primary">{{ thread.topic|title}}</a>
                       </h5>
                       <p> {{thread.description|safe}} </p>
                     </div>
-                    {% if thread.replies %}
-                    <div class="col-md-8 mb-3 px-3 mb-sm-0 mt-3">
-                      <div class="col-md-8 mb-3 mb-sm-0">
-                        <a class="text-black" href="#"> <img class="rounded-circle article-img profile-img" src="{{ thread.name.profile.image.url }}"> {{thread.name}}</a> <span class="op-6 text-muted">| {{ thread.created_on|timesince }} ago</span>
-                        <p class="px-3 border-reply">{{thread.replies|safe}} </p>
+                    <div>
+                    <i class="ion-connection-bars icon-1x"></i> <span class="d-inline-block text-sm text-muted">14 Votes</span>
+                      <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">12 Replies</span>
+                      <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">90 Views</span>
                     </div>
-                    </div>
-                    {% endif %}
                   </div>
                 </div>
                 {% endfor %}

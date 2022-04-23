@@ -8,16 +8,18 @@
       <img class="rounded-circle article-img profile-img" src="{{ thread.name.profile.image.url }}">
       <a class="text-black" href="#"> {{thread.name}}</a>
       <span class="op-6 text-muted">| {{ thread.created_on|timesince }} ago</span>
-      <i class="ion-connection-bars icon-1x"></i> <span class="d-inline-block text-sm text-muted">14 Votes</span>
-      <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">12
-        Replies</span>
-      <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">90 Views</span>
       <h5 class="text-primary">{{ thread.topic}}</h5>
       <p> {{thread.description|safe}} </p>
     </div>
+    <div><i class="ion-connection-bars icon-1x"></i> <span class="d-inline-block text-sm text-muted">14 Votes</span>
+    <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">12
+      Replies</span>
+    <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">90 Views</span>
+  </div>
     <div>
       <hr>
       <h2>Leave a Comment</h2>
+      <div class="comment-form">
       <form method="POST" action="{% url 'qforum:thread_detail' thread.slug %}">
         {% csrf_token %}
         <input type="hidden" name="thread_id" value="{{thread.id}}">
@@ -26,6 +28,7 @@
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary" onclick="handleReply({{thread.id}})">Comment</button>
       </form>
+    </div>
       <hr>
     {% if not thread.comments.all %}
     <p>Be the first to leave a comment.</p>

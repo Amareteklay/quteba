@@ -142,6 +142,10 @@ color: #fff;
   background-color: aquamarine;
 }
 
+.comment-form {
+  border: red 1px solid;
+}
+
 .single-forum {
   border: red 1px solid;
   border-radius: 10px;

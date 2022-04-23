@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'qblog',
     'qforum',
     'qpages',
-    'crispy_forms'
+    'crispy_forms',
+    'fontawesomefree'
 ]
 
 # Tells django to use the same database
