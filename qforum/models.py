@@ -29,12 +29,12 @@ class Thread(models.Model):
     A discussion thread in a certain category.
     """
     name = models.ForeignKey(User, on_delete=models.CASCADE, 
-                             related_name="forums")
+                             related_name="forum_topics")
     topic = models.CharField(max_length=300, unique=True)
     slug = models.SlugField(max_length=300, unique=True)
     description = models.TextField(max_length=500)
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
-                                 related_name="category_threads")
+                                 related_name="threads")
     status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
    
@@ -46,9 +46,6 @@ class Thread(models.Model):
 
     def get_absolute_url(self):
         return reverse('qforum:thread_detail', args=[self.slug])
-    
-    def get_comments(self):
-        return self.comments.filter(parent=None).filter(active=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -60,11 +57,11 @@ class Comment(models.Model):
     """
     A particular comment posted to a thread
     """
-    thread = models.ForeignKey(Thread, on_delete=models.CASCADE, related_name='comments', null=True)
-    name = models.CharField(max_length=50)
-    email = models.EmailField(null=True)
-    parent = models.ForeignKey("self", null=True, blank=True, on_delete=models.CASCADE)
-    body = models.TextField(null=True)
+    thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
+    name = models.ForeignKey(User, on_delete=models.CASCADE, 
+                             related_name="forum_comments")
+    content = models.TextField(null=True, max_length=255)
+    parent = models.ForeignKey("self", null=True, blank=True, on_delete=models.CASCADE, related_name='replies')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
@@ -73,10 +70,17 @@ class Comment(models.Model):
         ordering = ('created',)
     
     def __str__(self):
-        return f"{self.body}"
+        return f"{self.content}"
 
-    def get_comments(self):
-        return Comment.objects.filter(parent=self).filter(active=True)
+    @property
+    def children(self):
+        return Comment.objects.filter(parent=self).reverse()
+
+    @property
+    def is_parent(self):
+        if self.parent is None:
+            return True
+        return False
 
 
 class Vote(models.Model):

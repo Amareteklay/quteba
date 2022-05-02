@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from django.contrib.auth.models import User
 from .models import Thread, Comment, Category
-from .forms import ThreadForm, CommentForm, ReplyForm
+from .forms import ThreadForm, CommentForm
 
 
 class ThreadList(generic.ListView):
@@ -27,46 +27,30 @@ class CategoryList(generic.ListView):
 
 
 class ThreadDetailView(DetailView):
-    user = User
     model = Thread
-    context_object_name = 'thread'
     template_name = 'qforum/thread_detail.html'
 
-    def get(self, request, slug, *args, **kwargs):
-        form = CommentForm()
-        reply_form = ReplyForm()
-        queryset = Thread.objects.filter(status=1)
-        thread = get_object_or_404(queryset, slug=slug)
-        comments = thread.comments.filter(active=True)
-        return render(request, "qforum/thread_detail.html", {"thread": thread, "comments": comments,"form": form, "reply_form": reply_form})
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        comments = Comment.objects.filter(thread=self.get_object())
+        number_of_comments = comments.count()
+        data['comments'] = comments
+        data['no_of_comments'] = number_of_comments
+        data['form'] = CommentForm()
+        return data
 
-    @login_required
     def post(self, request, slug, *args, **kwargs):
-        form = CommentForm(data=request.POST)
-        reply_form = ReplyForm(data=request.POST)
-        queryset = Thread.objects.filter(status=1)
-        thread = get_object_or_404(queryset, slug=slug)
-        comments = thread.comments.filter(active=True)
-        if form.is_valid():
-            new_comment = form.save(commit=False)
-            new_comment.thread = thread
-            new_comment.save()
-            form = CommentForm()
-        else:
-            form = CommentForm()
-        
-        if reply_form.is_valid():
-            thread_id = request.POST.get('thread_id')
-            parent_id = request.POST.get('parent')
-            thread_url = request.POST.get('thread_url')
-            reply = reply_form.save(commit=False)
-            reply.thread = Thread(id=thread_id)
-            reply.parent = Comment(id=parent_id)
-            reply.save()
-            reply_form = ReplyForm()
-        else:
-            reply_form = CommentForm()
-        return render(request, "qforum/thread_detail.html", {"thread": thread, "comments": comments,"form": form, "reply_form": reply_form}) 
+        if self.request.method == 'POST':
+            form = CommentForm(self.request.POST)
+            if form.is_valid():
+                content = form.cleaned_data['content']
+                try:
+                    parent = form.cleaned_data['parent']
+                except:
+                    parent=None 
+        new_comment = Comment(content=content , name =self.request.user, thread=self.get_object(), parent=parent)
+        new_comment.save()
+        return redirect(self.request.path_info)
 
 
 class CreateForum(LoginRequiredMixin, CreateView):

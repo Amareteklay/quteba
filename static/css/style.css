@@ -138,8 +138,9 @@ color: #fff;
 
 /* Forum app */
 
-.forum {
-  background-color: aquamarine;
+
+.forum h1 {
+color: #056674;
 }
 
 .comment-form {
@@ -161,7 +162,7 @@ a{
   text-decoration:none;    
 }
 .text-primary, a.text-primary:focus, a.text-primary:hover {
-  color: #00ADBB!important;
+  color: #056674!important;
 }
 .text-black, .text-hover-black:hover {
   color: #000 !important;
@@ -216,4 +217,22 @@ a{
   border-left: rgba(137, 241, 245, 0.8) 1px solid;
   margin: 5px 15px;
 
+}
+
+.border-warning {
+  border-color: #056674 !important;
+}
+
+img.card-img-top {
+border-top: #056674 2px solid;
+margin-top: 0;
+padding-top: 0;
+}
+
+img {
+  vertical-align: top !important;
+}
+
+.reply-box{
+  padding-left: 10px;
 }

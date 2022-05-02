@@ -3,7 +3,7 @@
 
 {% block details %}
                 {% for thread in thread_list %}
-                <div class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
+                <div class="card row-hover pos-relative py-3 px-3 mb-3 border-warning rounded-2">
                   <div class="row align-items-center">
                     <div class="col-md-8 mb-3 mb-sm-0">
                       <img class="rounded-circle article-img profile-img" src="{{ thread.name.profile.image.url }}">
@@ -15,7 +15,7 @@
                     </div>
                     <div>
                      <span class="d-inline-block text-sm text-muted"><i class="fa-solid fa-thumbs-up"></i> 14 Likes </span>
-                      <span class="d-inline-block text-sm text-muted"><i class="fa-solid fa-comments"></i>12 Replies </span>
+                      <span class="d-inline-block text-sm text-muted"><i class="fa-solid fa-comments"></i> {{thread.comments.count}} Comments </span>
                       <span class="d-inline-block text-sm text-muted"> <i class="fa-solid fa-eye"></i> 90 Views</span>
                     </div>
                   </div>

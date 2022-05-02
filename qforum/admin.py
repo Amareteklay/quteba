@@ -14,8 +14,8 @@ class ThreadAdmin(SummernoteModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'thread', 'created', 'active')
-    search_fields = ['name', 'email', 'body']
+    list_display = ('name', 'thread', 'parent', 'content', 'created', 'active')
+    search_fields = ['name', 'email', 'content']
     list_filter = ('active', 'created', 'updated')
     summernote_fields = ('body',)
 

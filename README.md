@@ -37,6 +37,7 @@ The Agile approach was key to the successful completion of this project. I start
 - I used the articles and code in [this page](https://www.devhandbook.com/django/user-registration/) to create user registration and profile.
 
 - I took the data model for the forum from [this article](https://vertabelo.com/blog/database-model-for-an-online-discussion-forum-part-1/).
+- I followed [this tutorial](https://focusustech.com/blog/create-a-comment-and-reply-system-in-django) to modify forum views and templates.
 #
 #
 
