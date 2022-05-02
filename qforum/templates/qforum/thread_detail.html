@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block details %}
-<div class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
+<div
+  class="card row-hover pos-relative py-3 px-3">
   <div class="row align-items-center">
     <div class="col-md-8 mb-3 mb-sm-0">
       <img class="rounded-circle article-img profile-img" src="{{ thread.name.profile.image.url }}">
@@ -12,36 +13,37 @@
       <p> {{thread.description|safe}} </p>
     </div>
     <div><i class="ion-connection-bars icon-1x"></i> <span class="d-inline-block text-sm text-muted">14 Votes</span>
-    <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">{{no_of_comments}} Comments</span>
-    <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">90 Views</span>
-  </div>
+      <i class="ion-ios-chatboxes-outline icon-1x"></i> <span
+        class="d-inline-block text-sm text-muted">{{no_of_comments}} Comments</span>
+      <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">90 Views</span>
+    </div>
     <div>
       <hr>
       <h4 id="comment-form" class="btn" onclick="displayForm()">Comment <i class="fa-regular fa-comment"></i></h4>
       <div class="comment-form">
         {% if user.is_authenticated %}
-      <form method="POST" action="{% url 'qforum:thread_detail' thread.slug %}">
-        {% csrf_token %}
-        {{ form.content }}
-        <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-      {% else %} 
-      <h2>You need to Login to comment</h2> 
-      {% endif %}
-    </div>
+        <form method="POST" action="{% url 'qforum:thread_detail' thread.slug %}">
+          {% csrf_token %}
+          {{ form.content }}
+          <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        {% else %}
+        <h2>You need to Login to comment</h2>
+        {% endif %}
+      </div>
       <hr>
       {% for comment in comments %}
       {% if comment.is_parent %}
       <div class="ps-2" id="{{comment.id}}">
         <div class="border p-2 rounded border-reply">
-    {% include 'qforum/comment.html' with comment=comment %}
+          {% include 'qforum/comment.html' with comment=comment %}
         </div>
-      </div> 
+      </div>
       {% endif %}
-       {% endfor %}
-      
-  </div>
+      {% endfor %}
+
+    </div>
   </div>
 </div>
 {% endblock details %}

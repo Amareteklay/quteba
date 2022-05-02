@@ -16,6 +16,14 @@ class ThreadList(generic.ListView):
     template_name = 'qforum/thread_list.html'
 
 
+class ActiveTopicsList(generic.ListView):
+    """
+    To show a list of active topics in the side bar.
+    """
+    model = Thread
+    template_name = 'qforum/side_bar.html'
+
+
 class PostList(generic.ListView):
     model = Comment
     template_name = 'qforum/post_list.html'
@@ -57,7 +65,7 @@ class CreateForum(LoginRequiredMixin, CreateView):
     model = Thread
     form_class = ThreadForm
     template_name = 'qforum/create_forum.html'
-    success_url = reverse_lazy('threads')
+    success_url = reverse_lazy('qforum:threads')
 
     def form_valid(self, form):
         form.instance.name = self.request.user
