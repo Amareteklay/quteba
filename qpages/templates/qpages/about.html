@@ -2,67 +2,27 @@
 {% load static %}  
 {% block content %}
 
-<div class="masthead">
-    <div class="container">
+<div class="masthead mt-5 pt-5">
         <div class="row g-0">
-            <div class="col-md-6 masthead-text">
-                <h1 class="post-title">About Quteba</h1>
-                <a href="#" class="post-subtitle">{{ post.author|title }} </a> <p class="d-inline"> {{ post.created_on }}</p>
-            </div>
-            <div class="d-none d-md-block col-md-6 masthead-image">
-                {% if "placeholder" in post.featured_image.url %}
-                <img src="{% static 'images/jung.jpg' %}" width="100%">
-                {% else %}
-                <img src=" {{ post.featured_image.url }}" width="100%">
-                {% endif %}
+            <div class="d-none d-md-block col-md-12 masthead-image">
+               <!-- <img src="{% static 'images/quteba.png' %}" width="100%" height="60%">-->
+                <h1 class="post-title text-center">What is Quteba?</h1>
             </div>
         </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col card mb-4  mt-3 left  top">
-            <div class="card-body">
-                <p class="card-text ">
-                    Quteba is a Tigrigna word for Economy. Quteba is a dynamic website where people discuss economic issues. 
-                </p>
-                <div class="row">
-                    <div class="col-1">
-                    </div>
-                    <div class="col-1">
-                    </div>
-                </div>
+        <div class="col-md-12 card m-5 px-5 border-0">
+            <div class="card-body mx-5 px-5">
+                <p class="card-text mx-5 px-5"><strong class="text-primary">Quteba</strong> is a Tigrigna word for <strong>Economy</strong>. 
+                    The creator of <span class="text-primary">Quteba</span> is an economist. He believes that people need a platform where they discuss economic issues.</p>
+                    <h3 class="post-title text-center mb-5 pt-3">Features</h3>
+                    <p class="card-text mx-5 px-5"><span class="text-primary">Quteba</span> has many interesting features. It was designed for intuitive user experience without loss of robustness.</p>
+                    <p class="card-text mx-5 px-5"><span class="text-primary">Quteba</span> has a blog section where blog articles are published. Users can read and comment on blog posts.</p>
+                    <p class="card-text mx-5 px-5"><span class="text-primary">Quteba</span> is also a forum for brief but active exchanges of thoughts. One can ask questions and expect others to start a conversation around that particular question.</p>
+                    <p class="card-text mx-5 px-5">Accessing all the content in <span class="text-primary">Quteba</span> is free, but users need to login in order to comment or post a blog or create a forum.</p>
+                    <h3 class="post-title text-center mb-5 pt-3">Background</h3>
+                    <p class="card-text mx-5 px-5"><span class="text-primary">Quteba</span>'s inception dates several years back. The creator of this platform has many friends in the tech industry who want to know more about the economy. Some of them have been asking him to give them brief introduction on some of the most relevant economics questions and their explnanations.</p>
+                    <p class="card-text mx-5 px-5">As strong a motivation to join the tech industry grew in me as my friends were motivated to know economics. I started school in full stack software development at the Code Institute at the end of last year. Quteba is my fourth portfolio project in this program as well as my dream platform where I can teach my friends while engaging them in asking questions and sharing their thoughts in qforum.</p>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <hr>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8 card mb-4  mt-3 ">
-            <h3>Comments:</h3>
-            <div class="card-body">
-                {% for comment in comments %}
-                <div class="comments" style="padding: 10px;">
-                    <p class="font-weight-bold">
-                        {{ comment.name }}
-                        <span class=" text-muted font-weight-normal">
-                            {{ comment.created_on }}
-                        </span> wrote:
-                    </p>
-                    {{ comment.body | linebreaks }}
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="col-md-4 card mb-4  mt-3 ">
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
 </div>
 
 {% endblock content %}

@@ -1,4 +1,4 @@
-                    <div class="reply-box">
+                    <div class="reply-box pos-relative">
                         <a class="text-black" href="#">
                             {% if comment.name.profile.image %}
                             <img class="rounded-circle article-img profile-img"
@@ -14,7 +14,6 @@
                         <button class="btn btn-sm" onclick="handleReply({{comment.id}})"><i
                                 class="fa-solid fa-comment text-muted"></i> Reply</button>
                         {% for reply in comment.children %}
-                        <!--First reply-->
                         <div>
                             <a class="text-black" href="#">
                                 {% if reply.name.profile.image %}
@@ -38,7 +37,7 @@
                                     {{form.content}}
                                     <div>
                                         <button type="button" onclick="handleCancel({{comment.id}})"
-                                        class="btn btn-light border btn-sm">Cancel</button>
+                                            class="btn btn-light border btn-sm">Cancel</button>
                                         <button type="submit" class="btn btn-primary btn-sm">Submit</button>
                                     </div>
                                 </form>
@@ -47,11 +46,8 @@
                                 {% endif %}
                             </div>
                         </div>
-
                         {%for reply in reply.children %}
-
-                        <!--Second reply -->
-                        <div>
+                        <div class="pos-relative">
                             <a class="text-black" href="#">
                                 {% if reply.name.profile.image %}
                                 <img class="rounded-circle article-img profile-img"
@@ -85,7 +81,6 @@
                         </div>
                         {% endfor %}
                         {% endfor %}
-
                         <div class="border-reply" id="reply-form-container-{{comment.id}}" style="display:none">
                             {% if user.is_authenticated %}
                             <form method="POST" action="{% url 'qforum:thread_detail' thread.slug %}" class="mt-3">

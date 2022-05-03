@@ -9,7 +9,7 @@ class PostList(ListView):
     model = Post
     queryset = Post.objects.filter(status=1).order_by('-created_on')
     template_name = 'qblog/blog.html'
-    paginate_by = 3
+    paginate_by = 10
 
 
 class PostDetail(View):
