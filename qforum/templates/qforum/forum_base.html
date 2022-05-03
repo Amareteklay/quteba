@@ -5,55 +5,60 @@
 <script src="{% static 'qforum/js/qforum.js'%}"></script>
 {% endblock extrahead%}
 {% block content %}
-
 <!--Code from https://replit.com/talk/learn/DjangoPython-and-HTML-Coding-Campus-Tutorial-1-Create-a-Blog-with-Django/142238?order=new-->
 <!--And https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/templates/index.html-->
-<div class="container-fluid container">
-  <div class="row blog-cards">
-    <div class="col-10 mt-3 left">
-      <div class="row">
-        <div class="forum">
-          <h1>Quteba Forum</h1>
-          <!-- Code from https://www.bootdey.com/snippets/view/bs5-forum-list -->
-          <!--<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">-->
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-9 mb-3">
-                <div class="row text-left mb-5">
-                  <div class="col-lg-6 mb-3 mb-sm-0">
-                    <div class="dropdown bootstrap-select form-control form-control-lg bg-white bg-op-9 text-sm w-lg-50"
-                      style="width: 100%;">
-                      <select class="form-control form-control-lg bg-white bg-op-9 text-sm w-lg-50" data-toggle="select"
-                        tabindex="-98">
-                        <option value="" disabled selected> Categories </option>
-                        {% for category in category_list %}
-                        <option> {{category.subject}} </option>
-                        {% endfor %}
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 text-lg-right">
-                    <div
-                      class="dropdown bootstrap-select form-control form-control-lg bg-white bg-op-9 ml-auto text-sm w-lg-50"
-                      style="width: 100%;">
-                      <select class="form-control form-control-lg bg-white bg-op-9 ml-auto text-sm w-lg-50"
-                        data-toggle="select" tabindex="-98">
-                        <option class="text-muted"> Sort by </option>
-                        <option> Votes </option>
-                        <option> Replies </option>
-                        <option> Views </option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                {% block details %}
-                {% endblock details %}
-              </div>
-              {% include 'qforum/side_bar.html' %}
-            </div>
-          </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-10 mt-5 pt-5">
+      <h1 class="text-primary text-center">Quteba Forum</h1>
+      <!-- Code from https://www.bootdey.com/snippets/view/bs5-forum-list -->
+      <!--<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">-->
+    </div>
+    <div class="col-md-1">
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-2 mb-3 mb-sm-0">
+      <div class="dropdown bootstrap-select form-control-lg bg-white bg-op-9 text-sm w-lg-50">
+        <select class="form-control form-control-lg bg-white bg-op-9 text-sm w-lg-50" data-toggle="select"
+          tabindex="-98">
+          <option value="" disabled selected> Categories </option>
+          {% for category in category_list %}
+          <option> {{category.subject}} </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="text-lg-right">
+        <div class="dropdown bootstrap-select form-control-lg bg-white bg-op-9 ml-auto text-sm w-lg-50">
+          <select class="form-control form-control-lg bg-white bg-op-9 ml-auto text-sm w-lg-50" data-toggle="select"
+            tabindex="-98">
+            <option class="text-muted"> Sort by </option>
+            <option> Votes </option>
+            <option> Replies </option>
+            <option> Views </option>
+          </select>
         </div>
       </div>
+    </div>
+    <div class="col-md-4">
+    <a class="btn btn-lg btn-success p-3" href="{% url 'qforum:create_forum' %}">Ask Question</a>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-6">
+      {% block details %}
+      {% endblock details %}
+    </div>
+    <div class="col-md-2">
+      {% include 'qforum/side_bar.html' %}
+    </div>
+    <div class="col-md-2">
     </div>
   </div>
 </div>
