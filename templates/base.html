@@ -48,17 +48,17 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link btn btn-signup btn-success" href="{% url 'profile' %}">Profile</a>
+                        <a class="nav-link btn m-0" href="{% url 'profile' %}"><img class="rounded-circle border article-img profile-img" src="{{ user.profile.image.url }}"> {{user.profile.user}}</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link btn btn-signup btn-success" href="{% url 'logout' %}">LOGOUT</a>
+                      <a class="nav-link btn m-0" href="{% url 'logout' %}">Logout</a>
                   </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link btn btn-signup btn-success" href="{% url 'register' %}">SIGN UP</a>
+                        <a class="nav-link btn m-0" href="{% url 'register' %}">Sign UP</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-signup btn-success" href="{% url 'login' %}"><i class="fa fa-user"></i> LOGIN</a>
+                        <a class="nav-link btn btn-sm m-0" href="{% url 'login' %}"><i class="fa fa-user"></i> Login</a>
                     </li>
                     {% endif %}
         </ul>

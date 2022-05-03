@@ -30,7 +30,7 @@
     </div>
     <div class="carousel-item">
       <img src="{% static 'images/join-qforum.png' %}" class="d-block w-100" alt="">
-      <div class="carousel-caption d-none d-md-block">
+      <div class="carousel-caption d-none d-md-block text-white">
         <h5>Qforum</h5>
         <p>Quteba forum to discuss any economics topic.</p>
       </div>
@@ -46,36 +46,36 @@
   </button>
 </div>
 <!-- Recent stories section -->
-<div class="container-fluid bg-secondary">
+<div class="container-fluid bg-secondary mb-0">
   <div class="row blog-cards">
-    <div class="col-12 mt-3 left">
+    <div class="col-12 mt-4 mb-4 left">
       <h1 class="text-center">RECENT STORIES</h1>
     </div>
     {% for post in post %}
-    <div class="col-4 mt-3 left border border-top-0 border-bottom-0">
+    <div class="col-4 mt-4 left border border-top-0 border-bottom-0">
      <a href="{% url 'post_detail' post.slug  %}" class="text-primary"><h2 class="text-center">{{post.title}}</h2></a>
-      <p>{{post.excerpt}}</p>
+      <p class="mx-3 pt-3">{{post.excerpt|safe}}</p>
     </div>
     {% endfor %}
-    <div class="col-12 mt-3 left text-center">
-      <a href="#" class="btn btn-primary mb-2 border-rounded"><h1 class="text-center">Read Qblog</h1></a>
+    <div class="col-12 mt-5 left text-center">
+      <a href="{% url 'blog' %}" class="btn btn-success mb-3 border-rounded"><h5 class="text-center">Read Qblog</h5></a>
     </div>
   </div>
 </div>
 <!-- Active topics section -->
-<div class="container-fluid bg-dark text-white">
+<div class="container-fluid bg-dark text-white mt-0">
   <div class="row blog-cards">
-    <div class="col-12 mt-3 left">
+    <div class="col-12 mt-4 mb-4 left">
       <h1 class="text-center">ACTIVE TOPICS</h1>
     </div>
     {% for thread in thread %}
-    <div class="col-4 mt-3 left border border-top-0 border-bottom-0">
+    <div class="col-4 mt-4 left border border-top-0 border-bottom-0">
      <a href="{% url 'qforum:thread_detail' thread.slug %}" class="text-primary"><h2 class="text-center">{{thread.topic}}</h2></a>
-      <p>{{thread.description|safe}}</p>
+      <p class="mx-3 pt-3">{{thread.description|safe}}</p>
     </div>
     {% endfor %}
-    <div class="col-12 mt-3 left text-center">
-      <a href="#" class="btn btn-primary mb-2 border-rounded"><h1 class="text-center">Join Qforum</h1></a>
+    <div class="col-12 mt-5 left text-center">
+      <a href="{% url 'qforum:threads' %}" class="btn btn-success mb-3 border-rounded"><h5 class="text-center">Join Qforum</h5></a>
     </div>
   </div>
 </div>
