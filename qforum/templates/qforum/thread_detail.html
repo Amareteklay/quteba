@@ -11,14 +11,17 @@
       <h5 class="text-primary">{{ thread.topic}}</h5>
       <p> {{thread.description|safe}} </p>
     </div>
-    <div><i class="ion-connection-bars icon-1x"></i> <span class="d-inline-block text-sm text-muted">14 Votes</span>
+    <div>
+      <i class="ion-connection-bars icon-1x"></i> <span class="d-inline-block text-sm text-muted">{{number_of_likes}} <i class="fa-solid fa-thumbs-up"></i></span>
       <i class="ion-ios-chatboxes-outline icon-1x"></i> <span
-        class="d-inline-block text-sm text-muted">{{no_of_comments}} Comments</span>
-      <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">90 Views</span>
+        class="d-inline-block text-sm text-muted">{{no_of_comments}} <i class="fa-solid fa-comments"></i></span>
+      <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">{{no_of_comments}} <i class="fa-solid fa-eye"></i></span>
+      <h4 id="comment-form" class="btn" onclick="displayForm()">Comment <i class="fa-solid fa-angle-down"></i></h4>
+      <span class="btn text-muted"><i class="fa-solid fa-ellipsis"></i></span>
     </div>
     <div>
       <hr>
-      <h4 id="comment-form" class="btn" onclick="displayForm()">Comment <i class="fa-regular fa-comment"></i></h4>
+      
       <div class="comment-form">
         {% if user.is_authenticated %}
         <form method="POST" action="{% url 'qforum:thread_detail' thread.slug %}">

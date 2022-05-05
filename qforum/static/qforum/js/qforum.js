@@ -12,11 +12,13 @@ function handleCancel(response_id) {
 }
 
 function displayForm(){
-    document.querySelector('#comment-form').style.display = 'none';
+    document.querySelector('#comment-form').classList.add('text-muted');
     document.querySelector('.comment-form').style.display = 'block';
 }
 
 function hideForm(){
+    let form_btn = document.querySelector('#comment-form');
+    form_btn.classList.remove('text-muted');
+    form_btn.classList.add('d-inline-block');
     document.querySelector('.comment-form').style.display = 'none';
-    document.querySelector('#comment-form').style.display = 'block';
 }

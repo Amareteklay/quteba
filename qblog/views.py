@@ -17,14 +17,13 @@ class PostDetail(View):
     View for details page
     """
     def get(self, request, slug, *args, **kwargs):
-        form = CommentForm()
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
         comments = post.comments.filter(approved=True).order_by('created_on')
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
-
+        form = CommentForm()
         return render(
             request,
             "qblog/post_detail.html",
@@ -44,7 +43,6 @@ class PostDetail(View):
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
-        
         form = CommentForm(data=request.POST)
         if form.is_valid():
             form.instance.email = request.user.email
@@ -54,7 +52,6 @@ class PostDetail(View):
             comment.save()
         else:
             form = CommentForm()
-
         return render(
             request,
             "qblog/post_detail.html",

@@ -143,6 +143,10 @@ color: #fff;
 color: #056674;
 }
 
+.post-comment-form {
+  display: block;
+}
+
 .comment-form {
   display: none;
 }
