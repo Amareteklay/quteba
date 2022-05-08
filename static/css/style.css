@@ -236,3 +236,8 @@ img {
 .reply-box{
   padding-left: 10px;
 }
+
+.left-indent {
+  position: relative;
+  margin-left: 20px;
+}

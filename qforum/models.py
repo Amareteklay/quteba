@@ -65,12 +65,16 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
+    likes = models.ManyToManyField(User, related_name='forum_likes', blank=True)
 
     class Meta:
         ordering = ('created',)
     
     def __str__(self):
         return f"{self.content}"
+    
+    def no_of_likes(self):
+        return self.likes.count()
 
     @property
     def children(self):

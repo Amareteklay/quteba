@@ -41,10 +41,13 @@ class ThreadDetailView(DetailView):
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
         comments = Comment.objects.filter(thread=self.get_object())
+        pcom = Comment.objects.filter(parent=None)
         number_of_comments = comments.count()
         data['comments'] = comments
         data['no_of_comments'] = number_of_comments
         data['form'] = CommentForm()
+        data['thread_list'] = Thread.objects.all()
+        data['pcom'] = pcom
         return data
 
     def post(self, request, slug, *args, **kwargs):
@@ -56,7 +59,7 @@ class ThreadDetailView(DetailView):
                     parent = form.cleaned_data['parent']
                 except:
                     parent=None 
-        new_comment = Comment(content=content , name =self.request.user, thread=self.get_object(), parent=parent)
+        new_comment = Comment(content=content, name =self.request.user, thread=self.get_object(), parent=parent)
         new_comment.save()
         return redirect(self.request.path_info)
 
