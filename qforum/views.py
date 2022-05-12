@@ -31,6 +31,7 @@ class ActiveTopicsList(generic.ListView):
 
 class PostList(generic.ListView):
     model = Comment
+    form_class = ThreadForm
     template_name = 'qforum/post_list.html'
 
 
@@ -71,8 +72,8 @@ class ThreadDetailView(DetailView):
 class CreateForum(LoginRequiredMixin, CreateView):
     model = Thread
     form_class = ThreadForm
-    template_name = 'qforum/create_forum.html'
-    success_url = reverse_lazy('qforum:threads')
+    template_name = 'qforum/forum_base.html'
+    success_url = reverse_lazy('qforum:thread_list')
 
     def form_valid(self, form):
         form.instance.name = self.request.user

@@ -14,13 +14,13 @@
             <span class="btn text-muted"><i class="fa-regular fa-thumbs-up"></i>{% if reply.no_of_likes %}
                 {{reply.no_of_likes}}{% endif %} </span>
             <span class="btn text-muted"><i class="fa-regular fa-thumbs-down"></i></span>
-            <button class="btn btn-sm" onclick="handleReply({{comment.id}})">
+            <button class="btn btn-sm" data-toggle="collapse" data-target="#reply-form{{reply.id}}" aria-controls="reply-form{{reply.id}}">
                 <i class="fa-solid fa-comment text-muted"></i> Reply</button>
             <span class="edit-btn text-muted btn"><i class="fa-solid fa-ellipsis"></i></span>
             <!-- reply modal-->
-            <div class=" modal comment-form reply-box">
+            <div class="collapse" id="reply-form{{reply.id}}">
                 {% if user.is_authenticated %}
-                <form method="POST" action="{% url 'qforum:thread_detail' thread.slug %}">
+                <form method="POST" action="{% url 'qforum:thread_detail' reply.id %}">
                   {% csrf_token %}
                   {{ form.content }}
                   <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>

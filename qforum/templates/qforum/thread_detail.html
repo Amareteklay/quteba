@@ -18,11 +18,11 @@
         class="d-inline-block text-sm text-muted">{{no_of_comments}} <i class="fa-solid fa-comments"></i></span>
       <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">{{no_of_comments}} <i
           class="fa-solid fa-eye"></i></span>
-      <h4 id="comment-form" class="btn" onclick="displayForm()">Comment <i class="fa-solid fa-angle-down"></i></h4>
+      <h4 id="comment-form" class="btn" data-toggle="collapse" data-target="#comment-form{{thread.id}}" aria-controls="comment-form{{thread.id}}">Comment <i class="fa-solid fa-angle-down"></i></h4>
       <span class="btn text-muted"><i class="fa-solid fa-ellipsis"></i></span>
     </div>
     <hr>
-    <div class="comment-form">
+    <div class="collapse" id="comment-form{{thread.id}}">
       {% if user.is_authenticated %}
       <form method="POST" action="{% url 'qforum:thread_detail' thread.slug %}">
         {% csrf_token %}
@@ -51,10 +51,21 @@
         <span class="btn text-muted"><i class="fa-regular fa-thumbs-up"></i>{% if comment.no_of_likes %}
           {{comment.no_of_likes}}{% endif %} </span>
         <span class="btn text-muted"><i class="fa-regular fa-thumbs-down"></i></span>
-        <button class="btn btn-sm" onclick="handleReply({{comment.id}})">
+        <button class="btn btn-sm" data-toggle="collapse" data-target="#reply-form{{comment.id}}" aria-controls="reply-form{{comment.id}}">
           <i class="fa-solid fa-comment text-muted"></i> Reply</button>
         <span class="edit-btn text-muted btn"><i class="fa-solid fa-ellipsis"></i></span>
-        
+        <div class="collapse" id="reply-form{{comment.id}}">
+          {% if user.is_authenticated %}
+          <form method="POST" action="{% url 'qforum:thread_detail' thread.slug %}">
+            {% csrf_token %}
+            {{ form.content }}
+            <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          {% else %}
+          <h2>You need to Login to comment</h2>
+          {% endif %}
+        </div>
         {% if comment.is_parent %}
         {% load reply_tree %}
         {% reply_tree comment %}

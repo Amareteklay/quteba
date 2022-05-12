@@ -12,4 +12,4 @@ def index(request):
     return render(request, 'home/index.html', {'post': recent_posts, 'thread': active_topics})
 
 def about(request):
-    return render(request, 'qpages/about.html')
+    return render(request, 'home/about.html')

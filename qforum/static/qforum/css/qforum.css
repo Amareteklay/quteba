@@ -1,0 +1,28 @@
+body {
+    background-color: aqua;
+}
+
+.modal {
+    max-height: 450px;
+    max-width: 600px;
+    background-color: #282c34;
+    top: 75px;
+    left: 240px;
+}
+
+#question-form {
+    display: none;
+}
+
+.comment-form {
+    display: none;
+  }
+
+  .comment-reply-form{
+      display: none;
+  }
+  
+.reply-box{
+    padding-left: 10px;
+    border: red 2px solid;
+  }

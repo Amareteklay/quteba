@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
+{% block extracss %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href='{% static "qforum/css/qforum.css" %}' type="text/css" />
+  {% endblock extracss %}
+
 {% block extrahead %}
 <script src="https://kit.fontawesome.com/1334675705.js" crossorigin="anonymous"></script>
 <script src="{% static 'qforum/js/qforum.js'%}"></script>
@@ -45,10 +53,22 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
-    <a class="btn btn-lg btn-success p-3" href="{% url 'qforum:create_forum' %}">Ask Question</a>
+   <div class="col-md-4">
+    <a class="btn btn-lg btn-success p-3" onclick="displayThreadForm()">Ask Question</a>
     </div>
   </div>
+  <!-- Question form modal -->
+    <div id="question-form" class=" modal row bg-white">
+        <h4 clas="text-center">What is in your mind?</h4>
+      <p class="small text-center">Create a discussion forum and open a conversation about your subject of interest.</p>
+      <form class="d-inline" method="post" action="">
+          {% csrf_token %}
+          {{ form | crispy }}
+          {{form.topic}}
+          <input class="btn btn-success mt-3" type="submit" value="Create">
+      </form>
+    </div>
+<!-- End modal-->
   <div class="row mb-5">
     <div class="col-md-2">
     </div>
