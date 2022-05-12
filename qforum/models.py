@@ -37,6 +37,7 @@ class Thread(models.Model):
                                  related_name="threads")
     status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
+    thread_views = models.IntegerField(default=0)
    
     class Meta:
         ordering = ['-created_on']

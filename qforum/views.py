@@ -15,6 +15,11 @@ class ThreadList(generic.ListView):
     model = Thread
     template_name = 'qforum/thread_list.html'
 
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['category_list'] = Category.objects.all()
+        return data
+
 
 class ActiveTopicsList(generic.ListView):
     """
@@ -41,13 +46,12 @@ class ThreadDetailView(DetailView):
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
         comments = Comment.objects.filter(thread=self.get_object())
-        pcom = Comment.objects.filter(parent=None)
         number_of_comments = comments.count()
         data['comments'] = comments
         data['no_of_comments'] = number_of_comments
         data['form'] = CommentForm()
         data['thread_list'] = Thread.objects.all()
-        data['pcom'] = pcom
+        data['category_list'] = Category.objects.all()
         return data
 
     def post(self, request, slug, *args, **kwargs):

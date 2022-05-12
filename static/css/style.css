@@ -240,4 +240,5 @@ img {
 .left-indent {
   position: relative;
   margin-left: 20px;
+  border-left: #333 1px solid;
 }

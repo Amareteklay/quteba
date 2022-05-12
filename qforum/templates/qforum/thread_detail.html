@@ -38,22 +38,23 @@
     {% for comment in comments %}
     {% if not comment.parent %}
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 left-indent">
         <a class="text-black" href="#">
           {% if comment.name.profile.image %}
-          <img class="rounded-circle article-img profile-img"
-              src="{{ comment.name.profile.image.url }}">
+          <img class="rounded-circle article-img profile-img" src="{{ comment.name.profile.image.url }}">
           {% else %}
           <img class="rounded-circle article-img profile-img" src="{{ '../quteba/media/default.jpg' }}">
           {% endif %}
           {{comment.name}}</a>
-      <span class=" badge badge-secondary op-6 text-muted">{{ comment.created|timesince }} ago</span>
-      <p class="px-3 mt-2"> {{comment.content}}</p>
-      <span class="btn text-muted"><i class="fa-regular fa-thumbs-up"></i>{% if comment.no_of_likes %} {{comment.no_of_likes}}{% endif %} </span>
-      <span class="btn text-muted"><i class="fa-regular fa-thumbs-down"></i></span>
-      <button class="btn btn-sm" onclick="handleReply({{comment.id}})">
+        <span class=" badge badge-secondary op-6 text-muted">{{ comment.created|timesince }} ago</span>
+        <p class="px-3 mt-2"> {{comment.content}}</p>
+        <span class="btn text-muted"><i class="fa-regular fa-thumbs-up"></i>{% if comment.no_of_likes %}
+          {{comment.no_of_likes}}{% endif %} </span>
+        <span class="btn text-muted"><i class="fa-regular fa-thumbs-down"></i></span>
+        <button class="btn btn-sm" onclick="handleReply({{comment.id}})">
           <i class="fa-solid fa-comment text-muted"></i> Reply</button>
-      <span class="edit-btn text-muted btn"><i class="fa-solid fa-ellipsis"></i></span>
+        <span class="edit-btn text-muted btn"><i class="fa-solid fa-ellipsis"></i></span>
+        
         {% if comment.is_parent %}
         {% load reply_tree %}
         {% reply_tree comment %}

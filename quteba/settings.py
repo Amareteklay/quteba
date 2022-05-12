@@ -48,10 +48,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'django_summernote',
+    'home',
     'users',
     'qblog',
     'qforum',
-    'qpages',
     'crispy_forms',
     'fontawesomefree'
 ]

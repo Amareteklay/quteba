@@ -21,7 +21,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
-    path('', include('qpages.urls'), name='qpages_urls'),
+    path('', include('home.urls'), name='home_urls'),
     path('blog/', include('qblog.urls'), name='qblog_urls'),
     path('forum/', include('qforum.urls'), name='qforum'),
     path('account/', include('allauth.urls')),
