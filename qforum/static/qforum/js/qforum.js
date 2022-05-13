@@ -33,3 +33,8 @@ function displayThreadForm(){
     thread_form.style.display = 'block'
     thread_form.classList.add('text-center');
 }
+
+function hideForumButton(){
+    let btn_forum = document.querySelector('#btn-create-forum');
+    btn_forum.style.display = 'none';
+}

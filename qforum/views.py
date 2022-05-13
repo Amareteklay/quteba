@@ -11,14 +11,35 @@ from .models import Thread, Comment, Category
 from .forms import ThreadForm, CommentForm
 
 
-class ThreadList(generic.ListView):
-    model = Thread
-    template_name = 'qforum/thread_list.html'
+class ThreadList(View):
 
-    def get_context_data(self, **kwargs):
-        data = super().get_context_data(**kwargs)
-        data['category_list'] = Category.objects.all()
-        return data
+    def get(self, request, *args, **kwargs):
+        thread_list = Thread.objects.all()
+        category_list = Category.objects.all()
+        thread_form = ThreadForm()
+        context = {
+            'thread_list': thread_list,
+            'thread_form': thread_form,
+            'category_list': category_list
+        }
+        return render(request, 'qforum/thread_list.html', context=context)
+    def post(self, request, *args, **kwargs):
+        thread_list = Thread.objects.all()
+        category_list = Category.objects.all()
+        thread_form = ThreadForm(request.POST)
+        if thread_form.is_valid():
+            topic = thread_form.cleaned_data['topic']
+            description = thread_form.cleaned_data['description']
+            category = thread_form.cleaned_data['category'] 
+        new_thread = Thread(topic=topic, category=category, name=self.request.user, description=description)
+        new_thread.save()
+        context = {
+            'thread_list': thread_list,
+            'thread_form': thread_form,
+            'category_list': category_list
+        }
+        return render(request, 'qforum/thread_list.html', context=context)
+        
 
 
 class ActiveTopicsList(generic.ListView):
