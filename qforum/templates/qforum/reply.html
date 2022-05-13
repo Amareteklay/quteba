@@ -18,10 +18,10 @@
                 <i class="fa-solid fa-comment text-muted"></i> Reply</button>
             <span class="edit-btn text-muted btn"><i class="fa-solid fa-ellipsis"></i></span>
             <div class="collapse" id="reply-form{{reply.id}}">
-                {% if reply.user.is_authenticated %}
+                {% if request.user.is_authenticated %}
                 <form method="POST" action="{% url 'qforum:thread_detail' reply.id %}">
                   {% csrf_token %}
-                  {{ form.content }}
+                  {{ comment_form.content }}
                   <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
-from django.views import generic
+from django.views import generic, View
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -34,21 +34,55 @@ class CategoryList(generic.ListView):
     template_name = 'qforum/forum_base.html'
 
 
-class ThreadDetailView(DetailView):
-    model = Thread
-    template_name = 'qforum/thread_detail.html'
+class ThreadDetailView(View):
 
-    def get_context_data(self, **kwargs):
-        data = super().get_context_data(**kwargs)
-        comments = Comment.objects.filter(thread=self.get_object())
-        number_of_comments = comments.count()
-        data['comments'] = comments
-        data['no_of_comments'] = number_of_comments
-        data['form'] = CommentForm()
-        data['thread_list'] = Thread.objects.all()
-        data['category_list'] = Category.objects.all()
-        return data
+    def get(self, request, slug, *args, **kwargs):
+        queryset = Thread.objects.all()
+        thread = get_object_or_404(queryset, slug=slug)
+        thread_form = ThreadForm()
+        comment_form = CommentForm()
+        comments = thread.comments.filter(active=True).order_by('created')
+        thread_list = Thread.objects.all()
+        category_list = Category.objects.all()
+        context = {
+            'thread': thread,
+            'thread_form': thread_form,
+            'comment_form': comment_form,
+            'comments': comments,
+            'thread_list': thread_list,
+            'category_list': category_list
+        }
+        return render(request, 'qforum/thread_detail.html', context=context)
 
+    def post(self, request, slug, *args, **kwargs):
+        #thread_form = ThreadForm(request.POST)
+        comment_form = CommentForm(request.POST)
+        queryset = Thread.objects.all()
+        thread = get_object_or_404(queryset, slug=slug)
+        comments = thread.comments.filter(active=True).order_by('created')
+        thread_list = Thread.objects.all()
+        category_list = Category.objects.all()
+        if comment_form.is_valid():
+            content = comment_form.cleaned_data['content']
+            try:
+                parent = comment_form.cleaned_data['parent']
+            except:
+                parent=None 
+        new_comment = Comment(content=content, name=self.request.user, thread=thread, parent=parent)
+        new_comment.save()
+        context = {
+            'thread': thread,
+            #'thread_form': thread_form,
+            'comment_form': comment_form,
+            'comments': comments,
+            'thread_list': thread_list,
+            'category_list': category_list
+        }
+        return redirect(self.request.path_info)
+
+
+class ThreadDetail(DetailView):
+    
     def post(self, request, slug, *args, **kwargs):
         if self.request.method == 'POST':
             form = CommentForm(self.request.POST)

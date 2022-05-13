@@ -15,7 +15,7 @@
       <i class="ion-connection-bars icon-1x"></i> <span class="d-inline-block text-sm text-muted">{{number_of_likes}} <i
           class="fa-solid fa-thumbs-up"></i></span>
       <i class="ion-ios-chatboxes-outline icon-1x"></i> <span
-        class="d-inline-block text-sm text-muted">{{no_of_comments}} <i class="fa-solid fa-comments"></i></span>
+        class="d-inline-block text-sm text-muted">{{comments.all.count}} <i class="fa-solid fa-comments"></i></span>
       <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">{{no_of_comments}} <i
           class="fa-solid fa-eye"></i></span>
       <h4 id="comment-form" class="btn" data-bs-toggle="collapse" data-bs-target="#comment-form{{thread.id}}" aria-controls="comment-form{{thread.id}}">Comment <i class="fa-solid fa-angle-down"></i></h4>
@@ -26,7 +26,7 @@
       {% if user.is_authenticated %}
       <form method="POST" action="{% url 'qforum:thread_detail' thread.slug %}">
         {% csrf_token %}
-        {{ form.content }}
+        {{ comment_form.content }}
         <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
@@ -58,7 +58,7 @@
           {% if user.is_authenticated %}
           <form method="POST" action="{% url 'qforum:thread_detail' thread.slug %}">
             {% csrf_token %}
-            {{ form.content }}
+            {{ comment_form.content }}
             <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>

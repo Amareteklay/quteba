@@ -58,7 +58,7 @@ class Comment(models.Model):
     """
     A particular comment posted to a thread
     """
-    thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
+    thread = models.ForeignKey(Thread, on_delete=models.CASCADE, related_name='comments')
     name = models.ForeignKey(User, on_delete=models.CASCADE, 
                              related_name="forum_comments")
     content = models.TextField(null=True, max_length=255)
