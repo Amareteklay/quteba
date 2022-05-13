@@ -29,12 +29,6 @@ class ActiveTopicsList(generic.ListView):
     template_name = 'qforum/side_bar.html'
 
 
-class PostList(generic.ListView):
-    model = Comment
-    form_class = ThreadForm
-    template_name = 'qforum/post_list.html'
-
-
 class CategoryList(generic.ListView):
     model = Category
     template_name = 'qforum/forum_base.html'

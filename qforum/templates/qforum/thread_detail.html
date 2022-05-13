@@ -18,7 +18,7 @@
         class="d-inline-block text-sm text-muted">{{no_of_comments}} <i class="fa-solid fa-comments"></i></span>
       <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">{{no_of_comments}} <i
           class="fa-solid fa-eye"></i></span>
-      <h4 id="comment-form" class="btn" data-toggle="collapse" data-target="#comment-form{{thread.id}}" aria-controls="comment-form{{thread.id}}">Comment <i class="fa-solid fa-angle-down"></i></h4>
+      <h4 id="comment-form" class="btn" data-bs-toggle="collapse" data-bs-target="#comment-form{{thread.id}}" aria-controls="comment-form{{thread.id}}">Comment <i class="fa-solid fa-angle-down"></i></h4>
       <span class="btn text-muted"><i class="fa-solid fa-ellipsis"></i></span>
     </div>
     <hr>
@@ -43,15 +43,15 @@
           {% if comment.name.profile.image %}
           <img class="rounded-circle article-img profile-img" src="{{ comment.name.profile.image.url }}">
           {% else %}
-          <img class="rounded-circle article-img profile-img" src="{{ '../quteba/media/default.jpg' }}">
+          <img class="rounded-circle article-img profile-img" src="{% get_media_prefix %}default.jpg">
           {% endif %}
           {{comment.name}}</a>
-        <span class=" badge badge-secondary op-6 text-muted">{{ comment.created|timesince }} ago</span>
+        <span class="op-6 text-muted">{{ comment.created|timesince }} ago</span>
         <p class="px-3 mt-2"> {{comment.content}}</p>
         <span class="btn text-muted"><i class="fa-regular fa-thumbs-up"></i>{% if comment.no_of_likes %}
           {{comment.no_of_likes}}{% endif %} </span>
         <span class="btn text-muted"><i class="fa-regular fa-thumbs-down"></i></span>
-        <button class="btn btn-sm" data-toggle="collapse" data-target="#reply-form{{comment.id}}" aria-controls="reply-form{{comment.id}}">
+        <button class="btn btn-sm" data-bs-toggle="collapse" data-bs-target="#reply-form{{comment.id}}" aria-controls="reply-form{{comment.id}}">
           <i class="fa-solid fa-comment text-muted"></i> Reply</button>
         <span class="edit-btn text-muted btn"><i class="fa-solid fa-ellipsis"></i></span>
         <div class="collapse" id="reply-form{{comment.id}}">

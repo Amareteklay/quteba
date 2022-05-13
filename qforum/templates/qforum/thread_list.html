@@ -1,7 +1,51 @@
 {% extends "qforum/forum_base.html" %}
 {% load static %}
-
+{% load crispy_forms_tags %}
 {% block details %}
+<div class="row mb-5">
+  <div class="col-md-2 mb-3 mb-sm-0">
+    <div class="dropdown bootstrap-select form-control-lg bg-white bg-op-9 text-sm w-lg-50">
+      <!--Filter form -->
+      <select class="form-control form-control-lg bg-white bg-op-9 text-sm w-lg-50" data-toggle="select"
+        tabindex="-98">
+        <option value="" disabled selected> Categories </option>
+        {% for category in category_list %}
+        <option> {{category.subject}} </option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="text-lg-right">
+      <div class="dropdown bootstrap-select form-control-lg bg-white bg-op-9 ml-auto text-sm w-lg-50">
+        <select class="form-control form-control-lg bg-white bg-op-9 ml-auto text-sm w-lg-50" data-toggle="select"
+          tabindex="-98">
+          <option class="text-muted"> Sort by </option>
+          <option> Most Popular </option>
+          <option> Recently Created </option>
+          <option> Active </option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- Question form -->
+ <div class="row mb-5">
+  <div class="col-md-2">
+  </div>
+  <div id="question-form" class="col-md-6 bg-white">
+    <form class="d-inline" method="post" action="">
+      {% csrf_token %}
+      {{ form | crispy }}
+      <!-- <input class="btn btn-success mt-3" type="submit" value="Create"> -->
+      <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  <div class="col-md-4">
+  </div>
+</div>
+<!-- End question form -->
                 {% for thread in thread_list %}
                 <div class="card shadow-lg row-hover pos-relative px-3 mb-3 rounded-2">
                   <div class="row pb-3 align-items-center">
