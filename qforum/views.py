@@ -130,15 +130,28 @@ class CreateForum(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class UpdateForum(LoginRequiredMixin, UpdateView):
+class ThreadEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):   
     model = Thread
-    form_class = ThreadForm
-    template_name = 'qforum/forum_base.html'
-    success_url = reverse_lazy('qforum:thread_list')
+    fields = ['category', 'topic', 'description']
+    template_name = 'qforum/edit_thread.html'
 
-    def form_valid(self, form):
-        form.instance.name = self.request.user
-        return super().form_valid(form)
+    def get_success_url(self):
+        slug = self.kwargs['slug']
+        return reverse_lazy('qforum:thread_detail', kwargs={'slug': slug})
+
+    def test_func(self):
+        thread = self.get_object()
+        return self.request.user == thread.name
+
+
+class ThreadDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Thread
+    template_name = 'qforum/delete_thread.html'
+    success_url = reverse_lazy('qforum:threads')
+
+    def test_func(self):
+        thread = self.get_object()
+        return self.request.user == thread.name
 
 
 class VoteUpView(LoginRequiredMixin, View):

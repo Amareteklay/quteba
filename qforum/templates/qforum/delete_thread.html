@@ -1,0 +1,21 @@
+{% extends "qforum/forum_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container account-container">
+    <div class="row min-vh-100">
+        <div class="col-md-8 bg-light offset-md-2">
+            <div class="mt-5 p-5 bg-warning">
+                <h3>Are you sure you want to delete this thread?</h3>
+                <p>Note that your question and all the comments will be deleted permanently.</p>
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <a href="{% url 'qforum:thread_detail' thread.slug %}" class="btn btn-primary mt-3">Cancel</a>
+                    <button class="btn btn-danger mt-3 d-inline-block">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
