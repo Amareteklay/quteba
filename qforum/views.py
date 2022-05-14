@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
+from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.views.generic.detail import DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from django.contrib.auth.models import User
 from .models import Thread, Comment, Category
@@ -103,7 +104,7 @@ class ThreadDetailView(View):
 
 
 class ThreadDetail(DetailView):
-    
+
     def post(self, request, slug, *args, **kwargs):
         if self.request.method == 'POST':
             form = CommentForm(self.request.POST)
@@ -129,13 +130,136 @@ class CreateForum(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class VoteUpView(generic.View):
+class UpdateForum(LoginRequiredMixin, UpdateView):
+    model = Thread
+    form_class = ThreadForm
+    template_name = 'qforum/forum_base.html'
+    success_url = reverse_lazy('qforum:thread_list')
 
-    def post(self, request):
-        pass
+    def form_valid(self, form):
+        form.instance.name = self.request.user
+        return super().form_valid(form)
 
 
-class VoteDownView(generic.View):
+class VoteUpView(LoginRequiredMixin, View):
+    """
+    Code adapted from https://github.com/legionscript/socialnetwork/blob/tutorial11/social/views.py
+    """
+    def post(self, request, pk, *args, **kwargs):
+        thread = Thread.objects.get(pk=pk)
 
-    def post(self, request):
-        pass
+        voted_down = False
+
+        for down_vote in thread.down_votes.all():
+            if down_vote == request.user:
+                voted_down = True
+                break
+
+        if voted_down:
+            thread.down_votes.remove(request.user)
+
+        voted_up = False
+
+        for up_vote in thread.up_votes.all():
+            if up_vote == request.user:
+                voted_up = True
+                break
+
+        if not voted_up:
+            thread.up_votes.add(request.user)
+
+        if voted_up:
+            thread.up_votes.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
+
+class VoteDownView(LoginRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        thread = Thread.objects.get(pk=pk)
+
+        voted_up = False
+
+        for up_vote in thread.up_votes.all():
+            if up_vote == request.user:
+                voted_up = True
+                break
+
+        if voted_up:
+            thread.up_votes.remove(request.user)
+
+        voted_down = False
+
+        for down_vote in thread.down_votes.all():
+            if down_vote == request.user:
+                voted_down = True
+                break
+
+        if not voted_down:
+            thread.down_votes.add(request.user)
+
+        if voted_down:
+            thread.down_votes.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
+
+class CommentLikeView(LoginRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        comment = Comment.objects.get(pk=pk)
+
+        is_dislike = False
+
+        for dislike in comment.dislikes.all():
+            if dislike == request.user:
+                is_dislike = True
+                break
+
+        if is_dislike:
+            comment.dislikes.remove(request.user)
+
+        is_like = False
+
+        for like in comment.likes.all():
+            if like == request.user:
+                is_like = True
+                break
+
+        if not is_like:
+            comment.likes.add(request.user)
+
+        if is_like:
+            comment.likes.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
+
+class CommentUnlikeView(LoginRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        comment = Comment.objects.get(pk=pk)
+
+        is_like = False
+
+        for like in comment.likes.all():
+            if like == request.user:
+                is_like = True
+                break
+
+        if is_like:
+            comment.likes.remove(request.user)
+
+        is_dislike = False
+
+        for dislike in comment.dislikes.all():
+            if dislike == request.user:
+                is_dislike = True
+                break
+
+        if not is_dislike:
+            comment.dislikes.add(request.user)
+
+        if is_dislike:
+            comment.dislikes.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)

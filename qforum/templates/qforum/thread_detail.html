@@ -7,22 +7,29 @@
     <div class="col-md-8 mb-3 mb-sm-0">
       <img class="rounded-circle article-img profile-img" src="{{ thread.name.profile.image.url }}">
       <a class="text-black" href="#"> {{thread.name}}</a>
-      <span class="op-6 text-muted">| {{ thread.created_on|timesince }} ago</span>
+      <span class="op-6 text-muted">| {{ thread.created_on|timesince }} ago</span> 
+      <span class="d-inline-block text-sm text-muted mx-3"><i class="fa-solid fa-comments"></i> {{comments.all.count}}</span>
+     <span class="d-inline-block text-sm text-muted"><i class="fa-solid fa-eye"></i> {{no_of_comments}} 
+        </span>
       <h5 class="text-primary">{{ thread.topic}}</h5>
       <p> {{thread.description|safe}} </p>
     </div>
     <div>
-      <i class="ion-connection-bars icon-1x"></i> <span class="d-inline-block text-sm text-muted">{{number_of_likes}} <i
-          class="fa-solid fa-thumbs-up"></i></span>
-      <i class="ion-ios-chatboxes-outline icon-1x"></i> <span
-        class="d-inline-block text-sm text-muted">{{comments.all.count}} <i class="fa-solid fa-comments"></i></span>
-      <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-inline-block text-sm text-muted">{{no_of_comments}} <i
-          class="fa-solid fa-eye"></i></span>
-      <h4 id="comment-form" class="btn" data-bs-toggle="collapse" data-bs-target="#comment-form{{thread.id}}" aria-controls="comment-form{{thread.id}}">Comment <i class="fa-solid fa-angle-down"></i></h4>
-      <span class="btn text-muted"><i class="fa-solid fa-ellipsis"></i></span>
+      <span class="btn btn-light">
+        <i class="fa-solid fa-caret-up"></i>{{no_of_upvotes}}
+        </span>
+        <span class="btn btn-light">
+          <i class="fa-solid fa-caret-down"></i>{{no_of_downvotes}}
+          </span>
+      <h4 id="comment-form" class="btn btn-light" data-bs-toggle="collapse" data-bs-target="#comment-form-{{thread.id}}"
+        aria-controls="comment-form-{{thread.id}}">Comment <i class="fa-solid fa-angle-down"></i></h4>
+        {% if request.user == thread.name %}
+        <span class="op-6 px-3 text-muted"><i class="fa-solid fa-pen-to-square"></i></span>
+        <span class="op-6 text-muted"><i class="fa-solid fa-trash small"></i></span>
+        {% endif %}
     </div>
     <hr>
-    <div class="collapse" id="comment-form{{thread.id}}">
+    <div class="collapse" id="comment-form-{{thread.id}}">
       {% if user.is_authenticated %}
       <form method="POST" action="{% url 'qforum:thread_detail' thread.slug %}">
         {% csrf_token %}
@@ -47,14 +54,44 @@
           {% endif %}
           {{comment.name}}</a>
         <span class="op-6 text-muted">{{ comment.created|timesince }} ago</span>
+        {% if request.user == comment.name %}
+        <span class="op-6 px-3 text-muted"><i class="fa-solid fa-pen-to-square"></i></span>
+        <span class="op-6 text-muted"><i class="fa-solid fa-trash small"></i></span>
+        {% endif %}
         <p class="px-3 mt-2"> {{comment.content}}</p>
-        <span class="btn text-muted"><i class="fa-regular fa-thumbs-up"></i>{% if comment.no_of_likes %}
-          {{comment.no_of_likes}}{% endif %} </span>
-        <span class="btn text-muted"><i class="fa-regular fa-thumbs-down"></i></span>
-        <button class="btn btn-sm" data-bs-toggle="collapse" data-bs-target="#reply-form{{comment.id}}" aria-controls="reply-form{{comment.id}}">
-          <i class="fa-solid fa-comment text-muted"></i> Reply</button>
-        <span class="edit-btn text-muted btn"><i class="fa-solid fa-ellipsis"></i></span>
-        <div class="collapse" id="reply-form{{comment.id}}">
+        <div class="row">
+          <div class="col-md-1">
+            <form method="POST" action="{% url 'qforum:comment-like' thread.slug comment.pk%}">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{ request.path }}">
+              <button class="remove-default-btn text-muted border-0 bg-white" type="submit">
+                <i class="fa-regular fa-thumbs-up"> </i>
+              </button>
+              {% if comment.no_of_likes %}
+              <span>{{ comment.no_of_likes }}</span>
+              {% endif %}
+            </form>
+          </div>
+          <div class="col-md-1">
+            <form method="POST" action="{% url 'qforum:comment-dislike' thread.slug comment.pk %}">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{ request.path }}">
+              <button class="remove-default-btn text-muted border-0 bg-white" type="submit">
+                <i class="far fa-thumbs-down"> <span>{{ comment.dislikes.all.count }}</span></i>
+              </button>
+              {% if comment.no_of_dislikes %}
+              <span>{{ comment.no_of_dislikes }}</span>
+              {% endif %}
+            </form>
+          </div>
+          <div class="col-md-2">
+          <button class="btn btn-sm" data-bs-toggle="collapse" data-bs-target="#reply-form-{{comment.id}}"
+          aria-controls="reply-form-{{comment.id}}">
+          <i class="fa-solid fa-comment text-muted"></i> <span>Reply</span></button>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+        <div class="collapse" id="reply-form-{{comment.id}}">
           {% if user.is_authenticated %}
           <form method="POST" action="{% url 'qforum:thread_detail' thread.slug %}">
             {% csrf_token %}

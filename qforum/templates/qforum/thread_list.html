@@ -3,8 +3,7 @@
 {% load crispy_forms_tags %}
 {% block details %}
 <div class="row mb-5">
-  <div class="col-md-3"></div>
-  <div class="col-md-3 mb-3 mb-sm-0">
+  <div class="col-md-6 mb-3 mb-sm-0">
     <div class="dropdown bootstrap-select bg-white">
       <select class="form-control form-control bg-white" data-toggle="select">
         <option value="" disabled selected> Categories </option>
@@ -14,11 +13,10 @@
       </select>
     </div>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-6">
     <div class="text-lg-right">
       <div class="dropdown bootstrap-select bg-white">
-        <select class="form-control form-control bg-white" data-toggle="select"
-          tabindex="-98">
+        <select class="form-control form-control bg-white" data-toggle="select" tabindex="-98">
           <option class="text-muted"> Sort by </option>
           <option> Most Popular </option>
           <option> Recently Created </option>
@@ -27,45 +25,50 @@
       </div>
     </div>
   </div>
-</div>
- <div class="row mb-5">
-  <div class="col-md-3">
+<div class="row mb-5">
+  <div class="col-md-12 bg-white">
+    <h5 class="btn text-primary" id="btn-create-forum" data-bs-toggle="collapse" data-bs-target="#thread-form"
+      aria-controls="thread-form"><strong>Ask Question<i class="fa-solid fa-angle-down"></i></strong></h5>
+    <div class="collapse" id="thread-form">
+      {% if user.is_authenticated %}
+      <form method="POST" action="">
+        {% csrf_token %}
+        {{ thread_form|crispy }}
+        <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>
+        <button type="submit" class="btn btn-primary">Create</button>
+      </form>
+      {% else %}
+      <h2>You need to login to create a forum</h2>
+      {% endif %}
+    </div>
   </div>
-  <div class="col-md-6 bg-white">
-  <h5 class="btn text-primary" id="btn-create-forum" data-bs-toggle="collapse" data-bs-target="#thread-form" aria-controls="thread-form"><strong>Ask Question<i class="fa-solid fa-angle-down"></i></strong></h5>
-  <div class="collapse" id="thread-form">
-    {% if user.is_authenticated %}
-    <form method="POST" action="">
-      {% csrf_token %}
-      {{ thread_form|crispy }}
-      <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>
-      <button type="submit" class="btn btn-primary">Create</button>
-    </form>
-    {% else %}
-    <h2>You need to login to create a forum</h2>
-    {% endif %}
+</div>
+</div>
+{% for thread in thread_list %}
+<div class="card shadow-lg row-hover pos-relative px-3 mb-3 rounded-2">
+  <div class="row pb-3 align-items-center">
+    <div class="col-md-8 mb-3 mb-sm-0">
+      <img class="rounded-circle article-img profile-img" src="{{ thread.name.profile.image.url }}">
+      <a class="text-black" href="#"> {{thread.name}}</a> <span class="op-6 text-muted">|
+        {{ thread.created_on|timesince }} ago</span>
+      <h5 class="pt-3 px-3">
+        <a href="{% url 'qforum:thread_detail' thread.slug %}" class="text-primary">{{ thread.topic|title}}</a>
+      </h5>
+      <div class="px-3">
+        {{thread.description|safe}}
+      </div>
+    </div>
+    <div class="px-4">
+      <span class="btn btn-light">
+        <i class="fa-solid fa-caret-up"></i>{{no_of_upvotes}}
+        </span>
+        <span class="btn btn-light">
+          <i class="fa-solid fa-caret-down"></i>{{no_of_downvotes}}
+          </span>
+      <span class="d-inline-block text-sm text-muted mx-3"><i class="fa-solid fa-comments"></i> {{thread.comments.count}}</span>
+      <span class="d-inline-block text-sm text-muted"> <i class="fa-solid fa-eye"></i> {{no_of_views }}</span>
+    </div>
   </div>
 </div>
-</div>
-                {% for thread in thread_list %}
-                <div class="card shadow-lg row-hover pos-relative px-3 mb-3 rounded-2">
-                  <div class="row pb-3 align-items-center">
-                    <div class="col-md-8 mb-3 mb-sm-0">
-                      <img class="rounded-circle article-img profile-img" src="{{ thread.name.profile.image.url }}">
-                      <a class="text-black" href="#"> {{thread.name}}</a> <span class="op-6 text-muted">| {{ thread.created_on|timesince }} ago</span>
-                      <h5 class="pt-3 px-3">
-                        <a href="{% url 'qforum:thread_detail' thread.slug %}" class="text-primary">{{ thread.topic|title}}</a>
-                      </h5>
-                      <div class="px-3">
-                       {{thread.description|safe}}
-                      </div>
-                    </div>
-                    <div class="px-4">
-                     <span class="d-inline-block text-sm text-muted"><i class="fa-solid fa-thumbs-up"></i> 14 Likes </span>
-                      <span class="d-inline-block text-sm text-muted"><i class="fa-solid fa-comments"></i> {{thread.comments.count}} Comments </span>
-                      <span class="d-inline-block text-sm text-muted"> <i class="fa-solid fa-eye"></i> 90 Views</span>
-                    </div>
-                  </div>
-                </div>
-                {% endfor %}
+{% endfor %}
 {% endblock details %}

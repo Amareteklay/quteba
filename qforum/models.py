@@ -38,12 +38,20 @@ class Thread(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
     thread_views = models.IntegerField(default=0)
-   
+    up_votes = models.ManyToManyField(User, blank=True, related_name='up_votes')
+    down_votes = models.ManyToManyField(User, blank=True, related_name='down_votes')
+ 
     class Meta:
         ordering = ['-created_on']
 
     def __str__(self):
         return str(self.topic)
+    
+    def no_of_upvotes(self):
+        return self.up_votes.count()
+    
+    def no_of_downvotes(self):
+        return self.down_votes.count()
 
     def get_absolute_url(self):
         return reverse('qforum:thread_detail', args=[self.slug])
@@ -66,7 +74,8 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
-    likes = models.ManyToManyField(User, related_name='forum_likes', blank=True)
+    likes = models.ManyToManyField(User, blank=True, related_name='comment_likes')
+    dislikes = models.ManyToManyField(User, blank=True, related_name='comment_dislikes')
 
     class Meta:
         ordering = ('created',)
@@ -76,6 +85,9 @@ class Comment(models.Model):
     
     def no_of_likes(self):
         return self.likes.count()
+    
+    def no_of_dislikes(self):
+        return self.dislikes.count()
 
     @property
     def children(self):
@@ -86,15 +98,3 @@ class Comment(models.Model):
         if self.parent is None:
             return True
         return False
-
-
-class Vote(models.Model):
-    up_count = models.IntegerField(default=0)
-    down_count = models.IntegerField(default=0)
-    thread = models.ForeignKey(Thread, on_delete=models.CASCADE,
-                               related_name="votes")
-    post = models.ForeignKey(Comment, on_delete=models.CASCADE,
-                             related_name="votes")
-    
-    class Meta:
-        ordering = ['up_count']
