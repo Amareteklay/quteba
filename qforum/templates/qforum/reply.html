@@ -1,21 +1,20 @@
 {% load static %}
 <div class="row">
     <div class="col-md-12 left-indent">
-        {% for reply in replies %}
+        {% for comment in replies %}
         <a class="text-black" href="#">
-            {% if reply.name.profile.image %}
-            <img class="rounded-circle article-img profile-img" src="{{ reply.name.profile.image.url }}">
+            {% if comment.name.profile.image %}
+            <img class="rounded-circle article-img profile-img" src="{{ comment.name.profile.image.url }}">
             {% else %}
             <img class="rounded-circle article-img profile-img" src="{% get_media_prefix %}default.jpg">
             {% endif %}
-            {{reply.name}}</a>
-        <span class="op-6 text-muted">{{ reply.created|timesince }} ago</span>
-        {% if request.user == reply.name %}
+            {{comment.name}}</a>
+        <span class="op-6 text-muted">{{ comment.created|timesince }} ago</span>
+        {% if request.user == comment.name %}
         <span class="op-6 px-3 text-muted"><i class="fa-solid fa-pen-to-square"></i></span>
         <span class="op-6 text-muted"><i class="fa-solid fa-trash small"></i></span>
         {% endif %}
-        <p class="px-3 mt-2"> {{reply.content}}</p>
-
+        <p class="px-3 mt-2"> {{comment.content}}</p>
         <div class="row">
             <div class="col-md-1">
                 <form method="POST" action="">
@@ -24,8 +23,8 @@
                     <button class="remove-default-btn text-muted border-0 bg-white" type="submit">
                         <i class="fa-regular fa-thumbs-up"> </i>
                     </button>
-                    {% if reply.no_of_likes %}
-                    <span>{{ reply.no_of_likes }}</span>
+                    {% if comment.no_of_likes %}
+                    <span>{{ comment.no_of_likes }}</span>
                     {% endif %}
                 </form>
             </div>
@@ -34,36 +33,40 @@
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.path }}">
                     <button class="remove-default-btn text-muted border-0 bg-white" type="submit">
-                        <i class="far fa-thumbs-down"> <span>{{ reply.dislikes.all.count }}</span></i>
+                        <i class="far fa-thumbs-down"> <span>{{ comment.dislikes.all.count }}</span></i>
                     </button>
-                    {% if reply.no_of_dislikes %}
-                    <span>{{ reply.no_of_dislikes }}</span>
+                    {% if comment.no_of_dislikes %}
+                    <span>{{ comment.no_of_dislikes }}</span>
                     {% endif %}
                 </form>
             </div>
             <div class="col-md-2">
-                <button class="btn btn-sm" data-bs-toggle="collapse" data-bs-target="#reply-form-{{reply.id}}"
-                    aria-controls="reply-form-{{reply.id}}">
+                <button class="btn btn-sm" data-bs-toggle="collapse" data-bs-target="#comment-form-{{comment.id}}"
+                    aria-controls="comment-form-{{comment.id}}">
                     <i class="fa-solid fa-comment text-muted"></i> <span>Reply</span></button>
             </div>
             <div class="col-md-1">
             </div>
         </div>
-        <div class="collapse" id="reply-form-{{reply.id}}">
+        <div class="collapse" id="comment-form-{{comment.id}}">
             {% if user.is_authenticated %}
-            <form method="POST" action="">
+            <!-- Reply form -->
+            <form method="POST" action="{% url 'qforum:reply' thread.slug comment.id %}">
                 {% csrf_token %}
+                <input type="hidden" name="thread_slug" value="{{thread.slug}}">
+                <input type="hidden" name="parent" value="{{comment.id}}">
+                <input type="hidden" name="thread_url" value="{{thread.get_absolute_url}}">
                 {{ comment_form.content }}
                 <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit Reply</button>
             </form>
             {% else %}
             <h2>You need to Login to reply</h2>
             {% endif %}
         </div>
-        {% if reply.replies.count > 0 %}
+        {% if comment.replies.count > 0 %}
         {% load reply_tree %}
-        {% reply_tree reply %}
+        {% reply_tree%}
         {% endif %}
         {% endfor %}
     </div>

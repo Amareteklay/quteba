@@ -10,7 +10,6 @@
                 <p>Note that your question and all the comments will be deleted permanently.</p>
                 <form method="POST">
                     {% csrf_token %}
-
                     <a href="{% url 'qforum:thread_detail' thread.slug %}" class="btn btn-primary mt-3">Cancel</a>
                     <button class="btn btn-danger mt-3 d-inline-block">Delete</button>
                 </form>

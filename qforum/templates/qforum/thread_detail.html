@@ -32,6 +32,7 @@
     <div class="collapse" id="comment-form-{{thread.id}}">
       {% if user.is_authenticated %}
       <form method="POST" action="{% url 'qforum:thread_detail' thread.slug %}">
+        Comment on thread.
         {% csrf_token %}
         {{ comment_form.content }}
         <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>
@@ -105,7 +106,7 @@
         </div>
         {% if comment.is_parent %}
         {% load reply_tree %}
-        {% reply_tree comment %}
+        {% reply_tree%}
         {% endif %}
       </div>
     </div>

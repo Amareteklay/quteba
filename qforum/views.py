@@ -24,6 +24,7 @@ class ThreadList(View):
             'category_list': category_list
         }
         return render(request, 'qforum/thread_list.html', context=context)
+
     def post(self, request, *args, **kwargs):
         thread_list = Thread.objects.all()
         category_list = Category.objects.all()
@@ -103,20 +104,38 @@ class ThreadDetailView(View):
         return redirect(self.request.path_info)
 
 
-class ThreadDetail(DetailView):
+# Adapted from https://github.com/SoniArpit/awwblog/blob/main/blog/views.py
+class ReplyView(LoginRequiredMixin, View):
+    def get(self, request, slug, *args, **kwargs):
+        queryset = Thread.objects.all()
+        thread = get_object_or_404(queryset, slug=slug)
+        thread_form = ThreadForm()
+        comment_form = CommentForm()
+        comments = thread.comments.filter(active=True).order_by('created')
+        thread_list = Thread.objects.all()
+        category_list = Category.objects.all()
+        context = {
+            'thread': thread,
+            'thread_form': thread_form,
+            'comment_form': comment_form,
+            'comments': comments,
+            'thread_list': thread_list,
+            'category_list': category_list
+        }
+        return render(request, 'qforum/reply.html', context=context)
 
-    def post(self, request, slug, *args, **kwargs):
-        if self.request.method == 'POST':
-            form = CommentForm(self.request.POST)
-            if form.is_valid():
-                content = form.cleaned_data['content']
-                try:
-                    parent = form.cleaned_data['parent']
-                except:
-                    parent=None 
-        new_comment = Comment(content=content, name =self.request.user, thread=self.get_object(), parent=parent)
-        new_comment.save()
-        return redirect(self.request.path_info)
+    def post(self, request, comment_pk, reply_pk, *args, **kwargs):
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            thread_slug = request.POST.get('thread_slug')
+            parent_id = request.POST.get('parent')
+            thread_url = request.POST.get('thread_url')
+            reply = comment_form.save(commit=False)
+            reply.thread = Thread(slug=thread_slug)
+            reply.parent = Comment(id=parent_id)
+            reply.save()
+            return redirect(thread_url+'#'+str(reply.id))
+        return redirect(thread_url)
 
 
 class CreateForum(LoginRequiredMixin, CreateView):
