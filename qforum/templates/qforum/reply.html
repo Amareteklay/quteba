@@ -51,11 +51,9 @@
         <div class="collapse" id="comment-form-{{comment.id}}">
             {% if user.is_authenticated %}
             <!-- Reply form -->
-            <form method="POST" action="{% url 'qforum:reply' thread.slug comment.id %}">
+            <form method="POST" action="{% url 'qforum:reply' comment.thread.slug comment.id %}">
+                <h1>Replying</h1>
                 {% csrf_token %}
-                <input type="hidden" name="thread_slug" value="{{thread.slug}}">
-                <input type="hidden" name="parent" value="{{comment.id}}">
-                <input type="hidden" name="thread_url" value="{{thread.get_absolute_url}}">
                 {{ comment_form.content }}
                 <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>
                 <button type="submit" class="btn btn-primary">Submit Reply</button>

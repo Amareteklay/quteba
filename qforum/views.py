@@ -106,36 +106,20 @@ class ThreadDetailView(View):
 
 # Adapted from https://github.com/SoniArpit/awwblog/blob/main/blog/views.py
 class ReplyView(LoginRequiredMixin, View):
-    def get(self, request, slug, *args, **kwargs):
-        queryset = Thread.objects.all()
-        thread = get_object_or_404(queryset, slug=slug)
-        thread_form = ThreadForm()
-        comment_form = CommentForm()
-        comments = thread.comments.filter(active=True).order_by('created')
-        thread_list = Thread.objects.all()
-        category_list = Category.objects.all()
-        context = {
-            'thread': thread,
-            'thread_form': thread_form,
-            'comment_form': comment_form,
-            'comments': comments,
-            'thread_list': thread_list,
-            'category_list': category_list
-        }
-        return render(request, 'qforum/reply.html', context=context)
 
-    def post(self, request, comment_pk, reply_pk, *args, **kwargs):
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            thread_slug = request.POST.get('thread_slug')
-            parent_id = request.POST.get('parent')
-            thread_url = request.POST.get('thread_url')
-            reply = comment_form.save(commit=False)
-            reply.thread = Thread(slug=thread_slug)
-            reply.parent = Comment(id=parent_id)
-            reply.save()
-            return redirect(thread_url+'#'+str(reply.id))
-        return redirect(thread_url)
+    def post(self, request, slug, pk, *args, **kwargs):
+        thread = Thread.objects.get(slug=slug)
+        parent_comment = Comment.objects.get(pk=pk)
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.name = request.user
+            new_comment.thread = thread
+            new_comment.parent = parent_comment
+            new_comment.save()
+
+        return redirect('qforum:thread_detail', slug=slug)
 
 
 class CreateForum(LoginRequiredMixin, CreateView):
@@ -181,25 +165,19 @@ class VoteUpView(LoginRequiredMixin, View):
         thread = Thread.objects.get(pk=pk)
 
         voted_down = False
-
         for down_vote in thread.down_votes.all():
             if down_vote == request.user:
                 voted_down = True
                 break
-
         if voted_down:
             thread.down_votes.remove(request.user)
-
         voted_up = False
-
         for up_vote in thread.up_votes.all():
             if up_vote == request.user:
                 voted_up = True
                 break
-
         if not voted_up:
             thread.up_votes.add(request.user)
-
         if voted_up:
             thread.up_votes.remove(request.user)
 

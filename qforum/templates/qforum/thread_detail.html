@@ -95,6 +95,7 @@
         <div class="collapse" id="reply-form-{{comment.id}}">
           {% if user.is_authenticated %}
           <form method="POST" action="{% url 'qforum:thread_detail' thread.slug %}">
+            <h1>Commenting</h1>
             {% csrf_token %}
             {{ comment_form.content }}
             <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>
