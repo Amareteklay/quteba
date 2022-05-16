@@ -52,7 +52,6 @@
             {% if user.is_authenticated %}
             <!-- Reply form -->
             <form method="POST" action="{% url 'qforum:reply' comment.thread.slug comment.id %}">
-                <h1>Replying</h1>
                 {% csrf_token %}
                 {{ comment_form.content }}
                 <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>

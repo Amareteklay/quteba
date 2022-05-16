@@ -77,12 +77,15 @@ class ThreadDetailView(View):
         }
         return render(request, 'qforum/thread_detail.html', context=context)
 
-    def post(self, request, slug, *args, **kwargs):
+    def post(self, request, slug, pk=None, *args, **kwargs):
         #thread_form = ThreadForm(request.POST)
         comment_form = CommentForm(request.POST)
         queryset = Thread.objects.all()
         thread = get_object_or_404(queryset, slug=slug)
         comments = thread.comments.filter(active=True).order_by('created')
+        parent_comment = None
+        if pk:
+            parent_comment = comment.objects.get(pk=pk)
         thread_list = Thread.objects.all()
         category_list = Category.objects.all()
         if comment_form.is_valid():
@@ -91,7 +94,7 @@ class ThreadDetailView(View):
                 parent = comment_form.cleaned_data['parent']
             except:
                 parent=None 
-        new_comment = Comment(content=content, name=self.request.user, thread=thread, parent=parent)
+        new_comment = Comment(content=content, name=self.request.user, thread=thread, parent=parent_comment)
         new_comment.save()
         context = {
             'thread': thread,
@@ -104,7 +107,7 @@ class ThreadDetailView(View):
         return redirect(self.request.path_info)
 
 
-# Adapted from https://github.com/SoniArpit/awwblog/blob/main/blog/views.py
+# Adapted from https://github.com/legionscript/socialnetwork/blob/tutorial11/social/templates/social/post_detail.html
 class ReplyView(LoginRequiredMixin, View):
 
     def post(self, request, slug, pk, *args, **kwargs):
