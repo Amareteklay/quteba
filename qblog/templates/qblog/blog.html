@@ -9,12 +9,12 @@
     {% for post in post_list %}
     {% if forloop.counter|divisibleby:2 %}
     <div class="row border-top-1">
-        <div class=" col-md-6">
-            {% if "placeholder" in post.featured_image.url %}
-            <img class="img-fluid border-0" src="{% get_media_prefix %}quteba.png">
+        <div class=" col-md-6 bg-rounded">
+            {% comment %} {% if "placeholder" in post.featured_image.url %}
+            <img class="img-fluid border-0" src="#">
             {% else %}
-            <img class="img-fluid border-0" src=" {{ post.featured_image.url }}">
-            {% endif %}
+            <img class="img-fluid border-0" src=" #">
+            {% endif %} {% endcomment %}
         </div>
         <div class="col-md-6">
             <a href="{% url 'post_detail' post.slug  %}" class="post-link">
@@ -41,12 +41,12 @@
             <p class="card-text pt-4">{{ post.excerpt|safe }}</p>
             <a href="{% url 'post_detail' post.slug  %}" class="btn btn-success">Read More &raquo;</a>
         </div>
-        <div class=" col-md-6">
-            {% if "placeholder" in post.featured_image.url %}
-            <img class="img-fluid border-0" src="{% get_media_prefix %}quteba.png" width="100%">
+        <div class=" col-md-6 bg-rounded">
+          {% comment %}   {% if "placeholder" in post.featured_image.url %}
+            <img class="img-fluid border-0" src="#" width="100%">
             {% else %}
-            <img class="img-fluid border-0" src=" {{ post.featured_image.url }}" width="100%">
-            {% endif %}
+            <img class="img-fluid border-0" src=" #" width="100%">
+            {% endif %} {% endcomment %}
         </div>
     </div>
     {% endif %}

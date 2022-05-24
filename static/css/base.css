@@ -28,6 +28,14 @@ margin-right: 20px;
   margin-top: 30px;
 }
 
+.bg-rounded {
+  height: 400px;
+  width: 720px;
+  border-radius: 300px 360px;
+  background: url("/media/quteba.png") center no-repeat;
+  background-size: cover;
+}
+
 /* Single post top margin*/
 .account-container,
 .masthead, .masthead-text {
