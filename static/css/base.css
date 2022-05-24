@@ -30,9 +30,9 @@ margin-right: 20px;
 
 .bg-rounded {
   height: 400px;
-  width: 720px;
+  width: 580px;
   border-radius: 300px 360px;
-  background: url("/media/quteba.png") center no-repeat;
+  background: url("/media/download.png") center no-repeat;
   background-size: cover;
 }
 
