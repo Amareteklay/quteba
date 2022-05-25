@@ -70,8 +70,9 @@
           </li>
           {% endif %}
         </ul>
+        {% block search %}
         <div class="search-form">
-          <form method="GET">
+          <form method="GET" action="{% url 'search_results' %}">
             <!-- url 'search'-->
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Search here" aria-label="search" name="query"
@@ -80,6 +81,7 @@
             </div>
           </form>
         </div>
+        {% endblock search%}
       </div>
     </div>
   </nav>

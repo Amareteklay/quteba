@@ -10,6 +10,7 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.models import User
 from .models import Thread, Comment, Category
 from .forms import ThreadForm, CommentForm
+from qblog.models import Post
 
 
 class ThreadList(View):

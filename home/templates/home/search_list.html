@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block search %}
+<div class="search-form">
+    <form method="GET" action="{% url 'search_results' %}">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search here" aria-label="search" name="query" value="{{ request.GET.query }}">
+            <button class="remove-default-btn d-inline-block" type="submit"><i class="fas fa-search"></i></button>
+        </div>
+    </form>
+</div>
+{% endblock search%}
+
+{% block content %}
+<div class="row mb-5 mt-5 pt-5">
+    <h2 class="text-center">Your Search Results</h2>
+    <div class="col-md-3"></div>
+    <div class="col-md-3">
+        <h1>Blog Posts </h1>
+        {% for post in post_list %}
+        <h5 class="pt-3 px-3">
+            <a href="{% url 'post_detail' post.slug  %}" class="text-primary">{{ post.title|title}}</a>
+        </h5>
+        {{post.excerpt|safe}}
+        <hr>
+        {% endfor %}
+    </div>
+    <div class="col-md-3">
+        <h1>Forums </h1>
+        {% for thread in thread_list %}
+        <h5 class="pt-3 px-3">
+            <a href="{% url 'qforum:thread_detail' thread.slug %}" class="text-primary">{{ thread.topic|title}}</a>
+        </h5>
+        {{thread.description|safe}}
+        <hr>
+        {% endfor %}
+    </div>
+    <div class="col-md-3"></div>
+
+
+
+</div>
+
+
+</div>
+{% endblock content %}
