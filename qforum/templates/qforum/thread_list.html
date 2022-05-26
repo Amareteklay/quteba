@@ -4,28 +4,7 @@
 
 {% block details %}
 <div class="row mb-5">
-  <div class="col-md-6 mb-3 mb-sm-0">
-    <div class="dropdown bootstrap-select bg-white">
-      <select class="form-control form-control bg-white" data-toggle="select">
-        <option value="" disabled selected> Categories </option>
-        {% for category in category_list %}
-        <option> {{category.subject}} </option>
-        {% endfor %}
-      </select>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="text-lg-right">
-      <div class="dropdown bootstrap-select bg-white">
-        <select class="form-control form-control bg-white" data-toggle="select" tabindex="-98">
-          <option class="text-muted"> Sort by </option>
-          <option> Most Popular </option>
-          <option> Recently Created </option>
-          <option> Active </option>
-        </select>
-      </div>
-    </div>
-  </div>
+
 <div class="row mb-5">
   <div class="col-md-12 bg-white">
     <h5 class="btn text-primary" id="btn-create-forum" data-bs-toggle="collapse" data-bs-target="#thread-form"
