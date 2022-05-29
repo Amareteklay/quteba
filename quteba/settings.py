@@ -85,7 +85,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-amareteklay-quteba-ks4l40hfliy.ws-eu45.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-amareteklay-quteba-ks4l40hfliy.ws-eu46.gitpod.io']
 
 ROOT_URLCONF = 'quteba.urls'
 

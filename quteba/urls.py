@@ -25,7 +25,7 @@ urlpatterns = [
     path('blog/', include('qblog.urls'), name='qblog_urls'),
     path('forum/', include('qforum.urls'), name='qforum'),
     path('account/', include('allauth.urls')),
-    path('register/', include('users.urls'), name='users_urls'),
+    path('profile/', include('users.urls'), name='users_urls'),
 ]
 
 if settings.DEBUG:
