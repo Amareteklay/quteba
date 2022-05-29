@@ -13,11 +13,12 @@
                     </div>
                     <h4>Your Bio:</h4>
                     <p>{{ user.user_profile.bio }} </p>
+                    <p> {{user.id }} {{user.user_profile.id}} </p>
                 </div>
                 {% if user == user.user_profile.user %}
                 <span class="mx-4 px-2 d-block">
                     <a class="btn d-inline-block small text-muted" href="{% url 'update-profile' username=request.user %}"><i class="far fa-edit"></i></a>
-                    <a class="btn d-inline-block small text-muted" href="{% url 'delete-profile' user.user_profile.pk %}"><i class="fas fa-trash"></i></a>
+                    <a class="btn d-inline-block small text-muted" href="{% url 'delete-profile' user.pk %}"><i class="fas fa-trash"></i></a>
                 </span>
                 {% endif %}
             </div>
