@@ -10,7 +10,7 @@ class Category(models.Model):
     """
     A class to create categories of forums.
     """
-    subject = models.CharField(max_length=50)
+    subject = models.CharField(default='Uncategorized', max_length=50)
     description = models.TextField(max_length=255)
     name = models.ForeignKey(User, on_delete=models.CASCADE, related_name="categories")
     created_on = models.DateTimeField(auto_now_add=True)
