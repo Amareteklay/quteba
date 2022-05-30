@@ -26,4 +26,4 @@ urlpatterns = [
     path('forum/', include('qforum.urls'), name='qforum'),
     path('account/', include('allauth.urls')),
     path('profile/', include('users.urls'), name='users_urls'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
