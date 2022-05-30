@@ -219,7 +219,8 @@ class VoteDownView(LoginRequiredMixin, View):
         return HttpResponseRedirect(next)
 
 class CommentLikeView(LoginRequiredMixin, View):
-    def post(self, request, pk, *args, **kwargs):
+    def post(self, request, slug, pk, *args, **kwargs):
+        thread = Thread.objects.get(slug=slug)
         comment = Comment.objects.get(pk=pk)
 
         is_dislike = False
@@ -245,11 +246,11 @@ class CommentLikeView(LoginRequiredMixin, View):
         if is_like:
             comment.likes.remove(request.user)
 
-        next = request.POST.get('next', '/')
-        return HttpResponseRedirect(next)
+        return redirect('qforum:thread_detail', slug=slug)
 
 class CommentUnlikeView(LoginRequiredMixin, View):
-    def post(self, request, pk, *args, **kwargs):
+    def post(self, request, slug, pk, *args, **kwargs):
+        thread = Thread.objects.get(slug=slug)
         comment = Comment.objects.get(pk=pk)
 
         is_like = False
@@ -275,5 +276,4 @@ class CommentUnlikeView(LoginRequiredMixin, View):
         if is_dislike:
             comment.dislikes.remove(request.user)
 
-        next = request.POST.get('next', '/')
-        return HttpResponseRedirect(next)
+        return redirect('qforum:thread_detail', slug=slug)
