@@ -16,24 +16,28 @@ body {
 
 .comment-form {
     display: none;
-  }
+}
 
-  .comment-reply-form{
-      display: none;
-  }
-  
-.reply-box{
+.comment-reply-form {
+    display: none;
+}
+
+.reply-box {
     padding-left: 10px;
     border: red 2px solid;
-  }
+}
 
-  .search-form {
-      max-width: 300px;
-      display: inline-block;
-  }
+.search-form {
+    max-width: 300px;
+    display: inline-block;
+}
 
-  #btn-create-forum {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-  }
+#btn-create-forum {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.form-control {
+    width: 450px !important;
+}

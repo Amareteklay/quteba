@@ -18,21 +18,12 @@
             <!-- Code from https://www.bootdey.com/snippets/view/bs5-forum-list -->
             <!--<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">-->
         </div>
-        <div class="col-md-1">
-        </div>
     </div>
-    <div class="row mb-5">
-        <div class="col-md-2">
-        </div>
-        <div class="col-md-6">
-            {% block details %}
-            {% endblock details %}
-        </div>
-        <div class="col-md-2 bg-white">
-            {% include 'qforum/side_bar.html' %}
-        </div>
-        <div class="col-md-2">
-        </div>
+    <div class="row mb-5 gx-0 ps-5">
+        {% block details %}
+        {% endblock details %}
+        {% block sidebar %}
+        {% endblock sidebar %}
     </div>
 </div>
 {% endblock content %}
