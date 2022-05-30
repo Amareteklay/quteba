@@ -37,7 +37,6 @@ class Thread(models.Model):
                                  related_name="threads")
     status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
-    thread_views = models.IntegerField(default=0)
     up_votes = models.ManyToManyField(User, blank=True, related_name='up_votes')
     down_votes = models.ManyToManyField(User, blank=True, related_name='down_votes')
  

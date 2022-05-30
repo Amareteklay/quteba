@@ -16,23 +16,21 @@
         {% endif %}
         <p class="px-3 mt-2"> {{comment.content}}</p>
         <div class="row">
-            <div class="col-md-1">
-                <form method="POST" action="{% url 'qforum:comment-like' comment.thread.slug comment.pk %}">
+            <div class="col-md-6 d-inline-block">
+                <form method="POST" class="d-inline-block" action="{% url 'qforum:comment-like' comment.thread.slug comment.pk %}">
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.path }}">
-                    <button class="remove-default-btn text-muted border-0 bg-white" type="submit">
+                    <button class="remove-default-btn text-muted border-0 bg-white d-inline-block pe-1" type="submit">
                         <i class="fa-regular fa-thumbs-up"> </i>
                     </button>
                     {% if comment.no_of_likes %}
                     <span>{{ comment.no_of_likes }}</span>
                     {% endif %}
                 </form>
-            </div>
-            <div class="col-md-1">
-                <form method="POST" action="{% url 'qforum:comment-dislike' comment.thread.slug comment.pk %}">
+                <form method="POST" class="d-inline-block" action="{% url 'qforum:comment-dislike' comment.thread.slug comment.pk %}">
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.path }}">
-                    <button class="remove-default-btn text-muted border-0 bg-white" type="submit">
+                    <button class="remove-default-btn text-muted border-0 bg-white d-inline-block" type="submit">
                         <i class="far fa-thumbs-down"> <span>{{ comment.dislikes.all.count }}</span></i>
                     </button>
                     {% if comment.no_of_dislikes %}
@@ -40,10 +38,12 @@
                     {% endif %}
                 </form>
             </div>
+            {% if user != comment.name %}
             <div class="col-md-2">
                 <button class="btn btn-sm" data-bs-toggle="collapse" data-bs-target="#comment-form-{{comment.id}}" aria-controls="comment-form-{{comment.id}}">
                     <i class="fa-solid fa-comment text-muted"></i> <span>Reply</span></button>
             </div>
+            {% endif %}
             <div class="col-md-1">
             </div>
         </div>
