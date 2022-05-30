@@ -6,14 +6,14 @@
 <div class="col-md-8 ms-5 me-4">
     <div class="row mb-5">
         <div class="col-md-11 bg-white mx-5 me-5">
-            <h5 class="btn btn-lg text-primary mx-5" id="btn-create-forum" data-bs-toggle="collapse" data-bs-target="#thread-form" aria-controls="thread-form"><strong>Ask Question<i class="fa-solid fa-angle-down"></i></strong></h5>
-            <div class="collapse" id="thread-form">
+            <h5 class="btn btn-lg text-primary mx-5" id="btn-create-forum" data-bs-toggle="collapse" data-bs-target="#thread-form" aria-controls="thread-form"><strong>Ask Question <i class="fa-solid fa-angle-down"></i></strong></h5>
+            <div class="collapse mb-3 ps-5 ms-5" id="thread-form">
                 {% if user.is_authenticated %}
                 <form method="POST" action="">
                     {% csrf_token %}
                     {{ thread_form|crispy }}
-                    <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm mt-4">Cancel</button>
+                    <button type="submit" class="btn btn-primary mt-4 mx-4">Create</button>
                 </form>
                 {% else %}
                 <h2>You need to login to create a forum</h2>

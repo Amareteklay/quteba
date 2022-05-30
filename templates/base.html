@@ -71,7 +71,7 @@
                     <form method="GET" action="{% url 'search_results' %}">
                         <!-- url 'search'-->
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search here" aria-label="search" name="query" value="{{ request.GET.query }}">
+                            <input type="text" class="form-control d-inline-block" placeholder="Search here" aria-label="search" name="query" value="{{ request.GET.query }}">
                             <button class="remove-default-btn d-inline-block" type="submit"><i class="fas fa-search"></i></button>
                         </div>
                     </form>
