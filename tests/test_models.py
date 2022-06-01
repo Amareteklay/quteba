@@ -150,7 +150,6 @@ class PostCommentModelTest(TestCase):
         comment = PostComment.objects.get(id=1)
         email = comment._meta.get_field('email').value_from_object(comment)
         self.assertEqual(email, user.email)
-    
 
     def test_post_comment_created(self):
         comment = PostComment.objects.get(id=1)
@@ -173,3 +172,52 @@ class PostCommentModelTest(TestCase):
         self.assertEqual(body, 'Nice post')
 
 # Testing thread comment model
+class ThreadCommentModelTest(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        user = User.objects.create(username='Aman', email='aman@mail.com', password='123someTet')
+        post = Post.objects.create(title='First post', slug='first-post', author=user, last_updated=datetime.date.today(), content='This is a sample post. It has a content.', created_on=datetime.date.today(), status=0)
+        PostComment.objects.create(post=post, name=user, email=user.email, body='Nice post', created_on=datetime.date.today(), approved=True)
+    
+    def test_post_comment_post(self):
+        comment = PostComment.objects.get(id=1)
+        post = Post.objects.get(id=1)
+        comment_post = comment._meta.get_field('post').value_from_object(comment)
+        self.assertEqual(comment_post, post.pk)
+
+    def test_post_comment_name_max_length(self):
+        comment = PostComment.objects.get(id=1)
+        max_length = comment._meta.get_field('name').max_length
+        self.assertEqual(max_length, 50)
+    
+    def test_post_comment_name_max_length(self):
+        comment = PostComment.objects.get(id=1)
+        max_length = comment._meta.get_field('name').max_length
+        self.assertEqual(max_length, 50)
+
+    def test_post_comment_author_email(self):
+        user = User.objects.get(username='Aman')
+        comment = PostComment.objects.get(id=1)
+        email = comment._meta.get_field('email').value_from_object(comment)
+        self.assertEqual(email, user.email)
+
+    def test_post_comment_created(self):
+        comment = PostComment.objects.get(id=1)
+        created_on = comment._meta.get_field('created_on').value_from_object(comment)
+        self.assertEqual(created_on, datetime.date.today())
+    
+    def test_post_comment_status(self):
+        comment = PostComment.objects.get(id=1)
+        status = comment._meta.get_field('approved').value_from_object(comment)
+        self.assertTrue(status)
+    
+    def test_post_comment_body_max_length(self):
+        comment = PostComment.objects.get(id=1)
+        max_length = comment._meta.get_field('body').max_length
+        self.assertEqual(max_length, 200)
+
+    def test_post_comment_body_content(self):
+        comment = PostComment.objects.get(id=1)
+        body = comment._meta.get_field('body').value_from_object(comment)
+        self.assertEqual(body, 'Nice post')
