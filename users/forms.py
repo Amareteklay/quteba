@@ -6,6 +6,7 @@ from .models import Profile
 
 
 class UserRegisterForm(UserCreationForm):
+    """ Form for a new user to sign up """
     email = forms.EmailField()
 
     class Meta:
@@ -22,6 +23,7 @@ class UserUpdateForm(forms.ModelForm):
 
 # Create a ProfileUpdateForm to update image
 class ProfileUpdateForm(forms.ModelForm):
+    """ Form for a user to update their profile"""
     class Meta:
         model = Profile
         fields = ['bio', 'image']

@@ -3,6 +3,7 @@ from .models import Thread, Comment
  
 
 class ThreadForm(ModelForm):
+    """ Form for a user to create a discussion forum """
     class Meta:
         model = Thread
         fields = ('category', 'topic', 'description')
@@ -14,6 +15,7 @@ class ThreadForm(ModelForm):
 
 
 class CommentForm(ModelForm):
+    """ Form for a user to give comment or reply """
     class Meta:
         model = Comment
         fields = ('content',)

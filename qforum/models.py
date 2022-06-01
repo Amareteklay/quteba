@@ -26,7 +26,7 @@ class Category(models.Model):
 
 class Thread(models.Model):
     """
-    A discussion thread in a certain category.
+    A class for discussion forum thread
     """
     name = models.ForeignKey(User, on_delete=models.CASCADE, 
                              related_name="forum_topics")
