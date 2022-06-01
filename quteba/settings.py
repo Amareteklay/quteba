@@ -115,17 +115,7 @@ WSGI_APPLICATION = 'quteba.wsgi.application'
 # Following https://medium.com/analytics-vidhya/provisioning-a-test-postgresql-database-on-heroku-for-your-django-app-febb2b5d3b29
 if 'test' in sys.argv:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'd3f7t5jomeud11',
-            'USER': 'mpfaydngsvfaxz',
-            'PASSWORD': '889d96b62271f0925431717eddbeb30e7fcee7397a663737abfaf8e4dc9aab11',
-            'HOST': 'ec2-63-32-248-14.eu-west-1.compute.amazonaws.com',
-            'PORT': 5432,
-            'TEST': {
-                'NAME': 'd3f7t5jomeud11',
-                }
-            }
+        'default': os.environ.get('DATABASE_URL')
         }
 else:
     DATABASES = {
