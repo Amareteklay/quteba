@@ -59,7 +59,7 @@ class PostListViewTests(TestCase):
                 slug=f'blog-post-{post_id}',
                 author=user,
                 last_updated=datetime.date.today(),
-                content=f'Content blog post {post_id}',
+                content=f'Content blog post {post_id}'
             )
 
     def test_post_list_view_url_exists(self):
@@ -91,12 +91,82 @@ class PostListViewTests(TestCase):
 
 
 class PostDetailViewTests(TestCase):
-    pass
+    
+    def setUp(self):
+        user = User.objects.create(username='Aman', email='aman@mail.com', password='123someTet')
+        Post.objects.create(
+                title='Blog post',
+                slug='blog-post',
+                author=user,
+                last_updated=datetime.date.today(),
+                content='Content blog post'
+            )
+
+    def test_post_detail_view_url_exist(self):
+        response = self.client.get('blog/blog-post/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_post_detail_view_template(self):
+        response = self.client.get('blog/blog-post/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'qblog/post_detail.html')
 
 
 class ThreadListViewTests(TestCase):
-    pass
+
+    @classmethod
+    def setUpTestData(cls):
+        user = User.objects.create(username='Aman', email='aman@mail.com', password='123someTet')
+        category = Category.objects.create(name=user, subject='Finance', description='Financial analysis', created_on=datetime.date.today(), status=0, thread_count=0)
+        number_of_threads = 5
+        for thread_id in range(number_of_threads):
+            Thread.objects.create(
+                name=user,
+                topic=f'Thread topic {thread_id}',
+                slug=f'thread-topic-{thread_id}',
+                description=f'Description of thread {thread_id}',
+                category=category,
+                created_on=datetime.date.today()
+            )
+
+    def test_thread_list_view_url_exists(self):
+        response = self.client.get('/forum/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_thread_list_view_url_name(self):
+        response = self.client.get(reverse('qforum:threads'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_thread_list_view_template(self):
+        response = self.client.get(reverse('qforum:threads'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'qforum/thread_list.html')
+
+    def test_thread_list_lists_all_posts(self):
+        response = self.client.get(reverse('qforum:threads'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.context['thread_list']), 5)
 
 
 class ThreadDetailViewTests(TestCase):
-    pass
+
+    def setUp(self):
+        user = User.objects.create(username='Aman', email='aman@mail.com', password='123someTet')
+        category = Category.objects.create(name=user, subject='Finance', description='Financial analysis', created_on=datetime.date.today(), status=0, thread_count=0)
+        Thread.objects.create(
+                name=user,
+                topic='Thread topic',
+                slug='thread-topic',
+                description='Description of thread',
+                category=category,
+                created_on=datetime.date.today()
+            )
+
+    def test_thread_detail_view_url_exist(self):
+        response = self.client.get('/forum/thread-topic/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_thread_detail_view_template(self):
+        response = self.client.get('/forum/thread-topic/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'qforum/thread_detail.html')
