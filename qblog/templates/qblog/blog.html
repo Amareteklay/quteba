@@ -16,7 +16,7 @@
             <img class="img-fluid border-0" src=" #">
             {% endif %} {% endcomment %}
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 bg-light rounded">
             <a href="{% url 'post_detail' post.slug  %}" class="post-link">
                 <h2 class="card-title mb-4 pt-5">{{ post.title }}</h2>
             </a>
@@ -30,7 +30,7 @@
     </div>
     {% else %}
     <div class="row">
-        <div class="col-md-6 px-5">
+        <div class="col-md-6 bg-light rounded px-5">
             <a href="{% url 'post_detail' post.slug  %}" class="post-link">
                 <h2 class="card-title mb-4 pt-5">{{ post.title }}</h2>
             </a>
@@ -42,7 +42,7 @@
             <a href="{% url 'post_detail' post.slug  %}" class="btn btn-success">Read More &raquo;</a>
         </div>
         <div class=" col-md-6 bg-rounded">
-          {% comment %}   {% if "placeholder" in post.featured_image.url %}
+            {% comment %} {% if "placeholder" in post.featured_image.url %}
             <img class="img-fluid border-0" src="#" width="100%">
             {% else %}
             <img class="img-fluid border-0" src=" #" width="100%">
