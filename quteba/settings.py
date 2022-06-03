@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     'qblog',
     'qforum',
     'crispy_forms',
-    'fontawesomefree'
+    'fontawesomefree',
+    'django_nose'
 ]
 
 # Tells django to use the same database
@@ -65,6 +66,12 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
 
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=home, users, qblog, qforum'
+]
 
 # From walk through project
 MESSAGE_TAGS = {
@@ -117,13 +124,13 @@ if 'test' in sys.argv:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'd3f7t5jomeud11',
-            'USER': 'mpfaydngsvfaxz',
-            'PASSWORD': '889d96b62271f0925431717eddbeb30e7fcee7397a663737abfaf8e4dc9aab11',
-            'HOST': 'ec2-63-32-248-14.eu-west-1.compute.amazonaws.com',
+            'NAME': 'dfnp76462li1jo',
+            'USER': 'rfedcnkuujtkyq',
+            'PASSWORD': '0330dbf8787d528afed0c1ce2ace44d9c5ef21db61a0493df2a5a01c2aeca9af',
+            'HOST': 'ec2-176-34-215-248.eu-west-1.compute.amazonaws.com',
             'PORT': 5432,
             'TEST': {
-                'NAME': 'd3f7t5jomeud11',
+                'NAME': 'dfnp76462li1jo',
                 }
             }
         }

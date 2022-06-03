@@ -7,6 +7,7 @@ from django.test import Client
 from qblog.models import Post
 from qblog.models import Comment as PostComment
 from qforum.models import Thread, Category, Comment
+from qblog.views import Post, PostDetail
 
 class HomePageViewTests(TestCase):
 
@@ -103,11 +104,11 @@ class PostDetailViewTests(TestCase):
             )
 
     def test_post_detail_view_url_exist(self):
-        response = self.client.get('blog/blog-post/')
+        response = self.client.get('/blog/blog-post/')
         self.assertEqual(response.status_code, 200)
 
     def test_post_detail_view_template(self):
-        response = self.client.get('blog/blog-post/')
+        response = self.client.get('/blog/blog-post/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'qblog/post_detail.html')
 

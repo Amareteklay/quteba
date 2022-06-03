@@ -60,7 +60,15 @@ The Agile approach was key to the successful completion of this project. I start
 
 #### Wireframes
 
+![Home page](assets/wireframes/home-page-guest.png)
+
 #### Database Schema
+
+The ERD tool in postrgresql pgadmin 4 was used to generate the Entity Relationship Diagram for the data models. 
+
+ERD for the user, profile, blog post, forum category and thread models.
+
+![ERD](assets/wireframes/qerd_models.png)
 
 ### The Surface Plane
 
@@ -89,6 +97,9 @@ The Agile approach was key to the successful completion of this project. I start
 * requests-oauthlib==1.3.1
 * sqlparse==0.4.2
 * tzdata==2022.1
+
+
+I used [Balsamiq Cloud](https://balsamiq.cloud/) to create wireframes.
 ## Testing
 Detailed testing and test results [are documented here](TESTING.md).
 ### Bugs
