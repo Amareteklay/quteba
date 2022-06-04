@@ -27,7 +27,7 @@
             <h1 class="text-center">RECENT STORIES</h1>
         </div>
         {% for post in post %}
-        <div class="col-4 mt-4 left  border border-top-0 border-bottom-0">
+        <div class="col-4 mt-4 p-4 left shadow  border border-top-0 border-bottom-0">
             <a href="{% url 'post_detail' post.slug  %}" class="text-primary">
                 <h2 class="text-center">{{post.title}}</h2>
             </a>
@@ -48,7 +48,7 @@
             <h1 class="text-center">ACTIVE TOPICS</h1>
         </div>
         {% for thread in thread %}
-        <div class="col-4 mt-4 left border border-top-0 border-bottom-0">
+        <div class="col-4 mt-4 p-4 left shadow  border border-top-0 border-bottom-0">
             <a href="{% url 'qforum:thread_detail' thread.slug %}" class="text-primary">
                 <h2 class="text-center">{{thread.topic}}</h2>
             </a>

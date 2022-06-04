@@ -10,6 +10,10 @@
     <div class="row gx-2 mt-5 mb-3">
         {% if forloop.counter|divisibleby:2 %}
         <div class="col-6">
+            <div class="p-3 border bg-light bg-rounded d-none d-lg-block">
+            </div>
+        </div>
+        <div class="col-6">
             <div class="p-3 border bg-light">
                 <a href="{% url 'post_detail' post.slug  %}" class="post-link">
                     <h2 class="card-title mb-4 pt-5">{{ post.title }}</h2>
@@ -20,18 +24,10 @@
                     {{ post.number_of_likes }}</span>
                 <p class="card-text pt-4">{{ post.excerpt|safe }}</p>
                 <a href="{% url 'post_detail' post.slug  %}" class="btn btn-success">Read More &raquo;</a>
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="p-3 border bg-light bg-rounded d-none d-lg-block">
             </div>
         </div>
         {% else %}
         <div class="col-6">
-            <div class="p-3 border bg-light bg-rounded d-none d-lg-block">
-            </div>
-        </div>
-        <div class="col-6">
             <div class="p-3 border bg-light">
                 <a href="{% url 'post_detail' post.slug  %}" class="post-link">
                     <h2 class="card-title mb-4 pt-5">{{ post.title }}</h2>
@@ -42,6 +38,10 @@
                     {{ post.number_of_likes }}</span>
                 <p class="card-text pt-4">{{ post.excerpt|safe }}</p>
                 <a href="{% url 'post_detail' post.slug  %}" class="btn btn-success">Read More &raquo;</a>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="m-3 border bg-light bg-rounded d-none d-lg-block">
             </div>
         </div>
         {% endif %}

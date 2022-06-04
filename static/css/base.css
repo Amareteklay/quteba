@@ -1,8 +1,12 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: rgb(34, 36, 41);
-    background-image: url('/media/bg.png');
+    background-color: rgb(94, 92, 110);
+    background-image: url('/media/qu-bg.png');
+}
+
+.q-logo {
+    color: lightsalmon;
 }
 
 .navbar {
@@ -34,9 +38,9 @@ a.nav-link:active {
 
 .bg-rounded {
     height: 300px;
-    width: 100%;
+    width: 80%;
     border-radius: 300px 360px;
-    background: url("/media/download.png") center no-repeat;
+    /*  background: url("/media/download.png") center no-repeat; */
     background-size: cover;
 }
 
@@ -122,14 +126,12 @@ a {
 footer,
 .navbar.bg-light {
     background-color: #056674 !important;
-    opacity: 0.95;
 }
 
 .container-footer {
     max-width: 100% !important;
     margin-top: 90px;
     background-color: #056674;
-    opacity: 0.90;
 }
 
 .container-fluid {
