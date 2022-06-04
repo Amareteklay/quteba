@@ -6,19 +6,28 @@
 <!--Code from https://replit.com/talk/learn/DjangoPython-and-HTML-Coding-Campus-Tutorial-1-Create-a-Blog-with-Django/142238?order=new-->
 <!--And https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/templates/index.html-->
 
-<div class="container-fluid mb-0" id="home-blog">
-    <div class="row blog-cards mb-3">
-
+<div class="container mt-5 pt-5 mb-3">
+    <div class="row gx-2 mt-5 mb-3">
+        <div class="col-6">
+            <div class="p-3 me-3 border bg-light">
+                <h2>Blog</h2>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="p-3 ms-3 border bg-light">
+                <h2>Forum</h2>
+            </div>
+        </div>
     </div>
 </div>
 <!-- Recent stories section -->
-<div class="container-fluid border-top-2 border-bottom-2 mb-0" id="home-blog">
-    <div class="row blog-cards">
-        <div class="col-12 mt-4 mb-4 left">
-            <h1 class="text-center bg-light">RECENT STORIES</h1>
+<div class="container pt-5 mb-2">
+    <div class="row gx-2 mb-2 bg-light py-3">
+        <div class="col-12 mb-4 left">
+            <h1 class="text-center">RECENT STORIES</h1>
         </div>
         {% for post in post %}
-        <div class="col-4 mt-4 left bg-light border border-top-0 border-bottom-0">
+        <div class="col-4 mt-4 left  border border-top-0 border-bottom-0">
             <a href="{% url 'post_detail' post.slug  %}" class="text-primary">
                 <h2 class="text-center">{{post.title}}</h2>
             </a>
@@ -33,13 +42,13 @@
     </div>
 </div>
 <!-- Active topics section -->
-<div class="container-fluid border-top-2 border-bottom-2 mt-0">
-    <div class="row blog-cards">
-        <div class="col-12 mt-4 mb-4 left">
-            <h1 class="text-center bg-light">ACTIVE TOPICS</h1>
+<div class="container pt-5 mb-2">
+    <div class="row gx-2 mb-2 bg-light py-3">
+        <div class="col-12 mb-4 left">
+            <h1 class="text-center">ACTIVE TOPICS</h1>
         </div>
         {% for thread in thread %}
-        <div class="col-4 mt-4 left bg-light border border-top-0 border-bottom-0">
+        <div class="col-4 mt-4 left border border-top-0 border-bottom-0">
             <a href="{% url 'qforum:thread_detail' thread.slug %}" class="text-primary">
                 <h2 class="text-center">{{thread.topic}}</h2>
             </a>

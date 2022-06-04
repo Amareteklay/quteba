@@ -122,5 +122,5 @@ Detailed testing and test results [are documented here](TESTING.md).
 - I took the data model for the forum from [this article](https://vertabelo.com/blog/database-model-for-an-online-discussion-forum-part-1/).
 - I followed [this tutorial](https://focusustech.com/blog/create-a-comment-and-reply-system-in-django) to modify forum views and templates.
 - I followed [this tutorial](https://learndjango.com/tutorials/django-search-tutorial) to implement search functionality.
-
+- I used [this online converter](https://svgtopng.com/) to generate png from svg, which was created using [bgjar](https://bgjar.com/).
 ### Acknowledgements
