@@ -6,7 +6,7 @@ class ThreadForm(ModelForm):
     """ Form for a user to create a discussion forum """
     class Meta:
         model = Thread
-        fields = ('category', 'topic', 'description')
+        fields = ('topic', 'description')
     
     def __init__(self, *args, **kwargs):
         super(ThreadForm, self).__init__(*args, **kwargs)
