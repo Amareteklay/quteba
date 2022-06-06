@@ -86,9 +86,9 @@ To create a good contrast, I used white text on a deep green background.
 
 ## Features
 
-Quteba serves the aforementioned user stories by providing two broad features: Quteba Blog (Qblog) and Quteba Forum (Qforum). Besides these, it has static pages. 
+* Quteba serves the aforementioned user stories by providing two broad features: Quteba Blog (Qblog) and Quteba Forum (Qforum). Besides these, it has static pages. 
 
-* Homepage: Quteba¨s homepage provides first time users with information and links that helps them navigate the website easily. With first time visitors of the site in mind, the dual purpose of the site is made clear from the outset. Users see links to and information about Qblog and Qforum. There is a nav bar at the top which presents different menu items, so users can choose with a single click to view what quteba is about, a sign up page or if they have an account a sign in page.
+* Homepage: Quteba's homepage provides first time users with information and links that helps them navigate the website easily. With first time visitors of the site in mind, the dual purpose of the site is made clear from the outset. Users see links to and information about Qblog and Qforum. There is a nav bar at the top which presents different menu items, so users can choose with a single click to view what quteba is about, a sign up page or if they have an account a sign in page.
 The home page also presents the most recently added blog entries and the active discussion forum topics in separate sections. This gives users the chance to have a quick glance at what kinds of topics and questions are being discussed. From users' perspective, this preview is important because it gives them an idea of what to expect before delving into the whole list of either Qblog or Qforum.
 
 * The navigation menu: This is visible in the home page and all other pages. Only some of the items in the menu change depending on whether the user is logged in or not.
@@ -96,11 +96,11 @@ The home page also presents the most recently added blog entries and the active 
 
 * About page: the about page is a static page that gives users important information about the background and services of quteba.
 
-Users who come across quteba for the first time can read the about page and learn what quteba means and holds. 
+* Users who come across quteba for the first time can read the about page and learn what quteba means and holds. 
 
 * Qblog: Qblog lists blog entries showing the author, title, date and excerpts of each blog post. The title is clickable and linked to the blog detail page. By viewing only the list of blog posts, users need not read each blog before they find what they want to read. The excerpts will give users enough information to help them decide whether to continue reading or find another article. There is also a button next to the excerpt which is linked to the details page.
 
-Blog detail page: The blog detail page shows users the title of the article, author, date, content, likes and comments (if any).
+* Blog detail page: The blog detail page shows users the title of the article, author, date, content, likes and comments (if any).
 Logged in users also see a form where they can type and submit a comment.
  
 * Qforum: The purpose of having the Qforum on the menu bar and a list of forum entries (thread list) is similar to that of Qblog. Users can click on the Qforum menu item and land on a page that lists discussion forums. As each forum has a topic and description (question text), users can get an idea of what a particular discussion forum is about. 
@@ -164,6 +164,42 @@ One of the key principles of Quteba is user engagement. Users can create discuss
 * sqlparse==0.4.2
 * tzdata==2022.1
 
+------
+
+- ### Languages:
+    
+    + [Python 3.8.5](https://www.python.org/downloads/release/python-385/): the primary language used to develop the server-side of the website.
+    + [JS](https://www.javascript.com/): the primary language used to develop interactive components of the website.
+    + [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML): the markup language used to create the website.
+    + [CSS](https://developer.mozilla.org/en-US/docs/Web/css): the styling language used to style the website.
+- ### Frameworks and libraries:
+    + [Django](https://www.djangoproject.com/): python framework used to create all the logic.
+    + [jQuery](https://jquery.com/): was used to control click events and sending AJAX requests.
+    + [jQuery User Interface](https://jqueryui.com/) was used to create interactive elements.
+- ### Databases:
+    + [SQLite](https://www.sqlite.org/): was used as a development database.
+    + [PostgreSQL](https://www.postgresql.org/): the database used to store all the data.
+- ### Other tools:
+    + [Git](https://git-scm.com/): the version control system used to manage the code.
+    + [Pip3](https://pypi.org/project/pip/): the package manager used to install the dependencies.
+    + [Daphne](https://daphne.readthedocs.io/en/latest/): the webserver used to run the website.
+    + [Spycopg2](https://www.python.org/dev/peps/pep-0249/): the database driver used to connect to the database.
+    + [Django-allauth](https://django-allauth.readthedocs.io/en/latest/): the authentication library used to create the user accounts.
+    + [Django-crispy-forms](https://django-cryptography.readthedocs.io/en/latest/): was used to control the rendering behavior of Django forms.
+    + [Heroku](https://dashboard.heroku.com/): the hosting service used to host the website.
+    + [GitHub](https://github.com/): used to host the website's source code.
+    + [VSCode](https://code.visualstudio.com/): the IDE used to develop the website.
+    + [Chrome DevTools](https://developer.chrome.com/docs/devtools/open/): was used to debug the website.
+    + [Font Awesome](https://fontawesome.com/): was used to create the icons used in the website.
+    + [Coolors](https://coolors.co/202a3c-1c2431-181f2a-0b1523-65e2d9-925cef-6b28e0-ffffff-eeeeee) was used to make a color palette for the website.
+    + [BGJar](https://www.bgjar.com/): was used to make a background images for the website.
+    + [W3C Validator](https://validator.w3.org/): was used to validate HTML5 code for the website.
+    + [W3C CSS validator](https://jigsaw.w3.org/css-validator/): was used to validate CSS code for the website.
+    + [JShint](https://jshint.com/): was used to validate JS code for the website.
+    + [PEP8](https://pep8.org/): was used to validate Python code for the website.
+    + [Cloudinary](https://cloudinary.com/): the image hosting service used to upload images and other media.
+
+HTML, CSS, Javascript, Bootstrap5, Django
 
 I used [Balsamiq Cloud](https://balsamiq.cloud/) to create wireframes.
 ## Testing
@@ -175,12 +211,88 @@ Detailed testing and test results [are documented here](TESTING.md).
 - I was not able to login to the admin page and got CSRF error. I added CSRF_TRUSTED_ORIGINS
 ## Deployment
 
+### Using Heroku
+- Development Enviroment
+  1.  Create env.py : It needs to contain these 3 variables.
+    - [Cloudinary](https://cloudinary.com/)
+    - Secret key is the password of your choice.
+    - [Heroku](https://id.heroku.com/) postgreSQL.
+    ![env file](/documentation/deployment/env.jpg)
+  2. Create requirements.txt file that includes all dependencies needed for the project.
+    
+    - You can do this by executing the following command in the terminal:
+      ```
+      pip freeze > requirements.txt
+      ```
+    
+    - Or using the package pipreqs.
+      ```
+      pipreqs requirements.txt
+      ```
+
+  3. Create Procfile containing the commands to run the app.
+
+  4. Commit and push deployment changes to Github.
+  5. Create an account and login to Heroku
+    - Create a new app, with an appropriate app name and choose a region.
+    ![Create App](/documentation/deployment/heroku-create-app.jpg)
+    - In Resources add Heroku Postgres and Heroku Redis.
+    ![Resources](/documentation/deployment/heroku-resources.jpg)
+    
+    ![Config Vars](/documentation/deployment/heroku-configvars.jpg)
+    - At the settings tab click on Reveal Config Vars.
+    - Add the following config vars or check if they are already added.
+      - `DATABASE_URL` : The URL of the database provided by Heroku Postgres.
+      - `SECRET_KEY` : The secret key for your Django project.
+      - `CLOUDINARY_CLOUD_NAME` : Your Cloudinary Cloud Name.
+      - `CLOUDINARY_API_KEY` : Your Cloudinary API Key.
+      - `CLOUDINARY_API_SECRET` : Your Cloudinary API Secret.
+      - `DISABLE_COLLECTSTATIC` : Set to `1` to disable collectstatic during the development.
+    
+    - Download and install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+    - And pass following commands in your github terminal:
+      - $ heroku login -i
+      - Then enter your login credentials
+      - $ git add .
+      - $ git commit -am "make it better"
+      - $ git push heroku main
+    
+
+  6. Open the Heroku dashboard and check the status of your app.
+      - Copy the URL of your app and add it into `ALLOWED_HOSTS` in your settings.py file.
+  7. When the development stage is complete:
+    - make sure that you have these settings in your settings.py file:
+      - `STATIC_ROOT` : The path to the static files.
+      - `DEFUALT_FILE_STORAGE` : The default file storage system, in this case, `cloudinary_storage.storage.MediaCloudinaryStorage`
+      - `cloudinary` and `cloudinary_storage` are added to `INSTALLED_APPS`, and `cloudinary.config(...)` receives cloud name, api key, and api secret.
+    - Remove the `DISABLE_COLLECTSTATIC` variable from your app's config vars on Heroku.
+    - Set the `DEBUG` variable to `False` in your your app's config vars on Heroku.
+    - Deploy the latest version of your app to Heroku.
+    - Open the Heroku dashboard and check the status of your app.
+    - If something is wrong, you can find an error message in the logs and fix it.
+
+#### How to Fork
+
+To fork the repository:
+
+1. Log in (or sign up) to Github.
+2. Go to the repository for this project, [Connectedsy](https://github.com/PratimaGurav/Team4-May-Hackathon).
+3. Click the Fork button in the top right corner.
+
+#### How to Clone
+
+To clone the repository:
+
+1. Log in (or sign up) to GitHub.
+2. Go to the repository for this project, [Quteba](https://quteba.herokuapp.com/).
+3. Click on the code button, select whether you would like to clone with HTTPS, SSH or GitHub CLI and copy the link shown.
+4. Open the terminal in your code editor and change the current working directory to the location you want to use for the cloned directory.
+5. Type 'git clone' into the terminal and then paste the link you copied in step 3. Press enter.
+
 ## Credits
 - I followed [this tutorial](https://replit.com/talk/learn/DjangoPython-and-HTML-Coding-Campus-Tutorial-1-Create-a-Blog-with-Django/142238?order=new) to create blog posts.
 
 - Image for UX and behavioral economics was taken from [this webpage](https://startupsmagazine.co.uk/article-behavioural-economics-tips-ux-design).
-
-- Code for carousel was taken from [this page](https://getbootstrap.com/docs/5.0/components/carousel/).
 
 - Template for forum was taken from [this page](https://www.bootdey.com/snippets/view/bs5-forum-list)
 - I used the articles and code in [this page](https://www.devhandbook.com/django/user-registration/) to create user registration and profile.
@@ -191,3 +303,7 @@ Detailed testing and test results [are documented here](TESTING.md).
 - I used [this online converter](https://svgtopng.com/) to generate png from svg, which was created using [bgjar](https://bgjar.com/).
 - Nav bar and footer background color was inspired by [this](https://www.mp.se/goteborg/just-nu/goteborg-ska-vara-en-karnvapenfri-zon/).
 ### Acknowledgements
+
+
+
+## [BACK TO TOP](https://github.com/Amareteklay/quteba#readme)
