@@ -4,25 +4,27 @@
 
 {% block details %}
 <div class="col-md-8 ms-5 me-4 mt-5">
-    <div class="row mb-5">
-        <div class="col-md-11 bg-white mx-5 me-5">
-            <h5 class="btn btn-lg text-primary mx-5 py-3" id="btn-create-forum" data-bs-toggle="collapse" data-bs-target="#thread-form" aria-controls="thread-form"><strong>Ask Question <i class="fa-solid fa-angle-down"></i></strong></h5>
-            <div class="collapse mb-3 ps-5 ms-5" id="thread-form">
-                {% if user.is_authenticated %}
-                <form method="POST" action="">
-                    {% csrf_token %}
-                    {{ thread_form|crispy }}
-                    <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm mt-4">Cancel</button>
-                    <button type="submit" class="btn btn-primary mt-4 mx-4">Create</button>
-                </form>
-                {% else %}
-                <h2>You need to login to create a forum</h2>
-                {% endif %}
+    <div class="card shadow-lg row-hover pos-relative px-3 mb-3 rounded-2">
+        <div class="row align-items-center">
+            <div class="col-md-8 mb-sm-0">
+                <h5 class="btn btn-lg text-primary mx-5" id="btn-create-forum" data-bs-toggle="collapse" data-bs-target="#thread-form" aria-controls="thread-form"><strong>Ask Question <i class="fa-solid fa-angle-down"></i></strong></h5>
+                <div class="collapse mb-3 ps-5 ms-5" id="thread-form">
+                    {% if user.is_authenticated %}
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        {{ thread_form|crispy }}
+                        <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm mt-4">Cancel</button>
+                        <button type="submit" class="btn btn-primary mt-4 mx-4">Create</button>
+                    </form>
+                    {% else %}
+                    <h2>You need to login to create a forum</h2>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
     {% for thread in thread_list %}
-    <div class="card shadow-lg row-hover pos-relative px-3 mb-3 rounded-2">
+    <div class="card shadow-lg row-hover pos-relative px-3 mb-3 rounded-2 left-border">
         <div class="row pb-3 align-items-center">
             <div class="col-md-8 mb-3 mb-sm-0">
                 <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}">

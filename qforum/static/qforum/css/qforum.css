@@ -43,3 +43,7 @@
     margin-left: 17px;
     border-left: rgba(51, 51, 51, 0.2) 1px solid;
 }
+
+.left-border {
+    border-left: #05472a 7px solid;
+}

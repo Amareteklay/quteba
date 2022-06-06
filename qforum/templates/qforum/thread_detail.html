@@ -2,13 +2,13 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block details %}
-<div class="col-md-10 mt-5 ms-5 ps-4 py-2 bg-light">
+<div class="col-md-10 mt-5 ms-5 ps-4 py-2 bg-light left-border">
     <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}">
     <a class="text-black" href="#"> {{thread.name}}</a>
     <span class="op-6 text-muted">| {{ thread.created_on|timesince }} ago</span>
     <span class="d-inline-block text-sm text-muted mx-3"><i class="fa-solid fa-comments"></i> {{comments.all.count}}</span>
-    <h5 class="text-primary">{{ thread.topic}}</h5>
-    <p> {{thread.description|safe}} </p>
+    <h5 class="text-primary px-3">{{ thread.topic}}</h5>
+    <p class="px-3"> {{thread.description|safe}} </p>
     <!-- Vote up -->
     <form method="POST" class="d-inline-block" action="{% url 'qforum:thread-vote-up' thread.id %}">
         {% csrf_token %}
@@ -36,13 +36,13 @@
     <a href="{% url 'qforum:edit-thread' thread.slug %}" class="op-6 px-3 text-muted"><i class="fa-solid fa-pen-to-square"></i></a>
     <a href="{% url 'qforum:delete-thread' thread.slug %}" class="op-6 text-muted"><i class="fa-solid fa-trash small"></i></a>
     {% endif %}
-    <div class="collapse ms-4 ps-4" id="comment-form-{{thread.id}}">
+    <div class="collapse ms-4 ps-4 mb-3" id="comment-form-{{thread.id}}">
         {% if user.is_authenticated %}
         <form method="POST" action="{% url 'qforum:thread_detail' thread.slug %}">
             {% csrf_token %}
             {{ comment_form.content }}
-            <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm">Cancel</button>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm mt-2">Cancel</button>
+            <button type="submit" class="btn btn-primary mt-2">Submit</button>
         </form>
         {% else %}
         <h2>You need to Login to comment</h2>
@@ -67,7 +67,7 @@
         <form method="POST" class="d-inline-block" action="{% url 'qforum:comment-like' thread.slug comment.pk%}">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ request.path }}">
-            <button class="remove-default-btn text-muted border-0 bg-white d-inline-block pe-1" type="submit">
+            <button class="remove-default-btn text-muted border-0 bg-white d-inline-block ms-3 pe-1" type="submit">
                 <i class="fa-regular fa-thumbs-up"> </i>
             </button>
             {% if comment.no_of_likes %}
