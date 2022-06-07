@@ -221,7 +221,7 @@ Detailed testing and test results [are documented here](TESTING.md).
     - [Cloudinary](https://cloudinary.com/)
     - Secret key is the password of your choice.
     - [Heroku](https://id.heroku.com/) postgreSQL.
-    ![env file](/documentation/deployment/env.jpg)
+    ![env file]()
   2. Create requirements.txt file that includes all dependencies needed for the project.
     
     - You can do this by executing the following command in the terminal:
@@ -239,11 +239,11 @@ Detailed testing and test results [are documented here](TESTING.md).
   4. Commit and push deployment changes to Github.
   5. Create an account and login to Heroku
     - Create a new app, with an appropriate app name and choose a region.
-    ![Create App](/documentation/deployment/heroku-create-app.jpg)
+    ![Create App]()
     - In Resources add Heroku Postgres and Heroku Redis.
-    ![Resources](/documentation/deployment/heroku-resources.jpg)
+    ![Resources]()
     
-    ![Config Vars](/documentation/deployment/heroku-configvars.jpg)
+    ![Config Vars]()
     - At the settings tab click on Reveal Config Vars.
     - Add the following config vars or check if they are already added.
       - `DATABASE_URL` : The URL of the database provided by Heroku Postgres.
@@ -280,7 +280,7 @@ Detailed testing and test results [are documented here](TESTING.md).
 To fork the repository:
 
 1. Log in (or sign up) to Github.
-2. Go to the repository for this project, [Connectedsy](https://github.com/PratimaGurav/Team4-May-Hackathon).
+2. Go to the repository for this project, [Quteba](https://github.com/Amareteklay/quteba).
 3. Click the Fork button in the top right corner.
 
 #### How to Clone
@@ -306,6 +306,7 @@ To clone the repository:
 - I followed [this tutorial](https://learndjango.com/tutorials/django-search-tutorial) to implement search functionality.
 - I used [this online converter](https://svgtopng.com/) to generate png from svg, which was created using [bgjar](https://bgjar.com/).
 - Nav bar and footer background color was inspired by [this](https://www.mp.se/goteborg/just-nu/goteborg-ska-vara-en-karnvapenfri-zon/).
+- I copied and edited the deployment procedure from our [hackathon project readme]().
 ### Acknowledgements
 
 

@@ -79,15 +79,16 @@
             </div>
         </div>
     </nav>
-    <!-- Code from https://www.devhandbook.com/django/user-registration/-->
+
     {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tag }}">
-        {{ message }}
+    <div class=" col-5 message-container bg-primary rounded" id="messages-notes">
+        {% for message in messages %}
+        <div class="bg-warning">
+            <p class="text-center text-white">{{ message }}</p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor%}
     {% endif %}
-    <!-- end copied code -->
 
     {% block content %}
 

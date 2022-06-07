@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import handler404, handler500
 from django.urls import path, include
 
 urlpatterns = [
@@ -27,3 +28,6 @@ urlpatterns = [
     path('account/', include('allauth.urls')),
     path('profile/', include('users.urls'), name='users_urls'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'quteba.views.handler404'
+handler500 = 'quteba.views.handler500'

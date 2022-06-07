@@ -52,6 +52,7 @@ def update_profile(request, *args, **kwargs):
     return render(request, 'users/update_profile.html', context)
 
 # View profile
+@login_required
 def profile(request, *args, **kwargs):
     user = get_object_or_404(User, username=request.user.username)
     user_profile = get_object_or_404(
@@ -69,6 +70,7 @@ def profile(request, *args, **kwargs):
 
 
 # Delete profile
+@login_required
 def delete_profile(request, pk, *args, **kwargs):
     user = User.objects.get(pk=pk)
     if request.method == "POST":
