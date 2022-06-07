@@ -4,7 +4,7 @@ Quteba is a Tigrigna word for Economy. I have created Quteba as a dynamic websit
 Quteba is a dynamic website created using Django framework for the back-end and HTML, CSS and frameworks thereof for the front-end.
 
 
-![Quteba](media/qbrand.png)
+![Quteba](assets/screenshots/homepage-mockup.png)
 
 [View Quteba live on Heroku](https://quteba.herokuapp.com/)
 
@@ -88,25 +88,29 @@ To create a good contrast, I used white text on a deep green background.
 
 * Quteba serves the aforementioned user stories by providing two broad features: Quteba Blog (Qblog) and Quteba Forum (Qforum). Besides these, it has static pages. 
 
-* Homepage: Quteba's homepage provides first time users with information and links that helps them navigate the website easily. With first time visitors of the site in mind, the dual purpose of the site is made clear from the outset. Users see links to and information about Qblog and Qforum. There is a nav bar at the top which presents different menu items, so users can choose with a single click to view what quteba is about, a sign up page or if they have an account a sign in page.
+* **Homepage:** Quteba's homepage provides first time users with information and links that helps them navigate the website easily. With first time visitors of the site in mind, the dual purpose of the site is made clear from the outset. Users see links to and information about Qblog and Qforum. There is a nav bar at the top which presents different menu items, so users can choose with a single click to view what quteba is about, a sign up page or if they have an account a sign in page.
 The home page also presents the most recently added blog entries and the active discussion forum topics in separate sections. This gives users the chance to have a quick glance at what kinds of topics and questions are being discussed. From users' perspective, this preview is important because it gives them an idea of what to expect before delving into the whole list of either Qblog or Qforum.
 
 * The navigation menu: This is visible in the home page and all other pages. Only some of the items in the menu change depending on whether the user is logged in or not.
 (image here)
 
-* About page: the about page is a static page that gives users important information about the background and services of quteba.
+* **Search form:** Users who are looking for a particular concept may search for it by typing a keyword in the search input form at the top bar of each page. If the keyword exists in Qblog and/or Qforum, the results are displayed in a separate search results page.
+
+* **Search results page:** This page renders the search results when a user searches for a specific keyword and a matching entry is found in either Qblog or Qforum or both. If the keyword the user types in the search form does not exist, the results page shows a feedback message. 
+
+* **About page:** the about page is a static page that gives users important information about the background and services of quteba.
 
 * Users who come across quteba for the first time can read the about page and learn what quteba means and holds. 
 
-* Qblog: Qblog lists blog entries showing the author, title, date and excerpts of each blog post. The title is clickable and linked to the blog detail page. By viewing only the list of blog posts, users need not read each blog before they find what they want to read. The excerpts will give users enough information to help them decide whether to continue reading or find another article. There is also a button next to the excerpt which is linked to the details page.
+* **Qblog:** Qblog lists blog entries showing the author, title, date and excerpts of each blog post. The title is clickable and linked to the blog detail page. By viewing only the list of blog posts, users need not read each blog before they find what they want to read. The excerpts will give users enough information to help them decide whether to continue reading or find another article. There is also a button next to the excerpt which is linked to the details page.
 
 * Blog detail page: The blog detail page shows users the title of the article, author, date, content, likes and comments (if any).
 Logged in users also see a form where they can type and submit a comment.
  
-* Qforum: The purpose of having the Qforum on the menu bar and a list of forum entries (thread list) is similar to that of Qblog. Users can click on the Qforum menu item and land on a page that lists discussion forums. As each forum has a topic and description (question text), users can get an idea of what a particular discussion forum is about. 
+* **Qforum:** The purpose of having the Qforum on the menu bar and a list of forum entries (thread list) is similar to that of Qblog. Users can click on the Qforum menu item and land on a page that lists discussion forums. As each forum has a topic and description (question text), users can get an idea of what a particular discussion forum is about. 
 
 * Here we clarify some terminologies. Forum and thread are used interchangeably. When a user creates a new discussion forum, the topic, description and the comments and replies under it are all part of a discussion forum. The comments and replies make a thread.
-* Categories: we use categories to refer to broad areas of economics that encapsulate the particular discussion topics. For example, a category can be Finance while the discussion topics may relate to specific concepts such as exchange rate.
+* **Categories:** we use categories to refer to broad areas of economics that encapsulate the particular discussion topics. For example, a category can be Finance while the discussion topics may relate to specific concepts such as exchange rate.
 
 * The Qforum page has a form for users to submit questions. It is placed at the top but users need to click and expand it. This is efficient because the form does not cover the most central part of the page for users who are interested in reading the forums. It is also intuitively self-evident that a user should click it to create a forum.
 
@@ -115,29 +119,29 @@ Logged in users also see a form where they can type and submit a comment.
 
 * The forum list page has a sidebar that shows the most active topics. These are topics that have the most recent comment or reply.
 
-* Forum detail page: When a user clicks on a particular discussion forum topic in the Qforum list page, a separate page with the particular forum at the top and any comments and replies under it. 
+* **Forum detail page:** When a user clicks on a particular discussion forum topic in the Qforum list page, a separate page with the particular forum at the top and any comments and replies under it. 
 A user can edit or delete their own discussion forum and reply to comments and replies except their own. To this effect, the buttons a user sees in this page vary depending on whether the user is logged in or not and if the entries are their own or those of others.
 
-* Sign up page:
+* **Sign up page:**
 New users are encouraged to sign up so that they can not only read what others have written but also engage in conversations by creating forums and through comments and replies. Users who decide to sign up at the very beginning will see the sign up menu item, which is also available throughout the quteba pages. Users who want to explore the contents first can do so until they try to add a comment, for example, where they will see a link to the login or sign up pages. 
 
-* Sign in Page:
+* **Sign in Page:**
 If a user has an account, they can login so that they can interact with Quteba in more ways than they otherwise would. A logged in user can add comments to blog posts, like blog posts, create a discussion forum, comment on a forum, reply to comments, vote up or down on forums, like or unlike replies, edit or delete their own forums and comments, update and delete their profiles. 
 
-* Profile page:
+* **Profile page:**
 When a user logs in, they see their profile picture and their name on the menu bar. By clicking on their profile name, they can view their profile which has two buttons linked to (1) profile update form and (2) profile delete page. 
 
-* Update profile:
+* **Update profile:**
 The profile update page enables users to edit and update their profiles. The user can change their profile picture and update their bio. When they save the changes, they are redirected to the profile page.
 
-* Delete profile:
+* **Delete profile:**
 If a user wants to delete the profile they created, they can do so by using the link provided in the profile view page. To make sure that a user does not suddenly delete their profile, the user gets a prompt asking the user if they are sure that they want to delete the profile. Only when they confirm will the profile be deleted. If the user does not want to continue with the deletion of the profile, they can cancel the process in the confirmation page and go back to the profile view page. 
 
-* Sign out page:
+* **Sign out page:**
 When a logged in user wants to sign out, they can do so by clicking on the sign out menu in the navigation bar. They can sign out from any page because the navigation bar is available on all pages.
 Once they click on sign out, they are asked to confirm that they logout. If the user does not want to complete the process, they can cancel it and go back to the (profile page). 
 
-* User Interaction:
+* **User Interaction:**
 One of the key principles of Quteba is user engagement. Users can create discussion forums which can grow in to a big threaded forum with many contributors. Users can also express their views by using likes and unlikes, up and down votes etc. As such, quteba is becomes what its users make it to be. 
 
 ## Future Enhancements
@@ -182,7 +186,6 @@ One of the key principles of Quteba is user engagement. Users can create discuss
 - ### Other tools:
     + [Git](https://git-scm.com/): the version control system used to manage the code.
     + [Pip3](https://pypi.org/project/pip/): the package manager used to install the dependencies.
-    + [Daphne](https://daphne.readthedocs.io/en/latest/): the webserver used to run the website.
     + [Spycopg2](https://www.python.org/dev/peps/pep-0249/): the database driver used to connect to the database.
     + [Django-allauth](https://django-allauth.readthedocs.io/en/latest/): the authentication library used to create the user accounts.
     + [Django-crispy-forms](https://django-cryptography.readthedocs.io/en/latest/): was used to control the rendering behavior of Django forms.
@@ -198,6 +201,7 @@ One of the key principles of Quteba is user engagement. Users can create discuss
     + [JShint](https://jshint.com/): was used to validate JS code for the website.
     + [PEP8](https://pep8.org/): was used to validate Python code for the website.
     + [Cloudinary](https://cloudinary.com/): the image hosting service used to upload images and other media.
+    + [Techsini](https://techsini.com/multi-mockup/index.php): to generate mock up for responsive design for various screen sizes.
 
 HTML, CSS, Javascript, Bootstrap5, Django
 
@@ -306,4 +310,4 @@ To clone the repository:
 
 
 
-## [BACK TO TOP](https://github.com/Amareteklay/quteba#readme)
+#### [BACK TO TOP](https://github.com/Amareteklay/quteba#readme)

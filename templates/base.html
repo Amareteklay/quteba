@@ -58,10 +58,10 @@
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link btn m-0" href="{% url 'signup' %}">Sign up</a>
+                        <a class="nav-link btn m-0" href="{% url 'signup' %}"><i class="fas fa-user-plus"></i> Sign up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-sm m-0" href="{% url 'login' %}"><i class="fa fa-user"></i> Login</a>
+                        <a class="nav-link btn m-0" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -71,7 +71,7 @@
                         <!-- url 'search'-->
                         <div class="input-group">
                             <input type="text" class="form-control d-inline-block" placeholder="Search here" aria-label="search" name="query" value="{{ request.GET.query }}">
-                            <button class="remove-default-btn d-inline-block" type="submit"><i class="fas fa-search"></i></button>
+                            <button class="btn-search remove-default-btn d-inline-block border-white" type="submit"><i class="fas fa-search"></i></button>
                         </div>
                     </form>
                 </div>
