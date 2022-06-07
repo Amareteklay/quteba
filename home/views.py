@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from qblog.models import Post
 from qforum.models import Thread
+from .models import Contact
+from .forms import ContactForm
 from django.db.models import Q
 
 
@@ -32,3 +34,25 @@ class SearchView(View):
             'thread_list': thread_list
         }
         return render(request, 'home/search_list.html', context=context)
+    
+
+class ContactView(View):
+    template_name = 'home/contact.html'
+    form_class = ContactForm
+    initial = {'key': 'value'}
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(self.request, 'Thank You for contacting us. Your message has been submitted successfully.')
+            return HttpResponseRedirect('/')
+        else:
+            errors = form.errors
+            for error in errors:
+                messages.error(self.request, 'Please, enter valid ' + error)
+            return render(request, self.template_name, {'form': form})
