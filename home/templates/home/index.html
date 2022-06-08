@@ -6,22 +6,38 @@
 <!--Code from https://replit.com/talk/learn/DjangoPython-and-HTML-Coding-Campus-Tutorial-1-Create-a-Blog-with-Django/142238?order=new-->
 <!--And https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/templates/index.html-->
 
-<div class="container mt-5 pt-5 mb-3">
-    <div class="row gx-2 mt-5 mb-3">
-        <div class="col-6">
-            <div class="p-3 me-3 border bg-light">
-                <h2>Blog</h2>
-            </div>
+<div class="container mt-4 pt-5 mb-2 shadow">
+    <div class="row gx-0 mb-2 bg-light py-3 shadow-lg border-0">
+        <div class="col-12 mb-4 left">
+            <h1 class="text-center text-salmon">WELCOME TO QUTEBA</h1>
+            <h4 class="text-center"><em>Your economic information exchange hub.</em> </h4>
         </div>
-        <div class="col-6">
-            <div class="p-3 ms-3 border bg-light">
-                <h2>Forum</h2>
-            </div>
+        <div class="col-6 mt-4 py-4 shadow  border-0" id="q-blog-tagline">
+            <a href="#q-blog-section" class="text-primary">
+                <h2 class="text-center">Explore Qblog</h2>
+            </a>
+            <p class="mx-3 pt-3">Read analyses.</p>
+            <h5 class="text-center">Read Qblog</h5>
+        </div>
+        <div class="col-6 mt-4 py-4 shadow  border-0" id="q-forum-tagline">
+            <a href="#q-forum-section" class="text-primary">
+                <h2 class="text-center">Join Qforum</h2>
+            </a>
+            <p class="mx-3 pt-3">Check out what our Queba community is discussing.</p>
+            <h5 class="text-center">Join Qforum</h5>
+        </div>
+        <div class="col-12 mt-5 left text-center">
+            <a class="btn btn-primary mb-3 me-2 border-rounded" href="{% url 'signup' %}">
+                <h5 class="text-center"><i class="fas fa-user-plus"></i> Sign up</h5>
+            </a>
+            <a class="btn btn-primary mb-3 border-rounded" href="{% url 'login' %}">
+                <h5 class="text-center"><i class="fas fa-sign-in-alt"></i> Login</h5>
+            </a>
         </div>
     </div>
 </div>
 <!-- Recent stories section -->
-<div class="container pt-5 mb-2 shadow">
+<div class="container pt-5 mb-2 shadow" id="q-blog-section">
     <div class="row gx-2 mb-2 bg-light py-3 shadow-lg border">
         <div class="col-12 mb-4 left">
             <h1 class="text-center">RECENT STORIES</h1>
@@ -42,7 +58,7 @@
     </div>
 </div>
 <!-- Active topics section -->
-<div class="container pt-5 mb-2">
+<div class="container pt-5 mb-2" id="q-forum-section">
     <div class="row gx-2 mb-2 bg-light py-3 shadow-lg border">
         <div class="col-12 mb-4 left">
             <h1 class="text-center">ACTIVE TOPICS</h1>

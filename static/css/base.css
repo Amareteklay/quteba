@@ -6,7 +6,8 @@ body {
     background-image: url('/media/qu-bg.png');
 }
 
-.q-logo {
+.q-logo,
+.text-salmon {
     color: lightsalmon;
 }
 
@@ -27,9 +28,16 @@ a.nav-link:active {
     margin-right: 20px;
 }
 
-#hero-container {
-    width: 100%;
-    position: relative;
+#q-blog-tagline {
+    background-color: rgba(8, 120, 19, 0.4);
+    border-radius: 0 10% 40% 0;
+    border-bottom: rgb(8, 120, 19) 2px solid !important;
+}
+
+#q-forum-tagline {
+    background-color: rgba(8, 120, 19, 0.4);
+    border-radius: 40% 0 0 10%;
+    border-top: rgb(8, 120, 19) 2px solid !important;
 }
 
 .row {

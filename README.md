@@ -1,5 +1,5 @@
 # QUTEBA
-Quteba is a Tigrigna word for Economy. I have created Quteba as a dynamic website that serves readers with news and analyses pertinent to economic issues.
+Quteba is a Tigrinya word for Economy. I have created Quteba as a dynamic website that serves readers with news and analyses pertinent to economic issues.
 
 Quteba is a dynamic website created using Django framework for the back-end and HTML, CSS and frameworks thereof for the front-end.
 
