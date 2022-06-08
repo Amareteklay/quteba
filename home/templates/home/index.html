@@ -6,27 +6,14 @@
 <!--Code from https://replit.com/talk/learn/DjangoPython-and-HTML-Coding-Campus-Tutorial-1-Create-a-Blog-with-Django/142238?order=new-->
 <!--And https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/templates/index.html-->
 
-<div class="container mt-4 pt-5 mb-2 shadow">
-    <div class="row gx-0 mb-2 bg-light py-3 shadow-lg border-0">
+<div class="container mt-4 pt-5 mb-2">
+    <div class="row gx-2 mb-2 bg-light pt-3 pb-5 shadow border-0 rounded">
         <div class="col-12 mb-4 left">
-            <h1 class="text-center text-salmon">WELCOME TO QUTEBA</h1>
-            <h4 class="text-center"><em>Your economic information exchange hub.</em> </h4>
+            <h1 class="text-center text-deep-green"><strong>QUTEBA</strong> </h1>
+            <h4 class="text-center"><em>Your economic information exchange hub</em> </h4>
         </div>
-        <div class="col-6 mt-4 py-4 shadow  border-0" id="q-blog-tagline">
-            <a href="#q-blog-section" class="text-primary">
-                <h2 class="text-center">Explore Qblog</h2>
-            </a>
-            <p class="mx-3 pt-3">Read analyses.</p>
-            <h5 class="text-center">Read Qblog</h5>
-        </div>
-        <div class="col-6 mt-4 py-4 shadow  border-0" id="q-forum-tagline">
-            <a href="#q-forum-section" class="text-primary">
-                <h2 class="text-center">Join Qforum</h2>
-            </a>
-            <p class="mx-3 pt-3">Check out what our Queba community is discussing.</p>
-            <h5 class="text-center">Join Qforum</h5>
-        </div>
-        <div class="col-12 mt-5 left text-center">
+        {% if not user.is_authenticated %}
+        <div class="col-12 mt-2 left text-center">
             <a class="btn btn-primary mb-3 me-2 border-rounded" href="{% url 'signup' %}">
                 <h5 class="text-center"><i class="fas fa-user-plus"></i> Sign up</h5>
             </a>
@@ -34,47 +21,105 @@
                 <h5 class="text-center"><i class="fas fa-sign-in-alt"></i> Login</h5>
             </a>
         </div>
+        {% endif %}
+        <div class="col-6 mt-4 py-4 shadow border-0" id="q-blog-tagline">
+            <a href="#q-blog-section" class="text-white">
+                <h2 class="text-center">Qblog</h2>
+            </a>
+            <div class="text-white ps-5 ms-5">
+                <ul class="text-white ps-5 ms-5 pt-3">
+                    <li class="ms-5">Analyses</li>
+                    <li class="ms-5">Insights</li>
+                    <li class="ms-5">Facts</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-6 mt-4 py-4 shadow  border-0 pb-4" id="q-forum-tagline">
+            <a href="#q-forum-section" class="text-white">
+                <h2 class="text-center">Qforum</h2>
+            </a>
+            <div class="text-white ps-5 ms-5">
+                <ul class="text-white ps-5 ms-5 pt-3">
+                    <li>Have your say</li>
+                    <li>Ask questions</li>
+                    <li>Give comments</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 <!-- Recent stories section -->
-<div class="container pt-5 mb-2 shadow" id="q-blog-section">
-    <div class="row gx-2 mb-2 bg-light py-3 shadow-lg border">
-        <div class="col-12 mb-4 left">
+<div class="container pt-5 mb-2" id="q-blog-section">
+    <div class="row gx-2 mb-2 bg-light py-3 shadow rounded">
+        <div class="col-12 mb-4">
             <h1 class="text-center">RECENT STORIES</h1>
         </div>
         {% for post in post %}
-        <div class="col-4 mt-4 p-4 left shadow  border border-top-0 border-bottom-0">
-            <a href="{% url 'post_detail' post.slug  %}" class="text-primary">
+        {% if forloop.counter <= 3 %}
+        <div class="col-4 mt-4 p-4 me-0 shadow text-white bg-deep-green {% if forloop.counter|divisibleby:2 %} border {% endif %}">
+            <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}">
+            {{ post.author|title }}
+            | <span class="text-muted"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text text-muted h6"> <i class="far fa-heart"></i>
+                {{ post.number_of_likes }}</span>
+            <a href="{% url 'post_detail' post.slug  %}" class="text-white">
                 <h2 class="text-center">{{post.title}}</h2>
             </a>
-            <p class="mx-3 pt-3">{{post.excerpt|safe}}</p>
+            <p class="px-3 pt-3">{{post.excerpt|safe}}</p>
         </div>
+        {% endif %}
         {% endfor %}
-        <div class="col-12 mt-5 left text-center">
+        <div class="col-12 mt-5 text-center">
+            {% if user.is_authenticated %}
             <a href="{% url 'blog' %}" class="btn btn-success mb-3 border-rounded">
                 <h5 class="text-center">Read Qblog</h5>
             </a>
+            {% else %}
+            <div class="col-12 mt-2 text-center">
+                <a class="btn btn-primary mb-3 me-2 border-rounded" href="{% url 'signup' %}">
+                    <h5 class="text-center"><i class="fas fa-user-plus"></i> Sign up</h5>
+                </a>
+                <a class="btn btn-primary mb-3 border-rounded" href="{% url 'login' %}">
+                    <h5 class="text-center"><i class="fas fa-sign-in-alt"></i> Login</h5>
+                </a>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
 <!-- Active topics section -->
 <div class="container pt-5 mb-2" id="q-forum-section">
-    <div class="row gx-2 mb-2 bg-light py-3 shadow-lg border">
+    <div class="row gx-2 mb-2 bg-light py-3 shadow rounded">
         <div class="col-12 mb-4 left">
             <h1 class="text-center">ACTIVE TOPICS</h1>
         </div>
         {% for thread in thread %}
-        <div class="col-4 mt-4 p-4 left shadow  border border-top-0 border-bottom-0">
-            <a href="{% url 'qforum:thread_detail' thread.slug %}" class="text-primary">
+        {% if forloop.counter <= 3 %}
+        <div class="col-4 mt-4 p-4 text-white shadow bg-deep-green {% if forloop.counter|divisibleby:2 %} border {% endif %}">
+            <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}">
+            <a class="text-muted" href="#"> {{thread.name}}</a> <span class="op-6 text-muted">|
+                {{ thread.created_on|timesince }} ago</span>
+            <a href="{% url 'qforum:thread_detail' thread.slug %}" class="text-white">
                 <h2 class="text-center">{{thread.topic}}</h2>
             </a>
             <p class="mx-3 pt-3">{{thread.description|safe}}</p>
         </div>
+        {% endif %}
         {% endfor %}
         <div class="col-12 mt-5 left text-center">
+            {% if user.is_authenticated %}
             <a href="{% url 'qforum:threads' %}" class="btn btn-success mb-3 border-rounded">
                 <h5 class="text-center">Join Qforum</h5>
             </a>
+            {% else %}
+            <div class="col-12 mt-2 left text-center">
+                <a class="btn btn-primary mb-3 me-2 border-rounded" href="{% url 'signup' %}">
+                    <h5 class="text-center"><i class="fas fa-user-plus"></i> Sign up</h5>
+                </a>
+                <a class="btn btn-primary mb-3 border-rounded" href="{% url 'login' %}">
+                    <h5 class="text-center"><i class="fas fa-sign-in-alt"></i> Login</h5>
+                </a>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>

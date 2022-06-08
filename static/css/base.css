@@ -28,16 +28,26 @@ a.nav-link:active {
     margin-right: 20px;
 }
 
-#q-blog-tagline {
+.bg-light-green {
     background-color: rgba(8, 120, 19, 0.4);
-    border-radius: 0 10% 40% 0;
-    border-bottom: rgb(8, 120, 19) 2px solid !important;
+}
+
+.text-deep-green {
+    color: #05472a;
+}
+
+.bg-deep-green {
+    background-color: #05472a;
+}
+
+#q-blog-tagline {
+    background-color: #05472a;
+    border-radius: 0 20% 0 20%;
 }
 
 #q-forum-tagline {
-    background-color: rgba(8, 120, 19, 0.4);
-    border-radius: 40% 0 0 10%;
-    border-top: rgb(8, 120, 19) 2px solid !important;
+    background-color: #05472a;
+    border-radius: 20% 0 20% 0;
 }
 
 .row {
