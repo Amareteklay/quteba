@@ -34,15 +34,42 @@ class ThreadList(View):
             topic = thread_form.cleaned_data['topic']
             description = thread_form.cleaned_data['description']
             category = thread_form.cleaned_data['category'] 
-        new_thread = Thread(topic=topic, category=category, name=self.request.user, description=description)
-        new_thread.save()
-        context = {
-            'thread_list': thread_list,
-            'thread_form': thread_form,
-            'category_list': category_list
-        }
-        return render(request, 'qforum/thread_list.html', context=context)
+            new_thread = Thread(topic=topic, category=category, name=self.request.user, description=description)
+            new_thread.save()
+            print('Here')
+            return JsonResponse({
+                    'topic': new_thread.topic,
+                    'description': new_thread.description,
+                    'category': new_thread.category.subject,
+                    'name': new_thread.name.username
+                })
         
+
+# Add new forum using ajax
+def add_new_thread(request):
+    if request.method == "POST":
+        thread_form = ThreadForm(request.POST)
+        if thread_form.is_valid():
+            topic = thread_form.cleaned_data['topic']
+            description = thread_form.cleaned_data['description']
+            category = thread_form.cleaned_data['category'] 
+            new_thread = Thread(topic=topic, category=category, name=request.user, description=description)
+            new_thread.save()
+            return JsonResponse({
+                'topic': new_thread.topic,
+                'description': new_thread.description,
+                'category': new_thread.category.subject,
+                'name': new_thread.name.username
+            })
+        else:
+            thread_form = ThreadForm(request.POST)
+    context = {
+            'thread_list': [],
+            'thread_form': thread_form,
+            'category_list': []
+        }
+    return render(request, 'qforum/thread_list.html', context=context)
+
 
 
 class ActiveTopicsList(generic.ListView):

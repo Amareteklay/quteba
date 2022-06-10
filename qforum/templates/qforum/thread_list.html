@@ -13,10 +13,10 @@
                 </div>
                 {% if user.is_authenticated %}
                 <div class="modal-body">
-                    <form action="" method="POST" autocomplete="off">
+                    <form action="" method="POST" autocomplete="off" id="create-forum-form">
                         {% csrf_token %}
                         {{thread_form|crispy}}
-                        <button type="submit" class="btn btn-primary mt-2">Save</button>
+                        <button type="submit" class="btn btn-primary mt-2">Submit</button>
                     </form>
                 </div>
                 {% else %}
@@ -31,6 +31,13 @@
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addForumModal">Create Forum</button>
     </div>
 </div>
+
+<div class="mb-2" id="new-box">
+    <p>New forum goes here</p>
+    <button class="btn btn-primary" id="btn-forum">Click me</button>
+</div>
+
+
 {% for thread in thread_list %}
 <div class="card shadow-lg row-hover pos-relative px-3 mb-3 rounded-2 left-border">
     <div class="row pb-3 align-items-center">
