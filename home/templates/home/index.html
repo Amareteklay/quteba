@@ -15,16 +15,18 @@
         {% if not user.is_authenticated %}
         <div class="col-12 mt-2 left text-center">
             <a class="btn btn-primary mb-3 me-2 border-rounded" href="{% url 'signup' %}">
-                <h5 class="text-center"><i class="fas fa-user-plus"></i> Sign up</h5>
+                <strong>New to Quteba?</strong>
+                <strong class="text-center d-block mt-3"><i class="fas fa-user-plus"></i> Create an Account</strong>
             </a>
             <a class="btn btn-primary mb-3 border-rounded" href="{% url 'login' %}">
-                <h5 class="text-center"><i class="fas fa-sign-in-alt"></i> Login</h5>
+                <strong>Already Registered?</strong>
+                <strong class="text-center d-block mt-3"><i class="fas fa-sign-in-alt"></i> Sign in</strong>
             </a>
         </div>
         {% endif %}
         <div class="col-6 mt-4 py-4 shadow border-0" id="q-blog-tagline">
             <a href="#q-blog-section" class="text-white">
-                <h2 class="text-center">Qblog</h2>
+                <h2 class="text-center"><i class="fa-solid fa-pen"></i>Qblog</h2>
             </a>
             <div class="text-white ps-5 ms-5">
                 <ul class="text-white ps-5 ms-5 pt-3">
@@ -36,7 +38,7 @@
         </div>
         <div class="col-6 mt-4 py-4 shadow  border-0 pb-4" id="q-forum-tagline">
             <a href="#q-forum-section" class="text-white">
-                <h2 class="text-center">Qforum</h2>
+                <h2 class="text-center"><i class="fa-solid fa-user-group"></i>Qforum</h2>
             </a>
             <div class="text-white ps-5 ms-5">
                 <ul class="text-white ps-5 ms-5 pt-3">
@@ -57,9 +59,9 @@
         {% for post in post %}
         {% if forloop.counter <= 3 %}
         <div class="col-4 mt-4 p-4 me-0 shadow text-white bg-deep-green {% if forloop.counter|divisibleby:2 %} border {% endif %}">
-            <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}">
+            <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}" alt="profile image">
             {{ post.author|title }}
-            | <span class="text-muted"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text text-muted h6"> <i class="far fa-heart"></i>
+            | <span class="text-white"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text text-white h6"> <i class="far fa-heart"></i>
                 {{ post.number_of_likes }}</span>
             <a href="{% url 'post_detail' post.slug  %}" class="text-white">
                 <h2 class="text-center">{{post.title}}</h2>
@@ -74,13 +76,16 @@
                 <h5 class="text-center">Read Qblog</h5>
             </a>
             {% else %}
-            <div class="col-12 mt-2 text-center">
-                <a class="btn btn-primary mb-3 me-2 border-rounded" href="{% url 'signup' %}">
-                    <h5 class="text-center"><i class="fas fa-user-plus"></i> Sign up</h5>
+            <div class="col-12 mt-2 mb-4 left text-center">
+                <strong>Please</strong>
+                <a href="{% url 'signup' %}">
+                    <strong class="text-center"> Sign up</strong>
                 </a>
-                <a class="btn btn-primary mb-3 border-rounded" href="{% url 'login' %}">
-                    <h5 class="text-center"><i class="fas fa-sign-in-alt"></i> Login</h5>
+                <strong> or</strong>
+                <a href="{% url 'login' %}">
+                    <strong class="text-center"> Sign in</strong>
                 </a>
+                <strong>to unclock all blog posts.</strong>
             </div>
             {% endif %}
         </div>
@@ -95,8 +100,8 @@
         {% for thread in thread %}
         {% if forloop.counter <= 3 %}
         <div class="col-4 mt-4 p-4 text-white shadow bg-deep-green {% if forloop.counter|divisibleby:2 %} border {% endif %}">
-            <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}">
-            <a class="text-muted" href="#"> {{thread.name}}</a> <span class="op-6 text-muted">|
+            <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}" alt="profile image">
+            <a class="text-white" href="#"> {{thread.name}}</a> <span class="op-6 text-white">|
                 {{ thread.created_on|timesince }} ago</span>
             <a href="{% url 'qforum:thread_detail' thread.slug %}" class="text-white">
                 <h2 class="text-center">{{thread.topic}}</h2>
@@ -111,13 +116,16 @@
                 <h5 class="text-center">Join Qforum</h5>
             </a>
             {% else %}
-            <div class="col-12 mt-2 left text-center">
-                <a class="btn btn-primary mb-3 me-2 border-rounded" href="{% url 'signup' %}">
-                    <h5 class="text-center"><i class="fas fa-user-plus"></i> Sign up</h5>
+            <div class="col-12 mt-2 mb-4 left text-center">
+                <strong>Please</strong>
+                <a href="{% url 'signup' %}">
+                    <strong class="text-center"> Sign up</strong>
                 </a>
-                <a class="btn btn-primary mb-3 border-rounded" href="{% url 'login' %}">
-                    <h5 class="text-center"><i class="fas fa-sign-in-alt"></i> Login</h5>
+                <strong> or</strong>
+                <a href="{% url 'login' %}">
+                    <strong class="text-center"> Sign in</strong>
                 </a>
+                <strong>to join Qforum and have your say.</strong>
             </div>
             {% endif %}
         </div>

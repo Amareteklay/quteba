@@ -3,48 +3,56 @@
 {% load crispy_forms_tags %}
 
 {% block details %}
-<div class="col-md-8 ms-5 me-4 mt-5">
-    <div class="card shadow-lg row-hover pos-relative px-3 mb-3 rounded-2">
-        <div class="row align-items-center">
-            <div class="col-md-8 mb-sm-0">
-                <h5 class="btn btn-lg text-primary mx-5" id="btn-create-forum" data-bs-toggle="collapse" data-bs-target="#thread-form" aria-controls="thread-form"><strong>Ask Question <i class="fa-solid fa-angle-down"></i></strong></h5>
-                <div class="collapse mb-3 ps-5 ms-5" id="thread-form">
-                    {% if user.is_authenticated %}
-                    <form method="POST" action="">
+<div class="col-md-8 ms-5 me-4 mt-3">
+    <div class="modal fade" id="addForumModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ask a question</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                {% if user.is_authenticated %}
+                <div class="modal-body">
+                    <form action="" method="POST" autocomplete="off">
                         {% csrf_token %}
-                        {{ thread_form|crispy }}
-                        <button type="button" onclick="hideForm()" class="btn btn-light border btn-sm mt-4">Cancel</button>
-                        <button type="submit" class="btn btn-primary mt-4 mx-4">Create</button>
+                        {{thread_form|crispy}}
+                        <button type="submit" class="btn btn-primary mt-2">Save</button>
                     </form>
-                    {% else %}
-                    <h2>You need to login to create a forum</h2>
-                    {% endif %}
                 </div>
+                {% else %}
             </div>
+            <h2>You need to login to create a forum</h2>
+            {% endif %}
         </div>
     </div>
-    {% for thread in thread_list %}
-    <div class="card shadow-lg row-hover pos-relative px-3 mb-3 rounded-2 left-border">
-        <div class="row pb-3 align-items-center">
-            <div class="col-md-8 mb-3 mb-sm-0">
-                <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}">
-                <a class="text-black" href="#"> {{thread.name}}</a> <span class="op-6 text-muted">|
-                    {{ thread.created_on|timesince }} ago</span>
-                <h5 class="pt-3 px-3">
-                    <a href="{% url 'qforum:thread_detail' thread.slug %}" class="text-primary">{{ thread.topic|title}}</a>
-                </h5>
-                <div class="px-3">
-                    {{thread.description|safe}}
-                </div>
-            </div>
-            <div class="px-4">
-                <span class="d-inline-block text-sm text-muted"> <i class="fa-solid fa-caret-up"></i> {{thread.no_of_upvotes}} </span>
-                <span class="d-inline-block text-sm text-muted mx-3"> <i class="fa-solid fa-caret-down"></i> {{thread.no_of_downvotes}} </span>
-                <span class="d-inline-block text-sm text-muted mx-3"><i class="fa-solid fa-comments"></i> {{thread.comments.count}}</span>
+</div>
+<div class="row mb-3">
+    <div class="col text-center">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addForumModal">Create Forum</button>
+    </div>
+</div>
+{% for thread in thread_list %}
+<div class="card shadow-lg row-hover pos-relative px-3 mb-3 rounded-2 left-border">
+    <div class="row pb-3 align-items-center">
+        <div class="col-md-8 mb-3 mb-sm-0">
+            <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}">
+            <a class="text-black" href="#"> {{thread.name}}</a> <span class="op-6 text-muted">|
+                {{ thread.created_on|timesince }} ago</span>
+            <h5 class="pt-3 px-3">
+                <a href="{% url 'qforum:thread_detail' thread.slug %}" class="text-primary">{{ thread.topic|title}}</a>
+            </h5>
+            <div class="px-3">
+                {{thread.description|safe}}
             </div>
         </div>
+        <div class="px-4">
+            <span class="d-inline-block text-sm text-muted"> <i class="fa-solid fa-caret-up"></i> {{thread.no_of_upvotes}} </span>
+            <span class="d-inline-block text-sm text-muted mx-3"> <i class="fa-solid fa-caret-down"></i> {{thread.no_of_downvotes}} </span>
+            <span class="d-inline-block text-sm text-muted mx-3"><i class="fa-solid fa-comments"></i> {{thread.comments.count}}</span>
+        </div>
     </div>
-    {% endfor %}
+</div>
+{% endfor %}
 </div>
 {% endblock details %}
 {% block sidebar %}

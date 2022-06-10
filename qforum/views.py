@@ -3,7 +3,7 @@ from django.views import generic, View
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.views.generic.edit import CreateView
@@ -59,7 +59,6 @@ class CategoryList(generic.ListView):
 
 
 class ThreadDetailView(View):
-
     def get(self, request, slug, *args, **kwargs):
         queryset = Thread.objects.all()
         thread = get_object_or_404(queryset, slug=slug)
@@ -79,7 +78,6 @@ class ThreadDetailView(View):
         return render(request, 'qforum/thread_detail.html', context=context)
 
     def post(self, request, slug, pk=None, *args, **kwargs):
-        #thread_form = ThreadForm(request.POST)
         comment_form = CommentForm(request.POST)
         queryset = Thread.objects.all()
         thread = get_object_or_404(queryset, slug=slug)
@@ -97,14 +95,6 @@ class ThreadDetailView(View):
                 parent=None 
         new_comment = Comment(content=content, name=self.request.user, thread=thread, parent=parent_comment)
         new_comment.save()
-        context = {
-            'thread': thread,
-            #'thread_form': thread_form,
-            'comment_form': comment_form,
-            'comments': comments,
-            'thread_list': thread_list,
-            'category_list': category_list
-        }
         return redirect(self.request.path_info)
 
 
