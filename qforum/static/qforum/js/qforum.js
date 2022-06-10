@@ -95,7 +95,10 @@ newTForm.addEventListener('submit', e => {
                    ${response.description}
             </div>
         </div>
-    </div>  `)
+    </div>  `);
+            $('#addForumModal').modal('hide');
+            newTForm.reset();
+
         },
         error: function(error) {
             console.log('Error: ', error);
