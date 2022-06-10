@@ -41,10 +41,7 @@ function hideForumButton() {
 }
 
 const newBox = document.getElementById("new-box")
-const btnForum = document.getElementById("btn-forum")
-btnForum.addEventListener('click', function() {
-    newBox.style.backgroundColor = 'red';
-});
+
 
 newTForm = document.getElementById('create-forum-form')
 topic = document.getElementById('id_topic')
@@ -52,14 +49,37 @@ description = document.getElementById('id_description')
 category = document.getElementById('id_category')
 
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
-console.log(csrf[0].value)
+const threadBox = document.getElementById('thread-box')
+
+$.ajax({
+    type: 'GET',
+    url: '/forum/list/',
+    success: function(response) {
+        console.log('Get Success: ', response)
+        const data = response.data
+        console.log(data)
+        data.forEach(el => {
+            threadBox.innerHTML += `
+            <div class="card shadow-lg row-hover pos-relative px-3 mb-3 rounded-2 left-border">
+                <div class="row pb-3 align-items-center">
+                <div class="col-md-8 mb-3 mb-sm-0">
+                   ${el.topic} <br>
+                   ${el.description}
+            </div>
+        </div>
+    </div>  `
+        });
+    },
+    error: function(error) {
+        console.log('Error: ', error);
+    }
+});
 
 newTForm.addEventListener('submit', e => {
     e.preventDefault();
-
     $.ajax({
         type: 'POST',
-        url: '/forum/',
+        url: '',
         data: {
             'csrfmiddlewaretoken': csrf[0].value,
             'topic': topic.value,
@@ -67,11 +87,15 @@ newTForm.addEventListener('submit', e => {
             'category': category.value,
         },
         success: function(response) {
-            console.log('Success: ', response);
-            newBox.insertAdjacentHTML('afterbegin',
-                `<h1 class = "text-success text-center" > 
-                ${response.topic} </h1>`
-            )
+            threadBox.insertAdjacentHTML('afterbegin', `
+            <div class="card shadow-lg row-hover pos-relative px-3 mb-3 rounded-2 left-border">
+                <div class="row pb-3 align-items-center">
+                <div class="col-md-8 mb-3 mb-sm-0">
+                   ${response.topic} <br>
+                   ${response.description}
+            </div>
+        </div>
+    </div>  `)
         },
         error: function(error) {
             console.log('Error: ', error);

@@ -29,7 +29,7 @@ a.nav-link:active {
 }
 
 .bg-light-green {
-    background-color: rgba(8, 120, 19, 0.4);
+    background-color: rgba(8, 120, 19, 0.4) !important;
 }
 
 .text-deep-green {

@@ -13,6 +13,21 @@ from .forms import ThreadForm, CommentForm
 from qblog.models import Post
 
 
+def get_thread_list(request):
+        thread_list = Thread.objects.all()
+        data = []
+        for obj in thread_list:
+            item = {
+                'id': obj.id,
+                'topic': obj.topic,
+                'description': obj.description,
+                'category': obj.category.subject,
+                'name': obj.name.username
+            }
+            data.append(item)
+        return JsonResponse({'data': data})
+
+
 class ThreadList(View):
 
     def get(self, request, *args, **kwargs):
@@ -36,40 +51,12 @@ class ThreadList(View):
             category = thread_form.cleaned_data['category'] 
             new_thread = Thread(topic=topic, category=category, name=self.request.user, description=description)
             new_thread.save()
-            print('Here')
             return JsonResponse({
                     'topic': new_thread.topic,
                     'description': new_thread.description,
                     'category': new_thread.category.subject,
                     'name': new_thread.name.username
                 })
-        
-
-# Add new forum using ajax
-def add_new_thread(request):
-    if request.method == "POST":
-        thread_form = ThreadForm(request.POST)
-        if thread_form.is_valid():
-            topic = thread_form.cleaned_data['topic']
-            description = thread_form.cleaned_data['description']
-            category = thread_form.cleaned_data['category'] 
-            new_thread = Thread(topic=topic, category=category, name=request.user, description=description)
-            new_thread.save()
-            return JsonResponse({
-                'topic': new_thread.topic,
-                'description': new_thread.description,
-                'category': new_thread.category.subject,
-                'name': new_thread.name.username
-            })
-        else:
-            thread_form = ThreadForm(request.POST)
-    context = {
-            'thread_list': [],
-            'thread_form': thread_form,
-            'category_list': []
-        }
-    return render(request, 'qforum/thread_list.html', context=context)
-
 
 
 class ActiveTopicsList(generic.ListView):
@@ -141,17 +128,6 @@ class ReplyView(LoginRequiredMixin, View):
             new_comment.save()
 
         return redirect('qforum:thread_detail', slug=slug)
-
-
-class CreateForum(LoginRequiredMixin, CreateView):
-    model = Thread
-    form_class = ThreadForm
-    template_name = 'qforum/forum_base.html'
-    success_url = reverse_lazy('qforum:thread_list')
-
-    def form_valid(self, form):
-        form.instance.name = self.request.user
-        return super().form_valid(form)
 
 
 class ThreadEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):   
