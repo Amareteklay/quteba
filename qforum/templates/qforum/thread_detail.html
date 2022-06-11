@@ -7,30 +7,24 @@
     <a class="text-black" href="#"> {{thread.name}}</a>
     <span class="op-6 text-muted">| {{ thread.created_on|timesince }} ago</span>
     <span class="d-inline-block text-sm text-muted mx-3"><i class="fa-solid fa-comments"></i> {{comments.all.count}}</span>
-    <h5 class="text-primary px-3">{{ thread.topic}}</h5>
+    <h5 class="text-primary px-3">{{thread.id}}. {{ thread.topic}}</h5>
     <p class="px-3"> {{thread.description|safe}} </p>
-    <!-- Vote up -->
-    <form method="POST" class="d-inline-block" action="{% url 'qforum:thread-vote-up' thread.id %}">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ request.path }}">
-        <button class="remove-default-btn text-muted border-0 bg-white d-inline-block" type="submit">
-            <i class="fa-solid fa-caret-up"></i>
-        </button>
-        {% if thread.no_of_upvotes %}
-        <span>{{ thread.no_of_upvotes }}</span>
-        {% endif %}
-    </form>
-    <!-- Vote down -->
-    <form method="POST" class="d-inline-block" action="{% url 'qforum:thread-vote-down' thread.id %}">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ request.path }}">
-        <button class="remove-default-btn text-muted border-0 bg-white d-inline-block" type="submit">
-            <i class="fa-solid fa-caret-down"></i>
-        </button>
-        {% if thread.no_of_downvotes %}
-        <span>{{ thread.no_of_downvotes }}</span>
-        {% endif %}
-    </form>
+
+    <!-- Vote ajax -->
+    <div class="col-1 d-inline-block" id="up-votes" data-value="{{thread.slug}}">
+        <a class="btn btn-primary voting-up" value="voteup" role="button">
+            <i class="fa-solid fa-caret-up mx-3"></i>
+            <span id="num-up-votes">{{ thread.no_of_upvotes }}</span>
+        </a>
+    </div>
+    <div class="col-1 d-inline-block" id="down-votes" data-value="{{thread.slug}}">
+        <a class="btn btn-danger voting-down" value="votedown" role="button">
+            <i class="fa-solid fa-caret-down mx-3"></i>
+            <span id="num-down-votes">{{ thread.no_of_downvotes }}</span>
+        </a>
+    </div>
+    <!-- End ajax vote-->
+
     <h4 id="comment-form" class="btn btn-light d-inline-block" data-bs-toggle="collapse" data-bs-target="#comment-form-{{thread.id}}" aria-controls="comment-form-{{thread.id}}">Comment <i class="fa-solid fa-angle-down"></i></h4>
     {% if request.user == thread.name %}
     <a href="{% url 'qforum:edit-thread' thread.slug %}" class="op-6 px-3 text-muted"><i class="fa-solid fa-pen-to-square"></i></a>
@@ -108,4 +102,9 @@
         {% endfor %}
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="{% static '/qforum/js/forum_detail.js'%}"></script>
 {% endblock details %}

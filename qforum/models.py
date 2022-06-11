@@ -77,7 +77,7 @@ class Comment(models.Model):
     dislikes = models.ManyToManyField(User, blank=True, related_name='comment_dislikes')
 
     class Meta:
-        ordering = ('created',)
+        ordering = ['-created']
     
     def __str__(self):
         return f"{self.content}"

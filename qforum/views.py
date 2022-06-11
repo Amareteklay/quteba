@@ -13,27 +13,6 @@ from .forms import ThreadForm, CommentForm
 from qblog.models import Post
 
 
-def get_thread_list(request):
-        thread_list = Thread.objects.all()
-        data = []
-        for obj in thread_list:
-            item = {
-                'id': obj.id,
-                'topic': obj.topic,
-                'slug': obj.slug,
-                'description': obj.description,
-                'category': obj.category.subject,
-                'created': obj.created_on.date(),
-                'up_votes': obj.up_votes.count(),
-                'down_votes': obj.down_votes.count(),
-                'no_of_comments': obj.comments.count(),
-                'name': obj.name.username,
-                'profile': obj.name.user_profile.image.url
-            }
-            data.append(item)
-        return JsonResponse({'data': data})
-
-
 class ThreadList(View):
 
     def get(self, request, *args, **kwargs):
@@ -63,6 +42,7 @@ class ThreadList(View):
                     'description': new_thread.description,
                     'category': new_thread.category.subject,
                     'name': new_thread.name.username,
+                    'created': new_thread.created_on.date(),
                     'profile': new_thread.name.user_profile.image.url
                 })
 
@@ -162,62 +142,38 @@ class ThreadDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return self.request.user == thread.name
 
 
-class VoteUpView(LoginRequiredMixin, View):
-    """
-    Code adapted from https://github.com/legionscript/socialnetwork/blob/tutorial11/social/views.py
-    """
-    def post(self, request, pk, *args, **kwargs):
-        thread = Thread.objects.get(pk=pk)
-
-        voted_down = False
-        for down_vote in thread.down_votes.all():
-            if down_vote == request.user:
-                voted_down = True
-                break
-        if voted_down:
-            thread.down_votes.remove(request.user)
-        voted_up = False
-        for up_vote in thread.up_votes.all():
-            if up_vote == request.user:
-                voted_up = True
-                break
-        if not voted_up:
+@login_required
+def vote_up(request):
+    slug = request.POST.get('slug')
+    if request.POST.get('action') == 'votingup':
+        thread = Thread.objects.get(slug=slug)
+        if request.user in thread.up_votes.all():
+            thread.up_votes.remove(request.user)
+            thread.save()
+        else:
             thread.up_votes.add(request.user)
-        if voted_up:
-            thread.up_votes.remove(request.user)
+            thread.save()
+        return JsonResponse({ 
+            'upvotes': thread.no_of_upvotes(),
+            'downvotes': thread.no_of_downvotes()
+        })
 
-        next = request.POST.get('next', '/')
-        return HttpResponseRedirect(next)
 
-class VoteDownView(LoginRequiredMixin, View):
-    def post(self, request, pk, *args, **kwargs):
-        thread = Thread.objects.get(pk=pk)
-
-        voted_up = False
-
-        for up_vote in thread.up_votes.all():
-            if up_vote == request.user:
-                voted_up = True
-                break
-
-        if voted_up:
-            thread.up_votes.remove(request.user)
-
-        voted_down = False
-
-        for down_vote in thread.down_votes.all():
-            if down_vote == request.user:
-                voted_down = True
-                break
-
-        if not voted_down:
-            thread.down_votes.add(request.user)
-
-        if voted_down:
+@login_required
+def vote_down(request):
+    slug = request.POST.get('slug')
+    if request.POST.get('action') == 'votingdown':
+        thread = Thread.objects.get(slug=slug)
+        if request.user in thread.down_votes.all():
             thread.down_votes.remove(request.user)
-
-        next = request.POST.get('next', '/')
-        return HttpResponseRedirect(next)
+            thread.save()
+        else:
+            thread.down_votes.add(request.user)
+            thread.save()
+        return JsonResponse({ 
+            'upvotes': thread.no_of_upvotes(),
+            'downvotes': thread.no_of_downvotes()
+        })
 
 class CommentLikeView(LoginRequiredMixin, View):
     def post(self, request, slug, pk, *args, **kwargs):
