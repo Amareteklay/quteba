@@ -45,11 +45,13 @@ const newBox = document.getElementById("new-box")
 
 newTForm = document.getElementById('create-forum-form')
 topic = document.getElementById('id_topic')
+slug = document.getElementById('id_slug')
 description = document.getElementById('id_description')
 category = document.getElementById('id_category')
 
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
 const threadBox = document.getElementById('thread-box')
+const url = window.location.href
 
 $.ajax({
     type: 'GET',
@@ -61,10 +63,24 @@ $.ajax({
         data.forEach(el => {
             threadBox.innerHTML += `
             <div class="card shadow-lg row-hover pos-relative px-3 mb-3 rounded-2 left-border">
-                <div class="row pb-3 align-items-center">
-                <div class="col-md-8 mb-3 mb-sm-0">
-                   ${el.topic} <br>
-                   ${el.description}
+            <div class="row pb-3 align-items-center">
+            <div class="col-md-8 mb-3 mb-sm-0">
+                <img class="rounded-circle article-img profile-img" src="${el.profile}">
+                <a class="text-black" href="#"> ${el.name}</a> <span class="op-6 text-muted">| ${el.created}</span>
+                <h5 class="pt-3 px-3">
+                    <a href="${url}${el.slug}" class="text-primary">${ el.topic}</a>
+                </h5>
+                <div class="px-3">
+                    ${el.description}
+                </div>
+            </div>
+            <div class="px-4">
+                <span class="d-inline-block text-sm text-muted"> <i class="fa-solid fa-caret-up"></i>
+                ${el.up_votes} </span>
+                <span class="d-inline-block text-sm text-muted mx-3"> <i class="fa-solid fa-caret-down"></i>
+                ${el.down_votes}  </span>
+                <span class="d-inline-block text-sm text-muted mx-3"><i class="fa-solid fa-comments"></i>
+                ${el.no_of_comments} </span>
             </div>
         </div>
     </div>  `
@@ -89,16 +105,30 @@ newTForm.addEventListener('submit', e => {
         success: function(response) {
             threadBox.insertAdjacentHTML('afterbegin', `
             <div class="card shadow-lg row-hover pos-relative px-3 mb-3 rounded-2 left-border">
-                <div class="row pb-3 align-items-center">
-                <div class="col-md-8 mb-3 mb-sm-0">
-                   ${response.topic} <br>
-                   ${response.description}
+            <div class="row pb-3 align-items-center">
+            <div class="col-md-8 mb-3 mb-sm-0">
+                <img class="rounded-circle article-img profile-img" src="${response.profile}">
+                <a class="text-black" href="#"> ${response.name}</a> <span class="op-6 text-muted">
+                |${response.created} ago</span>
+                <h5 class="pt-3 px-3">
+                    <a href="${url}${response.slug}" class="text-primary">${response.topic}</a>
+                </h5>
+                <div class="px-3">
+                    ${response.description}
+                </div>
+            </div>
+            <div class="px-4">
+                <span class="d-inline-block text-sm text-muted"> <i class="fa-solid fa-caret-up"></i>
+                     </span>
+                <span class="d-inline-block text-sm text-muted mx-3"> <i class="fa-solid fa-caret-down"></i>
+                     </span>
+                <span class="d-inline-block text-sm text-muted mx-3"><i class="fa-solid fa-comments"></i>
+                    </span>
             </div>
         </div>
-    </div>  `);
+    </div> `);
             $('#addForumModal').modal('hide');
             newTForm.reset();
-
         },
         error: function(error) {
             console.log('Error: ', error);

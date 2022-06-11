@@ -20,9 +20,15 @@ def get_thread_list(request):
             item = {
                 'id': obj.id,
                 'topic': obj.topic,
+                'slug': obj.slug,
                 'description': obj.description,
                 'category': obj.category.subject,
-                'name': obj.name.username
+                'created': obj.created_on.date(),
+                'up_votes': obj.up_votes.count(),
+                'down_votes': obj.down_votes.count(),
+                'no_of_comments': obj.comments.count(),
+                'name': obj.name.username,
+                'profile': obj.name.user_profile.image.url
             }
             data.append(item)
         return JsonResponse({'data': data})
@@ -53,9 +59,11 @@ class ThreadList(View):
             new_thread.save()
             return JsonResponse({
                     'topic': new_thread.topic,
+                    'slug': new_thread.slug,
                     'description': new_thread.description,
                     'category': new_thread.category.subject,
-                    'name': new_thread.name.username
+                    'name': new_thread.name.username,
+                    'profile': new_thread.name.user_profile.image.url
                 })
 
 
