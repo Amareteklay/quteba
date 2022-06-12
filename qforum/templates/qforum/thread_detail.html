@@ -12,14 +12,14 @@
 
     <!-- Vote ajax -->
     <div class="col-1 d-inline-block" id="up-votes" data-value="{{thread.slug}}">
-        <a class="btn btn-primary voting-up" value="voteup" role="button">
-            <i class="fa-solid fa-caret-up mx-3"></i>
+        <a class="btn voting-up" value="voteup" role="button">
+            <i class="fa-solid fa-caret-up text-success"></i>
             <span id="num-up-votes">{{ thread.no_of_upvotes }}</span>
         </a>
     </div>
     <div class="col-1 d-inline-block" id="down-votes" data-value="{{thread.slug}}">
-        <a class="btn btn-danger voting-down" value="votedown" role="button">
-            <i class="fa-solid fa-caret-down mx-3"></i>
+        <a class="btn voting-down" value="votedown" role="button">
+            <i class="fa-solid fa-caret-down text-danger"></i>
             <span id="num-down-votes">{{ thread.no_of_downvotes }}</span>
         </a>
     </div>
@@ -58,26 +58,22 @@
         <span class="op-6 text-muted"><i class="fa-solid fa-trash small"></i></span>
         {% endif %}
         <p class="px-3 mt-2"> {{comment.content}}</p>
-        <form method="POST" class="d-inline-block" action="{% url 'qforum:comment-like' thread.slug comment.pk%}">
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ request.path }}">
-            <button class="remove-default-btn text-muted border-0 bg-white d-inline-block ms-3 pe-1" type="submit">
-                <i class="fa-regular fa-thumbs-up"> </i>
-            </button>
-            {% if comment.no_of_likes %}
-            <span>{{ comment.no_of_likes }}</span>
-            {% endif %}
-        </form>
-        <form method="POST" class="d-inline-block" action="{% url 'qforum:comment-dislike' thread.slug comment.pk %}">
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ request.path }}">
-            <button class="remove-default-btn text-muted border-0 bg-white d-inline-block pe-1" type="submit">
-                <i class="far fa-thumbs-down"> <span>{{ comment.dislikes.all.count }}</span></i>
-            </button>
-            {% if comment.no_of_dislikes %}
-            <span>{{ comment.no_of_dislikes }}</span>
-            {% endif %}
-        </form>
+
+        <!-- Like ajax -->
+        <div class="col-1 d-inline-block" id="likes" data-value="{{comment.id}}">
+            <a class="btn btn-primary liking" value="like" role="button">
+                <i class="fa-solid fa-thumbs-up"></i>
+                <span id="num-likes">{{ comment.no_of_likes }}</span>
+            </a>
+        </div>
+        <div class="col-1 d-inline-block" id="dislikes" data-value="{{comment.id}}">
+            <a class="btn btn-danger disliking" value="dislike" role="button">
+                <i class="fa-solid fa-thumbs-down"></i>
+                <span id="num-dislikes">{{ comment.no_of_dislikes }}</span>
+            </a>
+        </div>
+        <!-- End ajax like-->
+
         {% if user != comment.name %}
         <button class="btn btn-sm d-inline-block" data-bs-toggle="collapse" data-bs-target="#reply-form-{{comment.id}}" aria-controls="reply-form-{{comment.id}}">
             <i class="fa-solid fa-comment text-muted"></i> <span>Reply</span></button>

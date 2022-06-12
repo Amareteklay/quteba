@@ -14,7 +14,7 @@
     <span class="op-6 text-muted"><i class="fa-solid fa-trash small"></i></span>
     {% endif %}
     <p class="px-3 mt-2"> {{comment.content}}</p>
-    <form method="POST" class="d-inline-block" action="{% url 'qforum:comment-like' comment.thread.slug comment.pk %}">
+    <form method="POST" class="d-inline-block" action="">
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ request.path }}">
         <button class="remove-default-btn text-muted border-0 bg-white d-inline-block ms-3 pe-1" type="submit">
@@ -24,7 +24,7 @@
         <span>{{ comment.no_of_likes }}</span>
         {% endif %}
     </form>
-    <form method="POST" class="d-inline-block" action="{% url 'qforum:comment-dislike' comment.thread.slug comment.pk %}">
+    <form method="POST" class="d-inline-block" action="">
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ request.path }}">
         <button class="remove-default-btn text-muted border-0 bg-white d-inline-block" type="submit">

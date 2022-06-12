@@ -175,62 +175,34 @@ def vote_down(request):
             'downvotes': thread.no_of_downvotes()
         })
 
-class CommentLikeView(LoginRequiredMixin, View):
-    def post(self, request, slug, pk, *args, **kwargs):
-        thread = Thread.objects.get(slug=slug)
+@login_required
+def like_view(request):
+    pk = request.POST.get('pk')
+    if request.POST.get('action') == 'liking':
         comment = Comment.objects.get(pk=pk)
-
-        is_dislike = False
-
-        for dislike in comment.dislikes.all():
-            if dislike == request.user:
-                is_dislike = True
-                break
-
-        if is_dislike:
-            comment.dislikes.remove(request.user)
-
-        is_like = False
-
-        for like in comment.likes.all():
-            if like == request.user:
-                is_like = True
-                break
-
-        if not is_like:
+        if request.user in comment.likes.all():
+            comment.likes.remove(request.user)
+            comment.save()
+        else:
             comment.likes.add(request.user)
+            comment.save()
+        return JsonResponse({ 
+            'likes': comment.no_of_likes(),
+            'dislikes': comment.no_of_dislikes()
+        })
 
-        if is_like:
-            comment.likes.remove(request.user)
-
-        return redirect('qforum:thread_detail', slug=slug)
-
-class CommentUnlikeView(LoginRequiredMixin, View):
-    def post(self, request, slug, pk, *args, **kwargs):
-        thread = Thread.objects.get(slug=slug)
+@login_required
+def dislike_view(request):
+    pk = request.POST.get('pk')
+    if request.POST.get('action') == 'disliking':
         comment = Comment.objects.get(pk=pk)
-
-        is_like = False
-
-        for like in comment.likes.all():
-            if like == request.user:
-                is_like = True
-                break
-
-        if is_like:
-            comment.likes.remove(request.user)
-
-        is_dislike = False
-
-        for dislike in comment.dislikes.all():
-            if dislike == request.user:
-                is_dislike = True
-                break
-
-        if not is_dislike:
-            comment.dislikes.add(request.user)
-
-        if is_dislike:
+        if request.user in comment.dislikes.all():
             comment.dislikes.remove(request.user)
-
-        return redirect('qforum:thread_detail', slug=slug)
+            comment.save()
+        else:
+            comment.dislikes.add(request.user)
+            comment.save()
+        return JsonResponse({ 
+            'likes': comment.no_of_likes(),
+            'dislikes': comment.no_of_dislikes()
+        })

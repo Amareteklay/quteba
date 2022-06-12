@@ -109,3 +109,57 @@
          });
      });
  });
+
+ // Like functionality
+
+ $(document).ready(function() {
+     $('.liking').click(function(e) {
+         e.preventDefault();
+         var pk = document.getElementById('likes').getAttribute('data-value');
+         var button = $(this).attr("value");
+         $.ajax({
+             type: 'POST',
+             url: '/forum/like/',
+             data: {
+                 pk: pk,
+                 csrfmiddlewaretoken: csrftoken,
+                 action: 'liking',
+             },
+             success: function(response) {
+                 console.log('success', response)
+                 document.getElementById('num-likes').innerHTML = response['likes']
+                 document.getElementById('num-dislikes').innerHTML = response['dislikes']
+             },
+             error: function(error) {
+                 console.log('error', error)
+             }
+         });
+     });
+ });
+
+ // Dislike functionality
+
+ $(document).ready(function() {
+     $('.disliking').click(function(e) {
+         e.preventDefault();
+         var pk = document.getElementById('dislikes').getAttribute('data-value');
+         var button = $(this).attr("value");
+         $.ajax({
+             type: 'POST',
+             url: '/forum/dislike/',
+             data: {
+                 pk: pk,
+                 csrfmiddlewaretoken: csrftoken,
+                 action: 'disliking',
+             },
+             success: function(response) {
+                 console.log('success', response)
+                 document.getElementById('num-dislikes').innerHTML = response['dislikes']
+                 document.getElementById('num-likes').innerHTML = response['likes']
+             },
+             error: function(error) {
+                 console.log('error', error)
+             }
+         });
+     });
+ });
