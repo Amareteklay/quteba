@@ -102,50 +102,6 @@ class ThreadDetailView(LoginRequiredMixin, View):
                         })
 
 
-# Adapted from https://github.com/legionscript/socialnetwork/blob/tutorial11/social/templates/social/post_detail.html
-""" class ReplyView(LoginRequiredMixin, View):
-
-    def post(self, request):
-        pk = request.POST.get('pk')
-        if request.POST.get('action') == 'replying':
-            parent = Comment.objects.get(pk=pk)
-            thread = parent.thread
-            form = CommentForm(request.POST)
-            if form.is_valid():
-                new_comment = form.save(commit=False)
-                new_comment.name = request.user
-                new_comment.thread = thread
-                new_comment.parent = parent
-                new_comment.save()
-                return JsonResponse({
-                    'parent': new_comment.parent.id,
-                    'pk': new_comment.id,
-                    'content': new_comment.content
-                })
- """
-
-""" def reply_view(request):
-    pk = request.POST.get('pk')
-    if request.POST.get('action') == 'replying':
-        parent = Comment.objects.get(pk=pk)
-        thread = parent.thread
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            content = form.cleaned_data['content']
-            new_comment = Comment(content=content, name=request.user, thread=thread, parent=parent)
-            new_comment.save()
-            print('Reached here')
-            return JsonResponse({
-                    'content': new_comment.content,
-                    'parent': new_comment.parent,
-                    'thread': new_comment.thread.id,
-                    'name': new_comment.name.username,
-                    'created': new_comment.created.date(),
-                    'likes': new_comment.no_of_likes(),
-                    'dislikes': new_comment.no_of_dislikes(),
-                    'profile': new_comment.name.user_profile.image.url
-                    }) """
-
 class ThreadEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):   
     model = Thread
     fields = ['category', 'topic', 'description']
