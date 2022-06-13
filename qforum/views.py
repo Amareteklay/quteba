@@ -60,13 +60,13 @@ class CategoryList(generic.ListView):
     template_name = 'qforum/forum_base.html'
 
 
-class ThreadDetailView(View):
+class ThreadDetailView(LoginRequiredMixin, View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Thread.objects.all()
         thread = get_object_or_404(queryset, slug=slug)
         thread_form = ThreadForm()
         comment_form = CommentForm()
-        comments = thread.comments.filter(active=True).order_by('created')
+        comments = thread.comments.filter(active=True).order_by('-created')
         thread_list = Thread.objects.all()
         category_list = Category.objects.all()
         context = {
@@ -79,44 +79,72 @@ class ThreadDetailView(View):
         }
         return render(request, 'qforum/thread_detail.html', context=context)
 
-    def post(self, request, slug, pk=None, *args, **kwargs):
-        comment_form = CommentForm(request.POST)
-        queryset = Thread.objects.all()
-        thread = get_object_or_404(queryset, slug=slug)
-        comments = thread.comments.filter(active=True).order_by('created')
-        parent_comment = None
-        if pk:
-            parent_comment = comment.objects.get(pk=pk)
-        thread_list = Thread.objects.all()
-        category_list = Category.objects.all()
-        if comment_form.is_valid():
-            content = comment_form.cleaned_data['content']
-            try:
-                parent = comment_form.cleaned_data['parent']
-            except:
-                parent=None 
-        new_comment = Comment(content=content, name=self.request.user, thread=thread, parent=parent_comment)
-        new_comment.save()
-        return redirect(self.request.path_info)
+    def post(self, request, *args, **kwargs):
+        if request.method == 'POST':
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                content = request.POST.get('content')
+                parent = None
+                parent_id = request.POST.get('parent')
+                if parent_id:
+                    parent = Comment.objects.get(id=parent_id)
+                thread = Thread.objects.get(id=request.POST.get('pk'))
+                new_comment = Comment(content=content, name=self.request.user, thread=thread, parent=parent)
+                new_comment.save()
+                return JsonResponse({
+                        'content': new_comment.content,
+                        'pk': new_comment.thread.id,
+                        'name': new_comment.name.username,
+                        'created': new_comment.created.date(),
+                        'likes': new_comment.no_of_likes(),
+                        'dislikes': new_comment.no_of_dislikes(),
+                        'profile': new_comment.name.user_profile.image.url
+                        })
 
 
 # Adapted from https://github.com/legionscript/socialnetwork/blob/tutorial11/social/templates/social/post_detail.html
-class ReplyView(LoginRequiredMixin, View):
+""" class ReplyView(LoginRequiredMixin, View):
 
-    def post(self, request, slug, pk, *args, **kwargs):
-        thread = Thread.objects.get(slug=slug)
-        parent_comment = Comment.objects.get(pk=pk)
+    def post(self, request):
+        pk = request.POST.get('pk')
+        if request.POST.get('action') == 'replying':
+            parent = Comment.objects.get(pk=pk)
+            thread = parent.thread
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                new_comment = form.save(commit=False)
+                new_comment.name = request.user
+                new_comment.thread = thread
+                new_comment.parent = parent
+                new_comment.save()
+                return JsonResponse({
+                    'parent': new_comment.parent.id,
+                    'pk': new_comment.id,
+                    'content': new_comment.content
+                })
+ """
+
+""" def reply_view(request):
+    pk = request.POST.get('pk')
+    if request.POST.get('action') == 'replying':
+        parent = Comment.objects.get(pk=pk)
+        thread = parent.thread
         form = CommentForm(request.POST)
-
         if form.is_valid():
-            new_comment = form.save(commit=False)
-            new_comment.name = request.user
-            new_comment.thread = thread
-            new_comment.parent = parent_comment
+            content = form.cleaned_data['content']
+            new_comment = Comment(content=content, name=request.user, thread=thread, parent=parent)
             new_comment.save()
-
-        return redirect('qforum:thread_detail', slug=slug)
-
+            print('Reached here')
+            return JsonResponse({
+                    'content': new_comment.content,
+                    'parent': new_comment.parent,
+                    'thread': new_comment.thread.id,
+                    'name': new_comment.name.username,
+                    'created': new_comment.created.date(),
+                    'likes': new_comment.no_of_likes(),
+                    'dislikes': new_comment.no_of_dislikes(),
+                    'profile': new_comment.name.user_profile.image.url
+                    }) """
 
 class ThreadEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):   
     model = Thread
