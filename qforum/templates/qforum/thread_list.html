@@ -36,7 +36,7 @@
             <div class="row pb-3 align-items-center">
                 <div class="col-md-8 mb-3 mb-sm-0">
                     <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}">
-                    <a class="text-black" href="#"> {{thread.name}}</a> <span class="op-6 text-muted">|
+                    <a class="text-black" href="{% url 'profile' %}"> {{thread.name}}</a> <span class="op-6 text-muted">|
                         {{ thread.created_on|date:"Y-m-d"}}</span>
                     <h5 class="pt-3 px-3">
                         <a href="{% url 'qforum:thread_detail' thread.slug %}" class="text-primary">{{ thread.topic|title}}</a>

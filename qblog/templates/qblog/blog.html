@@ -9,14 +9,14 @@
     {% for post in post_list %}
     <div class="row gx-2 mt-5 mb-3">
         {% if forloop.counter|divisibleby:2 %}
-        <div class="col-6">
+        <div class="col-4">
             <div class="p-3 border bg-light bg-rounded d-none d-lg-block">
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-8">
             <div class="p-3 border bg-light">
                 <a href="{% url 'post_detail' post.slug  %}" class="post-link">
-                    <h2 class="card-title mb-4 pt-5">{{ post.title }}</h2>
+                    <h2 class="card-title mb-4 pt-3">{{ post.title }}</h2>
                 </a>
                 <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}">
                 {{ post.author|title }}
@@ -27,12 +27,12 @@
             </div>
         </div>
         {% else %}
-        <div class="col-6">
+        <div class="col-8">
             <div class="p-3 border bg-light">
                 <a href="{% url 'post_detail' post.slug  %}" class="post-link">
-                    <h2 class="card-title mb-4 pt-5">{{ post.title }}</h2>
+                    <h2 class="card-title mb-4 pt-3">{{ post.title }}</h2>
                 </a>
-                <img class="rounded-circle article-img profile-img" src="{{ post.author.profile.image.url }}">
+                <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}">
                 {{ post.author|title }}
                 | <span class="text-muted"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text text-muted h6"> <i class="far fa-heart"></i>
                     {{ post.number_of_likes }}</span>
@@ -40,7 +40,7 @@
                 <a href="{% url 'post_detail' post.slug  %}" class="btn btn-success">Read More &raquo;</a>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-4">
             <div class="m-3 border bg-light bg-rounded d-none d-lg-block">
             </div>
         </div>

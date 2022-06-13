@@ -6,6 +6,8 @@
 
 {% block extrahead %}
 <script src="https://kit.fontawesome.com/1334675705.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="{% static '/qforum/js/forum_detail.js'%}"></script>
 {% endblock extrahead%}
 {% block content %}
 <!--Code from https://replit.com/talk/learn/DjangoPython-and-HTML-Coding-Campus-Tutorial-1-Create-a-Blog-with-Django/142238?order=new-->
@@ -22,5 +24,5 @@
 {% endblock content %}
 
 {% block footer %}
-{% include 'home/footer.html' %}
+{% include 'footer.html' %}
 {% endblock footer %}

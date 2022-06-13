@@ -3,7 +3,7 @@
     {% for comment in replies %}
     <div id="reply-box">
         <div>
-            <a class="text-black" href="#">
+            <a class="text-black" href="{% url 'profile' %}">
                 {% if comment.name.profile.image %}
                 <img class="rounded-circle article-img profile-img" src="{{ comment.name.user_profile.image.url }}">
                 {% else %}
@@ -42,7 +42,7 @@
                 <form method="POST" action="" autocomplete="off" class="comment-form" data-parent="{{comment.id}}" data-thread="{{comment.thread.id}}">
                     {% csrf_token %}
                     {{ comment_form.content }}
-                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    <button type="submit" class="btn btn-primary mt-3" data-bs-toggle="collapse" data-bs-target="#reply-form-{{comment.id}}">Submit</button>
                 </form>
                 {% else %}
                 <h2>You need to Login to comment</h2>

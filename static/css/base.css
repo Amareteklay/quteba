@@ -55,11 +55,11 @@ a.nav-link:active {
 }
 
 .bg-rounded {
-    height: 300px;
-    width: 80%;
-    border-radius: 300px 360px;
+    height: 100%;
+    width: 100%;
+    border-radius: 50% 30%;
     background-color: #05472a;
-    /*  background: url("/media/download.png") center no-repeat; */
+    background: url("/media/download.png") center no-repeat;
     /*  background-size: cover; */
 }
 
