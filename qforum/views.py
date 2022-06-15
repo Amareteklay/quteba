@@ -3,7 +3,7 @@ from django.views import generic, View
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import JsonResponse
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.views.generic.edit import CreateView
@@ -85,6 +85,8 @@ class ThreadDetailView(LoginRequiredMixin, View):
             if form.is_valid():
                 content = request.POST.get('content')
                 parent = None
+                pk = request.POST.get('pk')
+                print(pk)
                 parent_id = request.POST.get('parent')
                 if parent_id:
                     parent = Comment.objects.get(id=parent_id)

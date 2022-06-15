@@ -39,7 +39,7 @@
             <div class="form-box collapse ms-3" id="reply-form-{{comment.id}}">
                 {% if user.is_authenticated %}
                 <p class="modal-title" id="exampleModalLabel">Replying as {{request.user.username}}</p>
-                <form method="POST" action="" autocomplete="off" class="comment-form" data-parent="{{comment.id}}" data-thread="{{comment.thread.id}}">
+                <form method="POST" action="" autocomplete="off" class="comment-form reply-form" data-parent="{{comment.id}}" data-thread="{{comment.thread.id}}">
                     {% csrf_token %}
                     {{ comment_form.content }}
                     <button type="submit" class="btn btn-primary mt-3" data-bs-toggle="collapse" data-bs-target="#reply-form-{{comment.id}}">Submit</button>
@@ -55,5 +55,3 @@
         </div>
         {% endfor %}
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script src="{% static '/qforum/js/forum_detail.js'%}"></script>
