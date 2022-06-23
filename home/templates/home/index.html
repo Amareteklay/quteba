@@ -14,18 +14,18 @@
         </div>
         {% if not user.is_authenticated %}
         <div class="col-12 mt-2 left text-center">
-            <a class="btn btn-primary mb-3 me-2 border-rounded" href="{% url 'signup' %}">
+            <a class="btn btn-primary mb-3 me-2 border-rounded" href="{% url 'signup' %}" aria-label="Go to quteba signp page">
                 <strong>New to Quteba?</strong>
                 <strong class="text-center d-block mt-3"><i class="fas fa-user-plus"></i> Create an Account</strong>
             </a>
-            <a class="btn btn-primary mb-3 border-rounded" href="{% url 'login' %}">
+            <a class="btn btn-primary mb-3 border-rounded" href="{% url 'login' %}" aria-label="Go to quteba login page">
                 <strong>Already Registered?</strong>
                 <strong class="text-center d-block mt-3"><i class="fas fa-sign-in-alt"></i> Sign in</strong>
             </a>
         </div>
         {% endif %}
         <div class="col-6 mt-4 py-4 shadow border-0" id="q-blog-tagline">
-            <a href="#q-blog-section" class="text-white">
+            <a href="#q-blog-section" aria-label="Go to quteba blog page" class="text-white">
                 <h2 class="text-center"><i class="fa-solid fa-pen"></i><br> Qblog</h2>
             </a>
             <div class="text-white ps-5 ms-5">
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="col-6 mt-4 py-4 shadow  border-0 pb-4" id="q-forum-tagline">
-            <a href="#q-forum-section" class="text-white">
+            <a href="#q-forum-section" aria-label="Go to quteba forum page" class="text-white">
                 <h2 class="text-center"><i class="fa-solid fa-user-group"></i><br> Qforum</h2>
             </a>
             <div class="text-white ps-5 ms-5">
@@ -59,30 +59,30 @@
         {% for post in post %}
         {% if forloop.counter <= 3 %}
         <div class="col-4 mt-4 p-4 me-0 shadow text-white bg-deep-green {% if forloop.counter|divisibleby:2 %} border {% endif %}">
-            <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}" alt="profile image">
+            <a href="{% url 'post_detail' post.slug  %}" aria-label="Open post detail page" class="text-white">
+                <h2 class="text-center">{{post.title}}</h2>
+            </a>
+            <!-- <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}" alt="profile image"> -->
             {{ post.author|title }}
             | <span class="text-white"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text text-white h6"> <i class="far fa-heart"></i>
                 {{ post.number_of_likes }}</span>
-            <a href="{% url 'post_detail' post.slug  %}" class="text-white">
-                <h2 class="text-center">{{post.title}}</h2>
-            </a>
             <p class="px-3 pt-3">{{post.excerpt|safe}}</p>
         </div>
         {% endif %}
         {% endfor %}
         <div class="col-12 mt-5 text-center">
             {% if user.is_authenticated %}
-            <a href="{% url 'blog' %}" class="btn btn-success mb-3 border-rounded">
+            <a href="{% url 'blog' %}" aria-label="Go to quteba blog page" class="btn btn-success mb-3 border-rounded">
                 <h5 class="text-center">Read Qblog</h5>
             </a>
             {% else %}
             <div class="col-12 mt-2 mb-4 left text-center">
                 <strong>Please</strong>
-                <a href="{% url 'signup' %}">
+                <a href="{% url 'signup' %}" aria-label="Go to quteba signup page">
                     <strong class="text-center"> Sign up</strong>
                 </a>
                 <strong> or</strong>
-                <a href="{% url 'login' %}">
+                <a href="{% url 'login' %}" aria-label="Go to quteba login page">
                     <strong class="text-center"> Sign in</strong>
                 </a>
                 <strong>to unclock all blog posts.</strong>
@@ -100,29 +100,29 @@
         {% for thread in thread %}
         {% if forloop.counter <= 3 %}
         <div class="col-4 mt-4 p-4 text-white shadow bg-deep-green {% if forloop.counter|divisibleby:2 %} border {% endif %}">
-            <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}" alt="profile image">
-            <a class="text-white" href="#"> {{thread.name}}</a> <span class="op-6 text-white">|
-                {{ thread.created_on|timesince }} ago</span>
-            <a href="{% url 'qforum:thread_detail' thread.slug %}" class="text-white">
+            <a href="{% url 'qforum:thread_detail' thread.slug %}" aria-label="Open post detail page" class="text-white">
                 <h2 class="text-center">{{thread.topic}}</h2>
             </a>
+            <!-- <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}" alt="profile image"> -->
+            <a class="text-white" href="#" aria-label="Go to quteba user profile page"> {{thread.name}}</a> <span class="op-6 text-white">|
+                {{ thread.created_on|timesince }} ago</span>
             <p class="mx-3 pt-3">{{thread.description|safe}}</p>
         </div>
         {% endif %}
         {% endfor %}
         <div class="col-12 mt-5 left text-center">
             {% if user.is_authenticated %}
-            <a href="{% url 'qforum:threads' %}" class="btn btn-success mb-3 border-rounded">
+            <a href="{% url 'qforum:threads' %}" aria-label="Go to quteba forum page" class="btn btn-success mb-3 border-rounded">
                 <h5 class="text-center">Join Qforum</h5>
             </a>
             {% else %}
             <div class="col-12 mt-2 mb-4 left text-center">
                 <strong>Please</strong>
-                <a href="{% url 'signup' %}">
+                <a href="{% url 'signup' %}" aria-label="Go to quteba signup page">
                     <strong class="text-center"> Sign up</strong>
                 </a>
                 <strong> or</strong>
-                <a href="{% url 'login' %}">
+                <a href="{% url 'login' %}" aria-label="Go to quteba login page">
                     <strong class="text-center"> Sign in</strong>
                 </a>
                 <strong>to join Qforum and have your say.</strong>

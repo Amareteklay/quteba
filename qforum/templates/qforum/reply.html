@@ -4,9 +4,9 @@
     <div id="reply-box">
         <a class="text-black" href="{% url 'profile' %}">
             {% if comment.name.profile.image %}
-            <img class="rounded-circle article-img profile-img" src="{{ comment.name.user_profile.image.url }}">
+            <img class="rounded-circle article-img profile-img" src="{{ comment.name.user_profile.image.url }}" alt="profile image">
             {% else %}
-            <img class="rounded-circle article-img profile-img" src="{% get_media_prefix %}default.jpg">
+            <img class="rounded-circle article-img profile-img" src="{% get_media_prefix %}default.png" alt="profile image">
             {% endif %}
             {{comment.name}}</a>
         <span class="op-6 text-muted">{{ comment.created|timesince }} ago</span>

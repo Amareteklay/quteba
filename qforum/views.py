@@ -133,6 +133,8 @@ def vote_up(request):
     slug = request.POST.get('slug')
     if request.POST.get('action') == 'votingup':
         thread = Thread.objects.get(slug=slug)
+        if request.user in thread.down_votes.all():
+            thread.down_votes.remove(request.user)
         if request.user in thread.up_votes.all():
             thread.up_votes.remove(request.user)
             thread.save()
@@ -150,6 +152,8 @@ def vote_down(request):
     slug = request.POST.get('slug')
     if request.POST.get('action') == 'votingdown':
         thread = Thread.objects.get(slug=slug)
+        if request.user in thread.up_votes.all():
+            thread.up_votes.remove(request.user)
         if request.user in thread.down_votes.all():
             thread.down_votes.remove(request.user)
             thread.save()
@@ -166,6 +170,8 @@ def like_view(request):
     pk = request.POST.get('pk')
     if request.POST.get('action') == 'liking':
         comment = Comment.objects.get(pk=pk)
+        if request.user in comment.dislikes.all():
+            comment.dislikes.remove(request.user)
         if request.user in comment.likes.all():
             comment.likes.remove(request.user)
             comment.save()
@@ -182,6 +188,8 @@ def dislike_view(request):
     pk = request.POST.get('pk')
     if request.POST.get('action') == 'disliking':
         comment = Comment.objects.get(pk=pk)
+        if request.user in comment.likes.all():
+            comment.likes.remove(request.user)
         if request.user in comment.dislikes.all():
             comment.dislikes.remove(request.user)
             comment.save()

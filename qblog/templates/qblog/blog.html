@@ -20,7 +20,7 @@
                         <a href="{% url 'post_detail' post.slug  %}" class="post-link">
                             <h2 class="card-title mb-2 pt-2">{{ post.title }}</h2>
                         </a>
-                        <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}">
+                        <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}" alt="profile image">
                         {{ post.author|title }}
                         | <span class="text-muted"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text text-muted h6"> <i class="far fa-heart"></i>
                             {{ post.number_of_likes }}</span>
@@ -34,7 +34,7 @@
                         <a href="{% url 'post_detail' post.slug  %}" class="post-link">
                             <h2 class="card-title mb-2 pt-2">{{ post.title }}</h2>
                         </a>
-                        <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}">
+                        <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}" alt="profile image">
                         {{ post.author|title }}
                         | <span class="text-muted"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text text-muted h6"> <i class="far fa-heart"></i>
                             {{ post.number_of_likes }}</span>

@@ -1,4 +1,4 @@
-{% extends "qforum/forum_base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
@@ -8,11 +8,11 @@
             <h3>What is in your mind?</h3>
             <p>Create a discussion forum and open a conversation about your subject of interest.</p>
             <div class="shadow-lg p-3">
-            <form class="d-inline" method="post">
-                {% csrf_token %}
-                {{ form | crispy }}
-                <input class="btn btn-success mt-3" type="submit" value="Create">
-            </form>
+                <form class="d-inline" method="post">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <input class="btn btn-success mt-3" type="submit" value="Create">
+                </form>
             </div>
         </div>
     </div>

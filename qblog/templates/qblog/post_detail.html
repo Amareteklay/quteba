@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-10">
                 <h1 class="post-title">{{ post.title }}</h1>
-                <a href="{% url 'profile' %}" class="post-subtitle"><img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}">
+                <a href="{% url 'profile' %}" class="post-subtitle"><img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}" alt="profile image">
                     {{ post.author|title }} </a>
                 <p class="d-inline">| {{ post.created_on }}</p>
             </div>
@@ -67,7 +67,7 @@
                 {% for comment in comments %}
                 <div class="comments" style="padding: 10px;">
                     <p class="font-weight-bold">
-                        <img class="rounded-circle article-img profile-img" src="{{ comment.post.author.profile.image.url }}">
+                        <img class="rounded-circle article-img profile-img" src="{{ comment.post.author.profile.image.url }}" alt="profile image">
                         {{ comment.name }}
                         <span class=" text-muted font-weight-normal">
                             {{ comment.created_on }}
