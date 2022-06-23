@@ -143,17 +143,16 @@ a {
     background-color: #f9f9f9;
 }
 
-footer,
 .navbar.bg-light {
     background-color: #05472a !important;
 }
 
-.container-footer,
+
 footer {
     max-width: 100% !important;
     margin-top: 90px;
-    /* background-color: #056674; */
     background-color: #05472a;
+
 }
 
 .container-fluid {
