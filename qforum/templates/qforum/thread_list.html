@@ -6,9 +6,6 @@
 {% endblock extracss %}
 
 {% block extrahead %}
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{% static '/qforum/js/forum_detail.js'%}"></script>
-<script src="{% static '/qforum/js/forum_list.js'%}"></script>
 {% endblock extrahead%}
 {% block content %}
 <div class="container-fluid m-0 p-0">
@@ -73,11 +70,15 @@
         {% endblock sidebar %}
     </div>
 </div>
-{% endblock content %}
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static '/qforum/js/forum_detail.js'%}"></script>
+<script src="{% static '/qforum/js/forum_list.js'%}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         const threadBox = document.getElementById('thread-box')
         const url = window.location.href
+        console.log('sfsg')
         const getCookie = (name) => {
             let cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -100,10 +101,11 @@
             var topic = document.getElementById('id_topic')
             var description = document.getElementById('id_description')
             var category = document.getElementById('id_category')
+            console.log('sfsg')
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
-                url: url,
+                url: '',
                 data: {
                     'csrfmiddlewaretoken': csrftoken,
                     'topic': topic.value,
@@ -142,3 +144,4 @@
         });
     })
 </script>
+{% endblock content %}

@@ -5,8 +5,6 @@
 <link rel="stylesheet" href='{% static "/qforum/css/qforum.css" %}' type="text/css" />
 {% endblock extracss %}
 {% block extrahead %}
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 {% endblock extrahead%}
 {% block content %}
 <div class="container-fluid m-0 p-0">
@@ -126,34 +124,37 @@
         </div>
     </div>
 </div>
-{% endblock content %}
-
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script type="text/javascript">
+    console.log('So far so good')
     $(document).ready(function() {
-        const commentForm = document.getElementsByClassName('comment-form')
-        console.log(commentForm)
-        for (let form of commentForm) {
-            form.addEventListener('submit', e => {
-                e.preventDefault();
-                const commentBox = document.getElementById('comment-box');
-                var replyBox = document.getElementById('reply-box');
-                var content = form.getElementsByTagName('textarea')[0];
-                var pk = form.getAttribute('data-thread');
-                console.log(pk);
-                var parent = form.getAttribute('data-parent');
+        const commentForm = document.getElementById('comment-form')
+        console.log('sfsg')
+        const url = window.location.href
+        commentForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const commentBox = document.getElementById('comment-box');
+            console.log(commentBox)
+            var replyBox = document.getElementById('reply-box');
+            var content = commentForm.getElementsByTagName('textarea')[0];
+            var pk = commentForm.getAttribute('data-thread');
+            console.log(pk);
+            var parent = commentForm.getAttribute('data-parent');
 
-                $.ajax({
-                    type: 'POST',
-                    url: '',
-                    data: {
-                        'csrfmiddlewaretoken': csrftoken,
-                        content: content.value,
-                        parent: parent,
-                        pk: pk,
-                    },
-                    success: function(response) {
-                        if (parent == 0) {
-                            commentBox.insertAdjacentHTML('afterbegin', `
+            $.ajax({
+                type: 'POST',
+                url: '',
+                data: {
+                    'csrfmiddlewaretoken': csrftoken,
+                    content: content.value,
+                    parent: parent,
+                    pk: pk,
+                },
+                success: function(response) {
+                    if (parent == 0) {
+                        commentBox.insertAdjacentHTML('afterbegin', `
     <a class="text-black" href="{% url 'profile' %}">
         <img class="rounded-circle article-img profile-img" src="${response.profile}">
         ${response.name}</a>
@@ -180,9 +181,9 @@
         <i class="fa-solid fa-comment text-muted"></i> <span>Reply</span></button>
     {% endif %}
     `);
-                            $('.add-comment-modal').modal('hide');
-                        } else {
-                            form.closest('.form-box').insertAdjacentHTML('afterend', `
+                        $('.add-comment-modal').modal('hide');
+                    } else {
+                        commentForm.closest('.form-box').insertAdjacentHTML('afterend', `
     <div>
         <a class="text-black" href="#">
             {% if comment.name.profile.image %}
@@ -232,15 +233,15 @@
         {% endif %}
     </div>
     `);
-                        }
-                        $('.form-box').modal('hide');
-                        form.reset();
-                    },
-                    error: function(error) {
-                        console.log('Error: ', error);
-                    },
-                });
+                    }
+                    $('.form-box').modal('hide');
+                    commentForm.reset();
+                },
+                error: function(error) {
+                    console.log('Error: ', error);
+                },
             });
-        }
+        });
     });
 </script>
+{% endblock content %}

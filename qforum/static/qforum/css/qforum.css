@@ -44,3 +44,8 @@
 .left-border {
     border-left: #05472a 7px solid;
 }
+
+#side-bar {
+    margin-top: 300px;
+    background-color: red;
+}
