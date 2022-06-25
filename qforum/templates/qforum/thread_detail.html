@@ -41,12 +41,12 @@
             <!--  <div class="alert alert-success" role="alert">
         Your comment has been submitted successfully
     </div> -->
-            <div class="modal fade bg-light-green add-comment-modal" id="addCommentModal-{{thread.id}}" data-value="addCommentModal-{{thread.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade bg-light-green add-comment-modal" id="addCommentModal-{{thread.id}}" data-value="addCommentModal-{{thread.id}}" tabindex="-1" aria-labelledby="commentModalLabel-{{thread.id}}" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         {% if user.is_authenticated %}
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Commenting as {{request.user.username}}</h5>
+                            <h5 class="modal-title" id="commentModalLabel-{{thread.id}}">Commenting as {{request.user.username}}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -66,58 +66,56 @@
 
             {% for comment in comments %}
             {% if not comment.parent %}
-            <div class="pt-2 shadow border-bottom" id="comment-box">
-                <a class="text-black" href="{% url 'profile' %}" aria-label="Go to user profile page">
-                    {% if comment.name.profile.image %}
-                    <img class="rounded-circle article-img profile-img" src="{{ comment.name.user_profile.image.url }}" alt="profile image">
-                    {% else %}
-                    <img class="rounded-circle article-img profile-img" src="{% get_media_prefix %}default.png" alt="profile image">
-                    {% endif %}
-                    {{comment.name}}</a>
-                <span class="op-6 text-muted">{{ comment.created|timesince }} ago</span>
-                {% if request.user == comment.name %}
-                <span class="op-6 px-3 text-muted"><i class="fa-solid fa-pen-to-square"></i></span>
-                <span class="op-6 text-muted"><i class="fa-solid fa-trash small"></i></span>
-                {% endif %}
-                <p class="px-3 mt-2">{{comment.content}}</p>
+            <div id="comment-box">
+                <div class="pt-2 shadow border-bottom">
+                    <a class="text-black" href="{% url 'profile' %}" aria-label="Go to user profile page">
+                        {% if comment.name.user_profile.image %}
+                        <img class="rounded-circle article-img profile-img" src="{{ comment.name.user_profile.image.url }}" alt="profile image">
+                        {% else %}
+                        <img class="rounded-circle article-img profile-img" src="{% get_media_prefix %}default.png" alt="profile image">
+                        {% endif %}
+                        {{comment.name}}</a>
+                    <span class="op-6 text-muted">{{ comment.created|timesince }} ago</span>
+                    <p class="px-3 mt-2">{{comment.content}}</p>
 
-                <!-- Like unlike ajax -->
-                <div class="col-1 d-inline-block" id="likes" data-value="{{comment.id}}">
-                    <a class="btn liking" value="like" role="button">
-                        <i class="fa-solid fa-thumbs-up"></i>
-                        <span id="num-likes">{{ comment.no_of_likes }}</span>
-                    </a>
-                </div>
-                <div class="col-1 d-inline-block" id="dislikes" data-value="{{comment.id}}">
-                    <a class="btn disliking" value="dislike" role="button">
-                        <i class="fa-solid fa-thumbs-down"></i>
-                        <span id="num-dislikes">{{ comment.no_of_dislikes }}</span>
-                    </a>
-                </div>
-                <!-- End ajax like unlike-->
+                    <!-- Like unlike ajax -->
+                    <div class="col-1 d-inline-block" id="likes" data-value="{{comment.id}}">
+                        <a class="btn liking" value="like" role="button">
+                            <i class="fa-solid fa-thumbs-up"></i>
+                            <span id="num-likes">{{ comment.no_of_likes }}</span>
+                        </a>
+                    </div>
+                    <div class="col-1 d-inline-block" id="dislikes" data-value="{{comment.id}}">
+                        <a class="btn disliking" value="dislike" role="button">
+                            <i class="fa-solid fa-thumbs-down"></i>
+                            <span id="num-dislikes">{{ comment.no_of_dislikes }}</span>
+                        </a>
+                    </div>
+                    <!-- End ajax like unlike-->
 
-                <!-- Ajax reply -->
-                {% if user != comment.name %}
-                <button class="btn btn-sm d-inline-block" data-bs-toggle="collapse" data-bs-target="#comment-form-{{comment.id}}" aria-controls="comment-form-{{comment.id}}">
-                    <i class="fa-solid fa-comment text-muted"></i> <span>Reply</span></button>
-                <div class="form-box collapse ms-3" id="comment-form-{{comment.id}}">
-                    {% if user.is_authenticated %}
-                    <p class="modal-title" id="exampleModalLabel">Replying as {{request.user.username}}</p>
-                    <form method="POST" action="" autocomplete="off" id="reply-form" class="comment-form replying" data-parent="{{comment.id}}" data-thread="{{thread.id}}">
-                        {% csrf_token %}
-                        {{ comment_form.content }}
-                        <button type="submit" class="btn btn-primary mt-3" data-bs-toggle="collapse" data-bs-target="#comment-form-{{comment.id}}">Submit</button>
-                    </form>
-                    {% else %}
-                    <h2>You need to Login to comment</h2>
+                    <!-- Ajax reply -->
+                    {% if user != comment.name %}
+                    <button class="btn btn-sm d-inline-block" data-bs-toggle="collapse" data-bs-target="#comment-form-{{comment.id}}" aria-controls="comment-form-{{comment.id}}" aria-labelledby="replyModalLabel-{{comment.id}}">
+                        <i class="fa-solid fa-comment text-muted"></i> <span>Reply</span></button>
+                    <div class="form-box collapse ms-3" id="comment-form-{{comment.id}}">
+                        {% if user.is_authenticated %}
+                        <p class="modal-title" id="replyModalLabel-{{comment.id}}">Replying as {{request.user.username}}</p>
+                        <form method="POST" action="" autocomplete="off" id="reply-form" class="comment-form replying" data-parent="{{comment.id}}" data-thread="{{thread.id}}">
+                            {% csrf_token %}
+                            {{ comment_form.content }}
+                            <button type="submit" class="btn btn-primary mt-3" data-bs-toggle="collapse" data-bs-target="#comment-form-{{comment.id}}">Submit</button>
+                        </form>
+                        {% else %}
+                        <h2>You need to Login to comment</h2>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    <!-- End ajax reply -->
+                    {% if comment.is_parent %}
+                    {% load reply_tree %}
+                    {% reply_tree%}
                     {% endif %}
                 </div>
-                {% endif %}
-                <!-- End ajax reply -->
-                {% if comment.is_parent %}
-                {% load reply_tree %}
-                {% reply_tree%}
-                {% endif %}
             </div>
             {% endif%}
             {% endfor %}
@@ -127,121 +125,4 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script type="text/javascript">
-    console.log('So far so good')
-    $(document).ready(function() {
-        const commentForm = document.getElementById('comment-form')
-        console.log('sfsg')
-        const url = window.location.href
-        commentForm.addEventListener('submit', e => {
-            e.preventDefault();
-            const commentBox = document.getElementById('comment-box');
-            console.log(commentBox)
-            var replyBox = document.getElementById('reply-box');
-            var content = commentForm.getElementsByTagName('textarea')[0];
-            var pk = commentForm.getAttribute('data-thread');
-            console.log(pk);
-            var parent = commentForm.getAttribute('data-parent');
-
-            $.ajax({
-                type: 'POST',
-                url: '',
-                data: {
-                    'csrfmiddlewaretoken': csrftoken,
-                    content: content.value,
-                    parent: parent,
-                    pk: pk,
-                },
-                success: function(response) {
-                    if (parent == 0) {
-                        commentBox.insertAdjacentHTML('afterbegin', `
-    <a class="text-black" href="{% url 'profile' %}">
-        <img class="rounded-circle article-img profile-img" src="${response.profile}">
-        ${response.name}</a>
-    <span class="op-6 text-muted">${response.created}</span>
-    {% if request.user == comment.name %}
-    <span class="op-6 px-3 text-muted"><i class="fa-solid fa-pen-to-square"></i></span>
-    <span class="op-6 text-muted"><i class="fa-solid fa-trash small"></i></span>
-    {% endif %}
-    <p class="px-3 mt-2"> ${response.content}</p>
-    <div class="col-1 d-inline-block" id="likes" data-value="${response.pk}">
-        <a class="btn liking" value="like" role="button">
-            <i class="fa-solid fa-thumbs-up"></i>
-            <span id="num-likes">${response.likes}</span>
-        </a>
-    </div>
-    <div class="col-1 d-inline-block" id="dislikes" data-value="${response.pk}">
-        <a class="btn disliking" value="dislike" role="button">
-            <i class="fa-solid fa-thumbs-down"></i>
-            <span id="num-dislikes">${response.dislikes}</span>
-        </a>
-    </div>
-    {% if user != comment.name %}
-    <button class="btn btn-sm d-inline-block" data-bs-toggle="collapse" data-bs-target="#reply-form-${response.pk}" aria-controls="reply-form-${response.pk}">
-        <i class="fa-solid fa-comment text-muted"></i> <span>Reply</span></button>
-    {% endif %}
-    `);
-                        $('.add-comment-modal').modal('hide');
-                    } else {
-                        commentForm.closest('.form-box').insertAdjacentHTML('afterend', `
-    <div>
-        <a class="text-black" href="#">
-            {% if comment.name.profile.image %}
-            <img class="rounded-circle article-img profile-img" src="{{ comment.name.user_profile.image.url }}">
-            {% else %}
-            <img class="rounded-circle article-img profile-img" src="{% get_media_prefix %}default.jpg">
-            {% endif %}
-            ${response.name}</a>
-        <span class="op-6 text-muted">${response.created}</span>
-        {% if request.user == comment.name %}
-        <span class="op-6 px-3 text-muted"><i class="fa-solid fa-pen-to-square"></i></span>
-        <span class="op-6 text-muted"><i class="fa-solid fa-trash small"></i></span>
-        {% endif %}
-        <p class="px-3 mt-2">${response.content}</p>
-        <!-- Like unlike ajax -->
-        <div class="col-1 d-inline-block" id="likes" data-value="{{comment.id}}">
-            <a class="btn liking" value="like" role="button">
-                <i class="fa-solid fa-thumbs-up"></i>
-                <span id="num-likes">{{ comment.no_of_likes }}</span>
-            </a>
-        </div>
-        <div class="col-1 d-inline-block" id="dislikes" data-value="{{comment.id}}">
-            <a class="btn disliking" value="dislike" role="button">
-                <i class="fa-solid fa-thumbs-down"></i>
-                <span id="num-dislikes">{{ comment.no_of_dislikes }}</span>
-            </a>
-        </div>
-        {% if user != comment.name %}
-        <button class="btn btn-sm d-inline-block" data-bs-toggle="collapse" data-bs-target="#reply-form-{{comment.id}}" aria-controls="reply-form-{{comment.id}}">
-            <i class="fa-solid fa-comment text-muted"></i> <span>Reply</span></button>
-        {% endif %}
-        <div class="form-box collapse ms-3" id="reply-form-{{comment.id}}">
-            {% if user.is_authenticated %}
-            <p class="modal-title" id="exampleModalLabel">Replying as {{request.user.username}}</p>
-            <form method="POST" action="" autocomplete="off" class="comment-form" data-parent="{{comment.id}}" data-thread="{{comment.thread.id}}">
-                {% csrf_token %}
-                {{ comment_form.content }}
-                <button type="submit" class="btn btn-primary mt-3">Submit</button>
-            </form>
-            {% else %}
-            <h2>You need to Login to comment</h2>
-            {% endif %}
-        </div>
-        {% if comment.replies.count > 0 %}
-        {% load reply_tree %}
-        {% reply_tree%}
-        {% endif %}
-    </div>
-    `);
-                    }
-                    $('.form-box').modal('hide');
-                    commentForm.reset();
-                },
-                error: function(error) {
-                    console.log('Error: ', error);
-                },
-            });
-        });
-    });
-</script>
 {% endblock content %}
