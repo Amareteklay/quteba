@@ -43,7 +43,7 @@
                     <div class="row pb-3 align-items-center">
                         <div class="col-md-8 mb-3 mb-sm-0">
                             <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}" alt="profile image">
-                            <a class="text-black" href="{% url 'profile' %}" aria-label="Go to user profile page"> {{thread.name}}</a> <span class="op-6 text-muted">|
+                            <a class="text-black" href="{% url 'profile' %}" aria-label="Go to user profile page"> {{thread.name}}</a> <span class="op-6">|
                                 {{ thread.created_on|date:"Y-m-d"}}</span>
                             <h5 class="pt-3 px-3">
                                 <a href="{% url 'qforum:thread_detail' thread.slug %}" aria-label="Open thread detail page" class="text-primary">{{ thread.topic|title}}</a>
@@ -53,11 +53,11 @@
                             </div>
                         </div>
                         <div class="px-4">
-                            <span class="d-inline-block text-sm text-muted"> <i class="fa-solid fa-caret-up"></i>
+                            <span class="d-inline-block text-sm"> <i class="fa-solid fa-caret-up"></i>
                                 {{thread.no_of_upvotes}} </span>
-                            <span class="d-inline-block text-sm text-muted mx-3"> <i class="fa-solid fa-caret-down"></i>
+                            <span class="d-inline-block text-sm mx-3"> <i class="fa-solid fa-caret-down"></i>
                                 {{thread.no_of_downvotes}} </span>
-                            <span class="d-inline-block text-sm text-muted mx-3"><i class="fa-solid fa-comments"></i>
+                            <span class="d-inline-block text-sm mx-3"><i class="fa-solid fa-comments"></i>
                                 {{thread.comments.count}}</span>
                         </div>
                     </div>
