@@ -170,33 +170,43 @@ def like_view(request):
     pk = request.POST.get('pk')
     if request.POST.get('action') == 'liking':
         comment = Comment.objects.get(pk=pk)
-        if request.user in comment.dislikes.all():
-            comment.dislikes.remove(request.user)
+        print(comment)
         if request.user in comment.likes.all():
             comment.likes.remove(request.user)
             comment.save()
+            return JsonResponse({ 
+                'likes': comment.no_of_likes(),
+                'dislikes': comment.no_of_dislikes()
+            })
         else:
+            if request.user in comment.dislikes.all():
+                comment.dislikes.remove(request.user)
             comment.likes.add(request.user)
             comment.save()
-        return JsonResponse({ 
-            'likes': comment.no_of_likes(),
-            'dislikes': comment.no_of_dislikes()
-        })
+            return JsonResponse({ 
+                'likes': comment.no_of_likes(),
+                'dislikes': comment.no_of_dislikes()
+            })
 
 @login_required
 def dislike_view(request):
     pk = request.POST.get('pk')
     if request.POST.get('action') == 'disliking':
         comment = Comment.objects.get(pk=pk)
-        if request.user in comment.likes.all():
-            comment.likes.remove(request.user)
+        print(comment)
         if request.user in comment.dislikes.all():
             comment.dislikes.remove(request.user)
             comment.save()
+            return JsonResponse({ 
+                'likes': comment.no_of_likes(),
+                'dislikes': comment.no_of_dislikes()
+            })
         else:
+            if request.user in comment.likes.all():
+                comment.likes.remove(request.user)
             comment.dislikes.add(request.user)
             comment.save()
-        return JsonResponse({ 
-            'likes': comment.no_of_likes(),
-            'dislikes': comment.no_of_dislikes()
-        })
+            return JsonResponse({ 
+                'likes': comment.no_of_likes(),
+                'dislikes': comment.no_of_dislikes()
+            })

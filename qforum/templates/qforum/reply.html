@@ -17,16 +17,16 @@
         <p class="px-3 mt-2">{{comment.content}}</p>
 
         <!-- Like unlike ajax -->
-        <div class="col-1 d-inline-block" id="likes" data-value="{{comment.id}}">
+        <div class="col-1 d-inline-block likes" id="likes" data-value="{{comment.id}}">
             <a class="btn liking" value="like" role="button">
                 <i class="fa-solid fa-thumbs-up"></i>
-                <span id="num-likes">{{ comment.no_of_likes }}</span>
+                <span class="num-likes">{{ comment.no_of_likes }}</span>
             </a>
         </div>
-        <div class="col-1 d-inline-block" id="dislikes" data-value="{{comment.id}}">
+        <div class="col-1 d-inline-block dislikes" id="dislikes" data-value="{{comment.id}}">
             <a class="btn disliking" value="dislike" role="button">
                 <i class="fa-solid fa-thumbs-down"></i>
-                <span id="num-dislikes">{{ comment.no_of_dislikes }}</span>
+                <span class="num-dislikes">{{ comment.no_of_dislikes }}</span>
             </a>
         </div>
         <!-- End ajax like unlike-->
@@ -37,7 +37,7 @@
         {% endif %}
         <div class="form-box collapse ms-3" id="reply-form-{{comment.id}}">
             {% if user.is_authenticated %}
-            <p class="modal-title" id="rereplyModalLabel">Replying as {{request.user.username}}</p>
+            <p class="modal-title" id="rereplyModalLabel">Replying as {{user.username}}</p>
             <form method="POST" action="" autocomplete="off" class="comment-form reply-form" data-parent="{{comment.id}}" data-thread="{{comment.thread.id}}">
                 {% csrf_token %}
                 {{ comment_form.content }}

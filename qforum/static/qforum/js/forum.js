@@ -111,27 +111,28 @@
  // Like functionality
 
  $(document).ready(function() {
-     $('.liking').click(function(e) {
-         e.preventDefault();
-         var pk = document.getElementById('likes').getAttribute('data-value');
-         var like = document.getElementById('likes')
-         console.log(like)
-         var button = $(this).find("span");
-         $.ajax({
-             type: 'POST',
-             url: '/forum/like/',
-             data: {
-                 pk: pk,
-                 csrfmiddlewaretoken: csrftoken,
-                 action: 'liking',
-             },
-             success: function(response) {
-                 button.html(response['likes'])
-                 document.getElementById('num-dislikes').innerHTML = response['dislikes']
-             },
-             error: function(error) {
-                 console.log('error', error)
-             }
+     $('.likes').each(function() {
+         $(this).on('click', function(e) {
+             e.preventDefault();
+             var pk = $(this).attr('data-value')
+             console.log(pk)
+             var likeBtn = $(this).find("span");
+             $.ajax({
+                 type: 'POST',
+                 url: '/forum/like/',
+                 data: {
+                     pk: pk,
+                     csrfmiddlewaretoken: csrftoken,
+                     action: 'liking',
+                 },
+                 success: function(response) {
+                     likeBtn.html(response['likes'])
+                     document.getElementsByClassName('num-dislikes').innerHTML = response['dislikes']
+                 },
+                 error: function(error) {
+                     console.log('error', error)
+                 }
+             });
          });
      });
  });
@@ -139,25 +140,28 @@
  // Dislike functionality
 
  $(document).ready(function() {
-     $('.disliking').click(function(e) {
-         e.preventDefault();
-         var pk = document.getElementById('dislikes').getAttribute('data-value');
-         var button = $(this).find("span");
-         $.ajax({
-             type: 'POST',
-             url: '/forum/dislike/',
-             data: {
-                 pk: pk,
-                 csrfmiddlewaretoken: csrftoken,
-                 action: 'disliking',
-             },
-             success: function(response) {
-                 button.html(response['dislikes'])
-                 document.getElementById('num-likes').innerHTML = response['likes']
-             },
-             error: function(error) {
-                 console.log('error', error)
-             }
+     $('.dislikes').each(function() {
+         $(this).on('click', function(e) {
+             e.preventDefault();
+             var pk = $(this).attr('data-value')
+             console.log(pk)
+             var dislikeBtn = $(this).find("span");
+             $.ajax({
+                 type: 'POST',
+                 url: '/forum/dislike/',
+                 data: {
+                     pk: pk,
+                     csrfmiddlewaretoken: csrftoken,
+                     action: 'disliking',
+                 },
+                 success: function(response) {
+                     dislikeBtn.html(response['dislikes'])
+                     document.getElementsByClassName('num-likes').innerHTML = response['likes']
+                 },
+                 error: function(error) {
+                     console.log('error', error)
+                 }
+             });
          });
      });
  });
@@ -167,7 +171,7 @@
      const threadBox = document.getElementById('thread-box')
      const url = window.location.href
      console.log('sfsg')
-     const getCookie = (name) => {
+     /* const getCookie = (name) => {
          let cookieValue = null;
          if (document.cookie && document.cookie !== '') {
              const cookies = document.cookie.split(';');
@@ -182,7 +186,7 @@
          }
          return cookieValue;
      }
-     const csrftoken = getCookie('csrftoken');
+     const csrftoken = getCookie('csrftoken'); */
 
      $('#create-forum-form').submit(function(e) {
          e.preventDefault();
@@ -265,21 +269,7 @@
         <img class="rounded-circle article-img profile-img" src="${response.profile}">
         ${response.name}</a>
     <span class="op-6 text-muted">${response.created}</span>
-    <span class="op-6 px-3 text-muted"><i class="fa-solid fa-pen-to-square"></i></span>
-    <span class="op-6 text-muted"><i class="fa-solid fa-trash small"></i></span>
     <p class="px-3 mt-2"> ${response.content}</p>
-    <div class="col-1 d-inline-block" id="likes" data-value="${response.pk}">
-        <a class="btn liking" value="like" role="button">
-            <i class="fa-solid fa-thumbs-up"></i>
-            <span id="num-likes">${response.likes}</span>
-        </a>
-    </div>
-    <div class="col-1 d-inline-block" id="dislikes" data-value="${response.pk}">
-        <a class="btn disliking" value="dislike" role="button">
-            <i class="fa-solid fa-thumbs-down"></i>
-            <span id="num-dislikes">${response.dislikes}</span>
-        </a>
-    </div>
     </div>
     `);
                          $('.add-comment-modal').modal('hide');
@@ -287,25 +277,10 @@
                          form.closest('.form-box').insertAdjacentHTML('afterend', `
     <div>
         <a class="text-black" href="#">
-            <img class="rounded-circle article-img profile-img" src="${response.name.user_profile.image.url}">
+            <img class="rounded-circle article-img profile-img" src="${response.profile}">
             ${response.name}</a>
         <span class="op-6 text-muted">${response.created}</span>
-        <span class="op-6 px-3 text-muted"><i class="fa-solid fa-pen-to-square"></i></span>
-        <span class="op-6 text-muted"><i class="fa-solid fa-trash small"></i></span>
         <p class="px-3 mt-2">${response.content}</p>
-        <!-- Like unlike ajax -->
-        <div class="col-1 d-inline-block" id="likes" data-value="{{comment.id}}">
-            <a class="btn liking" value="like" role="button">
-                <i class="fa-solid fa-thumbs-up"></i>
-                <span id="num-likes">{{ comment.no_of_likes }}</span>
-            </a>
-        </div>
-        <div class="col-1 d-inline-block" id="dislikes" data-value="{{comment.id}}">
-            <a class="btn disliking" value="dislike" role="button">
-                <i class="fa-solid fa-thumbs-down"></i>
-                <span id="num-dislikes">{{ comment.no_of_dislikes }}</span>
-            </a>
-        </div>
     </div>
     `);
                      }

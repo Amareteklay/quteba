@@ -89,7 +89,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link btn m-0" aria-label="Go to user profile page" href="{% url 'profile' %}"><img class="rounded-circle border-0 article-img profile-img" src="{{ user.user_profile.image.url }}" alt="{{user.user_profile.user}}'s profile picture">
+                        <a class="nav-link btn m-0" aria-label="Go to user profile page" href="{% url 'profile' %}"><img class="rounded-circle border-0 article-img profile-img" src="{% if user.user_profile.image %} {{ user.user_profile.image.url }} {% else %} {% static '/media/default.jpg' %} {% endif %}" alt="{{user.user_profile.user}}">
                             {{user.user_profile.user}}</a>
                     </li>
                     <li class=" nav-item">
