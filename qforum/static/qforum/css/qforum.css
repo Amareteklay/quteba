@@ -49,3 +49,9 @@
     margin-top: 300px;
     background-color: red;
 }
+
+#likes,
+#dislikes {
+    background-color: rgb(157, 157, 212);
+    border-radius: 10px;
+}

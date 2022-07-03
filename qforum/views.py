@@ -166,11 +166,11 @@ def vote_down(request):
         })
 
 @login_required
-def like_view(request):
+def like_dislike_view(request):
     pk = request.POST.get('pk')
+    comment = Comment.objects.get(pk=pk)
+    print(f'{request.POST.get("action")}')
     if request.POST.get('action') == 'liking':
-        comment = Comment.objects.get(pk=pk)
-        print(comment)
         if request.user in comment.likes.all():
             comment.likes.remove(request.user)
             comment.save()
@@ -179,21 +179,17 @@ def like_view(request):
                 'dislikes': comment.no_of_dislikes()
             })
         else:
-            if request.user in comment.dislikes.all():
-                comment.dislikes.remove(request.user)
             comment.likes.add(request.user)
             comment.save()
+            if request.user in comment.dislikes.all():
+                comment.dislikes.remove(request.user)
+                comment.save()
             return JsonResponse({ 
                 'likes': comment.no_of_likes(),
                 'dislikes': comment.no_of_dislikes()
             })
 
-@login_required
-def dislike_view(request):
-    pk = request.POST.get('pk')
-    if request.POST.get('action') == 'disliking':
-        comment = Comment.objects.get(pk=pk)
-        print(comment)
+    elif request.POST.get('action') == 'disliking':
         if request.user in comment.dislikes.all():
             comment.dislikes.remove(request.user)
             comment.save()
@@ -202,10 +198,11 @@ def dislike_view(request):
                 'dislikes': comment.no_of_dislikes()
             })
         else:
-            if request.user in comment.likes.all():
-                comment.likes.remove(request.user)
             comment.dislikes.add(request.user)
             comment.save()
+            if request.user in comment.likes.all():
+                comment.likes.remove(request.user)
+                comment.save()
             return JsonResponse({ 
                 'likes': comment.no_of_likes(),
                 'dislikes': comment.no_of_dislikes()

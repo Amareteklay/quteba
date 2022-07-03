@@ -111,12 +111,16 @@
  // Like functionality
 
  $(document).ready(function() {
-     $('.likes').each(function() {
-         $(this).on('click', function(e) {
+     $('.like-dislike').each(function() {
+         var likeDislike = $(this);
+         likeDislike.find('#likes').on('click', function(e) {
              e.preventDefault();
-             var pk = $(this).attr('data-value')
+             var pk = likeDislike.attr('data-value')
              console.log(pk)
-             var likeBtn = $(this).find("span");
+             console.log('Liked')
+             var likeBtn = likeDislike.find("span")[0];
+             var dislikeBtn = likeDislike.find("span")[1];
+             console.log(likeBtn)
              $.ajax({
                  type: 'POST',
                  url: '/forum/like/',
@@ -126,8 +130,8 @@
                      action: 'liking',
                  },
                  success: function(response) {
-                     likeBtn.html(response['likes'])
-                     document.getElementsByClassName('num-dislikes').innerHTML = response['dislikes']
+                     likeBtn.innerHTML = response['likes']
+                     dislikeBtn.innerHTML = response['dislikes']
                  },
                  error: function(error) {
                      console.log('error', error)
@@ -140,23 +144,26 @@
  // Dislike functionality
 
  $(document).ready(function() {
-     $('.dislikes').each(function() {
-         $(this).on('click', function(e) {
+     $('.like-dislike').each(function() {
+         var likeDislike = $(this);
+         likeDislike.find('#dislikes').on('click', function(e) {
              e.preventDefault();
-             var pk = $(this).attr('data-value')
+             var pk = likeDislike.attr('data-value')
              console.log(pk)
-             var dislikeBtn = $(this).find("span");
+             console.log('Disliked')
+             var likeBtn = likeDislike.find("span")[0];
+             var dislikeBtn = likeDislike.find("span")[1];
              $.ajax({
                  type: 'POST',
-                 url: '/forum/dislike/',
+                 url: '/forum/like/',
                  data: {
                      pk: pk,
                      csrfmiddlewaretoken: csrftoken,
                      action: 'disliking',
                  },
                  success: function(response) {
-                     dislikeBtn.html(response['dislikes'])
-                     document.getElementsByClassName('num-likes').innerHTML = response['likes']
+                     dislikeBtn.innerHTML = response['dislikes']
+                     likeBtn.innerHTML = response['likes']
                  },
                  error: function(error) {
                      console.log('error', error)
