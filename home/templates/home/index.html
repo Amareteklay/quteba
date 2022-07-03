@@ -73,7 +73,7 @@
         <div class="col-12 mt-5 text-center">
             {% if user.is_authenticated %}
             <a href="{% url 'blog' %}" aria-label="Go to quteba blog page" class="btn btn-success mb-3 border-rounded">
-                <h5 class="text-center">Read Qblog</h5>
+                <strong class="text-center">Read Qblog</strong>
             </a>
             {% else %}
             <div class="col-12 mt-2 mb-4 left text-center">
@@ -113,7 +113,7 @@
         <div class="col-12 mt-5 left text-center">
             {% if user.is_authenticated %}
             <a href="{% url 'qforum:threads' %}" aria-label="Go to quteba forum page" class="btn btn-success mb-3 border-rounded">
-                <h5 class="text-center">Join Qforum</h5>
+                <strong class="text-center">Join Qforum</strong>
             </a>
             {% else %}
             <div class="col-12 mt-2 mb-4 left text-center">

@@ -228,11 +228,11 @@
             </div>
         </div>
         <div class="px-4">
-            <span class="d-inline-block text-sm text-muted"> <i class="fa-solid fa-caret-up"></i>
+            <span class="d-inline-block text-sm text-success"> <i class="fa-solid fa-caret-up"></i>
                  </span>
-            <span class="d-inline-block text-sm text-muted mx-3"> <i class="fa-solid fa-caret-down"></i>
+            <span class="d-inline-block text-sm text-danger mx-3"> <i class="fa-solid fa-caret-down"></i>
                  </span>
-            <span class="d-inline-block text-sm text-muted mx-3"><i class="fa-solid fa-comments"></i>
+            <span class="d-inline-block text-sm mx-3"><i class="fa-solid fa-comments"></i>
                 </span>
         </div>
     </div>
@@ -245,9 +245,7 @@
  // Comment and reply
 
  $(document).ready(function() {
-     console.log('sfsg')
      const commentForm = document.getElementsByClassName('comment-form')
-     console.log('sfsg')
      for (let form of commentForm) {
          const url = window.location.href
          form.addEventListener('submit', e => {
@@ -282,12 +280,14 @@
                          $('.add-comment-modal').modal('hide');
                      } else {
                          form.closest('.form-box').insertAdjacentHTML('afterend', `
-    <div>
+                         <div class="left-indent mt-4 shadow">
+                         <div class="mb-2" id="reply-box">                     
         <a class="text-black" href="#">
             <img class="rounded-circle article-img profile-img" src="${response.profile}">
             ${response.name}</a>
         <span class="op-6 text-muted">${response.created}</span>
         <p class="px-3 mt-2">${response.content}</p>
+        </div>
     </div>
     `);
                      }

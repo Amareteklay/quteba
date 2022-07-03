@@ -109,7 +109,7 @@
                     <form method="GET" action="{% url 'search_results' %}">
                         <div class="input-group">
                             <input type="text" class="form-control d-inline-block" placeholder="Search here" aria-label="search" name="query" value="{{ request.GET.query }}">
-                            <button class="btn-search remove-default-btn d-inline-block border-white" type="submit"><i class="fas fa-search"></i></button>
+                            <button class="btn-search remove-default-btn d-inline-block border-white" aria-label="search button" title="search button" type="submit"><i class="fas fa-search"></i></button>
                         </div>
                     </form>
                 </div>

@@ -169,7 +169,6 @@ def vote_down(request):
 def like_dislike_view(request):
     pk = request.POST.get('pk')
     comment = Comment.objects.get(pk=pk)
-    print(f'{request.POST.get("action")}')
     if request.POST.get('action') == 'liking':
         if request.user in comment.likes.all():
             comment.likes.remove(request.user)
