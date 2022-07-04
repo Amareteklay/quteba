@@ -60,6 +60,7 @@ a.nav-link:active {
     border-radius: 50% 0;
     background-color: #05472a;
     background: url("/media/download.png") center no-repeat;
+    background-size: cover;
     /*  background-size: cover; */
 }
 

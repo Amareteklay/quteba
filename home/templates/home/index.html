@@ -72,7 +72,7 @@
         {% endfor %}
         <div class="col-12 mt-5 text-center">
             {% if user.is_authenticated %}
-            <a href="{% url 'blog' %}" aria-label="Go to quteba blog page" class="btn btn-success mb-3 border-rounded">
+            <a href="{% url 'blog' %}" aria-label="Go to quteba blog page" class="btn btn-primary mb-3 border-rounded">
                 <strong class="text-center">Read Qblog</strong>
             </a>
             {% else %}
@@ -112,7 +112,7 @@
         {% endfor %}
         <div class="col-12 mt-5 left text-center">
             {% if user.is_authenticated %}
-            <a href="{% url 'qforum:threads' %}" aria-label="Go to quteba forum page" class="btn btn-success mb-3 border-rounded">
+            <a href="{% url 'qforum:threads' %}" aria-label="Go to quteba forum page" class="btn btn-primary mb-3 border-rounded">
                 <strong class="text-center">Join Qforum</strong>
             </a>
             {% else %}
