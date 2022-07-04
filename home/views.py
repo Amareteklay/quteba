@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate, logout 
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm

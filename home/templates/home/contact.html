@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="container account-container">
     <div class="row">
@@ -9,10 +9,12 @@
                 <h2 class="text-center mt-3">Contact Us</h2>
                 <h3 class="text-center mt-3"><em>We would love to hear from you!</em></h3>
             </div>
-            <div class="col-md-8 mt-3 offset-md-2">
+            <div class="col-md-8 mt-3 offset-md-2 my-5">
                 <form method="post" action="{% url 'contact' %}">
                     {% csrf_token %}
-                    <div class="row">
+                    {{ form | crispy }}
+                    <input type="submit" name="btnSubmit" class="btnContact my-3 btn-primary" value="Send Message" />
+                    <!-- <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <input type="text" name="name" class="form-control" placeholder="Your Name *" value="" required />
@@ -32,7 +34,7 @@
                                 <input type="submit" name="btnSubmit" class="btnContact" value="Send Message" />
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </form>
             </div>
         </div>

@@ -16,6 +16,6 @@ class ContactForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'required': True}),
             'email': forms.TextInput(attrs={'required': True}),
             'subject': forms.TextInput(attrs={'required': True}),
-            'message': forms.TextInput(attrs={'required': True}),
+            'message': forms.Textarea(attrs={'required': True}),
 
         }
