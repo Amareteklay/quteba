@@ -44,7 +44,14 @@ Users of Quteba are interested in either getting quick answers to specific quest
 
 
 #### Epics
+In this project, I created 6 epics which encapsulate the user stories below.
 
+- User registration 
+- User login/logout 
+- Blog app
+- Forum app
+- User engagement
+- Auxiliary pages
 #### User Stories
 - As a **contributor** I can **create a profile and have my articles listed under my name** so that **readers can follow, read and engage in my work**
 - As a **website user** I can **ask questions and send comments to the site owner** so that **I can get clarifications and express my opinions**
@@ -188,7 +195,6 @@ A common characteristic of these modes of user interactions are that they use aj
     + [jQuery](https://jquery.com/): was used to control click events and sending AJAX requests.
     + [jQuery User Interface](https://jqueryui.com/) was used to create interactive elements.
 - ### Databases:
-    + [SQLite](https://www.sqlite.org/): was used as a development database.
     + [PostgreSQL](https://www.postgresql.org/): the database used to store all the data.
 - ### Other tools:
     + [Git](https://git-scm.com/): the version control system used to manage the code.

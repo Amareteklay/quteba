@@ -93,7 +93,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-amareteklay-quteba-ks4l40hfliy.ws-eu51.gitpod.io']
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-amareteklay-quteba-ks4l40hfliy.ws-eu51.gitpod.io'
+    ]
 
 ROOT_URLCONF = 'quteba.urls'
 
@@ -136,14 +138,18 @@ WSGI_APPLICATION = 'quteba.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# Following https://medium.com/analytics-vidhya/provisioning-a-test-postgresql-database-on-heroku-for-your-django-app-febb2b5d3b29
+"""
+Following https://medium.com/analytics-vidhya/\
+provisioning-a-test-postgresql-database-on-heroku-for-your-django-app-febb2b5d3b29
+"""
 if 'test' in sys.argv:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'dfnp76462li1jo',
             'USER': 'rfedcnkuujtkyq',
-            'PASSWORD': '0330dbf8787d528afed0c1ce2ace44d9c5ef21db61a0493df2a5a01c2aeca9af',
+            'PASSWORD':
+            '0330dbf8787d528afed0c1ce2ace44d9c5ef21db61a0493df2a5a01c2aeca9af',
             'HOST': 'ec2-176-34-215-248.eu-west-1.compute.amazonaws.com',
             'PORT': 5432,
             'TEST': {
@@ -161,16 +167,20 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.\
+        UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -195,7 +205,6 @@ STATIC_URL = 'static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-# STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),
                     os.path.join(BASE_DIR, "qblog/static"),

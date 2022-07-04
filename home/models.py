@@ -6,5 +6,6 @@ class Contact(models.Model):
     email = models.EmailField()
     subject = models.CharField(blank=False, max_length=200)
     message = models.TextField(blank=False)
+
     def __str__(self):
         return self.name

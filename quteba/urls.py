@@ -29,5 +29,5 @@ urlpatterns = [
     path('profile/', include('users.urls'), name='users_urls'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-handler404 = 'quteba.views.handler404'
-handler500 = 'quteba.views.handler500'
+HANDLER404 = handler404
+HANDLER500 = handler500

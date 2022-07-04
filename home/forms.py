@@ -1,8 +1,9 @@
 from .models import Contact
 from django import forms
 
+
 class ContactForm(forms.ModelForm):
-    """Form for the contact"""
+    """Form for users to contact quteba"""
     class Meta:
         """Meta class"""
         model = Contact

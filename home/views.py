@@ -1,27 +1,30 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponseRedirect
-from django.contrib.auth import login, authenticate, logout 
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
+from django.db.models import Q
 from qblog.models import Post
 from qforum.models import Thread
-from .models import Contact
 from .forms import ContactForm
-from django.db.models import Q
 
 
 def index(request):
+    """ Quteba home page view
+     showing most recent three posts and three threads"""
     recent_posts = Post.objects.filter(status=1).order_by('-created_on')
     active_topics = Thread.objects.all().order_by('-created_on')
-    return render(request, 'home/index.html', {'post': recent_posts, 'thread': active_topics})
+    return render(request, 'home/index.html', {'post': recent_posts,
+                                               'thread': active_topics})
+
 
 def about(request):
+    """ View for the about page """
     return render(request, 'home/about.html')
 
 
 class SearchView(View):
-
+    """ View for search results
+     Shows results from blog, forum or both """
     def get(self, request, *args, **kwargs):
         query = self.request.GET.get("query")
         post_list = Post.objects.filter(
@@ -35,9 +38,11 @@ class SearchView(View):
             'thread_list': thread_list
         }
         return render(request, 'home/search_list.html', context=context)
-    
+
 
 class ContactView(View):
+    """ View for the contact form
+     renders contact form and saves valid messages"""
     template_name = 'home/contact.html'
     form_class = ContactForm
     initial = {'key': 'value'}
@@ -50,7 +55,8 @@ class ContactView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(self.request, 'Thank You for contacting us. Your message has been submitted successfully.')
+            messages.success(self.request, 'Thank You for contacting us.\
+             Your message has been submitted successfully.')
             return HttpResponseRedirect('/')
         else:
             errors = form.errors

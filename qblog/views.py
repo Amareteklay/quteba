@@ -2,21 +2,27 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, View
 from django.views.generic.edit import CreateView, UpdateView
-from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from .models import Post
 from .forms import CommentForm, PostForm
 
 
 class PostCreateView(CreateView):
+    """
+    View to create blog posts
+    """
     template_name = 'qblog/create_post.html'
     form_class = PostForm
-    
+
     def get_success_url(self):
         return reverse_lazy('qblog:blog')
 
 
-class PostEditView(LoginRequiredMixin, UpdateView):   
+class PostEditView(LoginRequiredMixin, UpdateView):
+    """
+    View to update blog posts
+    """
     model = Post
     fields = ['title', 'content', 'excerpt', 'status']
     template_name = 'qblog/edit_post.html'
@@ -31,6 +37,9 @@ class PostEditView(LoginRequiredMixin, UpdateView):
 
 
 class PostList(ListView):
+    """
+    A list view to display the list of blog posts
+    """
     model = Post
     queryset = Post.objects.filter(status=1).order_by('-created_on')
     template_name = 'qblog/blog.html'
@@ -39,7 +48,7 @@ class PostList(ListView):
 
 class PostDetail(View):
     """
-    View for details page
+    View for blog details page
     """
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
@@ -91,6 +100,9 @@ class PostDetail(View):
 
 
 class PostLike(View):
+    """
+    Like blog post
+    """
     def post(self, request, slug):
         post = get_object_or_404(Post, slug=slug)
         if post.likes.filter(id=request.user.id).exists():

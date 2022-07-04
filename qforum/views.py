@@ -1,20 +1,18 @@
-from django.shortcuts import render, get_object_or_404, reverse, redirect
+from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
-from django.views.generic.edit import CreateView
-from django.contrib.auth.models import User
 from .models import Thread, Comment, Category
 from .forms import ThreadForm, CommentForm
-from qblog.models import Post
 
 
 class ThreadList(View):
-
+    """
+    A class based view for a list of threads
+    """
     def get(self, request, *args, **kwargs):
         thread_list = Thread.objects.all()
         category_list = Category.objects.all()
@@ -33,8 +31,10 @@ class ThreadList(View):
         if thread_form.is_valid():
             topic = thread_form.cleaned_data['topic']
             description = thread_form.cleaned_data['description']
-            category = thread_form.cleaned_data['category'] 
-            new_thread = Thread(topic=topic, category=category, name=self.request.user, description=description)
+            category = thread_form.cleaned_data['category']
+            new_thread = Thread(topic=topic, category=category,
+                                name=self.request.user,
+                                description=description)
             new_thread.save()
             return JsonResponse({
                     'topic': new_thread.topic,
@@ -61,6 +61,9 @@ class CategoryList(generic.ListView):
 
 
 class ThreadDetailView(LoginRequiredMixin, View):
+    """
+    Detail view of a thread and its comments
+    """
     def get(self, request, slug, *args, **kwargs):
         queryset = Thread.objects.all()
         thread = get_object_or_404(queryset, slug=slug)
@@ -91,7 +94,8 @@ class ThreadDetailView(LoginRequiredMixin, View):
                 if parent_id:
                     parent = Comment.objects.get(id=parent_id)
                 thread = Thread.objects.get(id=request.POST.get('pk'))
-                new_comment = Comment(content=content, name=self.request.user, thread=thread, parent=parent)
+                new_comment = Comment(content=content, name=self.request.user,
+                                      thread=thread, parent=parent)
                 new_comment.save()
                 return JsonResponse({
                         'content': new_comment.content,
@@ -104,7 +108,11 @@ class ThreadDetailView(LoginRequiredMixin, View):
                         })
 
 
-class ThreadEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):   
+class ThreadEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """
+    Update forum entry
+    Updates forum but not comments
+    """
     model = Thread
     fields = ['category', 'topic', 'description']
     template_name = 'qforum/edit_thread.html'
@@ -119,6 +127,10 @@ class ThreadEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 
 class ThreadDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """
+    Delete a forum entry
+    All comments are also deleted
+    """
     model = Thread
     template_name = 'qforum/delete_thread.html'
     success_url = reverse_lazy('qforum:threads')
@@ -130,6 +142,9 @@ class ThreadDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 @login_required
 def vote_up(request):
+    """
+    Vote a forum entry up
+    """
     slug = request.POST.get('slug')
     if request.POST.get('action') == 'votingup':
         thread = Thread.objects.get(slug=slug)
@@ -141,7 +156,7 @@ def vote_up(request):
         else:
             thread.up_votes.add(request.user)
             thread.save()
-        return JsonResponse({ 
+        return JsonResponse({
             'upvotes': thread.no_of_upvotes(),
             'downvotes': thread.no_of_downvotes()
         })
@@ -149,6 +164,9 @@ def vote_up(request):
 
 @login_required
 def vote_down(request):
+    """
+    Vote a forum entry down
+    """
     slug = request.POST.get('slug')
     if request.POST.get('action') == 'votingdown':
         thread = Thread.objects.get(slug=slug)
@@ -160,20 +178,25 @@ def vote_down(request):
         else:
             thread.down_votes.add(request.user)
             thread.save()
-        return JsonResponse({ 
+        return JsonResponse({
             'upvotes': thread.no_of_upvotes(),
             'downvotes': thread.no_of_downvotes()
         })
 
+
 @login_required
 def like_dislike_view(request):
+    """
+    Like or unlike a comment or a reply
+    """
     pk = request.POST.get('pk')
     comment = Comment.objects.get(pk=pk)
+    # If like button is clicked
     if request.POST.get('action') == 'liking':
         if request.user in comment.likes.all():
             comment.likes.remove(request.user)
             comment.save()
-            return JsonResponse({ 
+            return JsonResponse({
                 'likes': comment.no_of_likes(),
                 'dislikes': comment.no_of_dislikes()
             })
@@ -183,16 +206,16 @@ def like_dislike_view(request):
             if request.user in comment.dislikes.all():
                 comment.dislikes.remove(request.user)
                 comment.save()
-            return JsonResponse({ 
+            return JsonResponse({
                 'likes': comment.no_of_likes(),
                 'dislikes': comment.no_of_dislikes()
             })
-
+    # If dislike button is clicked
     elif request.POST.get('action') == 'disliking':
         if request.user in comment.dislikes.all():
             comment.dislikes.remove(request.user)
             comment.save()
-            return JsonResponse({ 
+            return JsonResponse({
                 'likes': comment.no_of_likes(),
                 'dislikes': comment.no_of_dislikes()
             })
@@ -202,7 +225,7 @@ def like_dislike_view(request):
             if request.user in comment.likes.all():
                 comment.likes.remove(request.user)
                 comment.save()
-            return JsonResponse({ 
+            return JsonResponse({
                 'likes': comment.no_of_likes(),
                 'dislikes': comment.no_of_dislikes()
             })
