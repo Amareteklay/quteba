@@ -1,9 +1,18 @@
 from django.shortcuts import render, get_object_or_404, reverse
+from django.urls import reverse_lazy
 from django.views.generic import ListView, View
+from django.views.generic.edit import CreateView
 from django.http import HttpResponseRedirect
 from .models import Post
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 
+
+class PostCreateView(CreateView):
+    template_name = 'qblog/create_post.html'
+    form_class = PostForm
+    
+    def get_success_url(self):
+        return reverse_lazy('blog')
 
 class PostList(ListView):
     model = Post

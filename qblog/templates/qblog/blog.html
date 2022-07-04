@@ -7,6 +7,11 @@
         <div class="card-body mx-md-5 mx-sm-1 bg-light py-5 shadow-lg">
             <div class=" col-md-12 d-none d-md-block mb-4">
                 <h1 class="post-title text-center">Quteba Blog</h1>
+                {% if user.is_superuser %}
+                <div class="text-center my-4">
+                    <a href="{% url 'post_create' %}" class="btn btn-success"><strong><i class="fa-solid fa-pen"></i> Create Blog</strong> </a>
+                </div>
+                {% endif %}
             </div>
             {% for post in post_list %}
             <div class="row gx-0 mt-5 mb-3 shadow">
