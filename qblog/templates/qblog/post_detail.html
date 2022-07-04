@@ -12,6 +12,9 @@
                 <a href="{% url 'profile' %}" class="post-subtitle"><img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}" alt="profile image">
                     {{ post.author|title }} </a>
                 <p class="d-inline">| {{ post.created_on }}</p>
+                {% if user.is_superuser %}
+                <a href="{% url 'qblog:edit_post' post.slug %}" class="op-6 px-3"><i class="fa-solid fa-pen-to-square"></i> Edit post</a>
+                {% endif %}
             </div>
             <div class="col-md-1">
             </div>
@@ -26,7 +29,7 @@
                 <hr>
                 <strong>
                     {% if user.is_authenticated %}
-                    <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
+                    <form class="d-inline" action="{% url 'qblog:post_like' post.slug %}" method="POST">
                         {% csrf_token %}
                         {% if liked %}
                         <button type="submit" name="post_id" value="{{post.slug}}" class="btn p-0">

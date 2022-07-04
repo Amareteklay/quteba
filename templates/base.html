@@ -76,7 +76,7 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" aria-label="Go to quteba blog page" href="{% url 'blog' %}">Qblog</a>
+                        <a class="nav-link" aria-label="Go to quteba blog page" href="{% url 'qblog:blog' %}">Qblog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-label="Go to quteba forum page" href="{% url 'qforum:threads' %}">Qforum</a>

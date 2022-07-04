@@ -9,7 +9,7 @@
                 <h1 class="post-title text-center">Quteba Blog</h1>
                 {% if user.is_superuser %}
                 <div class="text-center my-4">
-                    <a href="{% url 'post_create' %}" class="btn btn-success"><strong><i class="fa-solid fa-pen"></i> Create Blog</strong> </a>
+                    <a href="{% url 'qblog:post_create' %}" class="btn btn-success"><strong><i class="fa-solid fa-pen"></i> Create Blog</strong> </a>
                 </div>
                 {% endif %}
             </div>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-7">
                     <div class="p-3 ps-4 bg-light">
-                        <a href="{% url 'post_detail' post.slug  %}" class="post-link">
+                        <a href="{% url 'qblog:post_detail' post.slug  %}" class="post-link">
                             <h2 class="card-title mb-2 pt-2">{{ post.title }}</h2>
                         </a>
                         <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}" alt="profile image">
@@ -30,13 +30,13 @@
                         | <span class="p-1"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text h6"> <i class="far fa-heart"></i>
                             {{ post.number_of_likes }}</span>
                         <p class="card-text pt-3">{{ post.excerpt|safe }}</p>
-                        <a href="{% url 'post_detail' post.slug  %}" class="btn btn-success">Read More &raquo;</a>
+                        <a href="{% url 'qblog:post_detail' post.slug  %}" class="btn btn-success">Read More &raquo;</a>
                     </div>
                 </div>
                 {% else %}
                 <div class="col-7">
                     <div class="p-3 ps-4 bg-light">
-                        <a href="{% url 'post_detail' post.slug  %}" class="post-link">
+                        <a href="{% url 'qblog:post_detail' post.slug  %}" class="post-link">
                             <h2 class="card-title mb-2 pt-2">{{ post.title }}</h2>
                         </a>
                         <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}" alt="profile image">
@@ -44,7 +44,7 @@
                         | <span class="p-1"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text h6"> <i class="far fa-heart"></i>
                             {{ post.number_of_likes }}</span>
                         <p class="card-text pt-3">{{ post.excerpt|safe }}</p>
-                        <a href="{% url 'post_detail' post.slug  %}" class="btn btn-success">Read More &raquo;</a>
+                        <a href="{% url 'qblog:post_detail' post.slug  %}" class="btn btn-success">Read More &raquo;</a>
                     </div>
                 </div>
                 <div class="col-5">

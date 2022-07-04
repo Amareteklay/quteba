@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, View
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from .models import Post
 from .forms import CommentForm, PostForm
@@ -12,7 +13,22 @@ class PostCreateView(CreateView):
     form_class = PostForm
     
     def get_success_url(self):
-        return reverse_lazy('blog')
+        return reverse_lazy('qblog:blog')
+
+
+class PostEditView(LoginRequiredMixin, UpdateView):   
+    model = Post
+    fields = ['title', 'content', 'excerpt', 'status']
+    template_name = 'qblog/edit_post.html'
+
+    def get_success_url(self):
+        slug = self.kwargs['slug']
+        return reverse_lazy('qblog:post_detail', kwargs={'slug': slug})
+
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
+
 
 class PostList(ListView):
     model = Post
