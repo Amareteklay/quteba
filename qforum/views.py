@@ -68,7 +68,7 @@ class ThreadDetailView(LoginRequiredMixin, View):
         queryset = Thread.objects.all()
         thread = get_object_or_404(queryset, slug=slug)
         thread_form = ThreadForm()
-        comment_form = CommentForm()
+        comment_form = CommentForm(auto_id=False)
         comments = thread.comments.filter(active=True).order_by('-created')
         thread_list = Thread.objects.all()
         category_list = Category.objects.all()

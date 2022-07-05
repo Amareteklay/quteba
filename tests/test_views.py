@@ -1,58 +1,73 @@
 import datetime
 from django.test import TestCase
-from django.utils import timezone
 from django.contrib.auth.models import User
-from django.urls import reverse 
+from django.urls import reverse
 from django.test import Client
 from qblog.models import Post
 from qblog.models import Comment as PostComment
 from qforum.models import Thread, Category, Comment
 from qblog.views import Post, PostDetail
 
-class HomePageViewTests(TestCase):
 
+class HomePageViewTests(TestCase):
+    """
+    Testing home page view
+    """
     def test_home_page_url_exists(self):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
-    
-    def test_home_page_url_name(self):  
+
+    def test_home_page_url_name(self):
         response = self.client.get(reverse("home"))
         self.assertEqual(response.status_code, 200)
-    
-    def test_home_page_template_name(self):  
+
+    def test_home_page_template_name(self):
         response = self.client.get(reverse("home"))
         self.assertTemplateUsed(response, "home/index.html")
 
     def test_home_page_template_content(self):
         response = self.client.get(reverse("home"))
-        self.assertContains(response, '<h1 class="text-center">RECENT STORIES</h1>')
-        self.assertContains(response, '<h1 class="text-center">ACTIVE TOPICS</h1>')
+        self.assertContains(response,
+                            '<h1 class="text-center">RECENT STORIES</h1>')
+        self.assertContains(response,
+                            '<h1 class="text-center">ACTIVE TOPICS</h1>')
 
 
 class AboutPageViewTests(TestCase):
-
+    """
+    Testing about page view
+    """
     def test_about_page_url_exists(self):
         response = self.client.get("/about/")
         self.assertEqual(response.status_code, 200)
-    
-    def test_about_page_url_name(self):  
+
+    def test_about_page_url_name(self):
         response = self.client.get(reverse("about"))
         self.assertEqual(response.status_code, 200)
-    
-    def test_about_page_template_name(self):  
+
+    def test_about_page_template_name(self):
         response = self.client.get(reverse("about"))
         self.assertTemplateUsed(response, "home/about.html")
 
     def test_about_page_template_content(self):
         response = self.client.get(reverse("about"))
-        self.assertContains(response, '<h1 class="post-title text-center">What is Quteba?</h1>')
-        self.assertNotContains(response, '<h6 class="post-title text-center">What is Quteba?</h6>')
+        self.assertContains(response,
+                            '''<h1 class="post-title text-center">
+                            What is Quteba?</h1>''')
+        self.assertNotContains(response,
+                               '''<h6 class="post-title text-center">
+                               What is Quteba?</h6>''')
 
 
 class PostListViewTests(TestCase):
+    """
+    Testing blog post list view
+    """
     @classmethod
     def setUpTestData(cls):
-        user = User.objects.create(username='Aman', email='aman@mail.com', password='123someTet')
+        user = User.objects.create(username='Aman',
+                                   email='aman@mail.com',
+                                   password='123someTet')
         number_of_posts = 11
         for post_id in range(number_of_posts):
             Post.objects.create(
@@ -80,21 +95,25 @@ class PostListViewTests(TestCase):
         response = self.client.get(reverse('blog'))
         self.assertEqual(response.status_code, 200)
         self.assertTrue('is_paginated' in response.context)
-        self.assertTrue(response.context['is_paginated'] == True)
+        self.assertTrue(response.context['is_paginated'])
         self.assertEqual(len(response.context['post_list']), 10)
 
     def test_post_list_lists_all_posts(self):
         response = self.client.get(reverse('blog')+'?page=2')
         self.assertEqual(response.status_code, 200)
         self.assertTrue('is_paginated' in response.context)
-        self.assertTrue(response.context['is_paginated'] == True)
+        self.assertTrue(response.context['is_paginated'])
         self.assertEqual(len(response.context['post_list']), 1)
 
 
 class PostDetailViewTests(TestCase):
-    
+    """
+    Testing blog detail view
+    """
     def setUp(self):
-        user = User.objects.create(username='Aman', email='aman@mail.com', password='123someTet')
+        user = User.objects.create(username='Aman',
+                                   email='aman@mail.com',
+                                   password='123someTet')
         Post.objects.create(
                 title='Blog post',
                 slug='blog-post',
@@ -114,11 +133,19 @@ class PostDetailViewTests(TestCase):
 
 
 class ThreadListViewTests(TestCase):
-
+    """
+    Testing thread list view in qforum app
+    """
     @classmethod
     def setUpTestData(cls):
-        user = User.objects.create(username='Aman', email='aman@mail.com', password='123someTet')
-        category = Category.objects.create(name=user, subject='Finance', description='Financial analysis', created_on=datetime.date.today(), status=0, thread_count=0)
+        user = User.objects.create(username='Aman',
+                                   email='aman@mail.com',
+                                   password='123someTet')
+        category = Category.objects.create(name=user,
+                                           subject='Finance',
+                                           description='Financial analysis',
+                                           created_on=datetime.date.today(),
+                                           status=0, thread_count=0)
         number_of_threads = 5
         for thread_id in range(number_of_threads):
             Thread.objects.create(
@@ -150,10 +177,19 @@ class ThreadListViewTests(TestCase):
 
 
 class ThreadDetailViewTests(TestCase):
-
+    """
+    Testing thread detail view
+    """
     def setUp(self):
-        user = User.objects.create(username='Aman', email='aman@mail.com', password='123someTet')
-        category = Category.objects.create(name=user, subject='Finance', description='Financial analysis', created_on=datetime.date.today(), status=0, thread_count=0)
+        user = User.objects.create(username='Aman',
+                                   email='aman@mail.com',
+                                   password='123someTet')
+        category = Category.objects.create(name=user,
+                                           subject='Finance',
+                                           description='Financial analysis',
+                                           created_on=datetime.date.today(),
+                                           status=0,
+                                           thread_count=0)
         Thread.objects.create(
                 name=user,
                 topic='Thread topic',

@@ -322,6 +322,7 @@ To clone the repository:
 - I used [this online converter](https://svgtopng.com/) to generate png from svg, which was created using [bgjar](https://bgjar.com/).
 - Nav bar and footer background color was inspired by [this](https://www.mp.se/goteborg/just-nu/goteborg-ska-vara-en-karnvapenfri-zon/).
 - I copied and edited the deployment procedure from our [hackathon project readme]().
+- Code for user registration and signals was adapted from [this](https://www.devhandbook.com/django/user-registration/) and [this](https://www.devhandbook.com/django/user-profile/).
 ### Acknowledgements
 
 

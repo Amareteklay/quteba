@@ -11,7 +11,7 @@
 <div class="container-fluid m-0 p-0">
     <div class="row mb-5 gx-0 mt-5 ps-5">
         <div class="col-md-8 ms-5 me-4 mt-3">
-            <div class="modal fade bg-light-green" id="addForumModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade bg-light-green" id="addForumModal" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         {% if user.is_authenticated %}
@@ -20,7 +20,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="" method="POST" autocomplete="off" id="create-forum-form">
+                            <form autocomplete="off" id="create-forum-form">
                                 {% csrf_token %}
                                 {{thread_form|crispy}}
                                 <button type="submit" class="btn btn-primary mt-2">Submit</button>
@@ -70,8 +70,4 @@
         {% endblock sidebar %}
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{% static '/qforum/js/forum.js'%}"></script>
-<script src="{% static '/qforum/js/forum_list.js'%}"></script>
 {% endblock content %}

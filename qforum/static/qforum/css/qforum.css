@@ -15,11 +15,6 @@
     display: none;
 }
 
-.reply-box {
-    padding-left: 10px;
-    border: red 2px solid;
-}
-
 .search-form {
     max-width: 300px;
     display: inline-block;
@@ -50,8 +45,8 @@
     background-color: red;
 }
 
-#likes:hover,
-#dislikes:hover {
+.likes:hover,
+.dislikes:hover {
     background-color: rgb(157, 157, 212);
     border-radius: 7px;
 }

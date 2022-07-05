@@ -1,7 +1,7 @@
 {% load static %}
 {% for comment in replies %}
 <div class="left-indent mt-4 shadow">
-    <div class="mb-2" id="reply-box">
+    <div class="mb-2 reply-box">
         <a class="text-black small" href="{% url 'profile' %}">
             {% if comment.name.user_profile.image %}
             <img class="rounded-circle article-img profile-img" src="{{ comment.name.user_profile.image.url }}" alt="profile image">
@@ -18,13 +18,13 @@
 
         <!-- Like unlike ajax -->
         <div class="col-3 d-inline-block like-dislike" data-value="{{comment.id}}">
-            <a class="btn liking d-inline-block" id="likes" value="like" role="button">
+            <a class="btn liking d-inline-block likes" role="button">
                 <i class="fa-solid fa-thumbs-up"></i>
             </a>
             <span class="num-likes">{{ comment.no_of_likes }}</span>
             <!--    </div>
         <div class="col-1 d-inline-block dislikes" data-value="{{comment.id}}"> -->
-            <a class="btn disliking d-inline-block" id="dislikes" value="dislike" role="button">
+            <a class="btn disliking d-inline-block dislikes" role="button">
                 <i class="fa-solid fa-thumbs-down"></i>
             </a>
             <span class="num-dislikes">{{ comment.no_of_dislikes }}</span>
@@ -32,13 +32,13 @@
             <!-- End ajax like unlike-->
 
             {% if user != comment.name %}
-            <button class="btn btn-sm d-inline-block ms-3" data-bs-toggle="collapse" data-bs-target="#reply-form-{{comment.id}}" aria-controls="reply-form-{{comment.id}}" aria-labelledby="rereplyModalLabel-{{comment.id}}">
+            <button class="btn btn-sm d-inline-block ms-3" data-bs-toggle="collapse" data-bs-target="#reply-form-{{comment.id}}" aria-controls="reply-form-{{comment.id}}">
                 <i class="fa-solid fa-comment"></i> <span>Reply</span></button>
             {% endif %}
             <div class="form-box collapse ms-3" id="reply-form-{{comment.id}}">
                 {% if user.is_authenticated %}
-                <p class="modal-title" id="rereplyModalLabel">Replying as {{user.username}}</p>
-                <form method="POST" action="" autocomplete="off" class="comment-form reply-form" data-parent="{{comment.id}}" data-thread="{{comment.thread.id}}">
+                <p class="modal-title">Replying as {{user.username}}</p>
+                <form autocomplete="off" class="comment-form reply-form" data-parent="{{comment.id}}" data-thread="{{comment.thread.id}}">
                     {% csrf_token %}
                     {{ comment_form.content }}
                     <button type="submit" class="btn btn-primary mt-3" data-bs-toggle="collapse" data-bs-target="#reply-form-{{comment.id}}">Submit</button>

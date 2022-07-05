@@ -13,8 +13,7 @@ class ThreadForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(ThreadForm, self).__init__(*args, **kwargs)
         self.fields['topic'].widget.attrs = {'placeholder': 'Enter a topic...',
-                                             'class': 'form-control',
-                                             'rows': '2'}
+                                             'class': 'form-control'}
         self.fields['description'].widget.attrs = {
                                                 'placeholder':
                                                 'Enter a description here...',
@@ -32,7 +31,9 @@ class CommentForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(CommentForm, self).__init__(*args, **kwargs)
+        self.fields['content'].widget.attrs.pop('id', None)
         self.fields['content'].widget.attrs = {
                                             'placeholder': 'Comment here...',
                                             'class': 'form-control text-area',
                                             'rows': '5', 'cols': '40'}
+
