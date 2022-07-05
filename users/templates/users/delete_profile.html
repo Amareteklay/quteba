@@ -3,15 +3,14 @@
 {% block content %}
 <div class="container account-container">
     <div class="row pt-5 mt-5 mb-5">
-        <div class="col-md-8 mt-3 offset-md-2 bg-light">
+        <div class="col-md-8 mt-3 offset-md-2 py-5 bg-light">
             <div class="content-section p-5 mb-5 mt-5">
                 <form method="POST">
                     {% csrf_token %}
                     <h5 class="mb-md-5 mb-sm-1">Are you sure you want to delete your profile?</h5>
-                    <div class="form-group d-inline-block mt-4">
-                        <a class="btn btn-secondary mt-3 mx-2 mt-sm-1 mb-md-4 d-inline-block" href="{% url 'profile' %}" aria-label="Cancel deletion of the account">Cancel</a>
+                    <div class="form-group d-inline-block mt-4 mb-5 py-5">
+                        <a class="btn btn-primary mt-3 mx-2 mt-sm-1 mb-md-4 d-inline-block" href="{% url 'profile' %}" aria-label="Cancel deletion of the account">Cancel</a>
                         <button class="btn btn-danger mt-3 mx-2 mt-sm-1 mb-md-4 d-inline-block" type="submit" aria-label="Confirm deletion of the account">Delete Profile</button>
-
                     </div>
                 </form>
             </div>

@@ -8,7 +8,7 @@
             <div class="col-md-1">
             </div>
             <div class="col-md-10">
-                <h1 class="post-title">{{ post.title }}</h1>
+                <h1 class="post-title my-3">{{ post.title }}</h1>
                 <a href="{% url 'profile' %}" class="post-subtitle"><img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}" alt="profile image">
                     {{ post.author|title }} </a>
                 <p class="d-inline">| {{ post.created_on }}</p>
@@ -24,7 +24,6 @@
             </div>
             <div class="col-md-10">
                 {{ post.content|safe }}
-                <hr>
                 {% if user.is_authenticated %}
                 <form class="d-inline" action="{% url 'qblog:post_like' post.slug %}" method="POST">
                     {% csrf_token %}
@@ -37,11 +36,11 @@
                     {% endif %}
                 </form>
                 {% else %}
-                <span class="text-secondary"><i class="far fa-heart"></i></span>
+                <span class="text-secondary"><i class="far fa-thumbs-up"></i></span>
                 {% endif %}
                 <span class="text-secondary">{{post.number_of_likes }} </span>
                 {% with comments.count as total_comments %}
-                <strong class="text-secondary"><i class="fas fa-comments"></i>
+                <strong class="text-secondary ms-3"><i class="fas fa-comments"></i>
                     {{ total_comments }}</strong>
                 {% endwith %}
                 <hr>
