@@ -37,7 +37,13 @@
 }
 
 .left-border {
-    border-left: #05472a 7px solid;
+    border-left: #05472a 5px solid;
+    border-bottom: #05472a 5px solid;
+}
+
+.right-border {
+    border-right: #05472a 5px solid;
+    border-bottom: #05472a 5px solid;
 }
 
 #side-bar {

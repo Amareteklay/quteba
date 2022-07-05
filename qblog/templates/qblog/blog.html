@@ -3,71 +3,69 @@
 
 {% block content %}
 <div class="container mt-3 pt-3">
-    <div class="row g-0">
-        <div class="card-body mx-md-5 mx-sm-1 bg-light py-5 shadow-lg">
-            <div class=" col-md-12 d-none d-md-block mb-4">
-                <h1 class="post-title text-center">Quteba Blog</h1>
-                {% if user.is_superuser %}
-                <div class="text-center my-4">
-                    <a href="{% url 'qblog:post_create' %}" class="btn btn-success"><strong><i class="fa-solid fa-pen"></i> Create Blog</strong> </a>
-                </div>
-                {% endif %}
+    <div class="row mx-md-5 mx-sm-1 py-5 shadow-lg bg-light">
+        <div class=" col-md-12 d-none d-md-block mb-4">
+            <h1 class="post-title text-center">Quteba Blog</h1>
+            {% if user.is_superuser %}
+            <div class="text-center my-4">
+                <a href="{% url 'qblog:post_create' %}" class="btn btn-success"><strong><i class="fa-solid fa-pen"></i> Create Blog</strong> </a>
             </div>
-            {% for post in post_list %}
-            <div class="row gx-0 mt-5 mb-3 shadow">
-                {% if forloop.counter|divisibleby:2 %}
-                <div class="col-5">
-                    <div class="border bg-light bg-rounded d-none d-lg-block shadow">
-                    </div>
-                </div>
-                <div class="col-7">
-                    <div class="p-3 ps-4 bg-light">
-                        <a href="{% url 'qblog:post_detail' post.slug  %}" class="post-link">
-                            <h2 class="card-title mb-2 pt-2">{{ post.title }}</h2>
-                        </a>
-                        <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}" alt="profile image">
-                        {{ post.author|title }}
-                        | <span class="p-1"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text h6"> <i class="far fa-heart"></i>
-                            {{ post.number_of_likes }}</span>
-                        <p class="card-text pt-3">{{ post.excerpt|safe }}</p>
-                        <a href="{% url 'qblog:post_detail' post.slug  %}" class="btn btn-success">Read More &raquo;</a>
-                    </div>
-                </div>
-                {% else %}
-                <div class="col-7">
-                    <div class="p-3 ps-4 bg-light">
-                        <a href="{% url 'qblog:post_detail' post.slug  %}" class="post-link">
-                            <h2 class="card-title mb-2 pt-2">{{ post.title }}</h2>
-                        </a>
-                        <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}" alt="profile image">
-                        {{ post.author|title }}
-                        | <span class="p-1"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text h6"> <i class="far fa-heart"></i>
-                            {{ post.number_of_likes }}</span>
-                        <p class="card-text pt-3">{{ post.excerpt|safe }}</p>
-                        <a href="{% url 'qblog:post_detail' post.slug  %}" class="btn btn-success">Read More &raquo;</a>
-                    </div>
-                </div>
-                <div class="col-5">
-                    <div class="border bg-light bg-rounded d-none d-lg-block shadow">
-                    </div>
-                </div>
-                {% endif %}
-            </div>
-            {% endfor %}
-            {% if is_paginated %}
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
-                    {% if page_obj.has_previous %}
-                    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-                    {% endif %}
-                    {% if page_obj.has_next %}
-                    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-
-                    {% endif %}
-                </ul>
-            </nav>
             {% endif %}
         </div>
+        {% for post in post_list %}
+        <div class="row mt-5 mb-3">
+            {% if forloop.counter|divisibleby:2 %}
+            <div class="col-5">
+                <div class="border bg-light bg-rounded d-none d-lg-block">
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="py-3 px-5 bg-light">
+                    <a href="{% url 'qblog:post_detail' post.slug  %}" class="post-link">
+                        <h2 class="card-title mb-2 pt-2">{{ post.title }}</h2>
+                    </a>
+                    <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}" alt="profile image">
+                    {{ post.author|title }}
+                    | <span class="p-1"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text h6"> <i class="far fa-heart"></i>
+                        {{ post.number_of_likes }}</span>
+                    <p class="card-text pt-3">{{ post.excerpt|safe }}</p>
+                    <a href="{% url 'qblog:post_detail' post.slug  %}" class="btn btn-success">Read More &raquo;</a>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-7">
+                <div class="py-3 px-5 bg-light">
+                    <a href="{% url 'qblog:post_detail' post.slug  %}" class="post-link">
+                        <h2 class="card-title mb-2 pt-2">{{ post.title }}</h2>
+                    </a>
+                    <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}" alt="profile image">
+                    {{ post.author|title }}
+                    | <span class="p-1"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text h6"> <i class="far fa-heart"></i>
+                        {{ post.number_of_likes }}</span>
+                    <p class="card-text pt-3">{{ post.excerpt|safe }}</p>
+                    <a href="{% url 'qblog:post_detail' post.slug  %}" class="btn btn-success">Read More &raquo;</a>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="border bg-light bg-rounded d-none d-lg-block">
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        {% if is_paginated %}
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+                {% endif %}
+                {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
     </div>
 </div>
 {% endblock content %}

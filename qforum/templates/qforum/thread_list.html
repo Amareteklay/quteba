@@ -39,7 +39,7 @@
             </div>
             <div id="thread-box">
                 {% for thread in thread_list %}
-                <div class="card shadow-lg row-hover pos-relative px-3 mb-3 rounded-2 left-border">
+                <div class="card shadow-lg row-hover pos-relative px-3 mb-3 rounded-2 {% if forloop.counter|divisibleby:2 %} right-border {% else %} left-border {% endif %}">
                     <div class="row pb-3 align-items-center">
                         <div class="col-md-8 mb-3 mb-sm-0">
                             <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}" alt="profile image">
