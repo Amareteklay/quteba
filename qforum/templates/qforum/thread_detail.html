@@ -8,7 +8,7 @@
 {% endblock extrahead%}
 {% block content %}
 <div class="container-fluid m-0 p-0">
-    <div class="row mb-5 gx-0 mt-5 ps-5">
+    <div class="row mb-5 mt-5 ps-5 py-3" id="forum-area">
         <div class="col-md-10 mt-5 ms-5 ps-4 py-2 bg-light left-border">
             <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}" alt="profile image">
             <a class="text-black" href="{% url 'profile' %}"> {{thread.name}}</a>
