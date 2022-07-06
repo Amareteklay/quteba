@@ -128,20 +128,33 @@ ERD for the user, profile, blog post, forum category and thread models.
 
 #### Colors
 
-I used green, a calming color, with varying intensity.
+A deep green (British Racing Green) color, which is a calming color, with varying intensity.
 To create a good contrast, I used white text on a deep green background.
+
+![Main color](assets/screenshots/color-palette.png)
+
+Bootstrap colors primary (for blue) and danger (for red) are used in buttons, the latter being associated with delete buttons. Light salmon was used to make the logo stand out in the deep green background color of the navbar. 
 
 ## Features
 
 * Quteba serves the aforementioned user stories by providing two broad features: Quteba Blog (Qblog) and Quteba Forum (Qforum). Besides these, it has static pages. 
 
 * **Homepage:** Quteba's homepage provides first time users with information and links that helps them navigate the website easily. With first time visitors of the site in mind, the dual purpose of the site is made clear from the outset. Users see links to and information about Qblog and Qforum. There is a nav bar at the top which presents different menu items, so users can choose with a single click to view what quteba is about, a sign up page or if they have an account a sign in page.
+
 The home page also presents the most recently added blog entries and the active discussion forum topics in separate sections. This gives users the chance to have a quick glance at what kinds of topics and questions are being discussed. From users' perspective, this preview is important because it gives them an idea of what to expect before delving into the whole list of either Qblog or Qforum.
 
 * The navigation menu: This is visible in the home page and all other pages. Only some of the items in the menu change depending on whether the user is logged in or not.
-(image here)
+![Main color](assets/screenshots/navbar-guest.png)
+
+* Authenticated users see links not only to Qblog and Qforum but also to their profile page.
+![Main color](assets/screenshots/navbar-authenticated.png)
+
 
 * **Search form:** Users who are looking for a particular concept may search for it by typing a keyword in the search input form at the top bar of each page. If the keyword exists in Qblog and/or Qforum, the results are displayed in a separate search results page.
+
+  ![Main color](assets/screenshots/search-form.png)
+
+
 
 * **Search results page:** This page renders the search results when a user searches for a specific keyword and a matching entry is found in either Qblog or Qforum or both. If the keyword the user types in the search form does not exist, the results page shows a feedback message. 
 
@@ -173,7 +186,8 @@ A user can edit or delete their own discussion forum and reply to comments and r
 New users are encouraged to sign up so that they can not only read what others have written but also engage in conversations by creating forums and through comments and replies. Users who decide to sign up at the very beginning will see the sign up menu item, which is also available throughout the quteba pages. Users who want to explore the contents first can do so until they try to add a comment, for example, where they will see a link to the login or sign up pages. 
 
 * **Sign in Page:**
-If a user has an account, they can login so that they can interact with Quteba in more ways than they otherwise would. A logged in user can add comments to blog posts, like blog posts, create a discussion forum, comment on a forum, reply to comments, vote up or down on forums, like or unlike replies, edit or delete their own forums and comments, update and delete their profiles. 
+If a user has an account, they can login so that they can interact with Quteba in more ways than they otherwise would. A logged in user can add comments to blog posts, like blog posts, create a discussion forum, comment on a forum, reply to comments, vote up or down on forums, like or unlike replies, edit or delete their own forums and comments, update and delete their profiles.
+
 
 * **Profile page:**
 When a user logs in, they see their profile picture and their name on the menu bar. By clicking on their profile name, they can view their profile which has two buttons linked to (1) profile update form and (2) profile delete page. 
@@ -186,7 +200,12 @@ If a user wants to delete the profile they created, they can do so by using the 
 
 * **Sign out page:**
 When a logged in user wants to sign out, they can do so by clicking on the sign out menu in the navigation bar. They can sign out from any page because the navigation bar is available on all pages.
-Once they click on sign out, they are asked to confirm that they logout. If the user does not want to complete the process, they can cancel it and go back to the (profile page). 
+Once they click on sign out, they are asked to confirm that they logout. If the user does not want to complete the process, they can cancel it and go back to the (profile page).
+
+* **Footer:**
+The footer section is displayed at the bottom of each page to help users follow the social links or click on Quteba in the copyright section to go back to the home page. The social links open in new tabs.
+
+![Main color](assets/screenshots/footer.png)
 
 * **User Interaction:**
 One of the key principles of Quteba is user engagement. Users can create discussion forums which can grow in to a big threaded forum with many contributors. Users can also express their views by using likes and unlikes, up and down votes etc. As such, quteba becomes what its users make it to be. 
