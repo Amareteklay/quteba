@@ -31,7 +31,7 @@
                 <span id="num-down-votes">{{ thread.no_of_downvotes }}</span>
             </div>
 
-            <button class="btn" data-bs-toggle="modal" data-bs-target="#addCommentModal-{{thread.id}}">Comment <i class="fa-solid fa-angle-down"></i></button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCommentModal-{{thread.id}}">Comment <i class="fa-solid fa-angle-down"></i></button>
             {% if request.user == thread.name %}
             <a href="{% url 'qforum:edit-thread' thread.slug %}" class="op-6 px-3"><i class="fa-solid fa-pen-to-square"></i></a>
             <a href="{% url 'qforum:delete-thread' thread.slug %}" class="op-6"><i class="fa-solid fa-trash small"></i></a>

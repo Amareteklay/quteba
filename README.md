@@ -402,7 +402,6 @@ To clone the repository:
 
 
 ## Credits
-
 # 
 
 - I followed [this tutorial](https://replit.com/talk/learn/DjangoPython-and-HTML-Coding-Campus-Tutorial-1-Create-a-Blog-with-Django/142238?order=new) to create blog posts.
