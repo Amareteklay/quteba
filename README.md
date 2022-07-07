@@ -1,5 +1,5 @@
 # QUTEBA
-Quteba, a Tigrinya word that can roughly be translated as Economy, is a dynamic website that aims to serve the general public by providing views and analyses pertinent to economic issues as well as by enabling users to participate in discussion forums. As users can start discussion forums and engage in discussions by way of comments and replies, Quteba is as much a platform for user created content as it is source of information for those who want to read blog posts.
+Quteba is a dynamic website that aims to serve the general public by providing views and analyses pertinent to economic issues as well as by enabling users to participate in discussion forums. Quteba got its name from a Tigrinya word that can roughly be translated as Economy. Quteba is as much a platform for user created content as it is source of information for those who want to read blog posts. Users can start discussion forums and engage in discussions by way of comments and replies.
 
 Quteba was built using Django framework for the back-end and JavaScript (and Jquery), HTML and CSS (and bootstrap) for the front-end.  
 
@@ -23,7 +23,8 @@ Quteba was built using Django framework for the back-end and JavaScript (and Jqu
         * [Database Schema](#Database-Schema)
     * [The Surface Plane](#The-Surface-Plane)
 * [Features](#features)
-* [Future Enhancements](#future-enhancements)
+    * [Existing Features](#existing-features)
+    * [Future Enhancements](#future-enhancements)
 * [Technologies Used](#technologies-used)
 * [Testing](#testing)
 * [Deployment](#deployment)
@@ -32,34 +33,74 @@ Quteba was built using Django framework for the back-end and JavaScript (and Jqu
 ## UX Design
 
 ### The Strategy Plane
-
+ 
 #### Site Goals
 
-The goal of the website is to provide a platform for users to discuss and understand relevant economic issues. Quteba has a dual purpose: for the average user, it is a place where they can ask questions and get answers from volunteers. For users who are looking for deeper analyses from experts, quteba has a blog where contributors post articles and users can read, comment on or even open a discussion forum if they will.
+* Owner goals: 
+   * The goal of the website is to provide a platform for users to discuss and understand relevant economic issues. Quteba has a dual purpose: for the average user, it is a place where they can ask questions and get answers from other users. For users who are looking for deeper analyses from experts, quteba has a blog where contributors post articles and users can read, comment on or even open a discussion forum if they will.
 
-Users of Quteba are interested in either getting quick answers to specific questions or a deeper insight on a given problem. As such, they want to engage in discussion forums by asking questions, reading comments, replying and/or reacting to the comments and replies others provide. Users are also interested in grasping the various viewpoints on specific economic topics, and thus they want to read articles that synthesize different theories and pieces of information.
+* User goals: 
+   * Users of Quteba are interested in either getting quick answers to specific questions or a deeper insight on a given problem. As such, they want to engage in discussion forums by asking questions, reading comments, replying and/or reacting to the comments and replies others provide. Users are also interested in grasping the various viewpoints on specific economic topics, and thus they want to read articles that synthesize different theories and pieces of information.
 
 #### Epics
-In this project, I created 6 epics which encapsulate the user stories below.
+In this project, the following 8 epics were created which encapsulate the user stories below.
 
-- User registration 
-- User login/logout 
-- Blog app
-- Forum app
-- User engagement
-- Auxiliary pages
+- Useability
+- User authentication
+- User profile  
+- Quteba blog 
+- Quteba forum
+- Nested threads
+- Search for content
+- User interaction 
+
 #### User Stories
-- As a **contributor** I can **create a profile and have my articles listed under my name** so that **readers can follow, read and engage in my work**
-- As a **website user** I can **ask questions and send comments to the site owner** so that **I can get clarifications and express my opinions**
-- As a **site admin** I can **verify authors and approve comments** so that **only relevant and engaging content is shared among readers**
-- As a **reader** I can **follow and share latest activities on social media** so that **I see updates from a social media app I am using**
-- As a **reader** I can **filter and set alert for content in different categories** so that **I do not have to read every article before I find the ones I am interested in**
-- As a **reader** I can **like or unlike posts and comments** so that **I express my reaction without writing comments**
-- As a **subscriber** I can **receive email notifications of new articles** so that **stay updated on relevant economic issues**
-- As a **reader** I can **leave comments and view thread** so that **I become engaged in a conversation on a topic of my interest**
-- As a **contributor** I can **create drafts and publish articles** so that **I can share my views and analyses with readers and receive feedback**
-- As a **site user** I can **create an account** so that **I have access to both public and members only content**
-- As a **reader** I can **view paginated excerpts of articles** so that **I choose which articles to read**
+
+The above user goals and epics were decomposed into user stories that helped me to identify and implement specific features. The user stories and different tasks under them were listed in the project kanban board to keep track of the status of each feature. 
+
+- Useability
+   - As a first time visitor I want to get information about the site so that I can understand the what the site focuses on and how I can make the best out of it.
+   - As a first time visitor, I want to be able to navigate the site so that I can find the most important information with the least amount of effort.
+   - As an engaged user, I want to see relevant feedback so that I can understand if my interactions with the site are successful or not. 
+   - As a user, I want to know which menu item is active so that I can know which part of the site I am navigating at each moment. 
+   - As a user, I want to be able to access quteba's contents and functionalities from my mobile or tablet so that I do not have to wait until I find a computer.
+   - As a frequent user, I want to follow the site owner on social media so that I can see recent activities and updates from my favourite social media apps.
+
+- User authentication
+   - As a first time visitor I want to sign up so that I can have login credentials which I can use to login to the site every time I want to use it. 
+   - As a registered user, I want to be able to login with my registereg credentials so that I can access my profile as well as all the contents and functionalities that require that users be logged in.
+   - As a logged in user, I want to be able to logout easily so that I feel safe that others do not interact with the site via my account.
+
+- User profile 
+   - As a registered user I want to have a profile so that I can choose a profile picture and share my bio with other quteba users.
+   - As a registered user I want to update and delete my profile so that I have control of what I want to do with my personal information.
+
+- Quteba blog
+   - As a reader I want to read excerpts of blog posts so that I choose which articles to read without going through the whole content of each post.
+   - As a contributor I can create drafts and publish posts without entering the admin page so that I can quickly share my views and analyses with readers.
+   - As a regular reader, I want to read the contents of each post on its own page so that I can focus on the contents of the specific post at a time while being able to see other users' feedbacks to the particular post.
+   - As a registered user I want to like posts and add comments so that I can express my impression and engage in a discussion.
+
+- Quteba forum
+   - As a first time visitor I want to see sample forum entries so that I can decide if I want to join the discussions. 
+   - As a registered user, I want to create a discussion forum so that I can get answers to my questions and start conversations.
+   As a user, I want update or delete my own discussion forum so that I can opt out from a conversation that takes a different direction from I initially intended.
+   - As a frequent user, I want to vote up or vote down a forum so that I can quickly reward or punish contents based on their importance and relevance without having to write comments. 
+ 
+- Nested threads
+   - As a dedicated user, I want to reply to comments on a forum I created so that I can open and lead an engaging conversation on relevant topics. 
+   - As a registered user, I want to leave comments on discussion forums so that I can express my views and lead to further discussions.
+   - As a frequent user, I want to like or unlike comments and replies to express my opinions of them without having to write comments or replies.
+   - As a registered user, I want to reply to other users' comments and replies so that I can follow the threads and identify the forkroads that emerge from the discussions.
+   - As a forum reader, I want to see nested threads of forum topics, comments and replies so that I can visually see which replies are given to which comment.
+
+- Search for content
+   - As a user, I want to search for specific content so that I can find quick answers to the questions I have in mind.
+   - As a user, I want to see excerpts of my search results so that I can quickly identify the most relevant content I want to read further.
+
+- User interaction
+   - As a user, I want to interact with the site smoothly so that I can see the effect of my actions without refreshing the pages.  
+   - As a user I want to contact the site admin directly so that I can ask questions and send comments to get clarifications and to express my opinions and expectations.
 
 ### The Scope Plane
 #### Functional specifications
@@ -126,6 +167,9 @@ ERD for the user, profile, blog post, forum category and thread models.
 
 ### The Surface Plane
 
+#### Typography
+
+
 #### Colors
 
 A deep green (British Racing Green) color, which is a calming color, with varying intensity.
@@ -136,6 +180,8 @@ To create a good contrast, I used white text on a deep green background.
 Bootstrap colors primary (for blue) and danger (for red) are used in buttons, the latter being associated with delete buttons. Light salmon was used to make the logo stand out in the deep green background color of the navbar. 
 
 ## Features
+
+### Existing Features
 
 * Quteba serves the aforementioned user stories by providing two broad features: Quteba Blog (Qblog) and Quteba Forum (Qforum). Besides these, it has static pages. 
 
@@ -217,10 +263,13 @@ One of the key principles of Quteba is user engagement. Users can create discuss
 A common characteristic of these modes of user interactions are that they use ajax calls to make the user experience smooth. For the likes and dislikes, one can only like or dislike, but not both, at a time. The same applies to votes: if one has voted up and click on vote down, the up vote is removed and the down vote increases by one.
 
 
-## Future Enhancements
-
+### Future Enhancements
+- Email notifications
+- Ability to view others' profiles and follow them
+- Ability to filter content by category and other criteria
+- Ability to use audio and video in the forum
 ## Technologies Used
-
+This project requires the use of Full Stack Tools. Django was used for the backend and JavaScript, HTML and CSS for the front-end. Postgresql was used for the database and psycopg2 was used as an Object Relational Mapper (ORM) tool. Below is a list of all the technologies used in this project.
 * asgiref==3.5.0
 * cloudinary==1.29.0
 * dj-database-url==0.5.0
@@ -241,10 +290,7 @@ A common characteristic of these modes of user interactions are that they use aj
 * sqlparse==0.4.2
 * tzdata==2022.1
 
-------
-
 - ### Languages:
-    
     + [Python 3.8.5](https://www.python.org/downloads/release/python-385/): the primary language used to develop the server-side of the website.
     + [JS](https://www.javascript.com/): the primary language used to develop interactive components of the website.
     + [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML): the markup language used to create the website.
@@ -274,10 +320,7 @@ A common characteristic of these modes of user interactions are that they use aj
     + [PEP8](https://pep8.org/): was used to validate Python code for the website.
     + [Cloudinary](https://cloudinary.com/): the image hosting service used to upload images and other media.
     + [Techsini](https://techsini.com/multi-mockup/index.php): to generate mock up for responsive design for various screen sizes.
-
-HTML, CSS, Javascript, Bootstrap5, Django
-
-I used [Balsamiq Cloud](https://balsamiq.cloud/) to create wireframes.
+    + [Balsamiq Cloud](https://balsamiq.cloud/) to create wireframes.
 ## Testing
 Detailed testing and test results [are documented here](TESTING.md).
 ### Bugs
