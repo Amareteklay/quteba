@@ -103,24 +103,56 @@
 
 ### Python Validation
 
-I used [pep8 online checker](http://pep8online.com/) to validate all python code. 
+I used [pep8 online checker](http://pep8online.com/) to validate all python code. The whole pep8 validation report is available [here](/assets/testing/pep8_validation.pdf).
 
 - Home app
+Python files in the home app checked for pep8 compatibility:
+    - [Home app-py](/assets/testing/home-app.png)
+    - [Home admin-py](/assets/testing/home-admin.png)
+    - [Home forms-py](/assets/testing/home-forms.png)
+    - [Home models-py](/assets/testing/home-models.png)
+    - [Home urls-py](/assets/testing/home-urls.png)
+    - [Home views-py](/assets/testing/home-views.png)
 
 
 - Qblog
-
+    - [Qblog app-py](/assets/testing/qblog-app.png)
+    - [Qblog admin-py](/assets/testing/qblog-admin.png)
+    - [Qblog forms-py](/assets/testing/qblog-forms.png)
+    - [Qblog models-py](/assets/testing/qblog-models.png)
+    - [Qblog urls-py](/assets/testing/qblog-urls.png)
+    - [Qblog views-py](/assets/testing/qblog-views.png)
 
 - Qforum
-
+    - [Qforum app-py](/assets/testing/qforum-app.png)
+    - [Qforum admin-py](/assets/testing/qforum-admin.png)
+    - [Qforum forms-py](/assets/testing/qforum-forms.png)
+    - [Qforum models-py](/assets/testing/qforum-models.png)
+    - [Qforum urls-py](/assets/testing/qforum-urls.png)
+    - [Qforum views-py](/assets/testing/qforum-views.png)
 
 - Quteba
-
+    - [Quteba app-py](/assets/testing/quteba-asgi.png)
+    - [Quteba admin-py](/assets/testing/quteba-settings.png)
+    - [Quteba forms-py](/assets/testing/quteba-urls.png)
+    - [Quteba models-py](/assets/testing/quteba-views.png)
+    - [Quteba urls-py](/assets/testing/quteba-wsgi.png)
 
 - Users
-
+    - [Users app-py](/assets/testing/users-app.png)
+    - [Users admin-py](/assets/testing/users-admin.png)
+    - [Users forms-py](/assets/testing/users-forms.png)
+    - [Users models-py](/assets/testing/users-models.png)
+    - [Users urls-py](/assets/testing/users-urls.png)
+    - [Users views-py](/assets/testing/users-views.png)
 
 - Testing
+    - [Testing app-py](/assets/testing/tests-forms.png)
+    - [Testing models-py](/assets/testing/tests-models.png)
+     - [Testing urls-py](/assets/testing/tests-signals.png)
+    - [Testing urls-py](/assets/testing/tests-urls.png)
+    - [Testing views-py](/assets/testing/tests-views.png)
+
 
 
 ### HTML Validation
