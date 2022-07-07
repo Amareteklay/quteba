@@ -262,34 +262,16 @@ One of the key principles of Quteba is user engagement. Users can create discuss
   - Up/down vote a forum: The voting feature is added only to forums. A user who likes or dislikes a thread (a forum and the comments and replies thereof) can vote up or down respectively. While this captures the user's opinion about the whole issue in a particular forum, it is possible to use the votes as a basis for ranking forums such that forums with highest number of positive votes are, for example, featured in the landing page.
 A common characteristic of these modes of user interactions are that they use ajax calls to make the user experience smooth. For the likes and dislikes, one can only like or dislike, but not both, at a time. The same applies to votes: if one has voted up and click on vote down, the up vote is removed and the down vote increases by one.
 
-
 ### Future Enhancements
-- Email notifications
-- Ability to view others' profiles and follow them
-- Ability to filter content by category and other criteria
-- Ability to use audio and video in the forum
-## Technologies Used
-This project requires the use of Full Stack Tools. Django was used for the backend and JavaScript, HTML and CSS for the front-end. Postgresql was used for the database and psycopg2 was used as an Object Relational Mapper (ORM) tool. Below is a list of all the technologies used in this project.
-* asgiref==3.5.0
-* cloudinary==1.29.0
-* dj-database-url==0.5.0
-* dj3-cloudinary-storage==0.0.6
-* Django==4.0.3
-* django-allauth==0.50.0
-* django-bootstrap4==22.1
-* django-crispy-forms==1.14.0
-* django-summernote==0.8.20.0
-* fontawesomefree==6.0.0
-* gunicorn==20.1.0
-* oauthlib==3.2.0
-* Pillow==9.1.0
-* psycopg2==2.9.3
-* PyJWT==2.3.0
-* python3-openid==3.2.0
-* requests-oauthlib==1.3.1
-* sqlparse==0.4.2
-* tzdata==2022.1
+    - Email notifications
+    - Ability to view others' profiles and follow them
+    - Ability to filter content by category and other criteria
+    - Ability to use audio and video in the forum
 
+## Technologies Used
+# 
+
+This project requires the use of Full Stack Tools. Django was used for the backend and JavaScript, HTML and CSS for the front-end. Postgresql was used for the database and psycopg2 was used as an Object Relational Mapper (ORM) tool. Below is a [list of all the technologies](https://github.com/Amareteklay/quteba/blob/main/requirements.txt) used in this project.
 - ### Languages:
     + [Python 3.8.5](https://www.python.org/downloads/release/python-385/): the primary language used to develop the server-side of the website.
     + [JS](https://www.javascript.com/): the primary language used to develop interactive components of the website.
@@ -321,75 +303,85 @@ This project requires the use of Full Stack Tools. Django was used for the backe
     + [Cloudinary](https://cloudinary.com/): the image hosting service used to upload images and other media.
     + [Techsini](https://techsini.com/multi-mockup/index.php): to generate mock up for responsive design for various screen sizes.
     + [Balsamiq Cloud](https://balsamiq.cloud/) to create wireframes.
+
+
 ## Testing
+# 
+
 Detailed testing and test results [are documented here](TESTING.md).
 ### Bugs
 - I created user stories in Github and django project in Gitpod. When I tried to push my local changes, I got an error which i fixed using [this solution](https://docs.github.com/en/get-started/using-git/dealing-with-non-fast-forward-errors).
 
 - I was not able to deploy the application to heroku because of an error in backports.zoneinfo which ended up in the requirements file. I removed it manually and it worked. 
 - I was not able to login to the admin page and got CSRF error. I added CSRF_TRUSTED_ORIGINS
+
+
 ## Deployment
+# 
 
-### Using Heroku
-- Development Enviroment
-  1.  Create env.py : It needs to contain these 3 variables.
-    - [Cloudinary](https://cloudinary.com/)
-    - Secret key is the password of your choice.
-    - [Heroku](https://id.heroku.com/) postgreSQL.
-    ![env file]()
-  2. Create requirements.txt file that includes all dependencies needed for the project.
-    
-    - You can do this by executing the following command in the terminal:
-      ```
-      pip freeze > requirements.txt
-      ```
-    
-    - Or using the package pipreqs.
-      ```
-      pipreqs requirements.txt
-      ```
+Quteba is deployed using Heroku and live at [quteba.herokuapp.com](https://quteba.herokuapp.com/).
+### Deployment to Heroku
 
-  3. Create Procfile containing the commands to run the app.
-
-  4. Commit and push deployment changes to Github.
-  5. Create an account and login to Heroku
-    - Create a new app, with an appropriate app name and choose a region.
-    ![Create App]()
-    - In Resources add Heroku Postgres and Heroku Redis.
-    ![Resources]()
+The following steps are followed to deploy the website to Heroku.
+1. Create an account and Login to [Heroku](https://www.heroku.com/).
+2. Create a new app on Heroku using the following steps.
+    - Go to your Heroku dashboard.
+    - Click on the "New" button.
+    - Click on the "Create new app" button.
+    - Give your app a name, e.g., Quteba.
+    - Choose your nearest region.
+    - Click on the "Create app" button.
+3. In your app go to the "Resources" tab.
+    - Add a Heroku Postgres database.
+4. In your app go to the "Settings" tab, press "Reveal Config Vars", and add the following config vars or check if they are already added.
+      - `DATABASE_URL` = The URL of the database provided by Heroku Postgres.
+      - `SECRET_KEY` = The secret key for your Django project.
+      - `CLOUDINARY_CLOUD_NAME` = Your Cloudinary Cloud Name.
+      - `CLOUDINARY_API_KEY` = Your Cloudinary API Key.
+      - `CLOUDINARY_API_SECRET` = Your Cloudinary API Secret.
+      - `DEBUG` = True during development, False during production.
+      - `DISABLE_COLLECTSTATIC` = Set to `1` to disable collectstatic during the development.
     
-    ![Config Vars]()
-    - At the settings tab click on Reveal Config Vars.
-    - Add the following config vars or check if they are already added.
-      - `DATABASE_URL` : The URL of the database provided by Heroku Postgres.
-      - `SECRET_KEY` : The secret key for your Django project.
-      - `CLOUDINARY_CLOUD_NAME` : Your Cloudinary Cloud Name.
-      - `CLOUDINARY_API_KEY` : Your Cloudinary API Key.
-      - `CLOUDINARY_API_SECRET` : Your Cloudinary API Secret.
-      - `DISABLE_COLLECTSTATIC` : Set to `1` to disable collectstatic during the development.
-    
-    - Download and install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
-    - And pass following commands in your github terminal:
-      - $ heroku login -i
-      - Then enter your login credentials
-      - $ git add .
-      - $ git commit -am "make it better"
-      - $ git push heroku main
-    
+     *Note that you should change the DEBUG config var to False and remove the DISABLE_COLLECTSTATIC config var from the config vars on heroku after completing the development.*
 
-  6. Open the Heroku dashboard and check the status of your app.
-      - Copy the URL of your app and add it into `ALLOWED_HOSTS` in your settings.py file.
-  7. When the development stage is complete:
-    - make sure that you have these settings in your settings.py file:
-      - `STATIC_ROOT` : The path to the static files.
-      - `DEFUALT_FILE_STORAGE` : The default file storage system, in this case, `cloudinary_storage.storage.MediaCloudinaryStorage`
-      - `cloudinary` and `cloudinary_storage` are added to `INSTALLED_APPS`, and `cloudinary.config(...)` receives cloud name, api key, and api secret.
-    - Remove the `DISABLE_COLLECTSTATIC` variable from your app's config vars on Heroku.
-    - Set the `DEBUG` variable to `False` in your your app's config vars on Heroku.
-    - Deploy the latest version of your app to Heroku.
-    - Open the Heroku dashboard and check the status of your app.
-    - If something is wrong, you can find an error message in the logs and fix it.
+    - To get cloudinary cloud name, api key, and api secret:
 
+        - Go to the Cloudinary [website](https://cloudinary.com/).
+        - Create an account, or log in to your account if you already have an account.
+        - Go to the Cloudinary dashboard.
+        - At the top of the page you will see your cloud name, api key, and api secret.
+        - Copy these values and paste them into the config vars on heroku and into your env.py file.
+
+5. In your app go to the "Deploy" tab.
+  - Using GitHub:
+      - Connect your Heroku account to your GitHub account and then click on the "Deploy" button. 
+      - You can enable automatic deployment. 
+      
+  - Using Heroku CLI: 
+      - Go to your local repository
+      - Login to your Heroku account in your terminal and connect your local repository to your heroku app.
+          ```
+          heroku login -i
+          ```
+      - Enter your Heroku credentials.
+      - Enter the following command to connect your heroku app and your local repository.
+          ```
+          heroku git:remote -a <your-heroku-app-name>
+          ```
+6. Create a Procfile.
+
+7. Create requirements.txt. This can be done by running the following command:
+          ```
+          pip freeze > requirements.txt
+          ```
+8. Add and commit all changes.
+9. Push your changes to Heroku.
+    ```
+    git push heroku <master or main>
+    ```
+10. Check the logs of your app in the Heroku dashboard for potential errors or click on the "Open app" button to see your deployed site.
+
+### Local Deployment
 #### How to Fork
 
 To fork the repository:
@@ -408,7 +400,11 @@ To clone the repository:
 4. Open the terminal in your code editor and change the current working directory to the location you want to use for the cloned directory.
 5. Type 'git clone' into the terminal and then paste the link you copied in step 3. Press enter.
 
+
 ## Credits
+
+# 
+
 - I followed [this tutorial](https://replit.com/talk/learn/DjangoPython-and-HTML-Coding-Campus-Tutorial-1-Create-a-Blog-with-Django/142238?order=new) to create blog posts.
 
 - Image for UX and behavioral economics was taken from [this webpage](https://startupsmagazine.co.uk/article-behavioural-economics-tips-ux-design).
@@ -416,7 +412,7 @@ To clone the repository:
 - Template for forum was taken from [this page](https://www.bootdey.com/snippets/view/bs5-forum-list)
 - I used the articles and code in [this page](https://www.devhandbook.com/django/user-registration/) to create user registration and profile.
 
-- I began the blog list page by borrowing code from [this](<https://replit.com/talk/learn/DjangoPython-and-HTML-Coding-Campus-Tutorial-1-Create-a-Blog-with-Django/142238?order=new) and [this](https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/templates/index.html), which i later changed substantially.
+- I began the blog list page by borrowing code from [this](https://replit.com/talk/learn/DjangoPython-and-HTML-Coding-Campus-Tutorial-1-Create-a-Blog-with-Django/142238?order=new) and [this](https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/templates/index.html), which i later changed substantially.
 
 - I took the data model for the forum from [this article](https://vertabelo.com/blog/database-model-for-an-online-discussion-forum-part-1/).
 - I followed [this tutorial](https://focusustech.com/blog/create-a-comment-and-reply-system-in-django) to modify forum views and templates.
@@ -425,8 +421,12 @@ To clone the repository:
 - Nav bar and footer background color was inspired by [this](https://www.mp.se/goteborg/just-nu/goteborg-ska-vara-en-karnvapenfri-zon/).
 - I copied and edited the deployment procedure from our [hackathon project readme]().
 - Code for user registration and signals was adapted from [this](https://www.devhandbook.com/django/user-registration/) and [this](https://www.devhandbook.com/django/user-profile/).
+
+
 ### Acknowledgements
+# 
+I have learnt from [Daisy](https://github.com/Daisy-McG), my mentor at the Code Institute, many ways to make this project better. Her valuable comments have enhanced the quality of this website a lot. Thank you [Daisy](https://github.com/Daisy-McG)! 
 
-
+# 
 
 #### [BACK TO TOP](https://github.com/Amareteklay/quteba#readme)
