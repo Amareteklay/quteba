@@ -97,6 +97,38 @@
 # 
 
 
+|User Stories     |Acceptance Criteria met? (Y/N)           |  |  | Comments    |
+|-------------|------------------------|------------------|------|-------------|
+|As a first time visitor I want to get information about the site so that I can understand the what the site focuses on and how I can make the best out of it.           | Y |  |  | 
+|As a first time visitor, I want to be able to navigate the site so that I can find the most important information with the least amount of effort.            | Y |  |  | 
+|As an engaged user, I want to see relevant feedback so that I can understand if my interactions with the site are successful or not.           | Y |  |  | 
+|As a user, I want to know which menu item is active so that I can know which part of the site I am navigating at each moment.     |  Y  |   |  |
+| As a user, I want to be able to access quteba's contents and functionalities from my mobile or tablet so that I do not have to wait until I find a computer.  |  Y |   | |
+| As a frequent user, I want to follow the site owner on social media so that I can see recent activities and updates from my favourite social media apps.  |  Y  |    | |
+| As a first time visitor I want to sign up so that I can have login credentials which I can use to login to the site every time I want to use it. | Y |  |
+| As a registered user, I want to be able to login with my registereg credentials so that I can access my profile as well as all the contents and functionalities that require that users be logged in. | Y |  |
+| As a logged in user, I want to be able to logout easily so that I feel safe that others do not interact with the site via my account. |Y  |  |
+| As a registered user I want to have a profile so that I can choose a profile picture and share my bio with other quteba users. |  Y|  |
+| As a registered user I want to update and delete my profile so that I have control of what I want to do with my personal information. | Y |  |
+| As a reader I want to read excerpts of blog posts so that I choose which articles to read without going through the whole content of each post. | Y |  |
+| As a contributor I can create drafts and publish posts without entering the admin page so that I can quickly share my views and analyses with readers. | Y |  |
+| As a regular reader, I want to read the contents of each post on its own page so that I can focus on the contents of the specific post at a time while being able to see other users' feedbacks to the particular post. | Y |  |
+| As a registered user I want to like posts and add comments so that I can express my impression and engage in a discussion. | Y |  |
+| As a first time visitor I want to see sample forum entries so that I can decide if I want to join the discussions. | Y |  |
+| As a registered user, I want to create a discussion forum so that I can get answers to my questions and start conversations. As a user, I want update or delete my own discussion forum so that I can opt out from a conversation that takes a different direction from I initially intended. | Y |  |
+| As a frequent user, I want to vote up or vote down a forum so that I can quickly reward or punish contents based on their importance and relevance without having to write comments. | Y |  |
+| As a dedicated user, I want to reply to comments on a forum I created so that I can open and lead an engaging conversation on relevant topics. | Y |  |
+| As a registered user, I want to leave comments on discussion forums so that I can express my views and lead to further discussions. | Y |  |
+| As a frequent user, I want to like or unlike comments and replies to express my opinions of them without having to write comments or replies. | Y |  |
+| As a registered user, I want to reply to other users' comments and replies so that I can follow the threads and identify the forkroads that emerge from the discussions. | Y |  |
+| As a forum reader, I want to see nested threads of forum topics, comments and replies so that I can visually see which replies are given to which comment. | Y |  |
+| As a user, I want to search for specific content so that I can find quick answers to the questions I have in mind. | Y |  |
+| As a user, I want to see excerpts of my search results so that I can quickly identify the most relevant content I want to read further. |Y  |  |
+| As a user, I want to interact with the site smoothly so that I can see the effect of my actions without refreshing the pages. | Y |  |
+| As a user I want to contact the site admin directly so that I can ask questions and send comments to get clarifications and to express my opinions and expectations. |  Y|  |
+|    |  |  |
+
+
 
 ## Validation
 #
