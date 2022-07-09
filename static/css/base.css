@@ -28,7 +28,6 @@ p {
 }
 
 
-.q-logo,
 .text-salmon {
     color: lightsalmon;
 }
@@ -46,12 +45,13 @@ a.navbar-brand:hover,
     color: lightsalmon !important;
 }
 
-a.nav-link:active {
-    border-bottom: 2px lightsalmon solid;
-}
 
 .nav-item a.btn {
     margin-right: 20px;
+}
+
+.active-menu {
+    border-bottom: 2px lightsalmon solid;
 }
 
 .bg-light-green {

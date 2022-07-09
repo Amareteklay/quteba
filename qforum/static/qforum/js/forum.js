@@ -15,6 +15,14 @@
  };
  const csrftoken = getCookie('csrftoken');
 
+ document.addEventListener('DOMContentLoaded', function() {
+     const navbarItems = document.getElementsByClassName('nav-link');
+     for (let i = 0; i < navbarItems.length; i++) {
+         if (navbarItems[i].href === window.location.href) {
+             navbarItems[i].classList.add('active-menu');
+         }
+     }
+ });
 
  function handleReply(response_id) {
      const reply_form_container = document.querySelector(`#reply-form-container-${response_id}`);
