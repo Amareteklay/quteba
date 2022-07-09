@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
-
+from cloudinary.models import CloudinaryField
 
 class Profile(models.Model):
     """
@@ -10,9 +10,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE,
                                 related_name='user_profile')
-    image = models.ImageField(default='default.jpg',
-                              upload_to='profile_pics')
-    bio = models.TextField(null=True, blank=True)
+    image = CloudinaryField(default='default.jpg')
+    bio = models.TextField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.user.username

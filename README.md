@@ -157,20 +157,125 @@ A logged in user can comment on a forum, reply to comments and other replies (ex
 ![Home page](assets/wireframes/profile-page-desktop.png)
 
 
-#### Database Schema
 
-The ERD tool in postrgresql pgadmin 4 was used to generate the Entity Relationship Diagram for the data models. 
+### Information Architecture
+##### Database
 
-ERD for the user, profile, blog post, forum category and thread models.
+- Postgresql database was used to store information about Quteba's contents and its users.
+
+#### ERD
+
+- The ERD tool in postrgresql pgadmin 4 was used to generate the Entity Relationship Diagram for the data models. 
+
+- Here is the ERD for the user, profile, blog post, forum category and thread models. 
 
 ![ERD](assets/wireframes/qerd_models.png)
 
+#### Data Models
+
+- **Allauth User Model**
+
+    - The user model was created using Django-allauth.
+    - The user model was then migrated to PostgreSQL.
+
+- **Profile Model**
+
+| Name          | Database Key  | Field Type    | Validation |
+| ------------- | ------------- | ------------- | ---------- |
+| User          | user          | OneToOneField | User, on_delete=models.CASCADE, related_name='user_profile'    |
+| Image        | image        | CloudinaryField    | default='default.jpg'     |
+| Bio           | bio           | TextField    | max_length=255, null=True, blank=True      |
+
+
+- **Post model**
+
+
+| Name          | Database Key  | Field Type    | Validation |
+| ------------- | ------------- | ------------- | ---------- |
+|Title          |title         |CharField  | max_length=200, unique=True    |
+|Slug         |slug       |SlugField     |  max_length=200, unique=True      |
+|Author       |author   |ForeignKey    |User, on_delete=models.CASCADE, related_name="blog_posts"       |
+|Last_updated |last_updated   |DateTimeField    | auto_now=True       |
+|Content      |content     |TextField    |       |
+|Featured_image     |CloudinaryField     | 'image', default='placeholder'      |
+|Excerpt        |excerpt       |TextField     |blank=True      |
+|Created_on           |created_on           |DateTimeField     |  auto_now_add=True     |
+|Status            |status         |IntegerField    |choices=STATUS, default=0      |
+|Likes            |likes       | ManyToManyField    |User, related_name='post_likes', blank=True      |
+
+
+- **Post Comment Model**
+
+| Name          | Database Key  | Field Type    | Validation |
+| ------------- | ------------- | ------------- | ---------- |
+| Post          | post          | ForeignKey | Post, on_delete=models.CASCADE, related_name='comments'    |
+| Name        | name        | CharField    |  max_length=50     |
+| Email      | email    | EmailField    | null=True, blank=True      |
+| Body    | body    | TextField    | max_length=200   |
+| Created on    | created_on     | DateTimeField    | auto_now_add=True     |
+| Approved      | approved      | BooleanField | default=False     |
+
+
+- **Category Model**
+
+| Name          | Database Key  | Field Type    | Validation |
+| ------------- | ------------- | ------------- | ---------- |
+| Subject          | subject          | CharField| default='Uncategorized', max_length=50   |
+| Description        | description        | TextField    | max_length=255     |
+| Name      | name    | ForeignKey    | User, on_delete=models.CASCADE, related_name="categories"      |
+| Created on    | created_on    | DateTimeField    | auto_now_add=True     |
+| Status     | status    | IntegerField   | choices=STATUS, default=0     |
+| Thread Count       | thread_count       | IntegerField | default=0      |
+
+
+- **Thread Model**
+
+| Name          | Database Key  | Field Type    | Validation |
+| ------------- | ------------- | ------------- | ---------- |
+| Name          | name          | ForeignKey | User, on_delete=models.CASCADE, related_name='forum_topics'    |
+| Topic        | topic        | CharField    | max_length=300, unique=True     |
+| Slug      | slug    | SlugField    |max_length=300, unique=True      |
+| Description    | description    | TextField    | max_length=500      |
+| Category     | category     | ForeignKey    | Category, on_delete=models.CASCADE, related_name="threads"      |
+| Status       | status       | IntegerField | choices=STATUS, default=0    |
+| Created on       | created_on       | DateTimeField    | auto_now_add=True      |
+| Up votes         | up_votes          | ManyToManyField    | User, blank=True, related_name='up_votes'     |
+| Down votes           | down_votes           | ManyToManyField    | User, blank=True, related_name='up_votes'      |
+
+- **Thread Comment Model**
+
+| Name          | Database Key  | Field Type    | Validation |
+| ------------- | ------------- | ------------- | ---------- |
+| Thread         | thread          | ForeignKey | Thread, on_delete=models.CASCADE, related_name='comments'    |
+| Name       | name        | ForeignKey    |      |
+| Content      | content    | TextField    | null=True, max_length=255     |
+| Parent    | parent    | ForeignKey    | "self", null=True, blank=True, on_delete=models.CASCADE, related_name='replies'     |
+| Created     | created     | DateTimeField    | auto_now_add=True      |
+| Updated       | updated       | DateTimeField | auto_now_add=True      |
+| Active       | active       | BooleanField    | default=True     |
+| Likes          | likes          | ManyToManyField    | User, blank=True, related_name='comment_likes'      |
+| Dislikes           | dislikes           | ManyToManyField    | User, blank=True, related_name='comment_dislikes'       |
+
+
+- **Contact Model**
+
+| Name          | Database Key  | Field Type    | Validation |
+| ------------- | ------------- | ------------- | ---------- |
+| User          | user          | OneToOneField | User, on_delete=models.CASCADE, related_name='profile'    |
+| Avatar        | avatar        | CloudinaryField    | folder='avatars', null=True, blank=True      |
+| Birthday      | birth_date    | DateField    | null=True, blank=True      |
+| First Name    | first_name    | CharField    | max_length=25, null=True, blank=True      |
+| Last Name     | last_name     | CharField    | max_length=25, null=True, blank=True      |
+| friends       | friends       | ManyToManyField | to=User, related_name='friends', blank=True      |
+| Country       | country       | CharField    | max_length=50, null=True, blank=True      |
+| City          | city          | CharField    | max_length=50, null=True, blank=True      |
+| Bio           | bio           | TextField    | max_length=100, null=True, blank=True      |
+
+
+
 ### The Surface Plane
 
-#### Typography
-
-
-#### Colors
+#### Color Scheme
 
 A deep green (British Racing Green) color, which is a calming color, with varying intensity.
 To create a good contrast, I used white text on a deep green background.
@@ -178,6 +283,17 @@ To create a good contrast, I used white text on a deep green background.
 ![Main color](assets/screenshots/color-palette.png)
 
 Bootstrap colors primary (for blue) and danger (for red) are used in buttons, the latter being associated with delete buttons. Light salmon was used to make the logo stand out in the deep green background color of the navbar. 
+
+#### Typography
+
+
+
+#### Imagery
+
+The background image throughout the site was generated from the [BGJar website](https://bgjar.com/). The icons in the background image reflect various consumer items that are central to the user's economic decision problems.
+
+[Quteba's Background image](/media/qu-bg.png)
+
 
 ## Features
 
@@ -263,10 +379,26 @@ One of the key principles of Quteba is user engagement. Users can create discuss
 A common characteristic of these modes of user interactions are that they use ajax calls to make the user experience smooth. For the likes and dislikes, one can only like or dislike, but not both, at a time. The same applies to votes: if one has voted up and click on vote down, the up vote is removed and the down vote increases by one.
 
 ### Future Enhancements
-    - Email notifications
-    - Ability to view others' profiles and follow them
-    - Ability to filter content by category and other criteria
-    - Ability to use audio and video in the forum
+    
+#### Email notifications
+In the future, implementing the functionality to send automated email notifications of new content to registered users can enhance the useability of quteba.
+
+#### Ability to view others' profiles and follow them
+
+I want to improve the user profile view such that users can see other users' profiles and follow their activities on Quteba such as the forums they create and the comments they give.
+
+#### Ability to filter content by category and other criteria
+
+I want ti implement filter and sort functionalities with different options to filter content with such as categories, most popular and similar to previously viewed content.
+
+#### Ability to use audio and video in the forum
+
+As the digital society today is often using audio and video content in most social media platforms, I want to create functionalities for Quteba users to exchange their economic information using audio or video.
+
+#### Register with social media
+
+To make it easier for first time users to register in Quteba, I would like to implement in the future the ability to register with social media such as Facebook or with Google.
+
 
 ## Technologies Used
 # 
