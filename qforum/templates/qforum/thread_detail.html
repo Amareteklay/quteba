@@ -15,8 +15,8 @@
             <span class="op-6">| {{ thread.created_on|timesince }} ago</span>
             <span class="d-inline-block text-sm mx-3"><i class="fa-solid fa-comments"></i>
                 {{comments.all.count}}</span>
-            <h5 class="text-primary px-3">{{ thread.topic}}</h5>
-            <p class="px-3"> {{thread.description|safe}} </p>
+            <h5 class="text-primary px-3 pt-2">{{ thread.topic}}</h5>
+            <p class="px-3 py-3"> {{thread.description|safe}} </p>
 
             <div class="col-1 d-inline-block" id="up-votes" data-value="{{thread.slug}}">
                 <a class="btn voting-up" role="button">

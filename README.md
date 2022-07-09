@@ -259,17 +259,15 @@ A logged in user can comment on a forum, reply to comments and other replies (ex
 
 - **Contact Model**
 
+name = models.CharField(blank=False, max_length=200)
+   
+
 | Name          | Database Key  | Field Type    | Validation |
 | ------------- | ------------- | ------------- | ---------- |
-| User          | user          | OneToOneField | User, on_delete=models.CASCADE, related_name='profile'    |
-| Avatar        | avatar        | CloudinaryField    | folder='avatars', null=True, blank=True      |
-| Birthday      | birth_date    | DateField    | null=True, blank=True      |
-| First Name    | first_name    | CharField    | max_length=25, null=True, blank=True      |
-| Last Name     | last_name     | CharField    | max_length=25, null=True, blank=True      |
-| friends       | friends       | ManyToManyField | to=User, related_name='friends', blank=True      |
-| Country       | country       | CharField    | max_length=50, null=True, blank=True      |
-| City          | city          | CharField    | max_length=50, null=True, blank=True      |
-| Bio           | bio           | TextField    | max_length=100, null=True, blank=True      |
+| Name         | name          | CharField | blank=False, max_length=100    |
+| Email        | email        | EmailField    |      |
+| Subject      | subject    | CharField    | blank=False, max_length=200     |
+| Message    | message    | TextField    | max_length=500, blank=False      |
 
 
 
@@ -380,24 +378,24 @@ A common characteristic of these modes of user interactions are that they use aj
 
 ### Future Enhancements
     
-#### Email notifications
-In the future, implementing the functionality to send automated email notifications of new content to registered users can enhance the useability of quteba.
+- #### Email notifications
+     - In the future, implementing the functionality to send automated email notifications of new content to registered users can enhance the useability of quteba.
 
-#### Ability to view others' profiles and follow them
+- #### Ability to view others' profiles and follow them
 
-I want to improve the user profile view such that users can see other users' profiles and follow their activities on Quteba such as the forums they create and the comments they give.
+     - I want to improve the user profile view such that users can see other users' profiles and follow their activities on Quteba such as the forums they create and the comments they give.
 
-#### Ability to filter content by category and other criteria
+- #### Ability to filter content by category and other criteria
 
-I want ti implement filter and sort functionalities with different options to filter content with such as categories, most popular and similar to previously viewed content.
+     - I want ti implement filter and sort functionalities with different options to filter content with such as categories, most popular and similar to previously viewed content.
 
-#### Ability to use audio and video in the forum
+- #### Ability to use audio and video in the forum
 
-As the digital society today is often using audio and video content in most social media platforms, I want to create functionalities for Quteba users to exchange their economic information using audio or video.
+     - As the digital society today is often using audio and video content in most social media platforms, I want to create functionalities for Quteba users to exchange their economic information using audio or video.
 
-#### Register with social media
+- #### Register with social media
 
-To make it easier for first time users to register in Quteba, I would like to implement in the future the ability to register with social media such as Facebook or with Google.
+     - To make it easier for first time users to register in Quteba, I would like to implement in the future the ability to register with social media such as Facebook or with Google.
 
 
 ## Technologies Used
