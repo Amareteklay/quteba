@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 import sys
 import dj_database_url
-if os.path.isfile('env.py'):
+if os.path.exists('env.py'):
     import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -143,21 +143,23 @@ Following https://medium.com/analytics-vidhya/\
 provisioning-a-test-postgresql-database-on-heroku-for-your-django-app-febb2b5d3b29
 """
 if 'test' in sys.argv:
+    print('Testing')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'dfnp76462li1jo',
-            'USER': 'rfedcnkuujtkyq',
+            'NAME': 'df1887jmkps9ur',
+            'USER': 'zgsedyfyunorma',
             'PASSWORD':
-            '0330dbf8787d528afed0c1ce2ace44d9c5ef21db61a0493df2a5a01c2aeca9af',
-            'HOST': 'ec2-176-34-215-248.eu-west-1.compute.amazonaws.com',
+            '95055549321d4a25886c2683ff274f023b4d0e1da221257a0680e43810641560',
+            'HOST': 'ec2-34-242-84-130.eu-west-1.compute.amazonaws.com',
             'PORT': 5432,
             'TEST': {
-                'NAME': 'dfnp76462li1jo',
+                'NAME': 'df1887jmkps9ur',
                 }
             }
         }
 else:
+    print('Development')
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
         }

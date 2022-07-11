@@ -1,14 +1,31 @@
 from django.test import TestCase
+from django.contrib.auth.models import User
 from qforum.forms import ThreadForm, CommentForm
 from qblog.forms import CommentForm as PostCommentForm
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from users.models import Profile
+from qforum.models import Category
 
 
 class TestThreadForm(TestCase):
     """
     Unittest for thread form
     """
+    @classmethod
+    def setUp(self):
+        self.user1 = UserRegisterForm(data={
+            "username": "amuser",
+            "email": "usermail@mail.com",
+            "password1": "resdhjh12A.",
+            "password2": "resdhjh12A."
+            })
+        self.user2 = User.objects.create(id=1, username='Aman',
+                                         email='aman@mail.com',
+                                         password='123someTest')
+        self.category = Category.objects.create(id=1,
+                                                subject='Technology',
+                                                name=self.user2,
+                                                description='Test category')
     def test_empty_form(self):
         form = ThreadForm()
         self.assertIn('topic', form.fields)
@@ -17,7 +34,7 @@ class TestThreadForm(TestCase):
 
     def test_thread_form_is_valid(self):
         form = ThreadForm(data={
-            "category": "Technology",
+            "category": self.category,
             "topic": "Django for beginners",
             "description": "I want to know how to learn django effectively."
             })
@@ -136,13 +153,10 @@ class TestProfileUpdateForm(TestCase):
     Unittest for user profile update form
     """
     @classmethod
-    def setUpTestData(cls):
-        cls.user = UserRegisterForm(data={
-            "username": "amuser",
-            "email": "usermail@mail.com",
-            "password1": "resdhjh12A.",
-            "password2": "resdhjh12A."
-            })
+    def setUp(self):
+        self.user = User.objects.create(id=1, username='Aman',
+                                         email='aman@mail.com',
+                                         password='123someTest')
 
     def test_empty_form(self):
         form = ProfileUpdateForm()
@@ -157,15 +171,3 @@ class TestProfileUpdateForm(TestCase):
             })
         self.assertTrue(form.is_valid())
 
-    def test_profile_update_form_is_invalid(self):
-        form = ProfileUpdateForm(data={"bio": "", "image": ""})
-        self.assertFalse(form.is_valid())
-
-    def test_profile_update_form_works(self):
-        profile = Profile.objects.get(user.username == 'amuser')
-        form = ProfileUpdateForm(data={
-            "bio": "I love coding",
-            "image": "media/qbrand.png"
-            })
-        profile.refresh_from_db()
-        self.assertEqual(profile.bio, "I love coding")
