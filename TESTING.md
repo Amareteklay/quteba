@@ -99,10 +99,10 @@
 
 ## Automated Testing
 # 
+I wrote automated tests to complement the extensive manual testing and validations in this document. The automated tests cover 54% of the functionalities, and the test report is shown below.
 
-
-- I followed [these steps](https://medium.com/analytics-vidhya/provisioning-a-test-postgresql-database-on-heroku-for-your-django-app-febb2b5d3b29) to run the first unittest.
-- I also used [this tutrial](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing#overview) as an example and to copy and adapt code for testing views.
+![Autimated test results](/assets/testing/automated-test-1.png)
+![Autimated test results](/assets/testing/automated-test-2.png)
 
 
 ## Testing User Stories
