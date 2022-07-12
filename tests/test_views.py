@@ -64,8 +64,8 @@ class PostListViewTests(TestCase):
     @classmethod
     def setUp(self):
         self.user = User.objects.create(username='Aman',
-                                   email='aman@mail.com',
-                                   password='123someTet')
+                                        email='aman@mail.com',
+                                        password='123someTet')
         number_of_posts = 11
         for post_id in range(number_of_posts):
             Post.objects.create(
@@ -105,8 +105,8 @@ class PostDetailViewTests(TestCase):
     """
     def setUp(self):
         self.user = User.objects.create(username='Aman',
-                                   email='aman@mail.com',
-                                   password='123someTet')
+                                        email='aman@mail.com',
+                                        password='123someTet')
         self.post = Post.objects.create(
                 title='Blog post',
                 slug='blog-post',
@@ -133,13 +133,15 @@ class ThreadListViewTests(TestCase):
     """
     def setUp(self):
         self.user = User.objects.create(username='Aman',
-                                   email='aman@mail.com',
-                                   password='123someTet')
-        self.category = Category.objects.create(name=self.user,
-                                           subject='Finance',
-                                           description='Financial analysis',
-                                           created_on=datetime.date.today(),
-                                           status=0, thread_count=0)
+                                        email='aman@mail.com',
+                                        password='123someTet')
+        self.category = Category.objects.create(
+            name=self.user,
+            subject='Finance',
+            description='Financial analysis',
+            created_on=datetime.date.today(),
+            status=0, thread_count=0
+            )
         number_of_threads = 5
         for thread_id in range(number_of_threads):
             Thread.objects.create(
@@ -171,24 +173,29 @@ class ThreadDetailViewTests(TestCase):
     Testing thread detail view
     """
     def setUp(self):
-        self.user = User.objects.create(username='Aman',
-                                   email='aman@mail.com',
-                                   password='123someTest')
-        self.category = Category.objects.create(name=self.user,
-                                           subject='Finance',
-                                           description='Financial analysis',
-                                           created_on=datetime.date.today(),
-                                           status=1,
-                                           thread_count=0)
-        self.thread = Thread.objects.create(name=self.user,
-                                            topic='Thread topic',
-                                            slug='thread-topic',
-                                            description='Description of thread',
-                                            category=self.category,
-                                            created_on=datetime.date.today(),
-                                            status=1)
+        self.user = User.objects.create(
+            username='Aman',
+            email='aman@mail.com',
+            password='123someTest')
+        self.category = Category.objects.create(
+            name=self.user,
+            subject='Finance',
+            description='Financial analysis',
+            created_on=datetime.date.today(),
+            status=1,
+            thread_count=0)
+        self.thread = Thread.objects.create(
+            name=self.user,
+            topic='Thread topic',
+            slug='thread-topic',
+            description='Description of thread',
+            category=self.category,
+            created_on=datetime.date.today(),
+            status=1)
         self.client = Client()
-        self.thread_url = reverse("qforum:thread_detail", kwargs={'slug': self.thread.slug})
+        self.thread_url = reverse(
+            "qforum:thread_detail", 
+            kwargs={'slug': self.thread.slug})
 
     def test_thread_detail_view_url_exist(self):
         self.client.login(username='Aman', password='123someTest')
