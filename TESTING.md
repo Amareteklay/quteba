@@ -205,6 +205,11 @@ Python files in the home app checked for pep8 compatibility:
 [HTML validation report](/assets/testing/html_validation.pdf)
 ### JavaScript Validation
 
+- [JSHint](https://jshint.com/) was used to validate the JavaScript code, and no errors or warnings were found. Below are screenshots of the reports.
+
+![JSHint Validation of JavaScript code in forum app](/assets/validation/js-validation-forum.png)
+
+![JSHint Validation of the main JavaScript code](/assets/validation/js-validation-script.png)
 
 ### CSS Validation
 

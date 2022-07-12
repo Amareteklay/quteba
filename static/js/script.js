@@ -6,3 +6,13 @@ setTimeout(function() {
         }
     },
     2500);
+
+// Add event listener to menu items in navbar
+document.addEventListener('DOMContentLoaded', function() {
+    const navbarItems = document.getElementsByClassName('nav-link');
+    for (let i = 0; i < navbarItems.length; i++) {
+        if (navbarItems[i].href === window.location.href) {
+            navbarItems[i].classList.add('active-menu');
+        }
+    }
+});

@@ -1,3 +1,4 @@
+ // Get cookies and fetch csrf token
  const getCookie = (name) => {
      let cookieValue = null;
      if (document.cookie && document.cookie !== '') {
@@ -14,59 +15,7 @@
  };
  const csrftoken = getCookie('csrftoken');
 
- document.addEventListener('DOMContentLoaded', function() {
-     const navbarItems = document.getElementsByClassName('nav-link');
-     for (let i = 0; i < navbarItems.length; i++) {
-         if (navbarItems[i].href === window.location.href) {
-             navbarItems[i].classList.add('active-menu');
-         }
-     }
- });
-
- function handleReply(response_id) {
-     const reply_form_container = document.querySelector(`#reply-form-container-${response_id}`);
-     if (reply_form_container) {
-         reply_form_container.style.display = 'block';
-     }
- }
-
- function handleCancel(response_id) {
-     const reply_form_container = document.querySelector(`#reply-form-container-${response_id}`);
-     if (reply_form_container) {
-         reply_form_container.style.display = 'none';
-     }
- }
-
- function displayForm() {
-     document.querySelector('#comment-form').classList.add('text-muted');
-     document.querySelector('.comment-form').style.display = 'block';
- }
-
- function displayCommentReplyForm() {
-     document.querySelector('.comment-form').style.display = 'block';
- }
-
- function hideForm() {
-     let form_btn = document.querySelector('#comment-form');
-     form_btn.classList.remove('text-muted');
-     form_btn.classList.add('d-inline-block');
-     document.querySelector('.comment-form').style.display = 'none';
- }
-
- function displayThreadForm() {
-     let thread_form = document.querySelector('#question-form');
-     thread_form.style.display = 'block';
-     thread_form.classList.add('text-center');
- }
-
- function hideForumButton() {
-     let btn_forum = document.querySelector('#btn-create-forum');
-     btn_forum.style.display = 'none';
- }
-
-
- const url = window.location.href;
-
+ // Voting up forums
  $(document).ready(function() {
      $('.voting-up').click(function(e) {
          e.preventDefault();
@@ -90,6 +39,7 @@
      });
  });
 
+ // Voting down forums
  $(document).ready(function() {
      $('.voting-down').click(function(e) {
          e.preventDefault();
@@ -114,7 +64,6 @@
  });
 
  // Like functionality
-
  $(document).ready(function() {
      $('.like-dislike').each(function() {
          var likeDislike = $(this);
@@ -147,7 +96,6 @@
  });
 
  // Dislike functionality
-
  $(document).ready(function() {
      $('.like-dislike').each(function() {
          var likeDislike = $(this);
@@ -178,7 +126,7 @@
      });
  });
 
- //Create forum
+ //Create forum entry
  $(document).ready(function() {
      const threadBox = document.getElementById('thread-box');
      const url = window.location.href;
@@ -236,14 +184,15 @@
  $(document).ready(function() {
      const commentForm = document.getElementsByClassName('comment-form');
      for (let form of commentForm) {
-         form.addEventListener('submit', e => {
+         const cform = form;
+         cform.addEventListener('submit', e => {
              e.preventDefault();
-             var content = form.getElementsByTagName('textarea')[0];
-             var pk = form.getAttribute('data-thread');
+             var content = cform.getElementsByTagName('textarea')[0];
+             var pk = cform.getAttribute('data-thread');
              console.log(pk);
              var commentBox = document.querySelector('.comment-box');
              console.log(commentBox);
-             var parent = form.getAttribute('data-parent');
+             var parent = cform.getAttribute('data-parent');
 
              $.ajax({
                  type: 'POST',
@@ -267,7 +216,7 @@
     `);
                          $('.add-comment-modal').modal('hide');
                      } else {
-                         form.closest('.form-box').insertAdjacentHTML('afterend', `
+                         cform.closest('.form-box').insertAdjacentHTML('afterend', `
                          <div class="left-indent mt-4 shadow">
                          <div class="mb-2">                     
         <a class="text-black" href="#">
@@ -280,7 +229,7 @@
     `);
                      }
                      $('.form-box').modal('hide');
-                     form.reset();
+                     cform.reset();
                  },
                  error: function(error) {
                      console.log('Error: ', error);
