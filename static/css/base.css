@@ -81,7 +81,7 @@ a.navbar-brand:hover,
     width: 100%;
     border-radius: 50% 0;
     background-color: #05472a;
-    background: url("/media/download.png") center no-repeat;
+    background: url("/static/images/download.png") center no-repeat;
     background-size: cover;
 }
 
