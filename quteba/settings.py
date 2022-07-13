@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from django.contrib.messages import constants as messages
 from pathlib import Path
 import os
-import sys
+import django_on_heroku
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -33,9 +33,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = "DEVELOPMENT" in os.environ
-DEBUG = False
-print(DEBUG)
-ALLOWED_HOSTS = ['quteba.herokuapp.com', 'localhost']
+DEBUG = True
+
+ALLOWED_HOSTS = ['quteba.herokuapp.com', '127.0.0.1', 'localhost', '*']
 
 
 # Application definition
@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'cloudinary_storage',
-    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'cloudinary',
     'django_summernote',
@@ -60,14 +59,11 @@ INSTALLED_APPS = [
     'qblog',
     'qforum',
     'crispy_forms',
-    'fontawesomefree',
     'django_nose'
 ]
 
 # Tells django to use the same database
 SITE_ID = 2
-
-# Redirect user to home page after login or logout
 
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
@@ -89,7 +85,6 @@ MESSAGE_TAGS = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -196,25 +191,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
-STATIC_URL = 'static/'
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-#STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-WHITENOISE_USE_FINDERS = True
-WHITENOISE_MANIFEST_STRICT = False
-WHITENOISE_ALLOW_ALL_ORIGINS = True
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 MEDIA_URL = '/media/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
@@ -222,3 +205,5 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+django_on_heroku.settings(locals())

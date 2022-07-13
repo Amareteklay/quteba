@@ -18,6 +18,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import handler404, handler500
 from django.urls import path, include
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,7 +28,9 @@ urlpatterns = [
     path('forum/', include('qforum.urls'), name='qforum'),
     path('accounts/', include('allauth.urls')),
     path('profile/', include('users.urls'), name='users_urls'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+
+urlpatterns += staticfiles_urlpatterns()
 
 HANDLER404 = handler404
 HANDLER500 = handler500
