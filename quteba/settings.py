@@ -13,6 +13,9 @@ from django.contrib.messages import constants as messages
 from pathlib import Path
 import os
 import sys
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 import dj_database_url
 if os.path.exists('env.py'):
     import env
@@ -143,27 +146,17 @@ WSGI_APPLICATION = 'quteba.wsgi.application'
 Following https://medium.com/analytics-vidhya/\
 provisioning-a-test-postgresql-database-on-heroku-for-your-django-app-febb2b5d3b29
 """
-if 'test' in sys.argv:
-    print('Testing')
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'df1887jmkps9ur',
-            'USER': 'zgsedyfyunorma',
-            'PASSWORD':
-            '95055549321d4a25886c2683ff274f023b4d0e1da221257a0680e43810641560',
-            'HOST': 'ec2-34-242-84-130.eu-west-1.compute.amazonaws.com',
-            'PORT': 5432,
-            'TEST': {
-                'NAME': 'df1887jmkps9ur',
-                }
-            }
-        }
-else:
-    print('Development')
-    DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-        }
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+}
+
+cloudinary.config(
+    cloud_name=os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.environ.get("CLOUDINARY_API_KEY"),
+    api_secret=os.environ.get("CLOUDINARY_API_SECRET"),
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -207,14 +200,12 @@ STATIC_URL = 'static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-#STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = '/media/'
 

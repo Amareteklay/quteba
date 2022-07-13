@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Rubik:wght@400;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
 body {
     margin: 0;
     padding: 0;
-    /* background-color: rgb(94, 92, 110); */
     background-color: rgba(8, 120, 19, 0.4);
     background-image: url('/media/qu-bg.png');
     font-family: 'Roboto', sans-serif;
@@ -88,7 +86,6 @@ a.navbar-brand:hover,
     background-color: #05472a;
     background: url("/media/download.png") center no-repeat;
     background-size: cover;
-    /*  background-size: cover; */
 }
 
 /* Single post top margin*/
@@ -110,12 +107,10 @@ a.navbar-brand:hover,
 
 #fcol {
     border-radius: 10px 0 50px/90% 0;
-    /* background-color: #056674; */
 }
 
 #scol {
     border-radius: 50px/90% 0 0 0;
-    /*  background-color: #056674; */
 }
 
 a {
@@ -204,8 +199,6 @@ footer {
 }
 
 /* Forum app */
-
-
 .forum h1 {
     color: #056674;
 }

@@ -221,6 +221,8 @@ Python files in the home app checked for pep8 compatibility:
     </a>
 </p>
 
+![CSS Validation](/assets/testing/css-validated.png)
+
 ## Responsiveness
 #
 
