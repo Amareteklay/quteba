@@ -9,7 +9,7 @@
 {% block content %}
 <div class="container-fluid m-0 p-0">
     <div class="row mb-5 mt-5 ps-md-5 py-3" id="forum-area">
-        <div class="col-12 col-sm-12 col-md-10 mx-2 mx-sm-3 mx-md-5 mt-5 ps-2 bg-light left-border">
+        <div class="col-12 col-sm-12 col-md-10 mx-2 mx-sm-3 mx-md-5 mt-5 ps-2 py-2 bg-light left-border">
             <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}" alt="profile image">
             <a class="text-black" href="{% url 'profile' %}"> {{thread.name}}</a>
             <span class="op-6">| {{ thread.created_on|timesince }} ago</span>
@@ -40,9 +40,13 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         {% if user.is_authenticated %}
+                        <div class="row mt-0 pt-0">
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                        </div>
                         <div class="modal-header">
                             <h5 class="modal-title" id="commentModalLabel-{{thread.id}}">Commenting as {{request.user.username}}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form autocomplete="off" id="comment-form" class="comment-form commenting" data-parent="" data-thread="{{thread.id}}">

@@ -8,7 +8,7 @@
 <div class="container account-container">
     <div class="row">
         <div class="col-md-8 my-5 py-5 offset-md-2 bg-light">
-            <div class="content-section p-5 my-5">
+            <div class="content-section p-sm-5 p-2 my-5">
                 <h3>{% trans "Sign Out" %}</h3>
                 <p>{% trans 'Are you sure you want to sign out?' %}</p>
                 <div class="col-md-8 mt-3 offset-md-2 mb-5 py-5">
@@ -17,8 +17,8 @@
                         {% if redirect_field_value %}
                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                         {% endif %}
-                        <a class="btn btn-primary my-5 mx-2 mt-sm-1 mb-md-4 d-inline-block" href="{% url 'home' %}" aria-label="Cancel deletion of the account">Cancel</a>
-                        <button class="btn btn-signup my-5 mx-2 mt-sm-1 mb-md-4  btn-danger right" type="submit">{% trans 'Sign Out' %}</button>
+                        <a class="btn btn-primary my-2 mx-2 mt-sm-1 mb-md-4 d-inline-block" href="{% url 'home' %}" aria-label="Cancel deletion of the account">Cancel</a>
+                        <button class="btn btn-signup my-2 mx-2 mt-sm-1 mb-md-4  btn-danger right" type="submit">{% trans 'Sign Out' %}</button>
                     </form>
                 </div>
             </div>

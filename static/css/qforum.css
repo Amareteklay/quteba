@@ -23,6 +23,11 @@
     padding: 0;
 }
 
+.btn-close {
+    top: 0 !important;
+    right: 0 !important;
+}
+
 .left-indent {
     position: relative;
     margin-left: 17px;

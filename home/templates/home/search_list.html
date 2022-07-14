@@ -14,49 +14,49 @@
 {% endblock search%}
 
 {% block content %}
-<div class="container pt-5">
-    <div class="row mb-5 mt-5 pt-5 bg-light py-5">
-        <h3 class="text-center mb-4">Your Search Results</h3>
-        {% if not post_list and not thread_list %}
-        <div class="col-md-10 offset-md-1">
-            <h5 class=" text-center p-5">
-                Oops, No results to show.
-            </h5>
+<div class="container-fluid pt-5">
+    <div class="row gx-0 mb-5 mt-5 pt-5 px-5 py-5 search-row">
+        <div class="col-12 mt-3 py-4 mx-md-4 bg-light">
+            <h3 class="text-center">Your Search Results</h3>
+            {% if not post_list and not thread_list %}
+            <p class="text-center mt-5">
+                Oops! No results to show. Try again with a different search word/phrase.
+            </p>
+            {% else %}
+            {% if post_list %}
+            <div class="row px-4 mx-md-4">
+                <div class="col-md-6 px-sm-5">
+                    <h4 class="d-inline-block">
+                        <a href="{% url 'qblog:blog' %}">Blog Posts</a>
+                    </h4> <i class="fas fa-level-down-alt d-inline-block"></i>
+                    {% for post in post_list %}
+                    <h5 class="pt-3">
+                        <a href="{% url 'qblog:post_detail' post.slug  %}" class="text-primary">{{ post.title|title}}</a>
+                    </h5>
+                    <p class="small">Posted on {{post.created_on|date:'d-m-Y'}} by {{post.author}} </p>
+                    {{post.excerpt|safe}}
+                    <hr>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% if thread_list %}
+                <div class="col-md-6 px-sm-5">
+                    <h4 class="d-inline-block">
+                        <a href="{% url 'qforum:threads' %}">Forums</a>
+                    </h4> <i class="fas fa-level-down-alt d-inline-block"></i>
+                    {% for thread in thread_list %}
+                    <h5 class="pt-3">
+                        <a href="{% url 'qforum:thread_detail' thread.slug %}" class="text-primary">{{ thread.topic|title}}</a>
+                    </h5>
+                    <p class="small">Created on {{thread.created_on|date:'d-m-Y'}} by {{thread.name}} </p>
+                    {{thread.description|safe}}
+                    <hr>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endif %}
+            </div>
         </div>
-        <div class="col-md-3"></div>
-        {% else %}
-        {% if post_list %}
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-            <h4 class="d-inline-block">
-                <a href="{% url 'qblog:blog' %}">Blog Posts</a>
-            </h4> <i class="fas fa-level-down-alt d-inline-block"></i>
-            {% for post in post_list %}
-            <h5 class="pt-3">
-                <a href="{% url 'qblog:post_detail' post.slug  %}" class="text-primary">{{ post.title|title}}</a>
-            </h5>
-            <p class="small">Posted on {{post.created_on|date:'d-m-Y'}} by {{post.author}} </p>
-            {{post.excerpt|safe}}
-            <hr>
-            {% endfor %}
-        </div>
-        {% endif %}
-        {% if thread_list %}
-        <div class="col-md-3 offset-md-1">
-            <h4 class="d-inline-block">
-                <a href="{% url 'qforum:threads' %}">Forums</a>
-            </h4> <i class="fas fa-level-down-alt d-inline-block"></i>
-            {% for thread in thread_list %}
-            <h5 class="pt-3">
-                <a href="{% url 'qforum:thread_detail' thread.slug %}" class="text-primary">{{ thread.topic|title}}</a>
-            </h5>
-            <p class="small">Created on {{thread.created_on|date:'d-m-Y'}} by {{thread.name}} </p>
-            {{thread.description|safe}}
-            <hr>
-            {% endfor %}
-        </div>
-        {% endif %}
-        {% endif %}
     </div>
 </div>
 {% endblock content %}
