@@ -51,9 +51,11 @@ class Thread(models.Model):
         return str(self.topic)
 
     def no_of_upvotes(self):
+        """ Count the number of up votes """
         return self.up_votes.count()
 
     def no_of_downvotes(self):
+        """ Count the number of down votes """
         return self.down_votes.count()
 
     def get_absolute_url(self):
@@ -92,9 +94,11 @@ class Comment(models.Model):
         return f"{self.content}"
 
     def no_of_likes(self):
+        """ Count the number of likes """
         return self.likes.count()
 
     def no_of_dislikes(self):
+        """ Count the number of dislikes """
         return self.dislikes.count()
 
     @property

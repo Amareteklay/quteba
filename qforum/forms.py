@@ -36,4 +36,3 @@ class CommentForm(ModelForm):
                                             'placeholder': 'Comment here...',
                                             'class': 'form-control text-area',
                                             'rows': '5', 'cols': '40'}
-

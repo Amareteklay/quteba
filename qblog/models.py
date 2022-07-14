@@ -25,9 +25,11 @@ class Post(models.Model):
         ordering = ['-created_on']
 
     def __str__(self):
+        """ String representation of the Post model """
         return self.title
 
     def number_of_likes(self):
+        """ Count number of likes """
         return self.likes.count()
 
     def save(self, *args, **kwargs):

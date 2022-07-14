@@ -9,7 +9,7 @@ from .models import Thread, Comment, Category
 from .forms import ThreadForm, CommentForm
 
 
-class ThreadList(View):
+class ThreadList(LoginRequiredMixin, View):
     """
     A class based view for a list of threads
     """
@@ -45,19 +45,6 @@ class ThreadList(View):
                     'created': new_thread.created_on.date(),
                     'profile': new_thread.name.user_profile.image.url
                 })
-
-
-class ActiveTopicsList(generic.ListView):
-    """
-    To show a list of active topics in the side bar.
-    """
-    model = Thread
-    template_name = 'qforum/side_bar.html'
-
-
-class CategoryList(generic.ListView):
-    model = Category
-    template_name = 'qforum/forum_base.html'
 
 
 class ThreadDetailView(LoginRequiredMixin, View):
@@ -110,8 +97,7 @@ class ThreadDetailView(LoginRequiredMixin, View):
 
 class ThreadEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """
-    Update forum entry
-    Updates forum but not comments
+    Updates forum entry but not comments
     """
     model = Thread
     fields = ['category', 'topic', 'description']
@@ -187,11 +173,11 @@ def vote_down(request):
 @login_required
 def like_dislike_view(request):
     """
-    Like or unlike a comment or a reply
+    Like or unlike a comment or a reply.
+    Like and unlike are mutually exclusive for a user.
     """
     pk = request.POST.get('pk')
     comment = Comment.objects.get(pk=pk)
-    # If like button is clicked
     if request.POST.get('action') == 'liking':
         if request.user in comment.likes.all():
             comment.likes.remove(request.user)
@@ -210,7 +196,6 @@ def like_dislike_view(request):
                 'likes': comment.no_of_likes(),
                 'dislikes': comment.no_of_dislikes()
             })
-    # If dislike button is clicked
     elif request.POST.get('action') == 'disliking':
         if request.user in comment.dislikes.all():
             comment.dislikes.remove(request.user)

@@ -8,7 +8,7 @@ from .models import Post
 from .forms import CommentForm, PostForm
 
 
-class PostCreateView(CreateView):
+class PostCreateView(CreateView, LoginRequiredMixin):
     """
     View to create blog posts
     """
@@ -46,7 +46,7 @@ class PostList(ListView):
     paginate_by = 10
 
 
-class PostDetail(View):
+class PostDetail(LoginRequiredMixin, View):
     """
     View for blog details page
     """
@@ -99,7 +99,7 @@ class PostDetail(View):
         )
 
 
-class PostLike(View):
+class PostLike(View, LoginRequiredMixin):
     """
     Like blog post
     """
