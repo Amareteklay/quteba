@@ -9,26 +9,28 @@
 {% endblock extrahead%}
 {% block content %}
 <div class="container-fluid m-0 p-0">
-    <div class="row mb-5 gx-0 mt-5 ps-5">
-        <div class="col-md-10 ms-5 me-4 px-3 py-5 bg-light mt-3">
-            <div class="modal fade bg-light-green" id="addForumModal" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        {% if user.is_authenticated %}
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ask a question</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="row mb-5 gx-0 mt-5 ps-sm-5">
+        <div class="col-12 col-sm-10 ms-sm-5 px-3 py-5 mt-3">
+            <div class="d-flex justify-content-center">
+                <div class="modal fade bg-light-green" id="addForumModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            {% if user.is_authenticated %}
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Create a discussion forum and start a conversation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form autocomplete="off" id="create-forum-form">
+                                    {% csrf_token %}
+                                    {{thread_form|crispy}}
+                                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                                </form>
+                            </div>
+                            {% else %}
+                            <h5 class="modal-title text-center">You need to login to create a forum</h5>
+                            {% endif %}
                         </div>
-                        <div class="modal-body">
-                            <form autocomplete="off" id="create-forum-form">
-                                {% csrf_token %}
-                                {{thread_form|crispy}}
-                                <button type="submit" class="btn btn-primary mt-2">Submit</button>
-                            </form>
-                        </div>
-                        {% else %}
-                        <h5 class="modal-title text-center">You need to login to create a forum</h5>
-                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -41,7 +43,7 @@
                 {% for thread in thread_list %}
                 <div class="card shadow-lg row-hover pos-relative px-3 mb-3 rounded-2 {% if forloop.counter|divisibleby:2 %} right-border {% else %} left-border {% endif %}">
                     <div class="row pb-3 align-items-center">
-                        <div class="col-md-8 mb-3 mb-sm-0">
+                        <div class="col-12 col-sm-12 col-md-10 col-lg-8 mb-3 mb-sm-0">
                             <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}" alt="profile image">
                             <a class="text-black" href="{% url 'profile' %}" aria-label="Go to user profile page"> {{thread.name}}</a> <span class="op-6">|
                                 {{ thread.created_on|date:"Y-m-d"}}</span>

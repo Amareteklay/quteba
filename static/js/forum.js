@@ -70,11 +70,8 @@
          likeDislike.find('.likes').on('click', function(e) {
              e.preventDefault();
              var pk = likeDislike.attr('data-value');
-             console.log(pk);
-             console.log('Liked');
              var likeBtn = likeDislike.find("span")[0];
              var dislikeBtn = likeDislike.find("span")[1];
-             console.log(likeBtn);
              $.ajax({
                  type: 'POST',
                  url: '/forum/like/',
@@ -102,8 +99,6 @@
          likeDislike.find('.dislikes').on('click', function(e) {
              e.preventDefault();
              var pk = likeDislike.attr('data-value');
-             console.log(pk);
-             console.log('Disliked');
              var likeBtn = likeDislike.find("span")[0];
              var dislikeBtn = likeDislike.find("span")[1];
              $.ajax({
@@ -130,14 +125,13 @@
  $(document).ready(function() {
      const threadBox = document.getElementById('thread-box');
      const url = window.location.href;
-     console.log('sfsg');
 
      $('#create-forum-form').submit(function(e) {
          e.preventDefault();
          var topic = document.getElementById('id_topic');
          var description = document.getElementById('id_description');
          var category = document.getElementById('id_category');
-         console.log('sfsg');
+
          $.ajax({
              type: 'POST',
              dataType: 'json',

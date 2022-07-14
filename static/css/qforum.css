@@ -1,9 +1,6 @@
 .modal {
-    max-height: 450px;
-    max-width: 600px;
     background-color: #282c34;
     top: 75px;
-    left: 240px;
 }
 
 #question-form {
@@ -24,10 +21,6 @@
     width: 100%;
     margin: 0;
     padding: 0;
-}
-
-.text-area {
-    width: 450px !important;
 }
 
 .left-indent {

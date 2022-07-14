@@ -8,8 +8,8 @@
 {% endblock extrahead%}
 {% block content %}
 <div class="container-fluid m-0 p-0">
-    <div class="row mb-5 mt-5 ps-5 py-3" id="forum-area">
-        <div class="col-md-10 mt-5 ms-5 ps-4 py-2 bg-light left-border">
+    <div class="row mb-5 mt-5 ps-md-5 py-3" id="forum-area">
+        <div class="col-12 col-sm-12 col-md-10 mx-2 mx-sm-3 mx-md-5 mt-5 ps-2 bg-light left-border">
             <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}" alt="profile image">
             <a class="text-black" href="{% url 'profile' %}"> {{thread.name}}</a>
             <span class="op-6">| {{ thread.created_on|timesince }} ago</span>
@@ -17,26 +17,25 @@
                 {{comments.all.count}}</span>
             <h5 class="text-primary px-3 pt-2">{{ thread.topic}}</h5>
             <p class="px-3 py-3"> {{thread.description|safe}} </p>
-
-            <div class="col-1 d-inline-block" id="up-votes" data-value="{{thread.slug}}">
-                <a class="btn voting-up" role="button">
-                    <i class="fa-solid fa-caret-up btn-vote text-success"></i>
-                </a>
-                <span id="num-up-votes">{{ thread.no_of_upvotes }}</span>
+            <div class="col-12 d-inline-block">
+                <div class="d-inline-block" id="up-votes" data-value="{{thread.slug}}">
+                    <a class="btn voting-up" role="button">
+                        <i class="fa-solid fa-caret-up btn-vote text-success"></i>
+                    </a>
+                    <span id="num-up-votes">{{ thread.no_of_upvotes }}</span>
+                </div>
+                <div class="d-inline-block me-3" id="down-votes" data-value="{{thread.slug}}">
+                    <a class="btn voting-down" role="button">
+                        <i class="fa-solid fa-caret-down btn-vote text-danger"></i>
+                    </a>
+                    <span id="num-down-votes">{{ thread.no_of_downvotes }}</span>
+                </div>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCommentModal-{{thread.id}}">Comment <i class="fa-solid fa-angle-down"></i></button>
+                {% if request.user == thread.name %}
+                <a href="{% url 'qforum:edit-thread' thread.slug %}" class="op-6 px-3"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{% url 'qforum:delete-thread' thread.slug %}" class="op-6"><i class="fa-solid fa-trash small"></i></a>
+                {% endif %}
             </div>
-            <div class="col-1 d-inline-block" id="down-votes" data-value="{{thread.slug}}">
-                <a class="btn voting-down" role="button">
-                    <i class="fa-solid fa-caret-down btn-vote text-danger"></i>
-                </a>
-                <span id="num-down-votes">{{ thread.no_of_downvotes }}</span>
-            </div>
-
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCommentModal-{{thread.id}}">Comment <i class="fa-solid fa-angle-down"></i></button>
-            {% if request.user == thread.name %}
-            <a href="{% url 'qforum:edit-thread' thread.slug %}" class="op-6 px-3"><i class="fa-solid fa-pen-to-square"></i></a>
-            <a href="{% url 'qforum:delete-thread' thread.slug %}" class="op-6"><i class="fa-solid fa-trash small"></i></a>
-            {% endif %}
-
             <div class="modal fade bg-light-green add-comment-modal" id="addCommentModal-{{thread.id}}" data-value="addCommentModal-{{thread.id}}" tabindex="-1" aria-labelledby="commentModalLabel-{{thread.id}}" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -73,7 +72,7 @@
                     <span class="op-6">| {{ comment.created|timesince }} ago</span>
                     <p class="px-3 mt-2">{{comment.content}}</p>
 
-                    <div class="col-3 d-inline-block like-dislike" data-value="{{comment.id}}">
+                    <div class="col-12 d-inline-block like-dislike" data-value="{{comment.id}}">
                         <a class="btn liking d-inline-block likes" role="button">
                             <i class="fa-solid fa-thumbs-up"></i>
                         </a>
