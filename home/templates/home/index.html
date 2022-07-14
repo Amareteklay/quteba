@@ -3,14 +3,11 @@
 
 {% block content %}
 
-<!--Code from https://replit.com/talk/learn/DjangoPython-and-HTML-Coding-Campus-Tutorial-1-Create-a-Blog-with-Django/142238?order=new-->
-<!--And https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/templates/index.html-->
-
-<div class="container mt-4 pt-5 mb-2">
-    <div class="row gx-2 mb-2 bg-light pt-3 pb-5 shadow border-0 rounded">
+<div class="container-fluid mt-4 pt-5 mb-2">
+    <div class="row mb-2 bg-light pt-3 pb-5 shadow border-0 rounded">
         <div class="col-12 mb-4 left">
             <h1 class="text-center text-deep-green"><strong>QUTEBA</strong> </h1>
-            <h1 class="text-center"><em>Your economic information exchange hub</em> </h1>
+            <h2 class="text-center"><em>Your economic information exchange hub</em> </h2>
         </div>
         {% if not user.is_authenticated %}
         <div class="col-12 mt-2 left text-center">
@@ -24,24 +21,24 @@
             </a>
         </div>
         {% endif %}
-        <div class="col-6 mt-4 py-4 shadow border-0" id="q-blog-tagline">
+        <div class="col-12 col-md-6 mt-4 py-4 shadow border-0" id="q-blog-tagline">
             <a href="#q-blog-section" aria-label="Go to quteba blog page" class="text-white">
                 <h2 class="text-center"><i class="fa-solid fa-pen"></i><br> Qblog</h2>
             </a>
-            <div class="text-white ps-5 ms-5">
-                <ul class="text-white ps-5 ms-5 pt-3">
-                    <li class="ms-5">Analyses</li>
-                    <li class="ms-5">Insights</li>
-                    <li class="ms-5">Facts</li>
+            <div class="text-white d-flex justify-content-center">
+                <ul class="text-white pt-3">
+                    <li>Analyses</li>
+                    <li>Insights</li>
+                    <li>Facts</li>
                 </ul>
             </div>
         </div>
-        <div class="col-6 mt-4 py-4 shadow  border-0 pb-4" id="q-forum-tagline">
+        <div class="col-12 col-md-6 mt-4 py-4 shadow  border-0 pb-4" id="q-forum-tagline">
             <a href="#q-forum-section" aria-label="Go to quteba forum page" class="text-white">
                 <h2 class="text-center"><i class="fa-solid fa-user-group"></i><br> Qforum</h2>
             </a>
-            <div class="text-white ps-5 ms-5">
-                <ul class="text-white ps-5 ms-5 pt-3">
+            <div class="text-white d-flex justify-content-center">
+                <ul class="text-white pt-3">
                     <li>Have your say</li>
                     <li>Ask questions</li>
                     <li>Give comments</li>
@@ -51,26 +48,26 @@
     </div>
 </div>
 <!-- Recent stories section -->
-<div class="container pt-5 mb-2" id="q-blog-section">
+<div class="container-fluid pt-5 mb-2" id="q-blog-section">
     <div class="row mb-2 bg-light py-3 shadow rounded">
-        <div class="col-12 mb-4">
+        <div class="col-12 mb-2">
             <h2 class="text-center">RECENT POSTS</h2>
         </div>
         {% for post in post %}
         {% if forloop.counter <= 3 %}
-        <div class="col-4 mt-4 p-4 me-0 shadow text-white bg-deep-green {% if forloop.counter|divisibleby:2 %} border {% endif %}">
+        <div class="col-12 col-md-4 mt-2 p-4 me-0 shadow text-white bg-deep-green {% if forloop.counter|divisibleby:2 %} border {% endif %}">
             <a {% if user.is_authenticated %} href="{% url 'qblog:post_detail' post.slug  %}" {% else %} href="{% url 'login' %}" {% endif %} aria-label=" Open post detail page" class="text-white">
-                <h2 class="text-center">{{post.title}}</h2>
+                <h2>{{post.title}}</h2>
             </a>
             <!-- <img class="rounded-circle article-img profile-img" src="{{ post.author.user_profile.image.url }}" alt="profile image"> -->
-            {{ post.author|title }}
-            | <span class="text-white"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text text-white h6"> <i class="far fa-heart"></i>
-                {{ post.number_of_likes }}</span>
-            <p class="px-3 pt-3">{{post.excerpt|safe}}</p>
+            <p class="px-3 small"> {{ post.author|title }}
+                | <span class="text-white"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text text-white h6"> <i class="far fa-heart"></i>
+                    {{ post.number_of_likes }}</span></p>
+            <p class="pt-3">{{post.excerpt|safe}}</p>
         </div>
         {% endif %}
         {% endfor %}
-        <div class="col-12 mt-5 text-center">
+        <div class="col-12 mt-3 text-center">
             {% if user.is_authenticated %}
             <a href="{% url 'qblog:blog' %}" aria-label="Go to quteba blog page" class="btn btn-primary mb-3 border-rounded">
                 Read Qblog
@@ -92,25 +89,25 @@
     </div>
 </div>
 <!-- Active topics section -->
-<div class="container pt-5 mb-2" id="q-forum-section">
+<div class="container-fluid pt-5 mb-2" id="q-forum-section">
     <div class="row mb-2 bg-light py-3 shadow rounded">
-        <div class="col-12 mb-4 left">
+        <div class="col-12 mb-2 left">
             <h2 class="text-center">RECENT FORUMS</h2>
         </div>
         {% for thread in thread %}
         {% if forloop.counter <= 3 %}
-        <div class="col-4 mt-4 p-4 text-white shadow bg-deep-green {% if forloop.counter|divisibleby:2 %} border {% endif %}">
+        <div class="col-12 col-md-4 mt-2 p-4 text-white shadow bg-deep-green {% if forloop.counter|divisibleby:2 %} border {% endif %}">
             <a {% if user.is_authenticated %} href="{% url 'qforum:thread_detail' thread.slug %}" {% else %} href="{% url 'login' %}" {% endif %} aria-label="Open post detail page" class="text-white">
-                <h2 class="text-center">{{thread.topic}}</h2>
+                <h2>{{thread.topic}}</h2>
             </a>
             <!-- <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}" alt="profile image"> -->
-            <a class="text-white" href="#" aria-label="Go to quteba user profile page"> {{thread.name}}</a> <span class="op-6 text-white">|
-                {{ thread.created_on|timesince }} ago</span>
-            <p class="mx-3 pt-3">{{thread.description|safe}}</p>
+            <p class="mx-3 small"> {{thread.name}}
+                <span class="op-6 text-white">| {{ thread.created_on|timesince }} ago</span></p>
+            <p class="pt-3">{{thread.description|safe}}</p>
         </div>
         {% endif %}
         {% endfor %}
-        <div class="col-12 mt-5 left text-center">
+        <div class="col-12 mt-3 left text-center">
             {% if user.is_authenticated %}
             <a href="{% url 'qforum:threads' %}" aria-label="Go to quteba forum page" class="btn btn-primary mb-3 border-rounded">
                 Join Qforum

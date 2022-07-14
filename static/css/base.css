@@ -1,6 +1,7 @@
 body {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
     background-color: rgba(8, 120, 19, 0.4);
     background-image: url('/static/images/qu-bg.png');
     font-family: 'Roboto', sans-serif;
@@ -28,7 +29,7 @@ p {
 }
 
 #q-logo {
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 .navbar {
@@ -64,12 +65,12 @@ a.navbar-brand:hover,
 
 #q-blog-tagline {
     background-color: #05472a;
-    border-radius: 0 20% 0 20%;
+    border-radius: 0 20% 0 0;
 }
 
 #q-forum-tagline {
     background-color: #05472a;
-    border-radius: 20% 0 20% 0;
+    border-radius: 20% 0 0 0;
 }
 
 .row {
@@ -169,7 +170,7 @@ a {
 
 
 footer {
-    max-width: 100% !important;
+    width: 100% !important;
     margin-top: 90px;
     background-color: #05472a;
 
@@ -292,3 +293,26 @@ img.card-img-top {
 img {
     vertical-align: top !important;
 }
+
+
+/* Media Queries */
+
+@media (max-width: 576px) {}
+
+
+@media (max-width: 768px) {
+
+    #q-blog-tagline,
+    #q-forum-tagline {
+        border-radius: 0;
+    }
+}
+
+
+@media (max-width: 992px) {}
+
+
+@media (max-width: 1200px) {}
+
+
+@media (max-width: 1400px) {}
