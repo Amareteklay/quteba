@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-
+            {% if comments %}
             {% for comment in comments %}
             {% if not comment.parent %}
             <div class="comment-box">
@@ -96,7 +96,7 @@
                                 <button type="submit" class="btn btn-primary mt-3" data-bs-toggle="collapse" data-bs-target="#comment-form-{{comment.id}}">Submit</button>
                             </form>
                             {% else %}
-                            <h2>You need to Login to comment</h2>
+                            <h4>You need to Login to comment</h4>
                             {% endif %}
                         </div>
                         {% endif %}
@@ -107,8 +107,15 @@
                     {% endif %}
                 </div>
             </div>
-            {% endif%}
+            {% endif %}
             {% endfor %}
+            {% else %}
+            <div class="comment-box my-4">
+            </div>
+            <div class="comment-prompt my-4">
+                <p class="small">Be the first to leave a comment.</p>
+            </div>
+            {% endif%}
         </div>
     </div>
 </div>

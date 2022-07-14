@@ -189,9 +189,7 @@
              e.preventDefault();
              var content = cform.getElementsByTagName('textarea')[0];
              var pk = cform.getAttribute('data-thread');
-             console.log(pk);
              var commentBox = document.querySelector('.comment-box');
-             console.log(commentBox);
              var parent = cform.getAttribute('data-parent');
 
              $.ajax({
@@ -205,12 +203,13 @@
                  },
                  success: function(response) {
                      if (parent == 0) {
+                         $('.comment-prompt').hide();
                          commentBox.insertAdjacentHTML('afterbegin', `
                 <div class="pt-2 shadow border-bottom">
     <a class="text-black" href="{% url 'profile' %}">
         <img class="rounded-circle article-img profile-img" src="${response.profile}">
         ${response.name}</a>
-    <span class="op-6 text-muted">${response.created}</span>
+    <span class="op-6">${response.created}</span>
     <p class="px-3 mt-2"> ${response.content}</p>
     </div>
     `);
@@ -222,7 +221,7 @@
         <a class="text-black" href="#">
             <img class="rounded-circle article-img profile-img" src="${response.profile}">
             ${response.name}</a>
-        <span class="op-6 text-muted">${response.created}</span>
+        <span class="op-6">${response.created}</span>
         <p class="px-3 mt-2">${response.content}</p>
         </div>
     </div>
