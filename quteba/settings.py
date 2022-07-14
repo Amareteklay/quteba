@@ -94,7 +94,7 @@ MIDDLEWARE = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-amareteklay-quteba-ks4l40hfliy.ws-eu53.gitpod.io'
+    'https://8000-amareteklay-quteba-ks4l40hfliy.ws-eu54.gitpod.io'
     ]
 
 ROOT_URLCONF = 'quteba.urls'

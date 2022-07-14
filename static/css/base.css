@@ -80,7 +80,7 @@ a.navbar-brand:hover,
 .bg-rounded {
     height: 100%;
     width: 100%;
-    border-radius: 50% 0;
+    border-radius: 40% 0;
     background-color: #05472a;
     background: url("/static/images/download.png") center no-repeat;
     background-size: cover;
@@ -203,6 +203,7 @@ footer {
 
 .post-comment-form {
     display: block;
+    margin-top: 1.3em;
 }
 
 .single-forum {
@@ -305,6 +306,11 @@ img {
     #q-blog-tagline,
     #q-forum-tagline {
         border-radius: 0;
+    }
+
+    .nav-link,
+    .dropdown-menu {
+        width: 150px;
     }
 }
 

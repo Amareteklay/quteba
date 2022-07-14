@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-3 pt-3">
-    <div class="row mx-md-2 mx-sm-1 py-5 px-5 shadow-lg bg-light">
+<div class="container-fluid mt-3 pt-3 px-lg-5">
+    <div class="row mx-lg-4 mx-md-2 mx-sm-2 mx-1 px-xl-5 px-lg-2 px-1 py-5 shadow-lg bg-light">
         <div class=" col-md-12 d-md-block mb-3">
             <h1 class="post-title text-center">Quteba Blog</h1>
             {% if user.is_superuser %}
@@ -16,10 +16,10 @@
         <div class="row mt-5 mb-3">
             {% if forloop.counter|divisibleby:2 %}
             <div class="col-5">
-                <div class="border bg-light bg-rounded d-none d-lg-block">
+                <div class="border bg-light bg-rounded d-md-none d-lg-block">
                 </div>
             </div>
-            <div class="col-md-12 col-lg-7">
+            <div class="col-md-12 col-lg-7 px-3">
                 <div class="py-3 px-sm-1 px-0 bg-light">
                     <a href="{% url 'qblog:post_detail' post.slug  %}" class="post-link">
                         <h2 class="card-title mb-2 pt-2">{{ post.title }}</h2>
@@ -33,7 +33,7 @@
                 </div>
             </div>
             {% else %}
-            <div class="col-md-12 col-lg-7">
+            <div class="col-md-12 col-lg-7 px-3">
                 <div class="py-3 px-sm-1 px-0 bg-light">
                     <a href="{% url 'qblog:post_detail' post.slug  %}" class="post-link">
                         <h2 class="card-title mb-2 pt-2">{{ post.title }}</h2>

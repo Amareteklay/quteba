@@ -95,7 +95,7 @@
                         <img class="rounded-circle border-0 article-img profile-img" src="{% if user.user_profile.image %} {{ user.user_profile.image.url }} {% else %} {% static '/media/default.jpg' %} {% endif %}" alt="Profile image">
                         <a class="nav-link dropdown-toggle d-inline-block" href="{% url 'profile' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         </a>
-                        <div class="dropdown-menu bg-deep-green rounded m-0 p-0" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu bg-deep-green border rounded m-0 p-2" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item nav-link text-center text-white p-0 m-0" href="{% url 'profile' %}" aria-label="Go to your profile page">{{user.user_profile.user.username|title}}</a>
                             <a class="dropdown-item nav-link text-center text-white p-0 m-0" href=" {% url 'account_logout' %}" aria-label="Logout">Logout</a>
                         </div>
