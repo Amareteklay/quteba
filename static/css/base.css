@@ -64,11 +64,13 @@ a.navbar-brand:hover,
 }
 
 #q-blog-tagline {
+    background-image: linear-gradient(to left, rgba(194, 241, 220, 0.3) 10%, #05472a);
     background-color: #05472a;
     border-radius: 0 20% 0 0;
 }
 
 #q-forum-tagline {
+    background-image: linear-gradient(to right, rgba(194, 241, 220, 0.3) 10%, #05472a);
     background-color: #05472a;
     border-radius: 20% 0 0 0;
 }

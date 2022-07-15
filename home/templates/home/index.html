@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="container-fluid mt-4 pt-5 mb-2">
-    <div class="row mb-2 bg-light pt-3 pb-5 shadow border-0 rounded">
+    <div class="row mb-2 bg-light pt-3 pb-5 shadow border-0 rounded d-flex justify-content-center">
         <div class="col-12 mb-4 left">
             <h1 class="text-center text-deep-green"><strong>QUTEBA</strong> </h1>
             <h2 class="text-center"><em>Your economic information exchange hub</em> </h2>
@@ -21,7 +21,7 @@
             </a>
         </div>
         {% endif %}
-        <div class="col-12 col-md-6 mt-4 py-4 shadow border-0" id="q-blog-tagline">
+        <div class="col-12 col-md-5 mt-4 py-4 shadow border-0" id="q-blog-tagline">
             <a href="#q-blog-section" aria-label="Go to quteba blog page" class="text-white">
                 <h2 class="text-center"><i class="fa-solid fa-pen"></i><br> Qblog</h2>
             </a>
@@ -33,7 +33,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-md-6 mt-4 py-4 shadow  border-0 pb-4" id="q-forum-tagline">
+        <div class="col-12 col-md-5 mt-4 py-4 shadow  border-0 pb-4" id="q-forum-tagline">
             <a href="#q-forum-section" aria-label="Go to quteba forum page" class="text-white">
                 <h2 class="text-center"><i class="fa-solid fa-user-group"></i><br> Qforum</h2>
             </a>
@@ -63,7 +63,7 @@
             <p class="px-3 small"> {{ post.author|title }}
                 | <span class="text-white"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text text-white h6"> <i class="far fa-heart"></i>
                     {{ post.number_of_likes }}</span></p>
-            <p class="pt-3">{{post.excerpt|safe}}</p>
+            <p class="pt-3 text-white">{{post.excerpt|safe}}</p>
         </div>
         {% endif %}
         {% endfor %}
