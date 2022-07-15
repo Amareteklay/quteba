@@ -1,16 +1,16 @@
 # QUTEBA
-Quteba is a dynamic website that aims to serve the general public by providing views and analyses pertinent to economic issues as well as by enabling users to participate in discussion forums. Quteba got its name from a Tigrinya word that can roughly be translated as Economy. Quteba is as much a platform for user created content as it is source of information for those who want to read blog posts. Users can start discussion forums and engage in discussions by way of comments and replies.
+Quteba is a dynamic website that aims to serve users by providing views and analyses pertinent to economic issues as well as by enabling them to participate in discussion forums. Quteba got its name from a Tigrinya word that can roughly be translated as Economy. Quteba is as much a platform for user-created content as it is a source of information for those who want to read blog posts. Users can start discussion forums as well as engage in discussions by way of comments and replies.
 
 Quteba was built using Django framework for the back-end and JavaScript (and Jquery), HTML and CSS (and bootstrap) for the front-end.  
 
-![Quteba](assets/screenshots/homepage-mockup.png)
+![Quteba](assets/screenshots/quteba-mockup.png)
 
-[View Quteba live on Heroku](https://quteba.herokuapp.com/)
+[View Quteba live on Heroku](https://quteba.herokuapp.com/).
 
 #
 
-## Table of Contents
-* [User Experience Design (UX)](#UX)
+# Table of Contents
+* [UX Design ](#UX-Design)
     * [The Strategy Plane](#The-Strategy-Plane)
         * [Site Goals](#Site-Goals)
         * [Epics](#Epics)
@@ -30,19 +30,24 @@ Quteba was built using Django framework for the back-end and JavaScript (and Jqu
 * [Deployment](#deployment)
 * [Credits](#credits)
 
-## UX Design
 
-### The Strategy Plane
+# UX Design
+
+## The Strategy Plane
  
-#### Site Goals
+### **Site Goals**
 
 * Owner goals: 
-   * The goal of the website is to provide a platform for users to discuss and understand relevant economic issues. Quteba has a dual purpose: for the average user, it is a place where they can ask questions and get answers from other users. For users who are looking for deeper analyses from experts, quteba has a blog where contributors post articles and users can read, comment on or even open a discussion forum if they will.
+   * The goal of the website is to provide a platform for users to discuss and understand relevant economic issues. Quteba has a dual purpose: 
+     * For the average user, it is a place where they can ask questions and get answers from other users. 
+     * For users who are looking for deeper analyses from experts, quteba has a blog where contributors post articles and users can read, comment on or even open a discussion forum if they will.
 
 * User goals: 
-   * Users of Quteba are interested in either getting quick answers to specific questions or a deeper insight on a given problem. As such, they want to engage in discussion forums by asking questions, reading comments, replying and/or reacting to the comments and replies others provide. Users are also interested in grasping the various viewpoints on specific economic topics, and thus they want to read articles that synthesize different theories and pieces of information.
+   * Users of Quteba are interested in either getting quick answers to specific questions or a deeper insight on a given problem. 
+   * Users want to engage in discussion forums by asking questions, reading comments, replying and/or reacting to the comments and replies others provide. 
+   * Users are also interested in grasping the various viewpoints on specific economic topics, and thus they want to read articles that synthesize different theories and pieces of information.
 
-#### Epics
+### **Epics**
 In this project, the following 8 epics were created which encapsulate the user stories below.
 
 - Useability
@@ -54,116 +59,168 @@ In this project, the following 8 epics were created which encapsulate the user s
 - Search for content
 - User interaction 
 
-#### User Stories
+### **User Stories**
 
-The above user goals and epics were decomposed into user stories that helped me to identify and implement specific features. The user stories and different tasks under them were listed in the project kanban board to keep track of the status of each feature. 
+The above user goals and epics were decomposed into user stories that are crucial to identify and implement the required features. The agile process was followed and many of the user stories and different tasks under them were listed in the [project kanban board](https://github.com/Amareteklay/quteba/projects/1) to keep track of the status of each feature. 
 
-- Useability
-   - As a first time visitor I want to get information about the site so that I can understand the what the site focuses on and how I can make the best out of it.
+- **Useability**
+   - As a first time visitor, I want to get information about the site so that I can understand what the site focuses on and how I can make the best out of it.
    - As a first time visitor, I want to be able to navigate the site so that I can find the most important information with the least amount of effort.
    - As an engaged user, I want to see relevant feedback so that I can understand if my interactions with the site are successful or not. 
-   - As a user, I want to know which menu item is active so that I can know which part of the site I am navigating at each moment. 
+   - As a user, I want to know which menu item is active so that I can know which part of the site I am currently navigating. 
    - As a user, I want to be able to access quteba's contents and functionalities from my mobile or tablet so that I do not have to wait until I find a computer.
    - As a frequent user, I want to follow the site owner on social media so that I can see recent activities and updates from my favourite social media apps.
 
-- User authentication
-   - As a first time visitor I want to sign up so that I can have login credentials which I can use to login to the site every time I want to use it. 
-   - As a registered user, I want to be able to login with my registereg credentials so that I can access my profile as well as all the contents and functionalities that require that users be logged in.
+- **User authentication**
+   - As a first time visitor, I want to sign up so that I can have login credentials which I can use to login to the site every time I want to use it. 
+   - As a registered user, I want to be able to login with my registered credentials so that I can access my profile as well as all the contents and functionalities that require user authentication.
    - As a logged in user, I want to be able to logout easily so that I feel safe that others do not interact with the site via my account.
 
-- User profile 
-   - As a registered user I want to have a profile so that I can choose a profile picture and share my bio with other quteba users.
-   - As a registered user I want to update and delete my profile so that I have control of what I want to do with my personal information.
+- **User profile** 
+   - As a registered user, I want to have a profile so that I can choose a profile picture and share my bio with other quteba users.
+   - As a registered user, I want to be able to update and delete my profile so that I have control of what I want to do with my personal information.
 
-- Quteba blog
-   - As a reader I want to read excerpts of blog posts so that I choose which articles to read without going through the whole content of each post.
-   - As a contributor I can create drafts and publish posts without entering the admin page so that I can quickly share my views and analyses with readers.
+- **Quteba blog**
+   - As a reader, I want to read excerpts of blog posts so that I choose which articles to read without going through the whole content of each post.
+   - As a contributor, I want to be able to create drafts and publish posts without entering the admin page so that I can quickly share my views and analyses with readers.
    - As a regular reader, I want to read the contents of each post on its own page so that I can focus on the contents of the specific post at a time while being able to see other users' feedbacks to the particular post.
-   - As a registered user I want to like posts and add comments so that I can express my impression and engage in a discussion.
+   - As a registered user, I want to be able to like posts and add comments so that I can express my impression and engage in a discussion.
 
-- Quteba forum
-   - As a first time visitor I want to see sample forum entries so that I can decide if I want to join the discussions. 
-   - As a registered user, I want to create a discussion forum so that I can get answers to my questions and start conversations.
-   As a user, I want update or delete my own discussion forum so that I can opt out from a conversation that takes a different direction from I initially intended.
+- **Quteba forum**
+   - As a first time visitor, I want to see sample forum entries so that I can decide if I want to join the discussions. 
+   - As a registered user, I want to be able to create a discussion forum so that I can get answers to my questions and start conversations.
+   - As a registered user, I want update or delete my own discussion forum entries so that I can opt out from a conversation whenever I want.
    - As a frequent user, I want to vote up or vote down a forum so that I can quickly reward or punish contents based on their importance and relevance without having to write comments. 
  
-- Nested threads
+- **Nested threads**
    - As a dedicated user, I want to reply to comments on a forum I created so that I can open and lead an engaging conversation on relevant topics. 
    - As a registered user, I want to leave comments on discussion forums so that I can express my views and lead to further discussions.
-   - As a frequent user, I want to like or unlike comments and replies to express my opinions of them without having to write comments or replies.
+   - As a frequent user, I want to be able to like or unlike comments and replies to express my opinions of them without having to write comments or replies.
    - As a registered user, I want to reply to other users' comments and replies so that I can follow the threads and identify the forkroads that emerge from the discussions.
    - As a forum reader, I want to see nested threads of forum topics, comments and replies so that I can visually see which replies are given to which comment.
 
-- Search for content
+- **Search for content**
    - As a user, I want to search for specific content so that I can find quick answers to the questions I have in mind.
    - As a user, I want to see excerpts of my search results so that I can quickly identify the most relevant content I want to read further.
 
-- User interaction
+- **User interaction**
    - As a user, I want to interact with the site smoothly so that I can see the effect of my actions without refreshing the pages.  
-   - As a user I want to contact the site admin directly so that I can ask questions and send comments to get clarifications and to express my opinions and expectations.
+   - As a user, I want to contact the site admin so that I can ask questions and send comments to get clarifications and to express my opinions and expectations.
 
-### The Scope Plane
-#### Functional specifications
-When Quteba was built, the following set of features was planned.
+## The Scope Plane
+### **Functional specifications**
+When Quteba was built, the following set of features was planned. 
 - User registration, login and logout features
-- Reading, updating and deleting user profile
-- Reading blog posts, creating comments and likes
-- Create, read, update and delete forums
-- Add comments and replies
-- Vote forums up or down, like or unlike comments and replies
+- Read, update and delete features in user profiles
+- Read and update blog posts, and create comments and add likes
+- Create, read, update and delete forum entries
+- Add comments and replies in forums
+- Vote forums up or down, like or unlike comments and replies in threaded forums
 - Search blogs and forums
-- Create contact messages 
-#### Content requirements
-Quteba presents two types of contents: blog posts created by users with permission to do so or with the help of admin and forums created by users who only need to be logged in. Comments on blog posts will be moderated by site admin to make sure that only relevant comments are visible. Logged in users will be able to add comments and replies, like in social media platforms such as Facebook. The scope of moderation in this feature is limited to the admin's ability to remove comments if need be there. A reporting mechanism can be added as a future enhancement so that users can report offensive or irrelevant comments so that the admin can delete them.
-### The Structure Plane
-The dual purpose of Quteba, blog and forum, needs to be made obvious to the user from the outset. First time visitors should land on the home page where they see the main menu, a call to action invisiting new users to create account and registered users to sign in. Links to and brief descriptions of Qblog and Qforum should presented in the same view port on medium to large sized screens.
-- First time users should be able to see static information about Quteba. The about page is accessible from the menu bar. 
+- Create and send contact messages 
+### **Content requirements**
+
+Quteba presents two types of contents: 
+
+1. Blog posts created by users with permission to do so or with the help of admin. 
+2. Forums created by users who only need to be logged in. 
+
+Comments on blog posts will be moderated by site admin to make sure that only relevant comments are visible. Logged in users will be able to add comments and replies, as in social media platforms such as Facebook. The scope of moderation in this feature is limited to the admin's ability to remove comments if need be there. 
+
+
+*I would like to add a reporting mechanism, as a future enhancement, so that users can report offensive or irrelevant comments so that the admin can delete them.*
+
+## The Structure Plane
+
+The dual purpose of Quteba, blog and forum, needs to be made obvious to the user from the outset. First time visitors should land on the home page where they can see the main menu, a call to action invisiting new users to create account and registered users to sign in. 
+
+Links to and brief descriptions of Qblog and Qforum should be presented in the same view port on medium to large sized screens. Moreover,
+
+- First time users should be able to see static information about Quteba. The about page should be accessible from the menu bar. 
+
 - To enable users to contact quteba without having to create an account, the contact page should be available to all users and be accessible from and with a single click on the menu bar.
+
 - User registration should be easy and intuitive. The menu bar and the home page should have links to the sign up page. The same applies to user login. Users should be able to see the signup or signin page with a single click on the relevant and intuitively labeled link.
-- The home page features Qblog and Qforum, links which should take the user to the respective sections in the home page. A pen icon should be used for Qblog to indicate that the content is written text. The icon on Qforum should reflect that one expects a community of users in the forum.
-- Qblog should be linked to the Recent Posts section where any user can read the titles and excerpts of three recent posts. Then users can be invited to sign up or signin to access all blog posts.
-- Qforum should be linked to the Recent Forums section where any user can read three of the most recently created forums, not the entire thread. Then users can be invited to sign up or signin to access all threaded forums.
-- A footer with social links that open in new tab should be presented at the bottom of each page. A copyright section in the footer should be used to link the home page so that users can always click it and go back to the home page.
-- Progressve disclosure: When a user is logged in, the home page should still show the featured Qblog and Qforum links and sections. The menu bar will now show links to the entire lists of blog posts and forums as well as the user's profile image and username linked to the profile page.
-- User profile: Once a user is logged in, they should be able to read, update and delete their profile. These features should be accessible from the profile page which should be only a click away from the menu bar.
-- Blog list: While the home page displays three of the most recent posts, the entire list of blog posts should be shown in a dedicated page. This page should open with a single click on the Qblog menu item in the menu bar.
-- Blog detail: While the blog list gives users the ability to have a quick glance at the title and excerpts to decide whether to continue reading a particuar post or not, the whole content of the post should be displayed on a separate page. This page should open with a single click on the post title in the blog list page.
-- Forum list: The forum list page should present the list of forums so that users can pick the topics they like. Once they decide which forum to read, they should click only once to see the entire thread.
-- Thread: A thread is a single discussion forum topic and all comments and replies under it. Each forum should have its own page so that users can stay focused on the topic while reading other people's comments and adding their own comments and replies.
-- nested comments: Quteba's users are likely to be familiar with most social media platforms. Presenting Qforum in a nexted forum-comments-reply structure with familiar icons for likes and unlikes will help the user leverage their experience in social media such as Facebook.
-- Dual search: To provide users with what they want, a search feature should be added to the menu bar so that a user with specific concepts in mind can enter a search word and see results quickly. The search should be performed on both the blog and forum databases simultaneously so that the user will have more options. 
-### The Skeleton Plane
-#### Wireframes
-- Home page: First time users want to learn about quteba and its contents. The home page presents links to the about page while featuring Qblog and Qforum. After showing three blog posts and three forum entries, the user is invited to sign up or sign in to unlock the whole content. The home page has several places where the user is nudged to create account and login: menu items in the menu bar, first section in the home page and each of the Qblog and Qforum sections.
+
+- The home page features Qblog and Qforum, links which should take the user to the respective sections in the home page. A pen icon should be used for Qblog to indicate that the content is text. The icon on Qforum should reflect that one expects a community of users in the forum.
+
+- Qblog should be linked to the Recent Posts section where any user can read the titles and excerpts of three recent posts. Then users should be invited to sign up or signin to access all blog posts.
+
+- Qforum should be linked to the Recent Forums section where any user can read three of the most recently created forums, not the entire thread. Then users should be invited to sign up or signin to access all threaded forums.
+
+- A footer with social links that open in new tab should be presented at the bottom of each page. A copyright section in the footer should be used to link the home page so that users can click on it and go back to the home page.
+
+- *Progressve disclosure:* When a user is logged in, the home page should still show the featured Qblog and Qforum links and sections. The menu bar will now show links to the entire lists of blog posts and forums as well as the user's profile image and a dropdown menu that toggles the username linked to the profile page and a logout link.
+
+- *User profile:* Once a user is logged in, they should be able to read, update and delete their profile. These features should be accessible from the profile page which should be accessible from the menu bar.
+
+- *Blog list:* While the home page displays three of the most recent posts, the entire list of blog posts should be shown in a dedicated page. This page should open with a single click on the Qblog menu item in the menu bar.
+
+- *Blog detail:* While the blog list gives users the ability to have a quick glance at the title and excerpts to decide whether to continue reading a particuar post or not, the whole content of the post should be displayed on a separate page. This page should open with a single click on the post title in the blog list page.
+
+- *Forum list:* The forum list page should present the list of forums so that users can pick the topics they like. Once they decide which forum to read, they should click only once to see the entire thread.
+
+- *Thread:* A thread is a single discussion forum topic and all comments and replies under it. Each forum should have its own page so that users can stay focused on the topic while reading other people's comments and adding their own comments and replies.
+
+- *Nested comments:* Quteba's users are likely to be familiar with most social media platforms. Presenting Qforum in a nexted forum-comments-reply structure with familiar icons for likes and unlikes will help the user leverage their experience in social media such as Facebook.
+
+- *Dual search:* To provide users with what they want, a search feature should be added to the menu bar so that a user with specific concepts in mind can enter a search word and see results quickly. The search should be performed on both the blog and forum databases simultaneously so that the user will have more options. 
+
+## The Skeleton Plane
+### **Wireframes**
+
+- **Home page:** First time users want to learn about quteba and its contents. The home page presents links to the about page while featuring Qblog and Qforum. After showing three blog posts and three forum entries, the user is invited to sign up or sign in to unlock the whole content. The home page has several places where the user is nudged to create account and login: menu items in the menu bar, first section in the home page and each of the Qblog and Qforum sections.
 
 ![Home page](assets/wireframes/home-page-guest-desktop.png)
 
-- Qblog: Logged in users can easily navigate to Quteba Blog (Qblog) by using the menu bar or the button on the Recent Posts section of the home page. Qblog lists all blog entries displaying only title, author, date and excerpts of each post. The most recent entries are shown first. 
 
-![Home page](assets/wireframes/blog-list-page-desktop.png)
+- Wireframe for the [Home page on mobile](assets/wireframes/home-page-mobile.png)
 
+- **Qblog:** Logged in users can easily navigate to Quteba Blog (Qblog) by using the menu bar or the button on the Recent Posts section of the home page. Qblog lists all blog entries displaying only title, author, date and excerpts of each post. The most recent entries are shown first. 
 
-- Qforum: The Forum list page allows users to read forums and create forums. The purpose of listing all forum entries without the comments and replies under them is to help the user choose a topic that is of interest to them before spending time reading the whole thread of each forum. If a user visits this page with the intension of asking a question or starting a conversation, they can create a forum directly. Each forum also shows the number of comments and replies in the thread as well as the number of up and down votes. 
-
-![Home page](assets/wireframes/thread-list-page-desktop.png)
-
-- Threads: A thread is a single forum and its comments and replies. It is nested in that the forum being at the top of the page, it can have multiple comments each with the possibility of having multiple replies and replies to replies and so on.
-A logged in user can comment on a forum, reply to comments and other replies (except one's own), vote up or down on a forum and like or unlike a comment or a reply.
-
-![Home page](assets/wireframes/single-thread-page-desktop.png)
-
-- Profile: Registered users can login and read their profile information in a dedicated profile page. The profile page has buttons which enable the user to update their profile information including their profile picture or delete their profile. 
-
-![Home page](assets/wireframes/profile-page-desktop.png)
+![Blog page](assets/wireframes/blog-list-page-desktop.png)
 
 
+- Wireframe for the [Blog page on mobile](assets/wireframes/blog-list-page-mobile.png) 
 
-### Information Architecture
-##### Database
 
-- Postgresql database was used to store information about Quteba's contents and its users.
+- **Qforum:** The Forum list page allows users to read and create forums. The purpose of listing all forum entries without the comments and replies under them is to help the user choose a topic that is of interest to them before spending time reading the whole thread of each forum. If a user visits this page with the intension of asking a question or starting a conversation, they can create a forum directly. Each forum also shows the number of comments and replies in the thread as well as the number of up and down votes. 
 
-#### ERD
+![Forum list page](assets/wireframes/thread-list-page-desktop.png)
+
+- Wireframe for the [Forum list page on mobile](assets/wireframes/thread-list-page-mobile.png) 
+
+
+- **Threads:** A thread is a single forum and its comments and replies. A logged in user can comment on a forum, reply to comments and other replies (except one's own), vote up or down on a forum and like or unlike a comment or a reply.
+
+![Forum detail page](assets/wireframes/single-thread-page-desktop.png)
+
+- Wireframe for the [Forum detail page on mobile](assets/wireframes/single-thread-page-mobile.png) 
+
+
+- **Profile:** Registered users can login and read their profile information in a dedicated profile page. The profile page has buttons which enable the user to update their profile information including their profile picture or delete their profile. 
+
+![Profile page](assets/wireframes/profile-page-desktop.png)
+
+
+- Wireframe for the [Profile page on mobile](assets/wireframes/profile-page-mobile.png) 
+
+- **About page:** The about page provides static information about Quteba. It is accessible from the main menu for all users.
+
+![About page on desktop](assets/wireframes/about-page-desktop.png)
+
+- Wireframe for the [About page on mobile](assets/wireframes/about-page-mobile.png).  
+
+
+## Information Architecture
+The M (for Model) part of the MVC pattern plays a crucial role in providing users with dynamic information and allowing them to interact with the application. 
+
+While the wireframes presented in the previous section show the view (template) side of the framework, the data architecture (represented in the Entity Relationship Diagram) below shows the models used to represent the data required to meet the site goals.
+### **Database**
+
+- Postgresql database was used to store information about Quteba's contents and its users. 
+
+### **ERD**
 
 - The ERD tool in postrgresql pgadmin 4 was used to generate the Entity Relationship Diagram for the data models. 
 
@@ -171,20 +228,23 @@ A logged in user can comment on a forum, reply to comments and other replies (ex
 
 ![ERD](assets/wireframes/qerd_models.png)
 
-#### Data Models
+A more detailed version of the ERD can be found [Here](assets/wireframes/qerd.png).
 
+
+### **Data Models**
+Quteba has the following data models, their respective field attributes and validators.
 - **Allauth User Model**
-
-    - The user model was created using Django-allauth.
-    - The user model was then migrated to PostgreSQL.
+    - I used Django's allauth for the user model. 
 
 - **Profile Model**
+
 
 | Name          | Database Key  | Field Type    | Validation |
 | ------------- | ------------- | ------------- | ---------- |
 | User          | user          | OneToOneField | User, on_delete=models.CASCADE, related_name='user_profile'    |
 | Image        | image        | CloudinaryField    | default='default.jpg'     |
 | Bio           | bio           | TextField    | max_length=255, null=True, blank=True      |
+
 
 
 - **Post model**
@@ -195,11 +255,11 @@ A logged in user can comment on a forum, reply to comments and other replies (ex
 |Title          |title         |CharField  | max_length=200, unique=True    |
 |Slug         |slug       |SlugField     |  max_length=200, unique=True      |
 |Author       |author   |ForeignKey    |User, on_delete=models.CASCADE, related_name="blog_posts"       |
-|Last_updated |last_updated   |DateTimeField    | auto_now=True       |
+|Last Updated |last_updated   |DateTimeField    | auto_now=True       |
 |Content      |content     |TextField    |       |
-|Featured_image     |CloudinaryField     | 'image', default='placeholder'      |
+|Featured Image     |   featured_image  | CloudinaryField      |'image', default='placeholder'  |
 |Excerpt        |excerpt       |TextField     |blank=True      |
-|Created_on           |created_on           |DateTimeField     |  auto_now_add=True     |
+|Created on           |created_on           |DateTimeField     |  auto_now_add=True     |
 |Status            |status         |IntegerField    |choices=STATUS, default=0      |
 |Likes            |likes       | ManyToManyField    |User, related_name='post_likes', blank=True      |
 
@@ -212,7 +272,7 @@ A logged in user can comment on a forum, reply to comments and other replies (ex
 | Name        | name        | CharField    |  max_length=50     |
 | Email      | email    | EmailField    | null=True, blank=True      |
 | Body    | body    | TextField    | max_length=200   |
-| Created on    | created_on     | DateTimeField    | auto_now_add=True     |
+| Created On    | created_on     | DateTimeField    | auto_now_add=True     |
 | Approved      | approved      | BooleanField | default=False     |
 
 
@@ -223,7 +283,7 @@ A logged in user can comment on a forum, reply to comments and other replies (ex
 | Subject          | subject          | CharField| default='Uncategorized', max_length=50   |
 | Description        | description        | TextField    | max_length=255     |
 | Name      | name    | ForeignKey    | User, on_delete=models.CASCADE, related_name="categories"      |
-| Created on    | created_on    | DateTimeField    | auto_now_add=True     |
+| Created On    | created_on    | DateTimeField    | auto_now_add=True     |
 | Status     | status    | IntegerField   | choices=STATUS, default=0     |
 | Thread Count       | thread_count       | IntegerField | default=0      |
 
@@ -238,7 +298,7 @@ A logged in user can comment on a forum, reply to comments and other replies (ex
 | Description    | description    | TextField    | max_length=500      |
 | Category     | category     | ForeignKey    | Category, on_delete=models.CASCADE, related_name="threads"      |
 | Status       | status       | IntegerField | choices=STATUS, default=0    |
-| Created on       | created_on       | DateTimeField    | auto_now_add=True      |
+| Created On       | created_on       | DateTimeField    | auto_now_add=True      |
 | Up votes         | up_votes          | ManyToManyField    | User, blank=True, related_name='up_votes'     |
 | Down votes           | down_votes           | ManyToManyField    | User, blank=True, related_name='up_votes'      |
 
@@ -248,7 +308,7 @@ A logged in user can comment on a forum, reply to comments and other replies (ex
 | ------------- | ------------- | ------------- | ---------- |
 | Thread         | thread          | ForeignKey | Thread, on_delete=models.CASCADE, related_name='comments'    |
 | Name       | name        | ForeignKey    |      |
-| Content      | content    | TextField    | null=True, max_length=255     |
+| Content      | content    | TextField    | null=True, max_length=900     |
 | Parent    | parent    | ForeignKey    | "self", null=True, blank=True, on_delete=models.CASCADE, related_name='replies'     |
 | Created     | created     | DateTimeField    | auto_now_add=True      |
 | Updated       | updated       | DateTimeField | auto_now_add=True      |
@@ -271,60 +331,78 @@ name = models.CharField(blank=False, max_length=200)
 
 
 
-### The Surface Plane
+## The Surface Plane
 
-#### Color Scheme
+### **Color Scheme**
 
-A deep green (British Racing Green) color, which is a calming color, with varying intensity.
-To create a good contrast, I used white text on a deep green background.
+
+- The main color used in this website is a deep green (British Racing Green) color, which is a calming color, with varying intensity.
+
+- To create a good contrast, I used white text on the deep green background.
+- I used lightsalmon color for the site logo, which is an alphabet representing 'Qu' in my native language, Tigrinya.The lightsalmon color makes the logo stand out in the deep green background color of the navbar. 
+- Red, Green and Blue colors in buttons and links are mainly from bootstrap classes ending with 'danger', 'success' and 'primary' respectively. As they give good contrast, contextual meaning (as in using danger for delete button, for example), these colors have fitted well. 
 
 ![Main color](assets/screenshots/color-palette.png)
 
-Bootstrap colors primary (for blue) and danger (for red) are used in buttons, the latter being associated with delete buttons. Light salmon was used to make the logo stand out in the deep green background color of the navbar. 
 
-#### Typography
+### **Typography**
 
-
-
-#### Imagery
-
-The background image throughout the site was generated from the [BGJar website](https://bgjar.com/). The icons in the background image reflect various consumer items that are central to the user's economic decision problems.
-
-[Quteba's Background image](/media/qu-bg.png)
+- I used the Roboto font family for the body.
+- I used Robik font family for the headings.
+- The font in the blog articles comes from summernote because of the WYSIWYG property of working with the latter. I did not change the summernote configuration because the the 'XXX' font in summernote looks good for blog posts. 
 
 
-## Features
+### **Imagery**
 
-### Existing Features
+- The background image throughout the site was generated from the [BGJar website](https://bgjar.com/). The icons in the background image reflect various consumer items that are central to the user's economic decision problems.
 
-* Quteba serves the aforementioned user stories by providing two broad features: Quteba Blog (Qblog) and Quteba Forum (Qforum). Besides these, it has static pages. 
-
-* **Homepage:** Quteba's homepage provides first time users with information and links that helps them navigate the website easily. With first time visitors of the site in mind, the dual purpose of the site is made clear from the outset. Users see links to and information about Qblog and Qforum. There is a nav bar at the top which presents different menu items, so users can choose with a single click to view what quteba is about, a sign up page or if they have an account a sign in page.
-
-The home page also presents the most recently added blog entries and the active discussion forum topics in separate sections. This gives users the chance to have a quick glance at what kinds of topics and questions are being discussed. From users' perspective, this preview is important because it gives them an idea of what to expect before delving into the whole list of either Qblog or Qforum.
-
-* The navigation menu: This is visible in the home page and all other pages. Only some of the items in the menu change depending on whether the user is logged in or not.
-![Main color](assets/screenshots/navbar-guest.png)
-
-* Authenticated users see links not only to Qblog and Qforum but also to their profile page.
-![Main color](assets/screenshots/navbar-authenticated.png)
+- [Quteba's Background image](/static/images/qu-bg.png).
 
 
-* **Search form:** Users who are looking for a particular concept may search for it by typing a keyword in the search input form at the top bar of each page. If the keyword exists in Qblog and/or Qforum, the results are displayed in a separate search results page.
+# Features
 
-  ![Main color](assets/screenshots/search-form.png)
+## Existing Features
+
+Quteba Blog (Qblog) and Quteba Forum (Qforum) being the two broad categories of services that this website aims to provide, the following specific features have been implemented to meet the aforementioned user stories.  
+
+* **Homepage:** Quteba's homepage provides first time users with information and links that helps them navigate the website easily. The dual purpose of the site is made clear from the outset.
+
+![Home page](assets/screenshots/home-section-one-guest.png)
+
+* Users see links to and information about Qblog and Qforum. There is a nav bar at the top which presents different menu items, so users can choose with a single click to view what quteba is about, a sign up page or if they have an account a sign in page.
+
+* The home page also presents three recently added blog entries and three recent discussion forum topics in separate sections. 
+
+![Home page, recent posts section](assets/screenshots/recent-posts.png)
+
+* This gives users the chance to have a quick glance at what kinds of topics and questions are being discussed. From users' perspective, this preview is important because it gives them an idea of what to expect before delving into the whole list of either Qblog or Qforum.
+
+![Home page, recent forums section](assets/screenshots/recent-forums.png)
 
 
+* **The navigation menu:** This is visible in the home page and all other pages. Only some of the items in the menu change depending on whether the user is authenticated in or not. The menu item the user is currently visiting gets a border at the bottom to tell the user where in the site they are.
+![Navigation bar for unauthenticated user](assets/screenshots/navbar-guest.png)
 
-* **Search results page:** This page renders the search results when a user searches for a specific keyword and a matching entry is found in either Qblog or Qforum or both. If the keyword the user types in the search form does not exist, the results page shows a feedback message. 
+* Authenticated users see links not only to Qblog and Qforum but also a dropdown menu which toggles the link to the profile page and a logout menu item.
+![Navigation bar for authenticated user](assets/screenshots/navbar-authenticated.png)
 
-* **About page:** the about page is a static page that gives users important information about the background and services of quteba.
+* **Search form:** Users who are looking for a particular concept may search for related posts and forums by typing a keyword in the search input form. If the keyword exists in Qblog and/or Qforum, the results are displayed in a separate search results page.
 
-* Users who come across quteba for the first time can read the about page and learn what quteba means and holds. 
+  ![Search form](assets/screenshots/search-form.png)
+
+* **Search results page:** This page renders the search results when a user searches for a specific keyword and a matching entry is found in either Qblog or Qforum or both. 
+
+ ![Search results](assets/screenshots/search-result.png)
+
+* If the keyword the user types in the search form does not exist, the results page shows the following feedback message. 
+
+ ![Search with no results to show](assets/screenshots/search-no-result.png)
+
+* **About page:** the [about page](assets/screenshots/about-page.png) is a static page that gives users important information about the background and services of quteba. Users who come across quteba for the first time can read the about page and learn what quteba means and holds. 
 
 * **Qblog:** Qblog lists blog entries showing the author, title, date and excerpts of each blog post. The title is clickable and linked to the blog detail page. By viewing only the list of blog posts, users need not read each blog before they find what they want to read. The excerpts will give users enough information to help them decide whether to continue reading or find another article. There is also a button next to the excerpt which is linked to the details page.
 
-* Blog detail page: The blog detail page shows users the title of the article, author, date, content, likes and comments (if any).
+* **Blog detail page:** The blog detail page shows users the title of the article, author, date, content, likes and comments (if any).
 Logged in users also see a form where they can type and submit a comment.
  
 * **Qforum:** The purpose of having the Qforum on the menu bar and a list of forum entries (thread list) is similar to that of Qblog. Users can click on the Qforum menu item and land on a page that lists discussion forums. As each forum has a topic and description (question text), users can get an idea of what a particular discussion forum is about. 
