@@ -285,27 +285,33 @@ In many cases, the source code pulls different components, which may introduce v
 
 ## Responsiveness
 
-I used the [Responsive Viewer](https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb?hl=en) Chrome extension to check the website on devices with different screen sizes.
+* I used the [Responsive Viewer](https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb?hl=en) Chrome extension to check the website on devices with different screen sizes.
+
+* As documented in the following table, all pages are highly responsive to different screen sizes. 
 
 | Page    | On Mobile             | On Tablet   |On Laptop | On Desktop |
 |-----------|------------|----------|---------|-------|
 | About| ![about-mobile](assets/responsive/about-mobile.png) | ![about-tablet](assets/responsive/about-tablet.png) | ![about-laptop](assets/responsive/about-laptop.png) | ![about-desktop](assets/responsive/about-lg.png)|
 | Blog| ![blog-mobile](assets/responsive/blog-mobile.png) | ![blog-tablet](assets/responsive/blog-tablet.png) | ![blog-laptop](assets/responsive/blog-laptop.png) | ![blog-desktop](assets/responsive/blog-lg.png)|
-| Blog list| ![blog-list-mobile](assets/responsive/blog-list-mobile.png) | ![blog-list-tablet](assets/responsive/blog-list-tablet.png) | ![blog-list-laptop](assets/responsive/blog-list-laptop.png) | ![blog-list-desktop](assets/responsive/blog-list-lg.png)|
+| Blog detail| ![blog-list-mobile](assets/responsive/blog-detail-mobile.png) | ![blog-list-tablet](assets/responsive/blog-detail-tablet.png) | ![blog-list-laptop](assets/responsive/blog-detail-laptop.png) | ![blog-list-desktop](assets/responsive/blog-detail-lg.png)|
 | Contact| ![contact-mobile](assets/responsive/contact-mobile.png) | ![contact-tablet](assets/responsive/contact-tablet.png) | ![contact-laptop](assets/responsive/contact-laptop.png) | ![contact-desktop](assets/responsive/contact-lg.png)|
 | Forum| ![forum-mobile](assets/responsive/forum-mobile.png) | ![forum-tablet](assets/responsive/forum-tablet.png) | ![forum-laptop](assets/responsive/forum-laptop.png) | ![forum-desktop](assets/responsive/forum-lg.png)|
-| Forum list| ![forum-list-mobile](assets/responsive/forum-list-mobile.png) | ![forum-list-tablet](assets/responsive/forum-list-tablet.png) | ![forum-list-laptop](assets/responsive/forum-list-laptop.png) | ![forum-list-desktop](assets/responsive/forum-list-lg.png)|
+| Forum detail| ![forum-list-mobile](assets/responsive/forum-detail-mobile.png) | ![forum-list-tablet](assets/responsive/forum-detail-tablet.png) | ![forum-list-laptop](assets/responsive/forum-detail-laptop.png) | ![forum-list-desktop](assets/responsive/forum-detail-lg.png)|
 | Home| ![home-mobile](assets/responsive/home-mobile.png) | ![home-tablet](assets/responsive/home-tablet.png) | ![home-laptop](assets/responsive/home-laptop.png) | ![home-desktop](assets/responsive/home-lg.png)|
 | Login| ![login-mobile](assets/responsive/login-mobile.png) | ![login-tablet](assets/responsive/login-tablet.png) | ![login-laptop](assets/responsive/login-laptop.png) | ![login-desktop](assets/responsive/login-lg.png)|
 | Profile| ![profile-mobile](assets/responsive/profile-mobile.png) | ![profile-tablet](assets/responsive/profile-tablet.png) | ![profile-laptop](assets/responsive/profile-laptop.png) | ![profile-desktop](assets/responsive/profile-lg.png)|
 | Update Profile| ![profile-update-mobile](assets/responsive/profile-update-mobile.png) | ![profile-update-tablet](assets/responsive/profile-update-tablet.png) | ![profile-update-laptop](assets/responsive/profile-update-laptop.png) | ![profile-update-desktop](assets/responsive/profile-update-lg.png)|
-| Delete Profile| ![profile-delete-mobile](assets/responsive/profile-delete-mobile.png) | ![profile-delete-tablet](assets/responsive/profile-delete-tablet.png) | ![profile-delete-laptop](assets/responsive/profile-delete-laptop.png) | ![profile-delete-desktop](assets/responsive/profile-delete-lg.png)|
-| Search| ![search-mobile](assets/responsive/search-mobile.png) | ![search-tablet](assets/responsive/search-tablet.png) | ![search-laptop](assets/responsive/search-laptop.png) | ![search-desktop](assets/responsive/search-lg.png)|
+| Delete Profile|  |  | ![profile-delete-laptop](assets/responsive/profile-delete-laptop.png) |  |
+| Search|  |  | ![search-laptop](assets/responsive/search-laptop.png) | ![search-desktop](assets/responsive/search-lg.png)|
 | Sign up| ![signup-mobile](assets/responsive/signup-mobile.png) | ![signup-tablet](assets/responsive/signup-tablet.png) | ![signup-laptop](assets/responsive/signup-laptop.png) | ![signup-desktop](assets/responsive/signup-lg.png)|
 
 
 
 ## Lighthouse Test
+
+* The lighthouse test indicators of both mobile and desktop versions of almost all pages are really high. 
+
+* The use of avatars as profile pictures of users has some effect on these metrics in pages like profile and forum list. The overall performance, accessibility, adherence to best practices and SEO measures of the website are excellent.
 
 | Page    | On Mobile  | On Desktop |
 |---------|------------|----------|
@@ -316,8 +322,12 @@ I used the [Responsive Viewer](https://chrome.google.com/webstore/detail/respons
 | Forum| ![about-mobile](assets/lighthouse/lighthouse-forum-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-forum-desktop.png) |
 | Forum detail| ![about-mobile](assets/lighthouse/lighthouse-forum-detail-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-forum-detail-desktop-1.png) |
 | Home| ![about-mobile](assets/lighthouse/lighthouse-home-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-home-desktop.png) |
-| Login| ![about-mobile](assets/lighthouse/lighthouse-login-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-about-login.png) |
+| Login| ![about-mobile](assets/lighthouse/lighthouse-login-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-login-desktop.png) |
 | Profile| ![about-mobile](assets/lighthouse/lighthouse-profile-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-profile-desktop.png) |
 | Search| ![about-mobile](assets/lighthouse/lighthouse-search-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-search-desktop.png) |
 | Signup| ![about-mobile](assets/lighthouse/lighthouse-signup-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-signup-desktop.png) |
 
+#
+# [Back to Top](#testing-and-validation)
+
+#
