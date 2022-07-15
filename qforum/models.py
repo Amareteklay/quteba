@@ -75,7 +75,7 @@ class Comment(models.Model):
                                related_name='comments')
     name = models.ForeignKey(User, on_delete=models.CASCADE,
                              related_name="forum_comments")
-    content = models.TextField(null=True, max_length=3000)
+    content = models.TextField(null=True, max_length=900)
     parent = models.ForeignKey("self", null=True, blank=True,
                                on_delete=models.CASCADE,
                                related_name='replies')
