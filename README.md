@@ -533,7 +533,6 @@ A common characteristic of the above modes of user interactions are that they us
 
 
 ## Technologies Used
-# 
 
 This project requires the use of Full Stack Tools. Django was used for the backend and JavaScript, HTML and CSS for the front-end. 
 
@@ -696,7 +695,7 @@ To clone the repository:
 - I took this [Female avatar](https://www.iconspng.com/uploads/female-avatar/female-avatar.png) and this [Male avatar](https://www.w3schools.com/howto/img_avatar.png), and used them as profile images for a test users.
 
 ## Acknowledgements
-#
+
 I have learnt from [Daisy](https://github.com/Daisy-McG), my mentor at the [Code Institute](https://codeinstitute.net/), many ways to make this project better. Her valuable comments have enhanced the quality of this website a lot. Thank you [Daisy](https://github.com/Daisy-McG)! 
 
 # 

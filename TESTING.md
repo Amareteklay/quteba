@@ -1,10 +1,14 @@
-# Testing
+# Testing and Validation
 
-## Manual Testing
+In this file, I document the different testing procedures I followed and validation techniques I used as well as relevant reports. 
 
-
+I used both manual and automated testing to test the python code. I validated the HTML, JavaScript and CSS code using W3C validator and JSHint. Lighthouse reports and responsive viewer reports are included in this document.
 
 #
+## Manual Testing
+
+The following list shows the steps taken to manually check that the different componenets and functionalities work as expected. 
+
 |     | User Actions           | Expected Results | Y/N | Comments    |
 |-------------|------------------------|------------------|------|-------------|
 |Home page           |  |  |  | 
@@ -99,24 +103,31 @@
 
 ## Automated Testing
 # 
-I wrote automated tests to complement the extensive manual testing and validations in this document. The automated tests cover 54% of the functionalities, and the test report is shown below.
+I wrote automated tests to complement the extensive manual testing and validations documented in this report. 
+
+* The automated tests, based on the python unit test framework, cover 54% of the functionalities, and the test report is shown below.
 
 ![Autimated test results](/assets/testing/automated-test-1.png)
 ![Autimated test results](/assets/testing/automated-test-2.png)
 
+* I used [coverage 6.4.1](https://coverage.readthedocs.io/en/6.4.2/) to generate a report about the coverage of the automated test code. 
+
 
 ## Testing User Stories
-# 
+
+User stories are at the core of the whole development process, and the importance of testing whether the user stories have been addressed cannot be overstated. 
+
+The following table maps the user stories and the features that have been developed to address them. These can be thought of as part of the foregoing manual testing.
 
 
 |User Stories     |Acceptance Criteria met? (Y/N)             | Features    |
 |-------------|------------------------|-------------------------------|
-|As a first time visitor I want to get information about the site so that I can understand the what the site focuses on and how I can make the best out of it.           | Y  | About page|
+|As a first time visitor I want to get information about the site so that I can understand the what the site focuses on and how I can make the best out of it.           | Y  | [About page](assets/screenshots/about-page.png)|
 |As a first time visitor, I want to be able to navigate the site so that I can find the most important information with the least amount of effort.            | Y   | Navbar and Qblog and Qforum links |
-|As an engaged user, I want to see relevant feedback so that I can understand if my interactions with the site are successful or not.           | Y  | Feedback messages|
-|As a user, I want to know which menu item is active so that I can know which part of the site I am navigating at each moment.     |  Y  | |
-| As a user, I want to be able to access quteba's contents and functionalities from my mobile or tablet so that I do not have to wait until I find a computer.  |  Y | Responsive design   |
-| As a frequent user, I want to follow the site owner on social media so that I can see recent activities and updates from my favourite social media apps.  |  Y  | Social links in Footer  |
+|As an engaged user, I want to see relevant feedback so that I can understand if my interactions with the site are successful or not.           | Y  | ![Feedback messages](assets/screenshots/feedback.png)|
+|As a user, I want to know which menu item is active so that I can know which part of the site I am navigating at each moment.     |  Y  | ![Current menu border](assets/screenshots/menu-border.png) |
+| As a user, I want to be able to access quteba's contents and functionalities from my mobile or tablet so that I do not have to wait until I find a computer.  |  Y | [Responsive design](#responsiveness)   |
+| As a frequent user, I want to follow the site owner on social media so that I can see recent activities and updates from my favourite social media apps.  |  Y  | [Social links in Footer](assets/screenshots/footer.png)  |
 | As a first time visitor I want to sign up so that I can have login credentials which I can use to login to the site every time I want to use it. | Y | Signup page |
 | As a registered user, I want to be able to login with my registereg credentials so that I can access my profile as well as all the contents and functionalities that require that users be logged in. | Y | Login page |
 | As a logged in user, I want to be able to logout easily so that I feel safe that others do not interact with the site via my account. |Y  | Logout menu item |
@@ -127,7 +138,7 @@ I wrote automated tests to complement the extensive manual testing and validatio
 | As a regular reader, I want to read the contents of each post on its own page so that I can focus on the contents of the specific post at a time while being able to see other users' feedbacks to the particular post. | Y | Post detail page |
 | As a registered user I want to like posts and add comments so that I can express my impression and engage in a discussion. | Y | Like post, Comment on post |
 | As a first time visitor I want to see sample forum entries so that I can decide if I want to join the discussions. | Y | Recent forum section in home page, Forum list page |
-| As a registered user, I want to create a discussion forum so that I can get answers to my questions and start conversations. | Y | Create forum form |
+| As a registered user, I want to create a discussion forum so that I can get answers to my questions and start conversations. | Y | [Create forum form](assets/screenshots/create-forum.png) |
 |As a user, I want update or delete my own discussion forum so that I can opt out from a conversation that takes a different direction from I initially intended. | Y | Update and Delete forum buttons |
 | As a frequent user, I want to vote up or vote down a forum so that I can quickly reward or punish contents based on their importance and relevance without having to write comments. | Y | Green up and Red down arrows |
 | As a dedicated user, I want to reply to comments on a forum I created so that I can open and lead an engaging conversation on relevant topics. | Y |Reply button and form |
@@ -135,7 +146,7 @@ I wrote automated tests to complement the extensive manual testing and validatio
 | As a frequent user, I want to like or unlike comments and replies to express my opinions of them without having to write comments or replies. | Y | Like and Dislike buttons |
 | As a registered user, I want to reply to other users' comments and replies so that I can follow the threads and identify the forkroads that emerge from the discussions. | Y | Nested reply |
 | As a forum reader, I want to see nested threads of forum topics, comments and replies so that I can visually see which replies are given to which comment. | Y | Forum detail page |
-| As a user, I want to search for specific content so that I can find quick answers to the questions I have in mind. | Y | search form and search button |
+| As a user, I want to search for specific content so that I can find quick answers to the questions I have in mind. | Y | ![Search form and search button](assets/screenshots/search-form.png) |
 | As a user, I want to see excerpts of my search results so that I can quickly identify the most relevant content I want to read further. |Y  | Search results page |
 | As a user, I want to interact with the site smoothly so that I can see the effect of my actions without refreshing the pages. | Y | Ajax calls to show changes in real time |
 | As a user I want to contact the site admin directly so that I can ask questions and send comments to get clarifications and to express my opinions and expectations. |  Y| Contact us page |
@@ -146,83 +157,167 @@ I wrote automated tests to complement the extensive manual testing and validatio
 ## Validation
 #
 
-### Python Validation
+### **Python Validation**
 
-I used [pep8 online checker](http://pep8online.com/) to validate all python code. The whole pep8 validation report is available [here](/assets/testing/pep8_validation.pdf).
+I used [pep8 online checker](http://pep8online.com/) to validate all python code. I have compiled a PDF file for the whole pep8 validation report available [here](/assets/testing/pep8_validation.pdf).
 
-- Home app
-Python files in the home app checked for pep8 compatibility:
+I have also organized the validation reports by app name and in each app by the particular python file. Under each app are the python files in that app that were checked for pep8 compatibility.
+
+* **Home app**
     - [Home app-py](/assets/testing/home-app.png)
     - [Home admin-py](/assets/testing/home-admin.png)
     - [Home forms-py](/assets/testing/home-forms.png)
-    - [Home models-py](/assets/testing/home-models.png)
+
+    - The validation report of the models-py file is displayed as a sample.
+
+    ![Home models-py](/assets/testing/home-models.png)
+    
     - [Home urls-py](/assets/testing/home-urls.png)
     - [Home views-py](/assets/testing/home-views.png)
 
 
-- Qblog
+* **Qblog**
     - [Qblog app-py](/assets/testing/qblog-app.png)
     - [Qblog admin-py](/assets/testing/qblog-admin.png)
     - [Qblog forms-py](/assets/testing/qblog-forms.png)
     - [Qblog models-py](/assets/testing/qblog-models.png)
     - [Qblog urls-py](/assets/testing/qblog-urls.png)
-    - [Qblog views-py](/assets/testing/qblog-views.png)
 
-- Qforum
+    - The validation report of the views-py file in the Qblog app is displayed as a sample.
+
+    ![Qblog views-py](/assets/testing/qblog-views.png)
+
+* **Qforum**
     - [Qforum app-py](/assets/testing/qforum-app.png)
     - [Qforum admin-py](/assets/testing/qforum-admin.png)
     - [Qforum forms-py](/assets/testing/qforum-forms.png)
-    - [Qforum models-py](/assets/testing/qforum-models.png)
+
+    - The validation report of the models-py file in the Qforum app is displayed as a sample.
+
+    ![Qforum models-py](/assets/testing/qforum-models.png)
+
     - [Qforum urls-py](/assets/testing/qforum-urls.png)
     - [Qforum views-py](/assets/testing/qforum-views.png)
 
-- Quteba
+* **Quteba**
     - [Quteba app-py](/assets/testing/quteba-asgi.png)
     - [Quteba admin-py](/assets/testing/quteba-settings.png)
     - [Quteba forms-py](/assets/testing/quteba-urls.png)
     - [Quteba models-py](/assets/testing/quteba-views.png)
-    - [Quteba urls-py](/assets/testing/quteba-wsgi.png)
+    
+    - The validation of the project level urls-py file is displayed as a sample.
 
-- Users
+    ![Quteba urls-py](/assets/testing/quteba-urls.png)
+
+* **Users**
     - [Users app-py](/assets/testing/users-app.png)
     - [Users admin-py](/assets/testing/users-admin.png)
-    - [Users forms-py](/assets/testing/users-forms.png)
+    
+    - The validation report of the forms-py file in the users app is displayed as a sample.
+
+    ![Users forms-py](/assets/testing/users-forms.png)
+
     - [Users models-py](/assets/testing/users-models.png)
     - [Users urls-py](/assets/testing/users-urls.png)
     - [Users views-py](/assets/testing/users-views.png)
 
-- Testing
-    - [Testing app-py](/assets/testing/tests-forms.png)
-    - [Testing models-py](/assets/testing/tests-models.png)
-     - [Testing urls-py](/assets/testing/tests-signals.png)
-    - [Testing urls-py](/assets/testing/tests-urls.png)
-    - [Testing views-py](/assets/testing/tests-views.png)
+Here are the validation reports of the testing code files as well.
+* **Testing**
+
+    ![Testing test-forms-py](/assets/testing/tests-forms.png)
+
+
+    ![Testing test-models-py](/assets/testing/tests-models.png)
+
+
+    ![Testing test-urls-py](/assets/testing/tests-urls.png)
+
+
+    ![Testing test-views-py](/assets/testing/tests-views.png)
 
 
 
-### HTML Validation
+### **HTML Validation**
 
-[HTML validation report](/assets/testing/html_validation.pdf)
-### JavaScript Validation
+
+I validated the HTML code for this website using the [W3C Markup validator](https://validator.w3.org/), and I have only one error that comes from the django-allauth. The validation of HTML templates that include template tags is not straightforward. 
+
+I used the chrome developer tools to view the source code for the rendered pages, copied the source code and pasted it in the validator. 
+
+In many cases, the source code pulls different components, which may introduce validation errors, as in the sign up form from django-allauth below. 
+
+* The validation report of the signup HTML file from Django-allauth shows one error.
+
+![Signup HTML file from Django-allauth](assets/testing/signup-html.png)
+
+* There are no other errors in the HTML validation reports. I have compiled the reports in PDF in this [HTML validation report](/assets/testing/html_validation.pdf).
+
+* Here is the home page HTML validation report as a sample.
+
+![Home page HTML](assets/testing/home-html.png)
+
+
+### **JavaScript Validation**
 
 - [JSHint](https://jshint.com/) was used to validate the JavaScript code, and no errors or warnings were found. Below are screenshots of the reports.
 
-![JSHint Validation of JavaScript code in forum app](/assets/validation/js-validation-forum.png)
+- JSHint Validation of JavaScript code for forum app
+
+![JSHint Validation of JavaScript code for forum app](/assets/validation/js-validation-forum.png)
+
+- JSHint Validation of the main JavaScript code
 
 ![JSHint Validation of the main JavaScript code](/assets/validation/js-validation-script.png)
 
-### CSS Validation
+### **CSS Validation**
 
-<p>
-    <a href="http://jigsaw.w3.org/css-validator/check/referer">
-        <img style="border:0;width:88px;height:31px"
-            src="http://jigsaw.w3.org/css-validator/images/vcss"
-            alt="Valid CSS!" />
-    </a>
-</p>
 
-![CSS Validation](/assets/testing/css-validated.png)
+* I validated the CSS code for the website using the [Jigsaw W3C CSS Validator](https://jigsaw.w3.org/css-validator/). 
+* There are no errors or warnings in both base and forum CSS files.
+
+* CSS validation for base CSS file
+
+![CSS Validation](/assets/validation/base-css-validated.png)
+
+* CSS validation for forum CSS file
+
+![CSS Validation](/assets/validation/forum-css-validated.png)
 
 ## Responsiveness
-#
+
+I used the [Responsive Viewer](https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb?hl=en) Chrome extension to check the website on devices with different screen sizes.
+
+| Page    | On Mobile             | On Tablet   |On Laptop | On Desktop |
+|-----------|------------|----------|---------|-------|
+| About| ![about-mobile](assets/responsive/about-mobile.png) | ![about-tablet](assets/responsive/about-tablet.png) | ![about-laptop](assets/responsive/about-laptop.png) | ![about-desktop](assets/responsive/about-lg.png)|
+| Blog| ![blog-mobile](assets/responsive/blog-mobile.png) | ![blog-tablet](assets/responsive/blog-tablet.png) | ![blog-laptop](assets/responsive/blog-laptop.png) | ![blog-desktop](assets/responsive/blog-lg.png)|
+| Blog list| ![blog-list-mobile](assets/responsive/blog-list-mobile.png) | ![blog-list-tablet](assets/responsive/blog-list-tablet.png) | ![blog-list-laptop](assets/responsive/blog-list-laptop.png) | ![blog-list-desktop](assets/responsive/blog-list-lg.png)|
+| Contact| ![contact-mobile](assets/responsive/contact-mobile.png) | ![contact-tablet](assets/responsive/contact-tablet.png) | ![contact-laptop](assets/responsive/contact-laptop.png) | ![contact-desktop](assets/responsive/contact-lg.png)|
+| Forum| ![forum-mobile](assets/responsive/forum-mobile.png) | ![forum-tablet](assets/responsive/forum-tablet.png) | ![forum-laptop](assets/responsive/forum-laptop.png) | ![forum-desktop](assets/responsive/forum-lg.png)|
+| Forum list| ![forum-list-mobile](assets/responsive/forum-list-mobile.png) | ![forum-list-tablet](assets/responsive/forum-list-tablet.png) | ![forum-list-laptop](assets/responsive/forum-list-laptop.png) | ![forum-list-desktop](assets/responsive/forum-list-lg.png)|
+| Home| ![home-mobile](assets/responsive/home-mobile.png) | ![home-tablet](assets/responsive/home-tablet.png) | ![home-laptop](assets/responsive/home-laptop.png) | ![home-desktop](assets/responsive/home-lg.png)|
+| Login| ![login-mobile](assets/responsive/login-mobile.png) | ![login-tablet](assets/responsive/login-tablet.png) | ![login-laptop](assets/responsive/login-laptop.png) | ![login-desktop](assets/responsive/login-lg.png)|
+| Profile| ![profile-mobile](assets/responsive/profile-mobile.png) | ![profile-tablet](assets/responsive/profile-tablet.png) | ![profile-laptop](assets/responsive/profile-laptop.png) | ![profile-desktop](assets/responsive/profile-lg.png)|
+| Update Profile| ![profile-update-mobile](assets/responsive/profile-update-mobile.png) | ![profile-update-tablet](assets/responsive/profile-update-tablet.png) | ![profile-update-laptop](assets/responsive/profile-update-laptop.png) | ![profile-update-desktop](assets/responsive/profile-update-lg.png)|
+| Delete Profile| ![profile-delete-mobile](assets/responsive/profile-delete-mobile.png) | ![profile-delete-tablet](assets/responsive/profile-delete-tablet.png) | ![profile-delete-laptop](assets/responsive/profile-delete-laptop.png) | ![profile-delete-desktop](assets/responsive/profile-delete-lg.png)|
+| Search| ![search-mobile](assets/responsive/search-mobile.png) | ![search-tablet](assets/responsive/search-tablet.png) | ![search-laptop](assets/responsive/search-laptop.png) | ![search-desktop](assets/responsive/search-lg.png)|
+| Sign up| ![signup-mobile](assets/responsive/signup-mobile.png) | ![signup-tablet](assets/responsive/signup-tablet.png) | ![signup-laptop](assets/responsive/signup-laptop.png) | ![signup-desktop](assets/responsive/signup-lg.png)|
+
+
+
+## Lighthouse Test
+
+| Page    | On Mobile  | On Desktop |
+|---------|------------|----------|
+| About| ![about-mobile](assets/lighthouse/lighthouse-about-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-about-desktop.png) |
+| Blog| ![about-mobile](assets/lighthouse/lighthouse-blog-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-blog-desktop.png) |
+| Blog detail| ![about-mobile](assets/lighthouse/lighthouse-blog-detail-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-blog-detail-desktop.png) |
+| Contact| ![about-mobile](assets/lighthouse/lighthouse-contact-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-contact-desktop.png) |
+| Forum| ![about-mobile](assets/lighthouse/lighthouse-forum-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-forum-desktop.png) |
+| Forum detail| ![about-mobile](assets/lighthouse/lighthouse-forum-detail-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-forum-detail-desktop-1.png) |
+| Home| ![about-mobile](assets/lighthouse/lighthouse-home-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-home-desktop.png) |
+| Login| ![about-mobile](assets/lighthouse/lighthouse-login-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-about-login.png) |
+| Profile| ![about-mobile](assets/lighthouse/lighthouse-profile-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-profile-desktop.png) |
+| Search| ![about-mobile](assets/lighthouse/lighthouse-search-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-search-desktop.png) |
+| Signup| ![about-mobile](assets/lighthouse/lighthouse-signup-mobile.png) |![about-desktop](assets/lighthouse/lighthouse-signup-desktop.png) |
 

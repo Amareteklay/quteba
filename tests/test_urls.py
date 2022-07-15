@@ -9,7 +9,7 @@ from home.views import (
 )
 from qblog.views import (
     PostCreateView,
-    PostEditView, 
+    PostEditView,
     PostList,
     PostDetail,
     PostLike
@@ -97,4 +97,3 @@ class TestForumUrls(TestCase):
         """Test the delete thread url"""
         url = reverse('qforum:delete-thread', args=['slug'])
         self.assertEquals(resolve(url).func.view_class, ThreadDeleteView)
-
