@@ -10,18 +10,19 @@ Quteba was built using Django framework for the back-end and JavaScript (and Jqu
 #
 
 # Table of Contents
-* [UX Design ](#UX-Design)
-    * [The Strategy Plane](#The-Strategy-Plane)
-        * [Site Goals](#Site-Goals)
-        * [Epics](#Epics)
-        * [User Stories](#User-Stories)
-    * [The Scope Plane](#The-Scope-Plane)
-    * [The Structure Plane](#The-Structure-Plane)
-        * [Opportunities](#Opportunities)
-    * [The Skeleton Plane](#The-Skeleton-Plane)
-        * [Wireframes](#Wireframe-mockups)
-        * [Database Schema](#Database-Schema)
-    * [The Surface Plane](#The-Surface-Plane)
+* [UX Design ](#ux-design)
+    * [The Strategy Plane](#the-strategy-plane)
+        * [Site Goals](#site-goals)
+        * [Epics](#epics)
+        * [User Stories](#user-stories)
+    * [The Scope Plane](#the-scope-plane)
+    * [The Structure Plane](#the-structure-plane)
+    * [The Skeleton Plane](#the-skeleton-plane)
+        * [Wireframes](#wireframes)
+        * [Information Architecture](#information-architecture)
+        * [Database](#database)
+        * [ERD](#erd)
+    * [The Surface Plane](#the-surface-plane)
 * [Features](#features)
     * [Existing Features](#existing-features)
     * [Future Enhancements](#future-enhancements)
@@ -29,6 +30,7 @@ Quteba was built using Django framework for the back-end and JavaScript (and Jqu
 * [Testing](#testing)
 * [Deployment](#deployment)
 * [Credits](#credits)
+    * [Acknowledgements](#acknowledgements)
 
 
 # UX Design
@@ -578,11 +580,33 @@ Postgresql was used for the database and psycopg2 was used as an Object Relation
 
 # Testing
 
-Detailed testing and test results [are documented here](TESTING.md).
-## Bugs
-- I created user stories in Github and django project in Gitpod. When I tried to push my local changes, I got an error which i fixed using [this solution](https://docs.github.com/en/get-started/using-git/dealing-with-non-fast-forward-errors).
+Detailed testing and documentation of test results [are presented in a dedicated file here](TESTING.md).
 
-- I was not able to deploy the application to heroku because of an error in backports.zoneinfo which ended up in the requirements file. I removed it manually and it worked. 
+* I used both manual and automated testing to test the functionalities of the website work as intended.
+
+* All the code for the website has been validated using tools like:
+
+   * W3C Markup validator for HTML
+   * Jigsaw CSS validator for CSS
+   * JSHint for JavaScript
+   * PEP8 for python code
+
+* Responsiveness has been checked and the website is fully responsive.
+
+* Lighthouse test was used to inspect the compliance of the website to best practices and to measure its performance. The scores are high (well above 90 for most pages in both mobile and desktop views.)
+
+* All user stories have been tested and the features that are intended to address all user stories are working. 
+#
+## Bugs
+
+- Commenting on a forum entry for the first time failed because the function after a successful Ajax connection was not able to find the comment box. The new comment is supposed to be added to the comment box, but I had specified the 'afterbegin' parameter while the box never began. I fixed this by putting a div with the target comment-box class. 
+
+![Ajax bug fixed](assets/screenshots/ajax-bug-fixed.png)
+
+- The text below the forum entry prompts users to be the first to comment. While this is its face value, the div containing this text was added to help the JavaScript code that runs after a successful Ajax call to find the right place where the new comment should be placed.
+
+- I have noticed that the google fonts I set in the CSS do not override the summernote font family in the blog detail page. This is a minor bug, in terms of its effect in this particular case, because the summernote 'Verdana' font looks good in the blog post page. 
+
 
 # Deployment
 
@@ -700,4 +724,5 @@ I have learnt from [Daisy](https://github.com/Daisy-McG), my mentor at the [Code
 
 # 
 
-#### [BACK TO TOP](https://github.com/Amareteklay/quteba#readme)
+## [BACK TO TOP](https://github.com/Amareteklay/quteba#readme)
+#
