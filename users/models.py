@@ -10,7 +10,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE,
                                 related_name='user_profile')
-    image = CloudinaryField(default='default.jpg')
+    image = CloudinaryField(default='default.png')
     bio = models.TextField(max_length=255, null=True, blank=True)
 
     def __str__(self):

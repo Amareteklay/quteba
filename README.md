@@ -605,7 +605,7 @@ Detailed testing and documentation of test results [are presented in a dedicated
 
 - The text below the forum entry prompts users to be the first to comment. While this is its face value, the div containing this text was added to help the JavaScript code that runs after a successful Ajax call to find the right place where the new comment should be placed.
 
-- I have noticed that the google fonts I set in the CSS do not override the summernote font family in the blog detail page. This is a minor bug, in terms of its effect in this particular case, because the summernote 'Verdana' font looks good in the blog post page. 
+- I have noticed that the google fonts I set in the CSS do not override the summernote font family in the blog detail page. I haven't fixed this because it is a minor bug, in terms of its effect in this particular case, because the summernote 'Verdana' font looks good in the blog post page. 
 
 
 # Deployment
@@ -725,4 +725,3 @@ I have learnt from [Daisy](https://github.com/Daisy-McG), my mentor at the [Code
 # 
 
 ## [BACK TO TOP](https://github.com/Amareteklay/quteba#readme)
-#

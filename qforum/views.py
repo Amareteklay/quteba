@@ -25,8 +25,6 @@ class ThreadList(LoginRequiredMixin, View):
         return render(request, 'qforum/thread_list.html', context=context)
 
     def post(self, request, *args, **kwargs):
-        thread_list = Thread.objects.all()
-        category_list = Category.objects.all()
         thread_form = ThreadForm(request.POST)
         if thread_form.is_valid():
             topic = thread_form.cleaned_data['topic']

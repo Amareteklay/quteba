@@ -6,7 +6,11 @@
         <div class="col-12 col-sm-10 col-md-8 mt-3 offset-md-2 round bg-light mb-5">
             <div class="content-section ps-5 mb-5">
                 <div class="py-5 mb-4">
+                    {% if user.user_profile.image %}
+                    <img class="rounded-circle profile-pic" src="https://res.cloudinary.com/cloudaman/image/upload/v1658163216/default.png" alt="default profile image">
+                    {% else %}
                     <img class="rounded-circle profile-pic" src="{{ user.user_profile.image.url }}" alt="profile image">
+                    {% endif %}
                     <div class="mt-3 mb-3">
                         <h2 class="account-heading">Username: {{ user.username }}</h2>
                         <p class="text-secondary">Email: {{ user.email }}</p>

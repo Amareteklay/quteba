@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="container-fluid mt-4 pt-5 mb-2">
+<div class="container-fluid mt-4 pt-2 pt-sm-4 mb-2">
     <div class="row mb-2 bg-light pt-3 pb-5 shadow border-0 rounded d-flex justify-content-center">
         <div class="col-12 mb-4 left">
             <h1 class="text-center text-deep-green"><strong>QUTEBA</strong> </h1>
@@ -21,7 +21,7 @@
             </a>
         </div>
         {% endif %}
-        <div class="col-12 col-md-5 mt-4 py-4 shadow border-0" id="q-blog-tagline">
+        <div class="col-6 col-sm-5 mt-4 py-4 shadow border-0" id="q-blog-tagline">
             <a href="#q-blog-section" aria-label="Go to quteba blog page" class="text-white">
                 <h2 class="text-center"><i class="fa-solid fa-pen"></i><br> Qblog</h2>
             </a>
@@ -33,7 +33,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-md-5 mt-4 py-4 shadow  border-0 pb-4" id="q-forum-tagline">
+        <div class="col-6 col-sm-5 mt-4 py-4 shadow  border-0 pb-4" id="q-forum-tagline">
             <a href="#q-forum-section" aria-label="Go to quteba forum page" class="text-white">
                 <h2 class="text-center"><i class="fa-solid fa-user-group"></i><br> Qforum</h2>
             </a>
@@ -48,14 +48,14 @@
     </div>
 </div>
 <!-- Recent stories section -->
-<div class="container-fluid pt-5 mb-2" id="q-blog-section">
+<div class="container-fluid pt-3 pt-sm-5 mb-2" id="q-blog-section">
     <div class="row mb-2 bg-light py-3 shadow rounded">
         <div class="col-12 mb-2">
             <h2 class="text-center">RECENT POSTS</h2>
         </div>
         {% for post in post %}
         {% if forloop.counter <= 3 %}
-        <div class="col-12 col-md-4 mt-2 p-4 me-0 shadow text-white bg-deep-green {% if forloop.counter|divisibleby:2 %} border {% endif %}">
+        <div class="col-12 col-md-4 mt-sm-2 p-4 me-0 shadow text-white bg-deep-green {% if forloop.counter|divisibleby:2 %} border {% endif %}">
             <a {% if user.is_authenticated %} href="{% url 'qblog:post_detail' post.slug  %}" {% else %} href="{% url 'login' %}" {% endif %} aria-label=" Open post detail page" class="text-white">
                 <h2>{{post.title}}</h2>
             </a>
@@ -63,7 +63,7 @@
             <p class="px-3 small"> {{ post.author|title }}
                 | <span class="text-white"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text text-white h6"> <i class="far fa-heart"></i>
                     {{ post.number_of_likes }}</span></p>
-            <p class="pt-3 text-white">{{post.excerpt|safe}}</p>
+            <p class="pt-sm-3 text-white">{{post.excerpt|safe}}</p>
         </div>
         {% endif %}
         {% endfor %}
@@ -89,21 +89,21 @@
     </div>
 </div>
 <!-- Active topics section -->
-<div class="container-fluid pt-5 mb-2" id="q-forum-section">
+<div class="container-fluid pt-5 mb-sm-2" id="q-forum-section">
     <div class="row mb-2 bg-light py-3 shadow rounded">
         <div class="col-12 mb-2 left">
             <h2 class="text-center">RECENT FORUMS</h2>
         </div>
         {% for thread in thread %}
         {% if forloop.counter <= 3 %}
-        <div class="col-12 col-md-4 mt-2 p-4 text-white shadow bg-deep-green {% if forloop.counter|divisibleby:2 %} border {% endif %}">
+        <div class="col-12 col-md-4 mt-sm-2 p-4 text-white shadow bg-deep-green {% if forloop.counter|divisibleby:2 %} border {% endif %}">
             <a {% if user.is_authenticated %} href="{% url 'qforum:thread_detail' thread.slug %}" {% else %} href="{% url 'login' %}" {% endif %} aria-label="Open post detail page" class="text-white">
                 <h2>{{thread.topic}}</h2>
             </a>
             <!-- <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}" alt="profile image"> -->
             <p class="mx-3 small"> {{thread.name}}
                 <span class="op-6 text-white">| {{ thread.created_on|timesince }} ago</span></p>
-            <p class="pt-3">{{thread.description|safe}}</p>
+            <p class="pt-sm-3">{{thread.description|safe}}</p>
         </div>
         {% endif %}
         {% endfor %}
