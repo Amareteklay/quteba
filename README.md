@@ -582,6 +582,10 @@ Postgresql was used for the database and psycopg2 was used as an Object Relation
 
 Detailed testing and documentation of test results [are presented in a dedicated file here](TESTING.md).
 
+* One of the most important requirements for this project is to never submit the project in debug mode. After deploying to Heroku and testing all other functionalities, I have tested that DEBUG=False in the deployed version. Here is the custom Error 404 result for a non-existent URL:
+
+![Error 404](assets/testing/debug-false.png)
+
 * I used both manual and automated testing to test the functionalities of the website work as intended.
 
 * All the code for the website has been validated using tools like:
@@ -599,6 +603,11 @@ Detailed testing and documentation of test results [are presented in a dedicated
 #
 ## Bugs
 
+- It was not possible to create featured image for blog posts from the create post and update post functionalities. It was possible only through the admin. Adding the featured_image field in the respective forms was not enough. Thanks to 'digital public goods' [such as this](https://stackoverflow.com/questions/52263711/generic-view-updateview-from-django-tutorial-does-not-save-files-or-images), I added enctype="multipart/form-data" to the forms and got it solved.
+- The forum list and forum detail pages were showing server error in the deployed version. The problem was solved when I removed a forward slash that I had forgotten to remove from the beginning of static file path. I had used
+ `href='{% static "/css/qforum.css" %}'` 
+ instead of
+ `href='{% static "css/qforum.css" %}'`. 
 - Commenting on a forum entry for the first time failed because the function after a successful Ajax connection was not able to find the comment box. The new comment is supposed to be added to the comment box, but I had specified the 'afterbegin' parameter while the box never began. I fixed this by putting a div with the target comment-box class. 
 
 ![Ajax bug fixed](assets/screenshots/ajax-bug-fixed.png)
