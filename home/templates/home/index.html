@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="container-fluid mt-4 pt-2 pt-sm-4 mb-2">
+<div class="container-fluid mt-4 pt-2 pt-sm-5 mb-2">
     <div class="row mb-2 bg-light pt-3 pb-5 shadow border-0 rounded d-flex justify-content-center">
         <div class="col-12 mb-4 left">
             <h1 class="text-center text-deep-green"><strong>QUTEBA</strong> </h1>
@@ -48,9 +48,9 @@
     </div>
 </div>
 <!-- Recent stories section -->
-<div class="container-fluid pt-3 pt-sm-5 mb-2" id="q-blog-section">
+<div class="container-fluid pt-2 pt-sm-3 mb-2" id="q-blog-section">
     <div class="row mb-2 bg-light py-3 shadow rounded">
-        <div class="col-12 mb-2">
+        <div class="col-12 mb-1">
             <h2 class="text-center">RECENT POSTS</h2>
         </div>
         {% for post in post %}
@@ -63,7 +63,7 @@
             <p class="px-3 small"> {{ post.author|title }}
                 | <span class="text-white"> {{ post.created_on|date:'d-m-Y'}}</span> <span class="card-text text-white h6"> <i class="far fa-heart"></i>
                     {{ post.number_of_likes }}</span></p>
-            <p class="pt-sm-3 text-white">{{post.excerpt|safe}}</p>
+            <p class="pt-sm-2 text-white">{{post.excerpt|safe}}</p>
         </div>
         {% endif %}
         {% endfor %}
@@ -89,9 +89,9 @@
     </div>
 </div>
 <!-- Active topics section -->
-<div class="container-fluid pt-5 mb-sm-2" id="q-forum-section">
+<div class="container-fluid pt-3 mb-sm-5" id="q-forum-section">
     <div class="row mb-2 bg-light py-3 shadow rounded">
-        <div class="col-12 mb-2 left">
+        <div class="col-12 mb-1 left">
             <h2 class="text-center">RECENT FORUMS</h2>
         </div>
         {% for thread in thread %}
@@ -103,7 +103,7 @@
             <!-- <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}" alt="profile image"> -->
             <p class="mx-3 small"> {{thread.name}}
                 <span class="op-6 text-white">| {{ thread.created_on|timesince }} ago</span></p>
-            <p class="pt-sm-3">{{thread.description|safe}}</p>
+            <p class="pt-sm-2">{{thread.description|safe}}</p>
         </div>
         {% endif %}
         {% endfor %}

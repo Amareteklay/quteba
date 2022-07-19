@@ -606,6 +606,7 @@ Detailed testing and documentation of test results [are presented in a dedicated
 - The text below the forum entry prompts users to be the first to comment. While this is its face value, the div containing this text was added to help the JavaScript code that runs after a successful Ajax call to find the right place where the new comment should be placed.
 
 - I have noticed that the google fonts I set in the CSS do not override the summernote font family in the blog detail page. I haven't fixed this because it is a minor bug, in terms of its effect in this particular case, because the summernote 'Verdana' font looks good in the blog post page. 
+- There was a problem in some pages having not enough content and the footer hanging in the middle of the page. I followed [these tips](https://www.freecodecamp.org/news/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c/) to fix this problem. I give credit to the source in the credit section as well.
 
 
 # Deployment
@@ -717,6 +718,7 @@ To clone the repository:
 - I followed [these steps](https://medium.com/analytics-vidhya/provisioning-a-test-postgresql-database-on-heroku-for-your-django-app-febb2b5d3b29) to run the first unittest.
 - I also used [this tutrial](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing#overview) as an example and to copy and adapt code for testing views.
 - I took this [Female avatar](https://www.iconspng.com/uploads/female-avatar/female-avatar.png) and this [Male avatar](https://www.w3schools.com/howto/img_avatar.png), and used them as profile images for a test users.
+- In some pages where the content is small, the footer would hang in the middle of the page. I followed [these tips](https://www.freecodecamp.org/news/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c/) to keep the footer at the bottom of the page even when there no enough content.
 
 ## Acknowledgements
 

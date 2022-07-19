@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container account-container">
     <div class="row px-2 px-lg-5">
-        <div class="col-12 mt-3 bg-light">
+        <div class="col-12 bg-light">
             <div class="content-section p-sm-5 p-2">
                 <form method="POST">
                     {% csrf_token %}
@@ -15,8 +15,7 @@
                         <button class="btn btn-signup btn-success right my-2" type="submit">Sign up</button>
                     </div>
                 </form>
-
-                <div class="border-top pt-3">
+                <div class="border-top pt-2">
                     <p class="small">
                         Already have an account? <a class="text-primary" href="{% url 'login' %}">Sign in</a>
                     </p>
