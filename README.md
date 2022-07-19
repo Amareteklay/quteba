@@ -271,7 +271,7 @@ Quteba has the following data models, their respective field attributes and vali
 | Name          | Database Key  | Field Type    | Validation |
 | ------------- | ------------- | ------------- | ---------- |
 | Post          | post          | ForeignKey | Post, on_delete=models.CASCADE, related_name='comments'    |
-| Name        | name        | CharField    |  max_length=50     |
+| Name        | name        | ForeignKey  |  User, on_delete=models.CASCADE, related_name='post_comments'     |
 | Email      | email    | EmailField    | null=True, blank=True      |
 | Body    | body    | TextField    | max_length=200   |
 | Created On    | created_on     | DateTimeField    | auto_now_add=True     |
