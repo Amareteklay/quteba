@@ -7,7 +7,12 @@ class PostForm(forms.ModelForm):
     """ Form to create blog posts """
     class Meta:
         model = Post
-        fields = ('author', 'title', 'content', 'excerpt', 'status')
+        fields = ('author',
+                  'title',
+                  'content',
+                  'featured_image',
+                  'excerpt',
+                  'status')
         widgets = {
             'content': SummernoteWidget(),
             'excerpt': SummernoteWidget()

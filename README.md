@@ -719,6 +719,7 @@ To clone the repository:
 - I also used [this tutrial](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing#overview) as an example and to copy and adapt code for testing views.
 - I took this [Female avatar](https://www.iconspng.com/uploads/female-avatar/female-avatar.png) and this [Male avatar](https://www.w3schools.com/howto/img_avatar.png), and used them as profile images for a test users.
 - In some pages where the content is small, the footer would hang in the middle of the page. I followed [these tips](https://www.freecodecamp.org/news/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c/) to keep the footer at the bottom of the page even when there no enough content.
+- I took the image for one of the blog posts from [this](https://www.google.com/search?hl=en-SE&tbs=simg:CAQS9wEJmtzsdRZoGvca6wELELCMpwgaOgo4CAQSFMsw0SawGtkxgBeKKv41iBbDBPwPGhpqaVJ24scfPBLd0jHp-AyCptvISTiX4Ig07yAFMAQMCxCOrv4IGgoKCAgBEgSFPRZYDAsQne3BCRqLAQocCgllYXJ0aCBkYXnapYj2AwsKCS9tLzAxNHhxbQobCghsYW5ndWFnZdqliPYDCwoJL2ovMnNoX3k0ChsKCHZlcnRpY2Fs2qWI9gMLCgkvYS80aGgzcDAKGAoEbGFuZNqliPYDDAoKL20vMDJreDQ1cAoXCgVlYXJ0aNqliPYDCgoIL20vMDJqNzEM&sxsrf=ALiCzsYJkvbbsVW658IrNr068B2h73OOlw:1658258050767&q=state+of+environment+in+india&tbm=isch&sa=X&ved=2ahUKEwjK8r7Q1IX5AhVdVfEDHdPqC50Qwg4oAHoECAEQNA&biw=1680&bih=931&dpr=1) for a blog post.
 
 ## Acknowledgements
 

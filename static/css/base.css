@@ -90,16 +90,11 @@ a.navbar-brand:hover,
     margin-top: 30px;
 }
 
-.bg-rounded {
-    height: 100%;
+.featured-image {
     width: 100%;
+    height: auto;
     border-radius: 40% 0;
-    background-color: #05472a;
-    background: url("https://res.cloudinary.com/cloudaman/image/upload/v1653860402/cdrfymnr2arymbo9wfwe.png") center no-repeat;
-    background-size: cover;
 }
-
-
 
 #hero-image {
     position: relative;

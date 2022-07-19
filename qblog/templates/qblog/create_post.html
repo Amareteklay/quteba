@@ -9,7 +9,7 @@
                 <h2 class="text-center">Create a blog post</h2>
             </div>
             <div class="col-8 mt-3 offset-1 offset-md-2 mb-5">
-                <form method="post" action="">
+                <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form | crispy }}
                     <input class="my-3 btn-primary" type="submit" value="Save">

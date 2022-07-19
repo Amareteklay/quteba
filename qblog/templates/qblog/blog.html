@@ -16,7 +16,12 @@
         <div class="row mt-5 mb-3">
             {% if forloop.counter|divisibleby:2 %}
             <div class="col-5">
-                <div class="border bg-light bg-rounded d-md-none d-lg-block">
+                <div class="bg-light d-md-none d-lg-block">
+                    {% if "placeholder" in post.featured_image.url %}
+                    <img class="featured-image" src="https://res.cloudinary.com/cloudaman/image/upload/v1653860402/cdrfymnr2arymbo9wfwe.png" alt="Featured image">
+                    {% else %}
+                    <img class="featured-image" src=" {{ post.featured_image.url }}" alt="Featured image">
+                    {% endif %}
                 </div>
             </div>
             <div class="col-md-12 col-lg-7 px-3">
@@ -47,7 +52,12 @@
                 </div>
             </div>
             <div class="col-5">
-                <div class="border bg-light bg-rounded d-none d-lg-block">
+                <div class="bg-light d-md-none d-lg-block">
+                    {% if "placeholder" in post.featured_image.url %}
+                    <img class="featured-image" src="https://res.cloudinary.com/cloudaman/image/upload/v1653860402/cdrfymnr2arymbo9wfwe.png" alt="Featured image">
+                    {% else %}
+                    <img class="featured-image" src=" {{ post.featured_image.url }}" alt="Featured image">
+                    {% endif %}
                 </div>
             </div>
             {% endif %}

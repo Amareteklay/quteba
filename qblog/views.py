@@ -24,7 +24,7 @@ class PostEditView(LoginRequiredMixin, UpdateView):
     View to update blog posts
     """
     model = Post
-    fields = ['title', 'content', 'excerpt', 'status']
+    fields = ['title', 'content', 'featured_image', 'excerpt', 'status']
     template_name = 'qblog/edit_post.html'
 
     def get_success_url(self):
