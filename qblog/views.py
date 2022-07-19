@@ -80,7 +80,7 @@ class PostDetail(LoginRequiredMixin, View):
         form = CommentForm(data=request.POST)
         if form.is_valid():
             form.instance.email = request.user.email
-            form.instance.name = request.user.username
+            form.instance.name = request.user
             comment = form.save(commit=False)
             comment.post = post
             comment.save()

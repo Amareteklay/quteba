@@ -41,7 +41,8 @@ class Comment(models.Model):
     """ Model for comments on blog posts """
     post = models.ForeignKey(Post, on_delete=models.CASCADE,
                              related_name='comments')
-    name = models.CharField(max_length=50)
+    name = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name="post_comments")
     email = models.EmailField()
     body = models.TextField(max_length=200)
     created_on = models.DateTimeField(auto_now_add=True)

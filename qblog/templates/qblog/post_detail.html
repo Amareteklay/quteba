@@ -54,9 +54,9 @@
             <div class="col-md-6">
                 {% for comment in comments %}
                 <div class="comments" style="padding: 10px;">
-                    <p class="font-weight-bold">
-                        <img class="rounded-circle article-img profile-img" src="{{ comment.post.author.profile.image.url }}" alt="profile image">
-                        {{ comment.name }}
+                    <p class="small">
+                        <img class="rounded-circle article-img profile-img" src="{% if comment.name.user_profile.image %} {{ comment.name.user_profile.image.url }} {% else %} 'https://res.cloudinary.com/cloudaman/image/upload/v1658163216/default.png' {% endif %}" alt=" profile image">
+                        {{ comment.name.username|title }}
                         <span class="font-weight-normal">
                             {{ comment.created_on }}
                         </span> wrote:
