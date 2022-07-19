@@ -248,14 +248,12 @@ a.text-primary:hover {
     font-weight: 700 !important;
 }
 
-/* Custom default button */
 .btn-secondary,
 .btn-secondary:hover,
 .btn-secondary:focus {
     color: #333;
     text-shadow: none;
 }
-
 
 .cover-container {
     max-width: 42em;
@@ -324,5 +322,19 @@ img {
 
     p {
         font-size: 1rem;
+    }
+
+}
+
+@media (max-width: 992px) {
+
+    .navbar-collapse .nav-link,
+    li.nav-item {
+        width: 150px;
+    }
+
+    .search-form {
+        width: 75%;
+        min-width: 150px;
     }
 }
