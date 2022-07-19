@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Contact
 from django_summernote.admin import SummernoteModelAdmin
+from .models import Contact
 
 
 @admin.register(Contact)

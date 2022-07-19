@@ -14,9 +14,6 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.conf import settings
-from django.conf.urls.static import static
 from django.urls import path, include
 from .views import handler404, handler500
 
@@ -29,9 +26,8 @@ urlpatterns = [
     path('forum/', include('qforum.urls'), name='qforum'),
     path('accounts/', include('allauth.urls')),
     path('profile/', include('users.urls'), name='users_urls'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+]
 
-urlpatterns += staticfiles_urlpatterns()
 
 HANDLER404 = handler404
 HANDLER500 = handler500
