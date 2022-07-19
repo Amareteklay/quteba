@@ -154,9 +154,7 @@
             <h5 class="pt-3 px-3">
                 <a href="${url}${response.slug}" class="text-primary">${response.topic}</a>
             </h5>
-            <div class="px-3">
-                ${response.description}
-            </div>
+            <p class="px-3 py-3">  ${response.description}</p>
         </div>
         <div class="px-4">
             <span class="d-inline-block text-sm text-success"> <i class="fa-solid fa-caret-up"></i>
