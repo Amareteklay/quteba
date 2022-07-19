@@ -49,8 +49,8 @@
                     <div class="row pb-3 align-items-center">
                         <div class="col-12 col-sm-12 col-md-10 col-lg-8 mb-3 mb-sm-0">
                             <img class="rounded-circle article-img profile-img" src="{{ thread.name.user_profile.image.url }}" alt="profile image">
-                            <a class="text-black" href="{% url 'profile' %}" aria-label="Go to user profile page"> {{thread.name}}</a> <span class="op-6">|
-                                {{ thread.created_on|date:"Y-m-d"}}</span>
+                            <p class="small d-inline-block"> {{thread.name|title}} <span class="op-6">|
+                                    {{ thread.created_on|date:"Y-m-d"}}</span></p>
                             <h5 class="pt-3 px-3">
                                 <a href="{% url 'qforum:thread_detail' thread.slug %}" aria-label="Open thread detail page" class="text-primary">{{ thread.topic|title}}</a>
                             </h5>
