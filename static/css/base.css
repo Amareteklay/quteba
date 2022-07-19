@@ -1,9 +1,21 @@
+html,
+body {
+    height: 100%;
+}
+
+body>footer {
+    position: sticky;
+    top: 100vh;
+}
+
 body {
     margin: 0 !important;
     padding: 0 !important;
     overflow-x: hidden;
     background-color: rgba(8, 120, 19, 0.4);
     background-image: url("https://res.cloudinary.com/cloudaman/image/upload/v1658175353/qu-bg_lahugh.png");
+    background-size: cover;
+    height: calc(100vh - 164px);
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
 }
@@ -304,7 +316,7 @@ img {
     vertical-align: top !important;
 }
 
-.search-row {
+.min-row-height {
     min-height: 600px;
 }
 
